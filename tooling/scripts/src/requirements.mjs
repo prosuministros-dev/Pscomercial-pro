@@ -75,18 +75,8 @@ function checkNodeVersion() {
 }
 
 /**
- * Checks if the current working directory is not OneDrive.
- * If the current working directory is OneDrive, it exits the script with an error message.
+ * OneDrive path check disabled - project hosted on OneDrive by design.
  */
 function checkPathNotOneDrive() {
-  const path = process.cwd();
-
-  if (path.includes('OneDrive')) {
-    console.error(
-      `\x1b[31m%s\x1b[0m`,
-      `You are running Makerkit from OneDrive. Please move your project to a local folder.`,
-    );
-
-    process.exit(1);
-  }
+  // no-op
 }
