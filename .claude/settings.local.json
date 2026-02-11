@@ -26,7 +26,13 @@
       "Bash(pip install:*)",
       "Bash(python:*)",
       "Bash(git -C \"/c/Users/freddyrs/OneDrive - Cegeka/Pscomercial-pro/Pscomercial-pro\" add:*)",
-      "Bash(git -C \"/c/Users/freddyrs/OneDrive - Cegeka/Pscomercial-pro/Pscomercial-pro\" add -A)"
+      "Bash(git -C \"/c/Users/freddyrs/OneDrive - Cegeka/Pscomercial-pro/Pscomercial-pro\" add -A)",
+      "Bash(dir:*)",
+      "Bash(cmd /c dir:*)",
+      "Bash(ls -1 \"C:\\\\Users\\\\freddyrs\\\\OneDrive - Cegeka\\\\Pscomercial-pro\\\\Pscomercial-pro\\\\Contexto\\\\HU\\\\HU MD\"\" | grep -i \"0004 \")",
+      "Bash(powershell -Command:*)",
+      "Bash(ls \"c:\\\\Users\\\\freddyrs\\\\OneDrive - Cegeka\\\\Pscomercial-pro\\\\Pscomercial-pro\\\\Contexto\\\\HU\\\\Arquitectura\"\" 2>nul || echo \"EMPTY \")",
+      "Bash(git add:*)"
     ]
   }
 }
