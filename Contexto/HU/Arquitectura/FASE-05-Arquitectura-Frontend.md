@@ -22,10 +22,10 @@ pscomercial-pro/
 │       │   │   │   ├── sign-up/page.tsx
 │       │   │   │   ├── callback/route.ts
 │       │   │   │   └── forgot-password/page.tsx
-│       │   │   └── layout.tsx        # Layout sin sidebar
+│       │   │   └── layout.tsx        # Layout sin navegacion
 │       │   │
-│       │   ├── (dashboard)/          # Grupo: páginas protegidas (con sidebar)
-│       │   │   ├── layout.tsx        # Layout con sidebar + header + PermissionsProvider
+│       │   ├── (dashboard)/          # Grupo: paginas protegidas (con top nav bar)
+│       │   │   ├── layout.tsx        # Layout con top nav + ThemeProvider + PermissionsProvider
 │       │   │   ├── dashboard/page.tsx
 │       │   │   ├── leads/
 │       │   │   │   ├── page.tsx      # Listado kanban/tabla
@@ -463,33 +463,111 @@ export const leadsColumns: ColumnDef<Lead>[] = [
 | `TrafficLightBadge` | packages/ui | Semáforo (green/yellow/red) |
 | `FileUploader` | packages/ui | Uploader de archivos a Supabase Storage |
 
-### 4.2 Branding (PODENZA/PROSUMINISTROS)
+### 4.2 Branding PROSUMINISTROS (del Template Figma - Fuente de Verdad)
+
+**Fuente de verdad**: `Contexto/Template Figma/Generate Mock Data (2)/src/styles/globals.css`
 
 ```css
-/* Colores de la marca (del fullstack-dev agent) */
 :root {
-  --color-primary: #2C3E2B;     /* Verde oscuro */
-  --color-secondary: #E7FF8C;   /* Verde lima */
-  --color-accent: #FF931E;      /* Naranja */
+  /* Brand Colors */
+  --brand-cyan: #00C8CF;
+  --brand-navy: #161052;
 
-  --grad-brand: linear-gradient(135deg, #2C3E2B, #3D5A3C);
-  --grad-accent: linear-gradient(135deg, #FF931E, #FFB347);
-  --grad-lime: linear-gradient(135deg, #E7FF8C, #C4E64E);
+  /* Gradientes oficiales */
+  --grad-brand: linear-gradient(135deg, #00C8CF 0%, #161052 100%);
+  --grad-hero: linear-gradient(180deg, #00C8CF 0%, #0099A8 50%, #161052 100%);
+  --grad-accent: linear-gradient(90deg, #00C8CF 0%, #00A8B8 100%);
+  --grad-soft: linear-gradient(135deg, rgba(0,200,207,0.1) 0%, rgba(22,16,82,0.1) 100%);
+
+  /* Theme tokens - Light mode */
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --primary: #00C8CF;           /* Cyan */
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f7;         /* Gris claro */
+  --secondary-foreground: #0a0a0a;
+  --muted: #f5f5f7;
+  --muted-foreground: #6e6e73;
+  --accent: #161052;            /* Navy */
+  --accent-foreground: #ffffff;
+  --destructive: #ff3b30;
+  --border: rgba(0, 0, 0, 0.06);
+  --input-background: #f5f5f7;
+  --ring: #00C8CF;
+  --radius: 0.75rem;
+
+  /* Charts */
+  --chart-1: #00C8CF;
+  --chart-2: #161052;
+  --chart-3: #0099A8;
+  --chart-4: #2E2680;
+  --chart-5: #00E5ED;
 }
+
+.dark {
+  --background: #000000;
+  --foreground: #f5f5f7;
+  --card: #1c1c1e;
+  --primary: #00E5ED;
+  --primary-foreground: #000000;
+  --secondary: #2c2c2e;
+  --accent: #00C8CF;
+  --accent-foreground: #000000;
+  --destructive: #ff453a;
+  --border: rgba(255, 255, 255, 0.1);
+  --ring: #00E5ED;
+}
+```
+
+### 4.3 Dark Mode (OBLIGATORIO)
+
+- ThemeProvider con toggle light/dark + gradients on/off
+- Persistencia en localStorage
+- Toggle Moon/Sun en header (derecha)
+- Clase `.dark` en `document.documentElement`
+
+### 4.4 Animaciones - Framer Motion (OBLIGATORIO)
+
+```tsx
+import { motion } from 'motion/react';
+
+// Entrada estandar
+<motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+  {content}
+</motion.div>
+```
+
+### 4.5 Efectos Visuales
+
+```css
+/* Glass morphism */
+.glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(20px); }
+.dark .glass { background: rgba(28,28,30,0.7); }
+
+/* Sombras Apple */
+.shadow-subtle   /* 0 1px 3px rgba(0,0,0,0.04) */
+.shadow-medium   /* 0 4px 6px rgba(0,0,0,0.05) */
+.shadow-elevated /* 0 10px 15px rgba(0,0,0,0.08) */
 ```
 
 ---
 
-## 5. LAYOUT PRINCIPAL
+## 5. LAYOUT PRINCIPAL (del Template Figma)
 
-### 5.1 Dashboard Layout
+### 5.1 Dashboard Layout (Top Navigation Bar, NO Sidebar)
+
+**IMPORTANTE**: La navegacion es una BARRA HORIZONTAL SUPERIOR, no un sidebar lateral.
+Referencia: `Contexto/Template Figma/Generate Mock Data (2)/src/components/layout/navigation.tsx`
 
 ```tsx
 // app/(dashboard)/layout.tsx
 import { createClient } from '@kit/supabase/server';
 import { PermissionsProvider } from '@kit/features/permissions';
-import { Sidebar } from './_components/sidebar';
-import { Header } from './_components/header';
+import { ThemeProvider } from '@/components/theme-provider';
+import { Navigation } from '@/components/layout/navigation';
+import { Toaster } from '@/components/ui/sonner';
 
 export default async function DashboardLayout({
   children,
@@ -508,63 +586,94 @@ export default async function DashboardLayout({
     .single();
 
   return (
-    <PermissionsProvider userId={user.id}>
-      <div className="flex h-screen">
-        <Sidebar user={profile} />
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <Header user={profile} />
-          <main className="flex-1 overflow-auto p-6">
-            {children}
+    <ThemeProvider>
+      <PermissionsProvider userId={user.id}>
+        <div className="min-h-screen bg-background flex flex-col">
+          <Navigation user={profile} />
+
+          {/* Main con padding para nav fija: pt-36 mobile (header+tabs), md:pt-20 desktop */}
+          <main className="flex-1 w-full px-3 pt-36 pb-4 md:pt-20 md:px-6 lg:px-8 overflow-auto">
+            <div className="h-full w-full max-w-[1400px] mx-auto">
+              {children}
+            </div>
           </main>
+
+          <Toaster /> {/* sonner */}
         </div>
-      </div>
-    </PermissionsProvider>
+      </PermissionsProvider>
+    </ThemeProvider>
   );
 }
 ```
 
-### 5.2 Sidebar con Permisos
+### 5.2 Top Navigation Bar con Permisos
 
 ```tsx
-// _components/sidebar.tsx
+// _components/navigation.tsx (TOP BAR - del Template Figma)
 'use client';
 import { useCanAccessModule } from '@kit/features/permissions';
-import { MAIN_NAVIGATION } from '@/config/navigation';
+import { useTheme } from '@/components/theme-provider';
 
-export function Sidebar({ user }: { user: Profile }) {
+// 8 items de navegacion (del Template Figma)
+const navItems = [
+  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, href: '/dashboard' },
+  { id: 'leads', label: 'Leads', icon: Megaphone, href: '/leads' },
+  { id: 'cotizaciones', label: 'Cotizaciones', icon: FileText, href: '/quotes' },
+  { id: 'pedidos', label: 'Pedidos', icon: ShoppingCart, href: '/orders' },
+  { id: 'financiero', label: 'Financiero', icon: DollarSign, href: '/billing' },
+  { id: 'formatos', label: 'Formatos', icon: Files, href: '/formats' },
+  { id: 'whatsapp', label: 'WhatsApp', icon: MessageCircle, href: '/whatsapp' },
+  { id: 'admin', label: 'Admin', icon: Settings, href: '/admin' },
+];
+
+export function Navigation({ user }: { user: Profile }) {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <aside className="w-64 border-r bg-card flex flex-col">
-      <div className="p-4 border-b">
-        <img src={user.organization.logo_url} alt="" className="h-8" />
+    <nav className="fixed top-0 left-0 right-0 z-40 border-b border-border bg-background/95 backdrop-blur">
+      <div className="container mx-auto px-4">
+        <div className="flex h-14 items-center justify-between">
+          {/* Izquierda: Logo + Nav items (desktop) */}
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <div className="h-7 w-7 rounded-lg bg-gradient-brand" />
+              <span className="text-sm tracking-tight hidden sm:inline">Prosuministros</span>
+            </div>
+            <div className="hidden md:flex items-center gap-1">
+              {navItems.map((item) => (
+                <NavItem key={item.id} item={item} />
+              ))}
+            </div>
+          </div>
+
+          {/* Derecha: Notificaciones + Theme toggle + Avatar */}
+          <div className="flex items-center gap-2">
+            <NotificationBell /> {/* Sheet panel, no dropdown */}
+            <ThemeToggle />      {/* Moon/Sun */}
+            <UserAvatar user={user} />
+          </div>
+        </div>
       </div>
 
-      <nav className="flex-1 p-2 space-y-1">
-        {MAIN_NAVIGATION.map((item) => (
-          <SidebarItem key={item.href} item={item} />
-        ))}
-      </nav>
-
-      <div className="p-4 border-t">
-        <UserMenu user={user} />
+      {/* Mobile: Bottom tab bar con 8 items */}
+      <div className="md:hidden border-t border-border bg-background">
+        <div className="flex items-center justify-around py-1">
+          {navItems.map((item) => (
+            <MobileNavItem key={item.id} item={item} />
+          ))}
+        </div>
       </div>
-    </aside>
+    </nav>
   );
 }
 
-function SidebarItem({ item }: { item: NavItem }) {
-  // El módulo se extrae del permiso: 'leads:read' → 'leads'
-  const module = item.requiredPermission.split(':')[0];
-  const canAccess = useCanAccessModule(module);
-
-  if (!canAccess) return null;
-
-  return (
-    <Link href={item.href} className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-accent">
-      <Icon name={item.icon} className="h-4 w-4" />
-      <span className="text-sm">{item.label}</span>
-    </Link>
-  );
-}
+// Estilos de items:
+// Activo desktop: "bg-primary/10 text-primary"
+// Inactivo desktop: "text-muted-foreground hover:bg-secondary hover:text-foreground"
+// Activo mobile: "text-primary"
+// Inactivo mobile: "text-muted-foreground"
+// Iconos: h-4 w-4 (desktop y mobile)
+// Labels mobile: text-[8px]
 ```
 
 ---
@@ -670,22 +779,33 @@ export function useRealtimeNotifications(userId: string) {
 
 ## 8. RESUMEN EJECUTIVO
 
-| Métrica | Valor |
+| Metrica | Valor |
 |---|---|
-| **Módulos Frontend** | 12 + Admin |
-| **Páginas (routes)** | ~30 |
+| **Modulos Navegacion** | 8 (Dashboard, Leads, Cotizaciones, Pedidos, Financiero, Formatos, WhatsApp, Admin) |
+| **Paginas (routes)** | ~30 |
 | **Componentes compartidos** | 16+ |
-| **React Query hooks** | ~10 por módulo |
+| **Componentes Shadcn/UI** | 47+ |
+| **React Query hooks** | ~10 por modulo |
 | **Zod schemas** | 1 por formulario |
 | **Realtime channels** | 2 (notifications, whatsapp) |
 | **Layout groups** | 2 (auth, dashboard) |
 | **View modes** | Kanban + Table (togglable) |
+| **Navegacion** | Top horizontal bar (NO sidebar) + mobile bottom tabs |
+| **Animaciones** | Framer Motion (motion/react) |
+| **Dark mode** | Obligatorio (ThemeProvider con toggle) |
+| **Toasts** | sonner |
+| **Branding** | Cyan #00C8CF + Navy #161052 (del Template Figma) |
 
 ### Decisiones Clave:
-1. **Server Components para data fetching inicial** → SEO + performance
-2. **Client Components para interactividad** → forms, modals, kanban
-3. **TanStack Query para cache** → staleTime 30s, invalidation on mutation
-4. **URL state para filtros** → shareable, back-button friendly
-5. **No Redux/Zustand** → TanStack Query + Context es suficiente
-6. **Componentes en packages/** → reutilizables entre apps del monorepo
-7. **Shadcn/UI como base** → customizable, no vendor lock-in
+1. **Top Navigation Bar** (no sidebar) → Segun Template Figma, fuente de verdad visual
+2. **Dark mode obligatorio** → ThemeProvider con toggle Moon/Sun, gradients toggle
+3. **Framer Motion** → Animaciones de entrada en todas las vistas (opacity+y)
+4. **Server Components para data fetching inicial** → SEO + performance
+5. **Client Components para interactividad** → forms, modals, kanban
+6. **TanStack Query para cache** → staleTime 30s, invalidation on mutation
+7. **URL state para filtros** → shareable, back-button friendly
+8. **No Redux/Zustand** → TanStack Query + Context es suficiente
+9. **Componentes en packages/** → reutilizables entre apps del monorepo
+10. **Shadcn/UI como base** → 47+ componentes, customizable, no vendor lock-in
+11. **sonner para toasts** → Consistente con Template Figma
+12. **Glass morphism + sombras custom** → Estilo Apple/Tesla minimalista

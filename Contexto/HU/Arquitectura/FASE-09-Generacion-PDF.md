@@ -64,14 +64,14 @@ const styles = StyleSheet.create({
   page: { padding: 40, fontSize: 9, fontFamily: 'Inter' },
   header: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
   logo: { width: 120, height: 40 },
-  title: { fontSize: 16, fontWeight: 'bold', color: '#2C3E2B' },
+  title: { fontSize: 16, fontWeight: 'bold', color: '#00C8CF' },
   subtitle: { fontSize: 10, color: '#666' },
   infoGrid: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 15 },
   infoBox: { width: '48%', padding: 10, backgroundColor: '#f8f8f8', borderRadius: 4 },
   label: { fontSize: 7, color: '#999', marginBottom: 2, textTransform: 'uppercase' },
   value: { fontSize: 9, fontWeight: 'bold' },
   table: { marginTop: 10, marginBottom: 10 },
-  tableHeader: { flexDirection: 'row', backgroundColor: '#2C3E2B', padding: 6 },
+  tableHeader: { flexDirection: 'row', backgroundColor: '#00C8CF', padding: 6 },
   tableHeaderCell: { color: '#fff', fontWeight: 'bold', fontSize: 8 },
   tableRow: { flexDirection: 'row', padding: 6, borderBottomWidth: 0.5, borderBottomColor: '#eee' },
   tableCell: { fontSize: 8 },
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   totalRow: { flexDirection: 'row', justifyContent: 'space-between', width: 200, padding: 3 },
   totalLabel: { fontSize: 9 },
   totalValue: { fontSize: 9, fontWeight: 'bold' },
-  grandTotal: { fontSize: 12, fontWeight: 'bold', color: '#2C3E2B' },
+  grandTotal: { fontSize: 12, fontWeight: 'bold', color: '#00C8CF' },
   footer: { position: 'absolute', bottom: 30, left: 40, right: 40, fontSize: 7, color: '#999', textAlign: 'center' },
   terms: { marginTop: 20, padding: 10, backgroundColor: '#f8f8f8', borderRadius: 4 },
 });
@@ -169,7 +169,7 @@ export function QuotePDFTemplate({ quote, companyInfo }: QuotePDFProps) {
             <Text style={styles.totalLabel}>IVA (19%):</Text>
             <Text style={styles.totalValue}>{formatCurrencyPDF(quote.tax_amount, quote.currency)}</Text>
           </View>
-          <View style={[styles.totalRow, { borderTopWidth: 1, borderTopColor: '#2C3E2B', paddingTop: 5 }]}>
+          <View style={[styles.totalRow, { borderTopWidth: 1, borderTopColor: '#00C8CF', paddingTop: 5 }]}>
             <Text style={styles.grandTotal}>TOTAL:</Text>
             <Text style={styles.grandTotal}>{formatCurrencyPDF(quote.total, quote.currency)}</Text>
           </View>

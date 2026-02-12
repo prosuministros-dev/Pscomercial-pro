@@ -1,0 +1,56 @@
+# Cotización
+
+|  | TIPO DE CASILLA | GERENCIA GENERAL | GERENCIA COMERCIAL | COMERCIALES | COMPRAS | AUXILIAR FINANCIERA | AUXILIAR ADMINISTRATIVA | JEFE DE BODEGA | AUXILIAR DE BODEGA |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| COTIZACIONES |  |  |  |  |  |  |  |  |  |
+| NUMERO DE COTIZACIÓN (EL SISTEMA LO GENERA DE MANERA AUTOMATICA, DEBEMOS INICIAR CON LA COTIZACIÓN NO. 30000 Y CADA QUE UN COMERCIAL CREE UNA COTIZACIÓN, LE ASIGNA LA QUE LE SIGUE SEGÚN CORRESPONDA. | OBLIGATORIA | NO | NO | NO | NO | NO | NO | NO | NO |
+| FECHA DE LA COTIZACIÓN (EL SISTEMA DEBERÁ PONER DE MANERA AUTOMATICA LA FECHA DE HOY PERO TAMBIEN PERMITIRA MODIFICARLA SEGÚN LO REQUIERA) | OBLIGATORIA | Automatica - Editable | Automatica - Editable | Automatica - Editable | NO | NO | NO | NO | NO |
+| NIT | OBLIGATORIA | Crear y modificar | Crear y modificar | Crear y modificar | NO | NO | NO | NO | NO |
+| RAZÓN SOCIAL | OBLIGATORIA | Crear y modificar | Crear y modificar | Crear y modificar | NO | NO | NO | NO | NO |
+| FORMA DE PAGO (LO DILIGENCIA UNICAMENTE FINANCIERA AL MOMENTO DE MODIFICAR AL CLIENTE, TODOS LOS CLIENTES QUEDAN CREADOS DE MANERA AUTOMATICA COMO ANTICIPADO, FINANCIERA DEBERÁ INGRESAR AL CLIENTE Y CAMBIAR LA FORMA DE PAGO Y EL CUPO) | OBLIGATORIA | Crear y modificar | NO | NO | NO | Crear y modificar | NO | NO | NO |
+| CUPO DE CRÉDITO DISPONIBLE | OBLIGATORIA | NO | NO | NO | NO | NO | NO | NO | NO |
+| NOMBRE DEL CONTACTO | OBLIGATORIA | Crear y modificar | Crear y modificar | Crear y modificar | NO | NO | NO | NO | NO |
+| CELULAR DEL CONTACTO | OBLIGATORIA | Crear y modificar | Crear y modificar | Crear y modificar | NO | NO | NO | NO | NO |
+| CORREO ELECTRONICO DEL CONTACTO | OBLIGATORIA | Crear y modificar | Crear y modificar | Crear y modificar | NO | NO | NO | NO | NO |
+| ASUNTO | OBLIGATORIA | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| NOMBRE DEL COMERCIAL | OBLIGATORIA | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
+| PORCENTAJE DE INTERES (Creación de la oferta, En negociación, Riesgo, Pendiente por orden de compra) | OBLIGATORIA | Modificar | Modificar | Modificar | NO | NO | NO | NO | NO |
+| VIGENCIA DE LA COTIZAÓN | OBLIGATORIA | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| CASILLAS PARA GUARDAR INFORMACIÓN COMO LINKS | NO OBLIGATORIO | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| CONDICIONES COMERCIALES (INFORMACIÓN PARA PONER DE MANERA MANUAL LOS PLUS A LA COTIZACIÓN) | NO OBLIGATORIO | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| CUADRO INFORMATIVO PARA QUE EL COMERCIAL O LA IA PONGA CUAL HA SIDO EL AVANCE CON LA COTIZACIÓN RESPECTO A LA RETROALIMENTACIÓN CON EL CLIENTE. | NO OBLIGATORIO | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| DATOS ADJUNTOS (ARCHIVOS QUE SE REQUIERAN GUARDAR EN LA COTIZACIONES TALES COMO COTIZACIONES) | NO OBLIGATORIO | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+|  |  |  |  |  |  |  |  |  |  |
+| FECHA DE CIERRE |  |  |  |  |  |  |  |  |  |
+| MES DE CIERRE | OBLIGATORIA | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| SEMANA DE CIERRE | OBLIGATORIA | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| MES DE FACTURACIÓN | OBLIGATORIA | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+|  |  |  |  |  |  |  |  |  |  |
+| CREACIÓN DE PRODUCTO |  |  |  |  |  |  |  |  |  |
+| NUMERO DE PARTE | OBLIGATORIA | Crear y modificar | Crear | Crear | NO | NO | NO | NO | NO |
+| NOMBRE DEL PRODUCTO | OBLIGATORIA | Crear y modificar | Crear | Crear | NO | NO | NO | NO | NO |
+| VERTICAL | OBLIGATORIA | Crear y modificar | NO | NO | NO | NO | NO | NO | NO |
+| MARCA | OBLIGATORIA | Crear y modificar | NO | NO | NO | NO | NO | NO | NO |
+| IMPUESTO A  APLICAR (SELECCIONAR EN MODO LISTA 0%, 5%, 19%) | OBLIGATORIA | Crear y modificar | NO | NO | NO | NO | NO | NO | NO |
+|  |  |  |  |  |  |  |  |  |  |
+| SELECCIONAR PRODUCTO PARA ENVIAR COTIZACIÓN |  |  |  |  |  |  |  |  |  |
+| NO DE PARTE | OBLIGATORIA | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| OBSERVACIONES DEL PRODUCTO (CASILLA PARA AGREGAR INFORMACIÓN RESPECTO A LA COTIZACIÓN, NO HACE PARTE DE LA CREACIÓN DEL PRODUCTO, ES PARA PONER UN EJEMPLO QUE ESE NO DE PARTE ES COMPATIBLE CON X PRODUCTO) | NO OBLIGATORIO | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| COSTO DEL PRODUCTO | OBLIGATORIA | Modificar | Modificar | Modificar | NO | NO | NO | NO | NO |
+| MONEDA DEL COSTO TIPO LISTA DOLARES O PESOS | OBLIGATORIA | Modificar | Modificar | Modificar | N/A | N/A | N/A | N/A | N/A |
+| COSTO FINAL DESPUES DE LA CONVERSIÓN | OBLIGATORIA | NO | NO | NO | NO | NO | NO | NO | NO |
+| % UTILIDAD A APLICAR | OBLIGATORIA | Modificar | Modificar | Modificar | NO | NO | NO | NO | NO |
+| PRECIO DE VENTA | OBLIGATORIA | Modificar | Modificar | Modificar | NO | NO | NO | NO | NO |
+| IVA A APLICAR (MODO LISTA) | OBLIGATORIA | Modificar | Modificar | Modificar | NO | NO | NO | NO | NO |
+| CANTIDAD | OBLIGATORIA | Modificar | Modificar | Modificar | NO | NO | NO | NO | NO |
+| PROVEEDOR SUGERIDO | OBLIGATORIA | Modificar | Modificar | Modificar | NO | NO | NO | NO | NO |
+| TIEMPO DE ENTREGA | OBLIGATORIA | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| GARANTÍA | OBLIGATORIA | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+| ORDEN (EN QUE POSICIÓN DE LA COTIZACIÓN VA EL PRODUCTO) | NO OBLIGATORIO | Editable | Editable | Editable | NO | NO | NO | NO | NO |
+|  |  |  |  |  |  |  |  |  |  |
+| OBSERVACIONES |  |  |  |  |  |  |  |  |  |
+| 1. TENEMOS CASOS EN LOS CUALES REQUERIMOS CREAR DOS VERSIONES DE UNA MISMA COTIZACIÓN, Y PARA EFECTOS PRACTICOS, SELECCIONAMOS LOS PRODUCTOS Y LE DAMOS LA OPCIÓN DUPLICAR, LO QUE HACE ES REPLICAR LA MISMA INFORMACIÓN DE LA COTIZACIÓN 1 SEGÚN LOS PRODUCTOS QUE YO HALLA SELECCIONADO. |  |  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |  |
+| 2. EN EL PANEL GENERAL DE LA COTIZACIÓN, DEBERÁ APARECER UNA LIQUIDACIÓN EN LA PARTE DE ABAJO O DONDE CORRESPONDA, TOTAL VENTA ANTES DE IVA, TOTAL COSTO, UTILIDAD Y MARGEN GENERAL |  |  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |  |  |
+| 3. PARA QUE LO ANTERIOR FUNCIONE, DEBERÁ EXISTIR UNA CASILLA QUE PREGUNTE SI YA ESTA INCLUIDO EL VALOR DE LOS TRANSPORTE EN LOS ITEMS, SI NO, QUE POR FAVOR DILIGENCIE EL VALOR Y ESE VALOR QUE DILIGENCIEN DEBE SER TENIDO EN CUENTA EN LA LIQUIDACIÓN. DE ESTO ESTAMOS PENDIENTES A LA PROPUESTA DE FREDDY A VER CUAL ES LA MEJOR OPCIÓN PARA CALCULAR EL TRANSPORTE. |  |  |  |  |  |  |  |  |  |

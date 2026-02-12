@@ -32,7 +32,9 @@
       "Bash(ls -1 \"C:\\\\Users\\\\freddyrs\\\\OneDrive - Cegeka\\\\Pscomercial-pro\\\\Pscomercial-pro\\\\Contexto\\\\HU\\\\HU MD\"\" | grep -i \"0004 \")",
       "Bash(powershell -Command:*)",
       "Bash(ls \"c:\\\\Users\\\\freddyrs\\\\OneDrive - Cegeka\\\\Pscomercial-pro\\\\Pscomercial-pro\\\\Contexto\\\\HU\\\\Arquitectura\"\" 2>nul || echo \"EMPTY \")",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)"
     ]
   }
 }
