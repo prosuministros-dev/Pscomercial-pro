@@ -4,13 +4,7 @@ import { requireUserInServerComponent } from '~/lib/server/require-user-in-serve
 
 async function HomeLayout({ children }: React.PropsWithChildren) {
   // Ensure user is authenticated (redirects to login if not)
-  try {
-    const user = await requireUserInServerComponent();
-    console.log('[HomeLayout] Auth OK, user:', user?.email ?? user?.sub);
-  } catch (error) {
-    console.error('[HomeLayout] FATAL ERROR:', error);
-    throw error;
-  }
+  await requireUserInServerComponent();
 
   // PermissionProvider inside DashboardLayout handles client-side permission fetching
   return <DashboardLayout>{children}</DashboardLayout>;
