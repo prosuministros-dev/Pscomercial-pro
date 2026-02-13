@@ -32,16 +32,18 @@ import { ChevronDown, ChevronUp, Filter, X } from 'lucide-react';
 
 interface AuditLog {
   id: string;
-  user_id: string | null;
+  organization_id: string;
+  user_id: string;
   entity_type: string;
-  entity_id: string | null;
+  entity_id: string;
   action: string;
-  details: any;
+  changes: any;
+  metadata: any;
   ip_address: string | null;
   user_agent: string | null;
   created_at: string;
   profile?: {
-    display_name: string | null;
+    full_name: string | null;
     email: string | null;
   } | null;
 }
@@ -70,8 +72,8 @@ export default function AuditLogPage() {
         .select(
           `
           *,
-          profile:profiles(
-            display_name,
+          profile:profiles!audit_logs_user_id_fkey(
+            full_name,
             email
           )
         `,
@@ -102,7 +104,7 @@ export default function AuditLogPage() {
       const { data, error } = await query;
 
       if (error) throw error;
-      return data as AuditLog[];
+      return data as unknown as AuditLog[];
     },
   });
 
@@ -290,7 +292,7 @@ export default function AuditLogPage() {
                       <TableCell>
                         <div className="flex flex-col">
                           <span className="font-medium">
-                            {log.profile?.display_name || 'Unknown User'}
+                            {log.profile?.full_name || 'Unknown User'}
                           </span>
                           {log.profile?.email && (
                             <span className="text-xs text-muted-foreground">
@@ -328,7 +330,7 @@ export default function AuditLogPage() {
                                   Details
                                 </h4>
                                 <pre className="overflow-x-auto rounded bg-background p-3 text-xs">
-                                  {JSON.stringify(log.details, null, 2)}
+                                  {JSON.stringify(log.changes, null, 2)}
                                 </pre>
                               </div>
                               {log.user_agent && (

@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-import { Bell, Check } from 'lucide-react';
+import { Bell, Check, Inbox } from 'lucide-react';
 
 import { Button } from '@kit/ui/button';
 import {
@@ -13,59 +13,119 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@kit/ui/sheet';
+import { toast } from 'sonner';
 
-// Placeholder notifications - will be replaced with Supabase data later
-const MOCK_NOTIFICATIONS = [
-  {
-    id: '1',
-    title: 'Nueva cotización solicitada',
-    message: 'Cliente ABC solicita cotización para producto XYZ',
-    timestamp: '5 min ago',
-    read: false,
-  },
-  {
-    id: '2',
-    title: 'Pedido confirmado',
-    message: 'Pedido #1234 ha sido confirmado por el cliente',
-    timestamp: '1 hour ago',
-    read: false,
-  },
-  {
-    id: '3',
-    title: 'Nuevo mensaje de WhatsApp',
-    message: 'Tienes 3 mensajes sin leer',
-    timestamp: '2 hours ago',
-    read: true,
-  },
-];
+interface Notification {
+  id: string;
+  type: string;
+  title: string;
+  message: string;
+  entity_type: string | null;
+  entity_id: string | null;
+  action_url: string | null;
+  priority: string;
+  is_read: boolean;
+  created_at: string;
+}
+
+function timeAgo(dateStr: string): string {
+  const now = new Date();
+  const date = new Date(dateStr);
+  const diffMs = now.getTime() - date.getTime();
+  const diffMins = Math.floor(diffMs / 60000);
+  if (diffMins < 1) return 'Ahora';
+  if (diffMins < 60) return `${diffMins} min`;
+  const diffHours = Math.floor(diffMins / 60);
+  if (diffHours < 24) return `${diffHours}h`;
+  const diffDays = Math.floor(diffHours / 24);
+  return `${diffDays}d`;
+}
 
 export function NotificationBell() {
-  const [notifications, setNotifications] = useState(MOCK_NOTIFICATIONS);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const unreadCount = notifications.filter((n) => !n.read).length;
+  const unreadCount = notifications.filter((n) => !n.is_read).length;
 
-  const markAllAsRead = () => {
-    setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+  const fetchNotifications = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('/api/notifications?limit=30');
+      if (response.ok) {
+        const data = await response.json();
+        setNotifications(data.data || []);
+      }
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchNotifications();
+    const interval = setInterval(fetchNotifications, 30000);
+    return () => clearInterval(interval);
+  }, [fetchNotifications]);
+
+  const markAllAsRead = async () => {
+    try {
+      const response = await fetch('/api/notifications', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mark_all: true }),
+      });
+
+      if (response.ok) {
+        setNotifications((prev) => prev.map((n) => ({ ...n, is_read: true })));
+        toast.success('Todas las notificaciones marcadas como leídas');
+      }
+    } catch (error) {
+      console.error('Error marking all as read:', error);
+    }
   };
 
-  const markAsRead = (id: string) => {
-    setNotifications((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, read: true } : n)),
-    );
+  const markAsRead = async (id: string) => {
+    try {
+      await fetch('/api/notifications', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+
+      setNotifications((prev) =>
+        prev.map((n) => (n.id === id ? { ...n, is_read: true } : n)),
+      );
+    } catch (error) {
+      console.error('Error marking as read:', error);
+    }
+  };
+
+  const handleNotificationClick = (notification: Notification) => {
+    markAsRead(notification.id);
+    if (notification.action_url) {
+      window.location.href = notification.action_url;
+    }
   };
 
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet
+      open={open}
+      onOpenChange={(isOpen) => {
+        setOpen(isOpen);
+        if (isOpen) fetchNotifications();
+      }}
+    >
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="relative">
           <Bell className="h-5 w-5" />
           {unreadCount > 0 && (
             <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground animate-pulse">
-              {unreadCount}
+              {unreadCount > 99 ? '99+' : unreadCount}
             </span>
           )}
-          <span className="sr-only">Notifications</span>
+          <span className="sr-only">Notificaciones</span>
         </Button>
       </SheetTrigger>
 
@@ -73,7 +133,9 @@ export function NotificationBell() {
         <SheetHeader>
           <SheetTitle>Notificaciones</SheetTitle>
           <SheetDescription>
-            Tienes {unreadCount} notificaciones sin leer
+            {unreadCount > 0
+              ? `Tienes ${unreadCount} notificación${unreadCount > 1 ? 'es' : ''} sin leer`
+              : 'No tienes notificaciones pendientes'}
           </SheetDescription>
         </SheetHeader>
 
@@ -91,17 +153,22 @@ export function NotificationBell() {
           )}
 
           <div className="space-y-2">
-            {notifications.length === 0 ? (
+            {isLoading && notifications.length === 0 ? (
               <div className="py-8 text-center text-sm text-muted-foreground">
-                No tienes notificaciones
+                Cargando notificaciones...
+              </div>
+            ) : notifications.length === 0 ? (
+              <div className="py-8 text-center text-muted-foreground">
+                <Inbox className="mx-auto h-12 w-12 mb-3 opacity-50" />
+                <p className="text-sm">No tienes notificaciones</p>
               </div>
             ) : (
               notifications.map((notification) => (
                 <div
                   key={notification.id}
-                  onClick={() => markAsRead(notification.id)}
+                  onClick={() => handleNotificationClick(notification)}
                   className={`cursor-pointer rounded-lg border p-4 transition-colors hover:bg-accent/50 ${
-                    !notification.read
+                    !notification.is_read
                       ? 'border-primary/20 bg-primary/5'
                       : 'border-border'
                   }`}
@@ -115,11 +182,11 @@ export function NotificationBell() {
                         {notification.message}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        {notification.timestamp}
+                        {timeAgo(notification.created_at)}
                       </p>
                     </div>
-                    {!notification.read && (
-                      <div className="h-2 w-2 rounded-full bg-primary" />
+                    {!notification.is_read && (
+                      <div className="h-2 w-2 rounded-full bg-primary flex-shrink-0 mt-1" />
                     )}
                   </div>
                 </div>

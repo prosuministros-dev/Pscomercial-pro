@@ -36,7 +36,7 @@ import { toast } from 'sonner';
 interface UserProfile {
   id: string;
   email: string | null;
-  display_name: string | null;
+  full_name: string | null;
   is_active: boolean;
   last_login_at: string | null;
   created_at: string;
@@ -72,7 +72,7 @@ export default function UsersPage() {
           `
           id,
           email,
-          display_name,
+          full_name,
           is_active,
           last_login_at,
           created_at,
@@ -259,7 +259,7 @@ export default function UsersPage() {
               users.map((user) => (
                 <TableRow key={user.id}>
                   <TableCell className="font-medium">
-                    {user.display_name || 'N/A'}
+                    {user.full_name || 'N/A'}
                   </TableCell>
                   <TableCell>{user.email || 'N/A'}</TableCell>
                   <TableCell>
@@ -353,7 +353,7 @@ export default function UsersPage() {
             <DialogHeader>
               <DialogTitle>Assign Role</DialogTitle>
               <DialogDescription>
-                Assign a role to {selectedUser?.display_name || 'this user'}
+                Assign a role to {selectedUser?.full_name || 'this user'}
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">

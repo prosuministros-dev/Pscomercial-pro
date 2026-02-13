@@ -33,11 +33,11 @@
 ### 📊 Progreso Global
 
 **Total Tareas:** 267
-**Completadas:** 51/267 (19%)
+**Completadas:** 94/267 (35%)
 
 ```
 Sprint 0: [██████████] 51/51 (100%) ✅
-Sprint 1: [░░░░░░░░░░] 0/43 (0%)
+Sprint 1: [██████████] 43/43 (100%) ✅
 Sprint 2: [░░░░░░░░░░] 0/36 (0%)
 Sprint 3: [░░░░░░░░░░] 0/60 (0%)
 Sprint 4: [░░░░░░░░░░] 0/42 (0%)
@@ -158,63 +158,63 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 
 #### TAREA 1.1: Módulo Clientes (5 subtareas)
 
-- [ ] 1.1.1 - API `/api/customers` (GET, POST, PUT)
-- [ ] 1.1.2 - API `/api/customers/[id]/contacts` (CRUD contactos)
-- [ ] 1.1.3 - Validación NIT duplicado (UNIQUE constraint)
-- [ ] 1.1.4 - Formulario Cliente (modal con permisos por campo)
-- [ ] 1.1.5 - Tabla clientes (TanStack Table, paginación, búsqueda)
+- [x] 1.1.1 - API `/api/customers` (GET, POST, PUT)
+- [x] 1.1.2 - API `/api/customers/[id]/contacts` (CRUD contactos)
+- [x] 1.1.3 - Validación NIT duplicado (UNIQUE constraint)
+- [x] 1.1.4 - Formulario Cliente (modal con permisos por campo)
+- [x] 1.1.5 - Tabla clientes (TanStack Table, paginación, búsqueda)
 
 #### TAREA 1.2: Módulo Productos (7 subtareas)
 
-- [ ] 1.2.1 - API `/api/products` (GET, POST, PUT)
-- [ ] 1.2.2 - Categorías/Verticales (5 seeded)
-- [ ] 1.2.3 - Tabla `margin_rules` (35 reglas seeded)
-- [ ] 1.2.4 - API `/api/trm` (consulta TRM datos.gov.co)
-- [ ] 1.2.5 - RPC `get_current_trm()` (STABLE, cached)
-- [ ] 1.2.6 - Formulario Producto (modal)
-- [ ] 1.2.7 - Permisos por campo (Comercial vs Gerencia)
+- [x] 1.2.1 - API `/api/products` (GET, POST, PUT)
+- [x] 1.2.2 - Categorías/Verticales (5 seeded)
+- [x] 1.2.3 - Tabla `margin_rules` (35 reglas seeded)
+- [x] 1.2.4 - API `/api/trm` (consulta TRM datos.gov.co)
+- [x] 1.2.5 - RPC `get_current_trm()` (STABLE, cached)
+- [x] 1.2.6 - Formulario Producto (modal)
+- [x] 1.2.7 - Permisos por campo (Comercial vs Gerencia)
 
 #### TAREA 1.3: Módulo Leads (HU-0001, HU-0002) (12 subtareas)
 
-- [ ] 1.3.1 - API `/api/leads` (GET paginado, POST, PUT)
-- [ ] 1.3.2 - RPC `generate_consecutive(org_id, 'lead')` (thread-safe)
-- [ ] 1.3.3 - Validación duplicados (NIT, email)
-- [ ] 1.3.4 - Vista Kanban (3 columnas: Creado, Pendiente, Convertido)
-- [ ] 1.3.5 - Vista Tabla (filtros, búsqueda)
-- [ ] 1.3.6 - Formulario Crear Lead (campos CONSOLIDADO)
-- [ ] 1.3.7 - RPC `auto_assign_lead()` (max 5 pendientes/asesor)
-- [ ] 1.3.8 - Notificación asesor (campanita + email SendGrid)
-- [ ] 1.3.9 - Trigger reasignación automática (si asesor desactivado)
-- [ ] 1.3.10 - Observaciones con @menciones (chat interno)
-- [ ] 1.3.11 - Alerta visual (lead >1 día sin convertir)
-- [ ] 1.3.12 - Contactos múltiples (jerarquía empresa→contactos)
+- [x] 1.3.1 - API `/api/leads` (GET paginado, POST, PUT)
+- [x] 1.3.2 - RPC `generate_consecutive(org_id, 'lead')` (thread-safe)
+- [x] 1.3.3 - Validación duplicados (NIT, email)
+- [x] 1.3.4 - Vista Kanban (3 columnas: Creado, Pendiente, Convertido)
+- [x] 1.3.5 - Vista Tabla (filtros, búsqueda)
+- [x] 1.3.6 - Formulario Crear Lead (campos CONSOLIDADO)
+- [x] 1.3.7 - RPC `auto_assign_lead()` (max 5 pendientes/asesor)
+- [x] 1.3.8 - Notificación asesor (campanita + email SendGrid)
+- [x] 1.3.9 - Trigger reasignación automática (si asesor desactivado)
+- [x] 1.3.10 - Observaciones con @menciones (chat interno)
+- [x] 1.3.11 - Alerta visual (lead >1 día sin convertir)
+- [x] 1.3.12 - Contactos múltiples (jerarquía empresa→contactos)
 
 #### TAREA 1.4: Módulo Cotizaciones (HU-0003, HU-0004) (18 subtareas)
 
-- [ ] 1.4.1 - API `/api/quotes` (GET, POST desde lead, PUT)
-- [ ] 1.4.2 - RPC `create_quote_from_lead(lead_id)`
-- [ ] 1.4.3 - RPC `generate_consecutive(org_id, 'quote')` (#30000)
-- [ ] 1.4.4 - RPC `calculate_quote_totals(quote_id)`
-- [ ] 1.4.5 - Trigger `update_quote_totals` (en quote_items)
-- [ ] 1.4.6 - Formulario Cotización (CONSOLIDADO sec. 5)
-- [ ] 1.4.7 - Tabla items editable (agregar/eliminar/reordenar)
-- [ ] 1.4.8 - Cálculo TRM en vivo (USD → COP)
-- [ ] 1.4.9 - Cálculo margen en vivo (fórmula: 1 - costo/venta)
-- [ ] 1.4.10 - Campo transporte (no visible PDF, incluido cálculo)
-- [ ] 1.4.11 - Duplicar versión cotización
-- [ ] 1.4.12 - Liquidación visible (venta, costo, utilidad, margen)
-- [ ] 1.4.13 - Campo bloqueo cartera HU-0004 (solo Financiera edita)
-- [ ] 1.4.14 - Validar bloqueo (no crear pedido si cartera=Sí)
-- [ ] 1.4.15 - Validar lead (rechazado = registrar motivo)
-- [ ] 1.4.16 - Fechas de cierre (mes, semana, facturación)
-- [ ] 1.4.17 - Adjuntos (upload Storage `documents`)
-- [ ] 1.4.18 - Permisos por campo (Matriz CONSOLIDADO)
+- [x] 1.4.1 - API `/api/quotes` (GET, POST desde lead, PUT)
+- [x] 1.4.2 - RPC `create_quote_from_lead(lead_id)`
+- [x] 1.4.3 - RPC `generate_consecutive(org_id, 'quote')` (#30000)
+- [x] 1.4.4 - RPC `calculate_quote_totals(quote_id)`
+- [x] 1.4.5 - Trigger `update_quote_totals` (en quote_items)
+- [x] 1.4.6 - Formulario Cotización (CONSOLIDADO sec. 5)
+- [x] 1.4.7 - Tabla items editable (agregar/eliminar/reordenar)
+- [x] 1.4.8 - Cálculo TRM en vivo (USD → COP)
+- [x] 1.4.9 - Cálculo margen en vivo (fórmula: 1 - costo/venta)
+- [x] 1.4.10 - Campo transporte (no visible PDF, incluido cálculo)
+- [x] 1.4.11 - Duplicar versión cotización
+- [x] 1.4.12 - Liquidación visible (venta, costo, utilidad, margen)
+- [x] 1.4.13 - Campo bloqueo cartera HU-0004 (solo Financiera edita)
+- [x] 1.4.14 - Validar bloqueo (no crear pedido si cartera=Sí)
+- [x] 1.4.15 - Validar lead (rechazado = registrar motivo)
+- [x] 1.4.16 - Fechas de cierre (mes, semana, facturación)
+- [x] 1.4.17 - Adjuntos (upload Storage `documents`)
+- [x] 1.4.18 - Permisos por campo (Matriz CONSOLIDADO)
 
 **✅ Entregables Sprint 1:**
-- [ ] CRUD Clientes + validación NIT
-- [ ] CRUD Productos + API TRM
-- [ ] Leads Kanban + Tabla + auto-asignación
-- [ ] Cotizaciones con cálculos automáticos
+- [x] CRUD Clientes + validación NIT
+- [x] CRUD Productos + API TRM
+- [x] Leads Kanban + Tabla + auto-asignación
+- [x] Cotizaciones con cálculos automáticos
 
 ---
 

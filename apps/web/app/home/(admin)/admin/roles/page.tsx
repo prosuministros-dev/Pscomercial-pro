@@ -49,6 +49,21 @@ export default function RolesPage() {
     description: '',
   });
 
+  // Get current user's organization
+  const { data: userProfile } = useQuery({
+    queryKey: ['user-profile'],
+    queryFn: async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return null;
+      const { data } = await supabase
+        .from('profiles')
+        .select('organization_id')
+        .eq('id', user.id)
+        .single();
+      return data;
+    },
+  });
+
   // Fetch roles
   const { data: roles, isLoading } = useQuery({
     queryKey: ['admin', 'roles'],
@@ -70,6 +85,7 @@ export default function RolesPage() {
         .from('roles')
         .insert([
           {
+            organization_id: userProfile!.organization_id,
             name: newRole.name,
             slug: newRole.slug,
             description: newRole.description || null,

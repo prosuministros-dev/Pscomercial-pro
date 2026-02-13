@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 
 import { DataTable } from '@kit/ui/enhanced-data-table';
 
-interface DataTableWrapperProps<TData> {
+interface DataTableWrapperProps<TData extends object> {
   data: TData[];
   columns: any[];
   pageSize?: number;
@@ -13,7 +13,7 @@ interface DataTableWrapperProps<TData> {
   onPaginationChange?: (pagination: { pageIndex: number; pageSize: number }) => void;
 }
 
-export function DataTableWrapper<TData>({
+export function DataTableWrapper<TData extends object>({
   data,
   columns,
   pageSize = 10,
