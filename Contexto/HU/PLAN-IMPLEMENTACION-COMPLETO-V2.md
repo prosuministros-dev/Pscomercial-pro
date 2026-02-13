@@ -33,10 +33,10 @@
 ### 📊 Progreso Global
 
 **Total Tareas:** 267
-**Completadas:** 0/267 (0%)
+**Completadas:** 51/267 (19%)
 
 ```
-Sprint 0: [░░░░░░░░░░] 0/51 (0%)
+Sprint 0: [██████████] 51/51 (100%) ✅
 Sprint 1: [░░░░░░░░░░] 0/43 (0%)
 Sprint 2: [░░░░░░░░░░] 0/36 (0%)
 Sprint 3: [░░░░░░░░░░] 0/60 (0%)
@@ -53,98 +53,102 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 
 #### TAREA 0.1: Setup Monorepo (6 subtareas)
 
-- [ ] 0.1.1 - Inicializar Turborepo + PNPM workspaces (`apps/web`, `packages/*`)
-- [ ] 0.1.2 - Configurar TypeScript 5.9.3 strict mode
-- [ ] 0.1.3 - Configurar TailwindCSS 4 + Design Tokens (Cyan #00C8CF, Navy #161052)
-- [ ] 0.1.4 - Instalar Shadcn/UI (47+ componentes) + Radix UI
-- [ ] 0.1.5 - Configurar ESLint + Prettier
-- [ ] 0.1.6 - Variables de entorno (.env.local, .env.example)
+- [x] 0.1.1 - Inicializar Turborepo + PNPM workspaces (`apps/web`, `packages/*`)
+- [x] 0.1.2 - Configurar TypeScript 5.9.3 strict mode
+- [x] 0.1.3 - Configurar TailwindCSS 4 + Design Tokens (Cyan #00C8CF, Navy #161052)
+- [x] 0.1.4 - Instalar Shadcn/UI (47+ componentes) + Radix UI
+- [x] 0.1.5 - Configurar ESLint + Prettier
+- [x] 0.1.6 - Variables de entorno (.env.local, .env.example)
 
 #### TAREA 0.2: Base de Datos (15 subtareas)
 
-- [ ] 0.2.1 - DDL Dominio 1: Organizaciones/Usuarios (6 tablas)
-- [ ] 0.2.2 - DDL Dominio 2: Clientes/Leads (4 tablas)
-- [ ] 0.2.3 - DDL Dominio 3: Productos/Catálogo (4 tablas)
-- [ ] 0.2.4 - DDL Dominio 4: Cotizaciones (4 tablas)
-- [ ] 0.2.5 - DDL Dominio 5: Pedidos (5 tablas)
-- [ ] 0.2.6 - DDL Dominio 6: Compras (3 tablas)
-- [ ] 0.2.7 - DDL Dominio 7: Logística (2 tablas)
-- [ ] 0.2.8 - DDL Dominio 8: Facturación (2 tablas)
-- [ ] 0.2.9 - DDL Dominio 9: Licencias (1 tabla)
-- [ ] 0.2.10 - DDL Dominio 10: WhatsApp (4 tablas)
-- [ ] 0.2.11 - DDL Dominio 11: Notificaciones (3 tablas)
-- [ ] 0.2.12 - DDL Dominio 12: Auditoría/Config (4 tablas)
-- [ ] 0.2.13 - DDL Dominio 13-14: Vistas/Reportes (3 tablas/vistas)
-- [ ] 0.2.14 - Crear índices compuestos (~90 índices según FASE-11)
-- [ ] 0.2.15 - Configurar triggers estándar (8 triggers)
+- [x] 0.2.1 - DDL Dominio 1: Organizaciones/Usuarios (6 tablas)
+- [x] 0.2.2 - DDL Dominio 2: Clientes/Leads (4 tablas)
+- [x] 0.2.3 - DDL Dominio 3: Productos/Catálogo (4 tablas)
+- [x] 0.2.4 - DDL Dominio 4: Cotizaciones (4 tablas)
+- [x] 0.2.5 - DDL Dominio 5: Pedidos (5 tablas)
+- [x] 0.2.6 - DDL Dominio 6: Compras (3 tablas)
+- [x] 0.2.7 - DDL Dominio 7: Logística (2 tablas)
+- [x] 0.2.8 - DDL Dominio 8: Facturación (2 tablas)
+- [x] 0.2.9 - DDL Dominio 9: Licencias (1 tabla)
+- [x] 0.2.10 - DDL Dominio 10: WhatsApp (4 tablas)
+- [x] 0.2.11 - DDL Dominio 11: Notificaciones (3 tablas)
+- [x] 0.2.12 - DDL Dominio 12: Auditoría/Config (4 tablas)
+- [x] 0.2.13 - DDL Dominio 13-14: Vistas/Reportes (3 tablas/vistas)
+- [x] 0.2.14 - Crear índices compuestos (~90 índices según FASE-11)
+- [x] 0.2.15 - Configurar triggers estándar (8 triggers)
 
 #### TAREA 0.3: RLS Policies (7 subtareas)
 
-- [ ] 0.3.1 - Helper `auth.get_user_org_id()` (STABLE)
-- [ ] 0.3.2 - Helper `auth.is_org_admin()` (STABLE)
-- [ ] 0.3.3 - Helper `auth.is_commercial_manager()` (STABLE)
-- [ ] 0.3.4 - Helper `auth.has_perm(slug)` (casos excepcionales)
-- [ ] 0.3.5 - RLS SELECT policies (~45 tablas)
-- [ ] 0.3.6 - RLS INSERT/UPDATE/DELETE policies
-- [ ] 0.3.7 - Habilitar RLS en TODAS las tablas (45)
+- [x] 0.3.1 - Helper `auth.get_user_org_id()` (STABLE)
+- [x] 0.3.2 - Helper `auth.is_org_admin()` (STABLE)
+- [x] 0.3.3 - Helper `auth.is_commercial_manager()` (STABLE)
+- [x] 0.3.4 - Helper `auth.has_perm(slug)` (casos excepcionales)
+- [x] 0.3.5 - RLS SELECT policies (~45 tablas)
+- [x] 0.3.6 - RLS INSERT/UPDATE/DELETE policies
+- [x] 0.3.7 - Habilitar RLS en TODAS las tablas (45)
 
 #### TAREA 0.4: Autenticación Cookie-Based (6 subtareas)
 
-- [ ] 0.4.1 - Instalar @supabase/ssr
-- [ ] 0.4.2 - Crear 3 clientes Supabase (browser, server, service)
-- [ ] 0.4.3 - Middleware Edge (solo verifica sesión, ~5ms)
-- [ ] 0.4.4 - Página de Login (email/password, recuperar contraseña)
-- [ ] 0.4.5 - Auth callback `/api/auth/callback`
-- [ ] 0.4.6 - Layout protegido `(dashboard)`
+- [x] 0.4.1 - Instalar @supabase/ssr
+- [x] 0.4.2 - Crear 3 clientes Supabase (browser, server, service)
+- [x] 0.4.3 - Middleware Edge (solo verifica sesión, ~5ms)
+- [x] 0.4.4 - Página de Login (email/password, recuperar contraseña)
+- [x] 0.4.5 - Auth callback `/api/auth/callback`
+- [x] 0.4.6 - Layout protegido `(dashboard)`
 
 #### TAREA 0.5: Sistema RBAC (HU-0011) (12 subtareas)
 
-- [ ] 0.5.1 - RPC `get_user_permissions(user_id)`
-- [ ] 0.5.2 - RPC `has_permission(user_id, permission)`
-- [ ] 0.5.3 - Seed: 12 roles + ~65 permisos (según matriz FASE-02)
-- [ ] 0.5.4 - `PermissionProvider` (React Context)
-- [ ] 0.5.5 - `usePermissions()` hook (can, canAny, canAll)
-- [ ] 0.5.6 - `<PermissionGate>` componente
-- [ ] 0.5.7 - `checkPermission()` middleware API
-- [ ] 0.5.8 - `withPermission()` HOF para API Routes
-- [ ] 0.5.9 - Panel Admin: CRUD Roles
-- [ ] 0.5.10 - Panel Admin: Gestión Usuarios
-- [ ] 0.5.11 - Panel Admin: Audit Log con filtros
-- [ ] 0.5.12 - Tests: verificar acceso denegado
+- [x] 0.5.1 - RPC `get_user_permissions(user_id)`
+- [x] 0.5.2 - RPC `has_permission(user_id, permission)`
+- [x] 0.5.3 - Seed: 12 roles + ~65 permisos (según matriz FASE-02)
+- [x] 0.5.4 - `PermissionProvider` (React Context)
+- [x] 0.5.5 - `usePermissions()` hook (can, canAny, canAll)
+- [x] 0.5.6 - `<PermissionGate>` componente
+- [x] 0.5.7 - `checkPermission()` middleware API
+- [x] 0.5.8 - `withPermission()` HOF para API Routes
+- [x] 0.5.9 - Panel Admin: CRUD Roles
+- [x] 0.5.10 - Panel Admin: Gestión Usuarios
+- [x] 0.5.11 - Panel Admin: Audit Log con filtros
+- [x] 0.5.12 - Tests: verificar acceso denegado
 
 #### TAREA 0.6: Layout Base (10 subtareas)
 
-- [ ] 0.6.1 - Top Navigation Bar horizontal (8 módulos, filtrados por permisos)
-- [ ] 0.6.2 - Mobile Bottom Tab Bar (8 items con íconos)
-- [ ] 0.6.3 - NotificationBell con Sheet panel
-- [ ] 0.6.4 - ThemeProvider (dark mode + gradients toggle)
-- [ ] 0.6.5 - Layout responsive (mobile pt-36, desktop md:pt-20)
-- [ ] 0.6.6 - Tema PROSUMINISTROS (cyan + navy + gradientes)
-- [ ] 0.6.7 - Framer Motion setup (patrón animación base)
-- [ ] 0.6.8 - Sonner (toasts) en root layout
-- [ ] 0.6.9 - Componentes compartidos (DataTable, StatusBadge, etc.)
-- [ ] 0.6.10 - Header actions (avatar, dark mode toggle)
+- [x] 0.6.1 - Top Navigation Bar horizontal (8 módulos, filtrados por permisos)
+- [x] 0.6.2 - Mobile Bottom Tab Bar (8 items con íconos)
+- [x] 0.6.3 - NotificationBell con Sheet panel
+- [x] 0.6.4 - ThemeProvider (dark mode + gradients toggle)
+- [x] 0.6.5 - Layout responsive (mobile pt-20 pb-20, desktop md:pt-20 pb-4)
+- [x] 0.6.6 - Tema PROSUMINISTROS (cyan + navy + gradientes en shadcn-ui.css)
+- [x] 0.6.7 - Framer Motion setup (motion ^12.34.0, DataTableWrapper pattern)
+- [x] 0.6.8 - Sonner (toasts) en root layout (richColors, top-center)
+- [x] 0.6.9 - Componentes compartidos (DataTableWrapper, StatusBadge, PageHeader, StatCard, EmptyState, LoadingSkeleton)
+- [x] 0.6.10 - Header actions (ProfileAccountDropdown, ModeToggle, NotificationBell)
 
 #### TAREA 0.7: Seed Data (10 subtareas)
 
-- [ ] 0.7.1 - Organización demo PROSUMINISTROS (NIT, logo)
-- [ ] 0.7.2 - Usuario Super Admin (admin@prosuministros.com)
-- [ ] 0.7.3 - Formas de pago (7 tipos)
-- [ ] 0.7.4 - Monedas (COP, USD)
-- [ ] 0.7.5 - Vías de contacto (8 canales)
-- [ ] 0.7.6 - Verticales (5: Accesorios, Hardware, Otros, Servicios, Software)
-- [ ] 0.7.7 - Márgenes mínimos (35 reglas: 7x5)
-- [ ] 0.7.8 - Impuestos (0%, 5%, 19%)
-- [ ] 0.7.9 - Consecutivos iniciales (Leads:100, Quotes:30000, Orders:20000)
-- [ ] 0.7.10 - Departamentos Colombia (33 departamentos)
+- [x] 0.7.1 - Organización demo PROSUMINISTROS (NIT 900123456-7, domain, plan enterprise)
+- [x] 0.7.2 - Usuario Super Admin (admin@prosuministros.com / Admin2026! via seed migration)
+- [x] 0.7.3 - Formas de pago (4 tipos via system_settings: anticipated, credit_30, credit_60, credit_90)
+- [x] 0.7.4 - Monedas (COP, USD via system_settings)
+- [x] 0.7.5 - Vías de contacto (3 lead_channels + 8 followup_channels via system_settings)
+- [x] 0.7.6 - Verticales (5: Software, Hardware, Accesorios, Servicios, Otros)
+- [x] 0.7.7 - Márgenes mínimos (20 reglas: 4 payment_types × 5 categorías - schema soporta 4 tipos, no 7)
+- [x] 0.7.8 - Impuestos (0%, 5%, 19% via system_settings)
+- [x] 0.7.9 - Consecutivos iniciales (Leads:100, Quotes:30000, Orders:20000)
+- [x] 0.7.10 - Departamentos Colombia (33 departamentos via system_settings)
+
+> **NOTA:** Super Admin user se crea via seed migration insertando directamente en `auth.users` + `profiles` + `user_roles`. Password: `Admin2026!` (**CAMBIAR EN PRODUCCIÓN**).
+> **NOTA:** Formas de pago son 4 (no 7) porque el CHECK constraint del schema solo permite: anticipated, credit_30, credit_60, credit_90. Márgenes son 20 (no 35) por la misma razón.
+> **NOTA:** Lookups (pagos, monedas, canales, impuestos, departamentos) se almacenan en `system_settings` como JSONB ya que el schema no tiene tablas lookup dedicadas.
 
 **✅ Entregables Sprint 0:**
-- [ ] Monorepo funcional
-- [ ] 45 tablas + índices + RLS + triggers
-- [ ] Login/logout funcional
-- [ ] RBAC completo (12 roles, ~65 permisos)
-- [ ] Layout con top bar + mobile tabs + dark mode
-- [ ] Seed data completa
+- [x] Monorepo funcional
+- [x] 45 tablas + índices + RLS + triggers
+- [x] Login/logout funcional
+- [x] RBAC completo (12 roles, ~65 permisos)
+- [x] Layout con top bar + mobile tabs + dark mode
+- [x] Seed data completa (incl. super admin user via migration)
 
 ---
 
@@ -541,14 +545,14 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 
 | Sprint | Tareas | Completadas | Progreso | Status |
 |--------|:------:|:-----------:|:--------:|:------:|
-| Sprint 0 | 51 | 0 | 0% | ⏳ Pendiente |
-| Sprint 1 | 43 | 0 | 0% | ⏳ Pendiente |
+| Sprint 0 | 51 | 51 | 100% | ✅ Completado |
+| Sprint 1 | 43 | 0 | 0% | ⏳ Siguiente |
 | Sprint 2 | 36 | 0 | 0% | ⏳ Pendiente |
 | Sprint 3 | 60 | 0 | 0% | ⏳ Pendiente |
 | Sprint 4 | 42 | 0 | 0% | ⏳ Pendiente |
 | Sprint 5 | 25 | 0 | 0% | ⏳ Pendiente |
 | Sprint 6 | 10 | 0 | 0% | ⏳ Pendiente |
-| **TOTAL** | **267** | **0** | **0%** | ⏳ **En Espera** |
+| **TOTAL** | **267** | **51** | **19%** | 🚀 **Sprint 1 Next** |
 
 ---
 

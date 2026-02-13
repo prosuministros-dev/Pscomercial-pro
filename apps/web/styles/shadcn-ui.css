@@ -11,94 +11,147 @@
         --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         --font-heading: var(--font-sans);
 
+        /* PROSUMINISTROS Branding: Cyan #00C8CF + Navy #161052 */
         --background: var(--color-white);
-        --foreground: var(--color-neutral-950);
+        --foreground: #161052;
 
         --card: var(--color-white);
-        --card-foreground: var(--color-neutral-950);
+        --card-foreground: #161052;
 
         --popover: var(--color-white);
-        --popover-foreground: var(--color-neutral-950);
+        --popover-foreground: #161052;
 
-        --primary: var(--color-neutral-950);
+        --primary: #00C8CF;
         --primary-foreground: var(--color-white);
 
-        --secondary: oklch(96.76% 0.0013 286.38);
-        --secondary-foreground: oklch(21.03% 0.0318 264.65);
+        --secondary: #f5f5f7;
+        --secondary-foreground: #161052;
 
-        --muted: oklch(96.71% 0.0029 264.54);
-        --muted-foreground: oklch(55.13% 0.0233 264.36);
+        --muted: #f5f5f7;
+        --muted-foreground: #64618f;
 
-        --accent: oklch(96.76% 0.0013 286.38);
-        --accent-foreground: oklch(21.03% 0.0318 264.65);
+        --accent: #161052;
+        --accent-foreground: var(--color-white);
 
         --destructive: var(--color-red-500);
         --destructive-foreground: var(--color-white);
 
-        --border: var(--color-gray-100);
-        --input: var(--color-gray-200);
-        --ring: var(--color-neutral-800);
+        --border: #e5e5ea;
+        --input: #d1d1d6;
+        --ring: #00C8CF;
 
         --radius: 0.5rem;
 
-        --chart-1: var(--color-orange-400);
-        --chart-2: var(--color-teal-600);
-        --chart-3: var(--color-green-800);
-        --chart-4: var(--color-yellow-200);
-        --chart-5: var(--color-orange-200);
+        /* Chart colors - PROSUMINISTROS palette */
+        --chart-1: #00C8CF;
+        --chart-2: #161052;
+        --chart-3: #00a3a9;
+        --chart-4: #3d3785;
+        --chart-5: #66e0e4;
 
-        --sidebar-background: var(--color-neutral-50);
-        --sidebar-foreground: oklch(37.05% 0.012 285.8);
-        --sidebar-primary: var(--color-neutral-950);
+        /* Sidebar */
+        --sidebar-background: #161052;
+        --sidebar-foreground: #e0dfef;
+        --sidebar-primary: #00C8CF;
         --sidebar-primary-foreground: var(--color-white);
-        --sidebar-accent: var(--color-neutral-100);
-        --sidebar-accent-foreground: var(--color-neutral-950);
-        --sidebar-border: var(--border);
-        --sidebar-ring: var(--color-blue-500);
+        --sidebar-accent: #1e1770;
+        --sidebar-accent-foreground: var(--color-white);
+        --sidebar-border: #2a2080;
+        --sidebar-ring: #00C8CF;
+
+        /* PROSUMINISTROS Custom Tokens */
+        --pro-cyan: #00C8CF;
+        --pro-navy: #161052;
+        --pro-cyan-light: #E6F9FA;
+        --pro-cyan-dark: #00a3a9;
+        --pro-navy-light: #3d3785;
+        --pro-navy-dark: #0e0a38;
+
+        /* Gradients */
+        --gradient-brand: linear-gradient(135deg, #00C8CF 0%, #161052 100%);
+        --gradient-hero: linear-gradient(180deg, #161052 0%, #00C8CF 100%);
+        --gradient-accent: linear-gradient(135deg, #00C8CF 0%, #00a3a9 100%);
+        --gradient-soft: linear-gradient(135deg, #E6F9FA 0%, #f5f5f7 100%);
+
+        /* Glass morphism */
+        --glass-bg: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(0, 200, 207, 0.2);
+        --glass-blur: 12px;
+
+        /* Shadows */
+        --shadow-subtle: 0 1px 3px rgba(22, 16, 82, 0.06);
+        --shadow-medium: 0 4px 12px rgba(22, 16, 82, 0.1);
+        --shadow-elevated: 0 8px 30px rgba(22, 16, 82, 0.15);
     }
 
     .dark {
-        --background: var(--color-neutral-900);
-        --foreground: var(--color-white);
+        --background: #0e0a38;
+        --foreground: #f0f0ff;
 
-        --card: var(--color-neutral-900);
-        --card-foreground: var(--color-white);
+        --card: #161052;
+        --card-foreground: #f0f0ff;
 
-        --popover: var(--color-neutral-900);
-        --popover-foreground: var(--color-white);
+        --popover: #161052;
+        --popover-foreground: #f0f0ff;
 
-        --primary: var(--color-white);
-        --primary-foreground: var(--color-neutral-900);
+        --primary: #00C8CF;
+        --primary-foreground: #0e0a38;
 
-        --secondary: var(--color-neutral-800);
-        --secondary-foreground: oklch(98.43% 0.0017 247.84);
+        --secondary: #1e1770;
+        --secondary-foreground: #e0dfef;
 
-        --muted: var(--color-neutral-800);
-        --muted-foreground: oklch(71.19% 0.0129 286.07);
+        --muted: #1e1770;
+        --muted-foreground: #a09ec0;
 
-        --accent: var(--color-neutral-800);
-        --accent-foreground: oklch(98.48% 0 0);
+        --accent: #00C8CF;
+        --accent-foreground: #0e0a38;
 
         --destructive: var(--color-red-700);
         --destructive-foreground: var(--color-white);
 
-        --border: var(--color-neutral-800);
-        --input: var(--color-neutral-700);
-        --ring: oklch(87.09% 0.0055 286.29);
+        --border: #2a2080;
+        --input: #2a2080;
+        --ring: #00C8CF;
 
-        --chart-1: var(--color-blue-600);
-        --chart-2: var(--color-emerald-400);
-        --chart-3: var(--color-orange-400);
-        --chart-4: var(--color-purple-500);
-        --chart-5: var(--color-pink-500);
+        /* Chart colors dark */
+        --chart-1: #00C8CF;
+        --chart-2: #66e0e4;
+        --chart-3: #3d3785;
+        --chart-4: #00a3a9;
+        --chart-5: #a09ec0;
 
-        --sidebar-background: var(--color-neutral-900);
-        --sidebar-foreground: var(--color-white);
-        --sidebar-primary: var(--color-blue-500);
-        --sidebar-primary-foreground: var(--color-white);
-        --sidebar-accent: var(--color-neutral-800);
+        /* Sidebar dark */
+        --sidebar-background: #0e0a38;
+        --sidebar-foreground: #e0dfef;
+        --sidebar-primary: #00C8CF;
+        --sidebar-primary-foreground: #0e0a38;
+        --sidebar-accent: #1e1770;
         --sidebar-accent-foreground: var(--color-white);
-        --sidebar-border: var(--border);
-        --sidebar-ring: var(--color-blue-500);
+        --sidebar-border: #2a2080;
+        --sidebar-ring: #00C8CF;
+
+        /* Custom tokens dark */
+        --pro-cyan: #00C8CF;
+        --pro-navy: #161052;
+        --pro-cyan-light: #1a3f40;
+        --pro-cyan-dark: #00a3a9;
+        --pro-navy-light: #3d3785;
+        --pro-navy-dark: #0e0a38;
+
+        /* Gradients dark */
+        --gradient-brand: linear-gradient(135deg, #00C8CF 0%, #0e0a38 100%);
+        --gradient-hero: linear-gradient(180deg, #0e0a38 0%, #00C8CF 100%);
+        --gradient-accent: linear-gradient(135deg, #00a3a9 0%, #00C8CF 100%);
+        --gradient-soft: linear-gradient(135deg, #161052 0%, #1e1770 100%);
+
+        /* Glass morphism dark */
+        --glass-bg: rgba(22, 16, 82, 0.7);
+        --glass-border: rgba(0, 200, 207, 0.15);
+        --glass-blur: 12px;
+
+        /* Shadows dark */
+        --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.2);
+        --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.3);
+        --shadow-elevated: 0 8px 30px rgba(0, 0, 0, 0.4);
     }
 }

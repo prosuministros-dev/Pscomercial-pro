@@ -61,6 +61,14 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
+  /* PROSUMINISTROS custom colors */
+  --color-pro-cyan: var(--pro-cyan);
+  --color-pro-navy: var(--pro-navy);
+  --color-pro-cyan-light: var(--pro-cyan-light);
+  --color-pro-cyan-dark: var(--pro-cyan-dark);
+  --color-pro-navy-light: var(--pro-navy-light);
+  --color-pro-navy-dark: var(--pro-navy-dark);
+
   --animate-fade-up: fade-up 0.5s;
   --animate-fade-down: fade-down 0.5s;
   --animate-accordion-down: accordion-down 0.2s ease-out;
