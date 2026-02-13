@@ -85,8 +85,7 @@ CREATE TRIGGER trg_roles_set_created_by BEFORE INSERT ON roles
 CREATE TRIGGER trg_customers_set_created_by BEFORE INSERT ON customers
   FOR EACH ROW EXECUTE FUNCTION set_created_by();
 
-CREATE TRIGGER trg_customer_contacts_set_created_by BEFORE INSERT ON customer_contacts
-  FOR EACH ROW EXECUTE FUNCTION set_created_by();
+-- NOTE: customer_contacts does NOT have created_by column, no trigger needed
 
 CREATE TRIGGER trg_leads_set_created_by BEFORE INSERT ON leads
   FOR EACH ROW EXECUTE FUNCTION set_created_by();
@@ -102,15 +101,13 @@ CREATE TRIGGER trg_margin_rules_set_created_by BEFORE INSERT ON margin_rules
 CREATE TRIGGER trg_quotes_set_created_by BEFORE INSERT ON quotes
   FOR EACH ROW EXECUTE FUNCTION set_created_by();
 
-CREATE TRIGGER trg_quote_items_set_created_by BEFORE INSERT ON quote_items
-  FOR EACH ROW EXECUTE FUNCTION set_created_by();
+-- NOTE: quote_items does NOT have created_by column, no trigger needed
 
 -- Domain 5: Orders
 CREATE TRIGGER trg_orders_set_created_by BEFORE INSERT ON orders
   FOR EACH ROW EXECUTE FUNCTION set_created_by();
 
-CREATE TRIGGER trg_order_items_set_created_by BEFORE INSERT ON order_items
-  FOR EACH ROW EXECUTE FUNCTION set_created_by();
+-- NOTE: order_items does NOT have created_by column, no trigger needed
 
 -- Domain 6: Suppliers and Purchase Orders
 CREATE TRIGGER trg_suppliers_set_created_by BEFORE INSERT ON suppliers

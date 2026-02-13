@@ -1,12 +1,16 @@
-import { use } from 'react';
-
 import { DashboardLayout } from '~/components/dashboard/dashboard-layout';
 import { withI18n } from '~/lib/i18n/with-i18n';
 import { requireUserInServerComponent } from '~/lib/server/require-user-in-server-component';
 
 async function HomeLayout({ children }: React.PropsWithChildren) {
   // Ensure user is authenticated (redirects to login if not)
-  use(Promise.all([requireUserInServerComponent()]));
+  try {
+    const user = await requireUserInServerComponent();
+    console.log('[HomeLayout] Auth OK, user:', user?.email ?? user?.sub);
+  } catch (error) {
+    console.error('[HomeLayout] FATAL ERROR:', error);
+    throw error;
+  }
 
   // PermissionProvider inside DashboardLayout handles client-side permission fetching
   return <DashboardLayout>{children}</DashboardLayout>;

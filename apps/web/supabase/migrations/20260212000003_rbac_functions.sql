@@ -38,7 +38,7 @@ BEGIN
   INNER JOIN role_permissions rp ON rp.role_id = r.id
   INNER JOIN permissions p ON p.id = rp.permission_id
   WHERE ur.user_id = p_user_id
-  ORDER BY p.slug;
+  ORDER BY 1;
 END;
 $$;
 

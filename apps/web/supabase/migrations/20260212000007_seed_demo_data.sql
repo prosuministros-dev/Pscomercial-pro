@@ -11,6 +11,14 @@
 -- Fixed UUID: Org = 00000000-0000-0000-0000-000000000001 (from migration 4)
 
 -- ============================================================================
+-- FIX: Drop triggers on tables that don't have created_by column
+-- These triggers were incorrectly applied in migration 5
+-- ============================================================================
+DROP TRIGGER IF EXISTS trg_customer_contacts_set_created_by ON customer_contacts;
+DROP TRIGGER IF EXISTS trg_quote_items_set_created_by ON quote_items;
+DROP TRIGGER IF EXISTS trg_order_items_set_created_by ON order_items;
+
+-- ============================================================================
 -- 0.7.6: Product Categories / Verticales (5 per spec)
 -- Spec: Accesorios, Hardware, Otros, Servicios, Software
 -- Columns: id, organization_id, name, slug, parent_id, level, is_active
@@ -114,36 +122,36 @@ ON CONFLICT (id) DO NOTHING;
 -- ============================================================================
 
 INSERT INTO customers (id, organization_id, business_name, nit, industry, address, city,
-  phone, email, website, credit_limit, credit_available, credit_status, payment_terms, is_active) VALUES
+  phone, email, website, credit_limit, credit_available, credit_status, payment_terms) VALUES
   ('00000000-0000-0000-0002-000000000001', '00000000-0000-0000-0000-000000000001',
    'Banco Davivienda S.A.', '860034313-7', 'Financiero',
    'Av. El Dorado No. 68C-61', 'Bogotá',
    '601-330-0000', 'compras@davivienda.com', 'www.davivienda.com',
-   500000000.00, 500000000.00, 'approved', 'credit_30', true),
+   500000000.00, 500000000.00, 'approved', 'credit_30'),
 
   ('00000000-0000-0000-0002-000000000002', '00000000-0000-0000-0000-000000000001',
    'Ecopetrol S.A.', '899999068-1', 'Energía',
    'Cra 13 No. 36-24', 'Bogotá',
    '601-234-4000', 'adquisiciones@ecopetrol.com.co', 'www.ecopetrol.com.co',
-   800000000.00, 800000000.00, 'approved', 'credit_60', true),
+   800000000.00, 800000000.00, 'approved', 'credit_60'),
 
   ('00000000-0000-0000-0002-000000000003', '00000000-0000-0000-0000-000000000001',
    'Universidad de los Andes', '860007386-1', 'Educación',
    'Cra 1 No. 18A-12', 'Bogotá',
    '601-339-4999', 'compras@uniandes.edu.co', 'www.uniandes.edu.co',
-   200000000.00, 200000000.00, 'approved', 'credit_30', true),
+   200000000.00, 200000000.00, 'approved', 'credit_30'),
 
   ('00000000-0000-0000-0002-000000000004', '00000000-0000-0000-0000-000000000001',
    'Grupo Nutresa S.A.', '890900266-8', 'Alimentos',
    'Cra 52 No. 2-38', 'Medellín',
    '604-251-0200', 'tecnologia@nutresa.com', 'www.gruponutresa.com',
-   350000000.00, 350000000.00, 'approved', 'credit_30', true),
+   350000000.00, 350000000.00, 'approved', 'credit_30'),
 
   ('00000000-0000-0000-0002-000000000005', '00000000-0000-0000-0000-000000000001',
    'Clínica Fundación Santa Fe', '860037950-5', 'Salud',
    'Calle 119 No. 7-75', 'Bogotá',
    '601-603-0303', 'sistemas@fsfb.org.co', 'www.fsfb.org.co',
-   150000000.00, 150000000.00, 'approved', 'anticipated', true)
+   150000000.00, 150000000.00, 'approved', 'anticipated')
 ON CONFLICT (id) DO NOTHING;
 
 
