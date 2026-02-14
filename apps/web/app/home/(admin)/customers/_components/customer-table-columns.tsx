@@ -2,6 +2,7 @@
 
 import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@kit/ui/button';
+import { PermissionGate } from '@kit/rbac/permission-gate';
 import { Eye, Pencil, Users } from 'lucide-react';
 import type { Customer } from '../_lib/types';
 
@@ -78,22 +79,26 @@ export function createCustomerColumns({
 
         return (
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => onEdit(customer)}
-              aria-label="Editar cliente"
-            >
-              <Pencil className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => onViewContacts(customer)}
-              aria-label="Ver contactos"
-            >
-              <Users className="h-4 w-4" />
-            </Button>
+            <PermissionGate permission="customers:update">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => onEdit(customer)}
+                aria-label="Editar cliente"
+              >
+                <Pencil className="h-4 w-4" />
+              </Button>
+            </PermissionGate>
+            <PermissionGate permission="customers:manage_contacts">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => onViewContacts(customer)}
+                aria-label="Ver contactos"
+              >
+                <Users className="h-4 w-4" />
+              </Button>
+            </PermissionGate>
           </div>
         );
       },

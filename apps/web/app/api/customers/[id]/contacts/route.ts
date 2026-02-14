@@ -1,6 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
+import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+
+// --- Zod Schemas ---
+const createContactSchema = z.object({
+  full_name: z.string().min(1, 'full_name es requerido'),
+  email: z.string().email('Email inválido').nullish(),
+  phone: z.string().nullish(),
+  position: z.string().nullish(),
+  is_primary: z.boolean().optional().default(false),
+  is_active: z.boolean().optional().default(true),
+});
+
+const updateContactSchema = z.object({
+  id: z.string().uuid('id del contacto es requerido'),
+  full_name: z.string().min(1).optional(),
+  email: z.string().email('Email inválido').nullish(),
+  phone: z.string().nullish(),
+  position: z.string().nullish(),
+  is_primary: z.boolean().optional(),
+  is_active: z.boolean().optional(),
+});
 
 /**
  * GET /api/customers/[id]/contacts
@@ -15,11 +37,13 @@ export async function GET(
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
 
-    // TODO: Implementar checkPermission('customers:read')
+    const allowed = await checkPermission(user.id, 'customers:read');
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para ver contactos' }, { status: 403 });
+    }
 
     const customerId = params.id;
 
-    // Verificar que el cliente pertenece a la organización
     const { data: customer, error: customerError } = await client
       .from('customers')
       .select('id')
@@ -28,13 +52,9 @@ export async function GET(
       .single();
 
     if (customerError || !customer) {
-      return NextResponse.json(
-        { error: 'Cliente no encontrado' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Cliente no encontrado' }, { status: 404 });
     }
 
-    // Obtener contactos del cliente
     const { data, error } = await client
       .from('customer_contacts')
       .select('*')
@@ -45,26 +65,20 @@ export async function GET(
 
     if (error) {
       console.error('Error fetching customer contacts:', error);
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ data });
   } catch (error) {
     console.error('Unexpected error in GET /api/customers/[id]/contacts:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 /**
  * POST /api/customers/[id]/contacts
  * Crear nuevo contacto para un cliente
- * Permission required: customers:create
+ * Permission required: customers:manage_contacts
  */
 export async function POST(
   request: NextRequest,
@@ -74,21 +88,23 @@ export async function POST(
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
 
-    // TODO: Implementar checkPermission('customers:create')
+    const allowed = await checkPermission(user.id, 'customers:manage_contacts');
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para gestionar contactos' }, { status: 403 });
+    }
 
     const customerId = params.id;
     const body = await request.json();
-    const { full_name, email, phone, position, is_primary, is_active } = body;
-
-    // Validaciones básicas
-    if (!full_name) {
+    const parsed = createContactSchema.safeParse(body);
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'full_name es un campo requerido' },
-        { status: 400 }
+        { error: parsed.error.errors[0]?.message || 'Datos inválidos' },
+        { status: 400 },
       );
     }
 
-    // Verificar que el cliente pertenece a la organización
+    const { full_name, email, phone, position, is_primary, is_active } = parsed.data;
+
     const { data: customer, error: customerError } = await client
       .from('customers')
       .select('id')
@@ -97,13 +113,9 @@ export async function POST(
       .single();
 
     if (customerError || !customer) {
-      return NextResponse.json(
-        { error: 'Cliente no encontrado' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Cliente no encontrado' }, { status: 404 });
     }
 
-    // Si is_primary es true, desmarcar otros contactos primarios
     if (is_primary) {
       await client
         .from('customer_contacts')
@@ -112,7 +124,6 @@ export async function POST(
         .eq('organization_id', user.organization_id);
     }
 
-    // Crear el contacto
     const { data, error } = await client
       .from('customer_contacts')
       .insert({
@@ -122,34 +133,28 @@ export async function POST(
         email,
         phone,
         position,
-        is_primary: is_primary || false,
-        is_active: is_active !== undefined ? is_active : true,
+        is_primary,
+        is_active,
       })
       .select()
       .single();
 
     if (error) {
       console.error('Error creating customer contact:', error);
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ data }, { status: 201 });
   } catch (error) {
     console.error('Unexpected error in POST /api/customers/[id]/contacts:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 /**
  * PUT /api/customers/[id]/contacts
  * Actualizar contacto existente
- * Permission required: customers:update
+ * Permission required: customers:manage_contacts
  */
 export async function PUT(
   request: NextRequest,
@@ -159,20 +164,23 @@ export async function PUT(
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
 
-    // TODO: Implementar checkPermission('customers:update')
+    const allowed = await checkPermission(user.id, 'customers:manage_contacts');
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para gestionar contactos' }, { status: 403 });
+    }
 
     const customerId = params.id;
     const body = await request.json();
-    const { id, full_name, email, phone, position, is_primary, is_active } = body;
-
-    if (!id) {
+    const parsed = updateContactSchema.safeParse(body);
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'id del contacto es requerido para actualizar' },
-        { status: 400 }
+        { error: parsed.error.errors[0]?.message || 'Datos inválidos' },
+        { status: 400 },
       );
     }
 
-    // Verificar que el cliente pertenece a la organización
+    const { id, full_name, email, phone, position, is_primary, is_active } = parsed.data;
+
     const { data: customer, error: customerError } = await client
       .from('customers')
       .select('id')
@@ -181,13 +189,9 @@ export async function PUT(
       .single();
 
     if (customerError || !customer) {
-      return NextResponse.json(
-        { error: 'Cliente no encontrado' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Cliente no encontrado' }, { status: 404 });
     }
 
-    // Verificar que el contacto existe y pertenece al cliente
     const { data: existingContact, error: contactCheckError } = await client
       .from('customer_contacts')
       .select('id')
@@ -197,13 +201,9 @@ export async function PUT(
       .single();
 
     if (contactCheckError || !existingContact) {
-      return NextResponse.json(
-        { error: 'Contacto no encontrado' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Contacto no encontrado' }, { status: 404 });
     }
 
-    // Si is_primary es true, desmarcar otros contactos primarios
     if (is_primary) {
       await client
         .from('customer_contacts')
@@ -213,8 +213,7 @@ export async function PUT(
         .neq('id', id);
     }
 
-    // Actualizar el contacto
-    const updateData: any = { updated_at: new Date().toISOString() };
+    const updateData: Record<string, unknown> = { updated_at: new Date().toISOString() };
     if (full_name !== undefined) updateData.full_name = full_name;
     if (email !== undefined) updateData.email = email;
     if (phone !== undefined) updateData.phone = phone;
@@ -233,26 +232,20 @@ export async function PUT(
 
     if (error) {
       console.error('Error updating customer contact:', error);
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ data });
   } catch (error) {
     console.error('Unexpected error in PUT /api/customers/[id]/contacts:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
 /**
  * DELETE /api/customers/[id]/contacts
  * Eliminar contacto
- * Permission required: customers:update
+ * Permission required: customers:manage_contacts
  */
 export async function DELETE(
   request: NextRequest,
@@ -262,20 +255,19 @@ export async function DELETE(
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
 
-    // TODO: Implementar checkPermission('customers:update')
+    const allowed = await checkPermission(user.id, 'customers:manage_contacts');
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para gestionar contactos' }, { status: 403 });
+    }
 
     const customerId = params.id;
     const { searchParams } = new URL(request.url);
     const contactId = searchParams.get('contactId');
 
     if (!contactId) {
-      return NextResponse.json(
-        { error: 'contactId es requerido en query params' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'contactId es requerido en query params' }, { status: 400 });
     }
 
-    // Verificar que el cliente pertenece a la organización
     const { data: customer, error: customerError } = await client
       .from('customers')
       .select('id')
@@ -284,13 +276,9 @@ export async function DELETE(
       .single();
 
     if (customerError || !customer) {
-      return NextResponse.json(
-        { error: 'Cliente no encontrado' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Cliente no encontrado' }, { status: 404 });
     }
 
-    // Verificar que el contacto existe y pertenece al cliente
     const { data: existingContact, error: contactCheckError } = await client
       .from('customer_contacts')
       .select('id')
@@ -300,13 +288,9 @@ export async function DELETE(
       .single();
 
     if (contactCheckError || !existingContact) {
-      return NextResponse.json(
-        { error: 'Contacto no encontrado' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Contacto no encontrado' }, { status: 404 });
     }
 
-    // Eliminar el contacto
     const { error } = await client
       .from('customer_contacts')
       .delete()
@@ -316,18 +300,12 @@ export async function DELETE(
 
     if (error) {
       console.error('Error deleting customer contact:', error);
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ message: 'Contacto eliminado exitosamente' });
   } catch (error) {
     console.error('Unexpected error in DELETE /api/customers/[id]/contacts:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

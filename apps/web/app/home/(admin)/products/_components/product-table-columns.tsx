@@ -3,6 +3,7 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@kit/ui/button';
 import { Badge } from '@kit/ui/badge';
+import { PermissionGate } from '@kit/rbac/permission-gate';
 import { Pencil } from 'lucide-react';
 import type { Product } from '../_lib/types';
 
@@ -116,14 +117,16 @@ export function createProductColumns({
 
         return (
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => onEdit(product)}
-              aria-label="Editar producto"
-            >
-              <Pencil className="h-4 w-4" />
-            </Button>
+            <PermissionGate permission="products:update">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => onEdit(product)}
+                aria-label="Editar producto"
+              >
+                <Pencil className="h-4 w-4" />
+              </Button>
+            </PermissionGate>
           </div>
         );
       },

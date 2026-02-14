@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
+import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
 
 /**
  * POST /api/quotes/[id]/duplicate
  * Duplicate a quote creating a new version
+ * Permission required: quotes:create
  */
 export async function POST(
   request: NextRequest,
@@ -13,6 +15,12 @@ export async function POST(
   try {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
+
+    const allowed = await checkPermission(user.id, 'quotes:create');
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para crear cotizaciones' }, { status: 403 });
+    }
+
     const { id } = await params;
 
     // Fetch original quote
@@ -37,7 +45,6 @@ export async function POST(
       return NextResponse.json({ error: 'Error al generar número' }, { status: 500 });
     }
 
-    // Calculate expires_at
     const validityDays = original.validity_days || 30;
     const expiresAt = new Date();
     expiresAt.setDate(expiresAt.getDate() + validityDays);
@@ -73,7 +80,7 @@ export async function POST(
 
     // Duplicate items
     if (original.quote_items && original.quote_items.length > 0) {
-      const newItems = original.quote_items.map((item: any) => ({
+      const newItems = original.quote_items.map((item: Record<string, unknown>) => ({
         quote_id: newQuote.id,
         product_id: item.product_id,
         sort_order: item.sort_order,

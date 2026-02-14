@@ -1,6 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
+import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+
+// --- Zod Schemas ---
+const createCommentSchema = z.object({
+  entity_type: z.enum(['lead', 'quote', 'customer', 'order'], { message: 'entity_type inválido' }),
+  entity_id: z.string().uuid('entity_id debe ser UUID válido'),
+  content: z.string().min(1, 'content es requerido').max(5000, 'El comentario no puede exceder 5000 caracteres'),
+  mentions: z.array(z.string().uuid()).optional().default([]),
+});
+
+/**
+ * Map entity_type to the permission needed to comment on it
+ */
+function getCommentPermission(entityType: string): string {
+  switch (entityType) {
+    case 'lead': return 'leads:comment';
+    case 'quote': return 'quotes:read';
+    case 'customer': return 'customers:read';
+    default: return 'leads:read';
+  }
+}
 
 /**
  * GET /api/comments
@@ -19,8 +41,15 @@ export async function GET(request: NextRequest) {
     if (!entityType || !entityId) {
       return NextResponse.json(
         { error: 'entity_type y entity_id son requeridos' },
-        { status: 400 }
+        { status: 400 },
       );
+    }
+
+    // Check read permission for the entity type
+    const permission = getCommentPermission(entityType);
+    const allowed = await checkPermission(user.id, permission);
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para ver comentarios' }, { status: 403 });
     }
 
     const { data, error } = await client
@@ -50,28 +79,28 @@ export async function GET(request: NextRequest) {
 /**
  * POST /api/comments
  * Create a comment with optional @mentions
- * Body: { entity_type, entity_id, content, mentions?: string[] }
  */
 export async function POST(request: NextRequest) {
   try {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
+
     const body = await request.json();
-
-    const { entity_type, entity_id, content, mentions } = body;
-
-    if (!entity_type || !entity_id || !content) {
+    const parsed = createCommentSchema.safeParse(body);
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'entity_type, entity_id y content son requeridos' },
-        { status: 400 }
+        { error: parsed.error.errors[0]?.message || 'Datos inválidos' },
+        { status: 400 },
       );
     }
 
-    if (content.length > 5000) {
-      return NextResponse.json(
-        { error: 'El comentario no puede exceder 5000 caracteres' },
-        { status: 400 }
-      );
+    const { entity_type, entity_id, content, mentions } = parsed.data;
+
+    // Check permission for the entity type
+    const permission = getCommentPermission(entity_type);
+    const allowed = await checkPermission(user.id, permission);
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para comentar' }, { status: 403 });
     }
 
     const { data: comment, error } = await client
@@ -82,7 +111,7 @@ export async function POST(request: NextRequest) {
         entity_id,
         author_id: user.id,
         content,
-        mentions: mentions || [],
+        mentions,
       })
       .select(`
         *,
@@ -96,7 +125,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Create notifications for mentioned users
-    if (mentions && mentions.length > 0) {
+    if (mentions.length > 0) {
       const mentionContent = content.substring(0, 200);
       const entityRoute = entity_type === 'lead' ? 'leads' : entity_type === 'quote' ? 'quotes' : `${entity_type}s`;
       const notifications = mentions.map((userId: string) => ({
@@ -155,7 +184,7 @@ export async function DELETE(request: NextRequest) {
     if (existing.author_id !== user.id) {
       return NextResponse.json(
         { error: 'Solo el autor puede eliminar el comentario' },
-        { status: 403 }
+        { status: 403 },
       );
     }
 

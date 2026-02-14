@@ -1,6 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
+import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+
+// --- Zod Schemas ---
+const createProductSchema = z.object({
+  sku: z.string().min(1, 'sku es requerido'),
+  name: z.string().min(1, 'name es requerido'),
+  description: z.string().nullish(),
+  category_id: z.string().uuid().nullish(),
+  brand: z.string().nullish(),
+  unit_cost_usd: z.number().min(0).optional().default(0),
+  unit_cost_cop: z.number().min(0).optional().default(0),
+  suggested_price_cop: z.number().min(0).nullish(),
+  currency: z.string().optional().default('COP'),
+  is_service: z.boolean().optional().default(false),
+  is_license: z.boolean().optional().default(false),
+  is_active: z.boolean().optional().default(true),
+});
+
+const updateProductSchema = z.object({
+  id: z.string().uuid('id debe ser un UUID válido'),
+  sku: z.string().min(1).optional(),
+  name: z.string().min(1).optional(),
+  description: z.string().nullish(),
+  category_id: z.string().uuid().nullish(),
+  brand: z.string().nullish(),
+  unit_cost_usd: z.number().min(0).optional(),
+  unit_cost_cop: z.number().min(0).optional(),
+  suggested_price_cop: z.number().min(0).nullish(),
+  currency: z.string().optional(),
+  is_service: z.boolean().optional(),
+  is_license: z.boolean().optional(),
+  is_active: z.boolean().optional(),
+});
 
 /**
  * GET /api/products
@@ -12,8 +46,11 @@ export async function GET(request: NextRequest) {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
 
-    // TODO: Implementar checkPermission('products:read')
-    
+    const allowed = await checkPermission(user.id, 'products:read');
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para ver productos' }, { status: 403 });
+    }
+
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '10');
@@ -30,15 +67,12 @@ export async function GET(request: NextRequest) {
       .order('created_at', { ascending: false })
       .range(offset, offset + limit - 1);
 
-    // Aplicar filtros opcionales
     if (search) {
       query = query.or(`sku.ilike.%${search}%,name.ilike.%${search}%`);
     }
-    
     if (category_id) {
       query = query.eq('category_id', category_id);
     }
-    
     if (is_active !== null && is_active !== undefined && is_active !== '') {
       query = query.eq('is_active', is_active === 'true');
     }
@@ -47,10 +81,7 @@ export async function GET(request: NextRequest) {
 
     if (error) {
       console.error('Error fetching products:', error);
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({
@@ -64,10 +95,7 @@ export async function GET(request: NextRequest) {
     });
   } catch (error) {
     console.error('Unexpected error in GET /api/products:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
@@ -81,33 +109,27 @@ export async function POST(request: NextRequest) {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
 
-    // TODO: Implementar checkPermission('products:create')
+    const allowed = await checkPermission(user.id, 'products:create');
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para crear productos' }, { status: 403 });
+    }
 
     const body = await request.json();
-    const {
-      sku,
-      name,
-      description,
-      category_id,
-      brand,
-      unit_cost_usd,
-      unit_cost_cop,
-      suggested_price_cop,
-      currency,
-      is_service,
-      is_license,
-      is_active,
-    } = body;
-
-    // Validaciones basicas
-    if (!sku || !name) {
+    const parsed = createProductSchema.safeParse(body);
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'sku y name son campos requeridos' },
-        { status: 400 }
+        { error: parsed.error.errors[0]?.message || 'Datos inválidos' },
+        { status: 400 },
       );
     }
 
-    // Verificar SKU unico en la organizacion
+    const {
+      sku, name, description, category_id, brand,
+      unit_cost_usd, unit_cost_cop, suggested_price_cop,
+      currency, is_service, is_license, is_active,
+    } = parsed.data;
+
+    // Verificar SKU único en la organización
     const { data: existing, error: checkError } = await client
       .from('products')
       .select('id')
@@ -116,22 +138,17 @@ export async function POST(request: NextRequest) {
       .single();
 
     if (checkError && checkError.code !== 'PGRST116') {
-      // PGRST116 = no rows returned
       console.error('Error checking SKU uniqueness:', checkError);
-      return NextResponse.json(
-        { error: checkError.message },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: checkError.message }, { status: 500 });
     }
 
     if (existing) {
       return NextResponse.json(
-        { error: 'Ya existe un producto con este SKU en la organizacion' },
-        { status: 409 }
+        { error: 'Ya existe un producto con este SKU en la organización' },
+        { status: 409 },
       );
     }
 
-    // Crear el producto
     const { data, error } = await client
       .from('products')
       .insert({
@@ -141,13 +158,13 @@ export async function POST(request: NextRequest) {
         description,
         category_id,
         brand,
-        unit_cost_usd: unit_cost_usd || 0,
-        unit_cost_cop: unit_cost_cop || 0,
+        unit_cost_usd,
+        unit_cost_cop,
         suggested_price_cop,
-        currency: currency || 'COP',
-        is_service: is_service || false,
-        is_license: is_license || false,
-        is_active: is_active !== undefined ? is_active : true,
+        currency,
+        is_service,
+        is_license,
+        is_active,
         created_by: user.id,
       })
       .select()
@@ -155,28 +172,16 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error('Error creating product:', error);
-      
-      // Manejo especifico de error de UNIQUE constraint
       if (error.code === '23505') {
-        return NextResponse.json(
-          { error: 'SKU ya existe en la organizacion' },
-          { status: 409 }
-        );
+        return NextResponse.json({ error: 'SKU ya existe en la organización' }, { status: 409 });
       }
-      
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ data }, { status: 201 });
   } catch (error) {
     console.error('Unexpected error in POST /api/products:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
@@ -190,35 +195,26 @@ export async function PUT(request: NextRequest) {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
 
-    // TODO: Implementar checkPermission('products:update')
-    // Segun permisos: Gerencia General puede modificar todo
-    // Gerencia Comercial y Comerciales solo pueden crear (no modificar)
+    const allowed = await checkPermission(user.id, 'products:update');
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para actualizar productos' }, { status: 403 });
+    }
 
     const body = await request.json();
-    const {
-      id,
-      sku,
-      name,
-      description,
-      category_id,
-      brand,
-      unit_cost_usd,
-      unit_cost_cop,
-      suggested_price_cop,
-      currency,
-      is_service,
-      is_license,
-      is_active,
-    } = body;
-
-    if (!id) {
+    const parsed = updateProductSchema.safeParse(body);
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'id es requerido para actualizar' },
-        { status: 400 }
+        { error: parsed.error.errors[0]?.message || 'Datos inválidos' },
+        { status: 400 },
       );
     }
 
-    // Verificar que el producto pertenece a la organizacion
+    const {
+      id, sku, name, description, category_id, brand,
+      unit_cost_usd, unit_cost_cop, suggested_price_cop,
+      currency, is_service, is_license, is_active,
+    } = parsed.data;
+
     const { data: existing, error: checkError } = await client
       .from('products')
       .select('id, sku')
@@ -227,13 +223,9 @@ export async function PUT(request: NextRequest) {
       .single();
 
     if (checkError || !existing) {
-      return NextResponse.json(
-        { error: 'Producto no encontrado' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Producto no encontrado' }, { status: 404 });
     }
 
-    // Si se esta cambiando el SKU, verificar que sea unico
     if (sku && sku !== existing.sku) {
       const { data: skuExists, error: skuCheckError } = await client
         .from('products')
@@ -244,22 +236,18 @@ export async function PUT(request: NextRequest) {
 
       if (skuCheckError && skuCheckError.code !== 'PGRST116') {
         console.error('Error checking SKU uniqueness:', skuCheckError);
-        return NextResponse.json(
-          { error: skuCheckError.message },
-          { status: 500 }
-        );
+        return NextResponse.json({ error: skuCheckError.message }, { status: 500 });
       }
 
       if (skuExists) {
         return NextResponse.json(
-          { error: 'Ya existe otro producto con este SKU en la organizacion' },
-          { status: 409 }
+          { error: 'Ya existe otro producto con este SKU en la organización' },
+          { status: 409 },
         );
       }
     }
 
-    // Actualizar el producto
-    const updateData: any = { updated_at: new Date().toISOString() };
+    const updateData: Record<string, unknown> = { updated_at: new Date().toISOString() };
     if (sku !== undefined) updateData.sku = sku;
     if (name !== undefined) updateData.name = name;
     if (description !== undefined) updateData.description = description;
@@ -283,27 +271,15 @@ export async function PUT(request: NextRequest) {
 
     if (error) {
       console.error('Error updating product:', error);
-      
-      // Manejo especifico de error de UNIQUE constraint
       if (error.code === '23505') {
-        return NextResponse.json(
-          { error: 'SKU ya existe en la organizacion' },
-          { status: 409 }
-        );
+        return NextResponse.json({ error: 'SKU ya existe en la organización' }, { status: 409 });
       }
-      
-      return NextResponse.json(
-        { error: error.message },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     return NextResponse.json({ data });
   } catch (error) {
     console.error('Unexpected error in PUT /api/products:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

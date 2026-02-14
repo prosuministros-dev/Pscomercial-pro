@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import { motion } from 'motion/react';
 import { Plus } from 'lucide-react';
 import { Button } from '@kit/ui/button';
+import { PermissionGate } from '@kit/rbac/permission-gate';
 import { CustomerTable } from './customer-table';
 import { createCustomerColumns } from './customer-table-columns';
 import { CustomerFormDialog } from './customer-form-dialog';
@@ -90,10 +91,12 @@ export function CustomersPageClient() {
             Gestione los clientes de su organización
           </p>
         </div>
-        <Button onClick={handleCreateCustomer}>
-          <Plus className="h-4 w-4 mr-2" />
-          Nuevo Cliente
-        </Button>
+        <PermissionGate permission="customers:create">
+          <Button onClick={handleCreateCustomer}>
+            <Plus className="h-4 w-4 mr-2" />
+            Nuevo Cliente
+          </Button>
+        </PermissionGate>
       </motion.div>
 
       <motion.div variants={itemVariants}>

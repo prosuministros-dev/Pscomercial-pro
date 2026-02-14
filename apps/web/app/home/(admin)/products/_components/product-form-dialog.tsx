@@ -28,9 +28,8 @@ import { Switch } from '@kit/ui/switch';
 import { RadioGroup, RadioGroupItem } from '@kit/ui/radio-group';
 import { productFormSchema, type ProductFormData } from '../_lib/schemas';
 import { useCreateProduct, useUpdateProduct, useTRM } from '../_lib/product-queries';
-import type { Product, UserRole } from '../_lib/types';
-import { useSupabase } from '@kit/supabase/hooks/use-supabase';
-import { useQuery } from '@tanstack/react-query';
+import type { Product } from '../_lib/types';
+import { usePermissions } from '@kit/rbac/permission-provider';
 import { Badge } from '@kit/ui/badge';
 
 interface ProductFormDialogProps {
@@ -48,39 +47,10 @@ export function ProductFormDialog({
   mode,
   categories = [],
 }: ProductFormDialogProps) {
-  const supabase = useSupabase();
   const createMutation = useCreateProduct();
   const updateMutation = useUpdateProduct();
   const { data: trmData } = useTRM();
-
-  // Fetch current user role
-  const { data: userRole } = useQuery<UserRole>({
-    queryKey: ['user-role'],
-    queryFn: async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return null;
-
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select(`
-          user_roles (
-            role:roles (
-              slug
-            )
-          )
-        `)
-        .eq('id', user.id)
-        .single();
-
-      if (!profile?.user_roles || profile.user_roles.length === 0) {
-        return null;
-      }
-
-      const roleSlug = (profile.user_roles as any)[0]?.role?.slug;
-      return roleSlug as UserRole;
-    },
-    enabled: open,
-  });
+  const { can } = usePermissions();
 
   const {
     register,
@@ -117,10 +87,10 @@ export function ProductFormDialog({
   const unitCostUsd = watch('unit_cost_usd');
   const unitCostCop = watch('unit_cost_cop');
 
-  // Determine field permissions based on user role
-  const canEditCategory = userRole === 'gerente_general';
-  const canEditBrand = userRole === 'gerente_general';
-  const canEditTax = userRole === 'gerente_general';
+  // Determine field permissions using RBAC
+  const canEditCategory = can('products:manage_pricing');
+  const canEditBrand = can('products:manage_pricing');
+  const canEditTax = can('products:manage_pricing');
 
   // Reset form when dialog opens/closes or product changes
   useEffect(() => {

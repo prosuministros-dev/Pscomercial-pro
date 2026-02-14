@@ -1,6 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { requireUser } from '~/lib/require-auth';
+
+// --- Zod Schemas ---
+const markReadSchema = z.object({
+  id: z.string().uuid().optional(),
+  mark_all: z.boolean().optional(),
+}).refine(data => data.id || data.mark_all, {
+  message: 'Se requiere id o mark_all',
+});
+
+const createNotificationSchema = z.object({
+  type: z.string().min(1, 'type es requerido'),
+  title: z.string().min(1, 'title es requerido'),
+  message: z.string().min(1, 'message es requerido'),
+  entity_type: z.string().nullish(),
+  entity_id: z.string().uuid().nullish(),
+  action_url: z.string().nullish(),
+  priority: z.enum(['low', 'normal', 'high']).optional().default('normal'),
+  // user_id intentionally omitted - forced to current user to prevent privilege escalation
+});
 
 /**
  * GET /api/notifications
@@ -55,9 +75,17 @@ export async function PUT(request: NextRequest) {
   try {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
-    const body = await request.json();
 
-    if (body.mark_all) {
+    const body = await request.json();
+    const parsed = markReadSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.errors[0]?.message || 'Datos inválidos' },
+        { status: 400 },
+      );
+    }
+
+    if (parsed.data.mark_all) {
       const { error } = await client
         .from('notifications')
         .update({ is_read: true, updated_at: new Date().toISOString() })
@@ -70,18 +98,16 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ success: true });
     }
 
-    if (!body.id) {
-      return NextResponse.json({ error: 'id es requerido' }, { status: 400 });
-    }
+    if (parsed.data.id) {
+      const { error } = await client
+        .from('notifications')
+        .update({ is_read: true, updated_at: new Date().toISOString() })
+        .eq('id', parsed.data.id)
+        .eq('user_id', user.id);
 
-    const { error } = await client
-      .from('notifications')
-      .update({ is_read: true, updated_at: new Date().toISOString() })
-      .eq('id', body.id)
-      .eq('user_id', user.id);
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
+      }
     }
 
     return NextResponse.json({ success: true });
@@ -93,34 +119,38 @@ export async function PUT(request: NextRequest) {
 
 /**
  * POST /api/notifications
- * Create a notification (internal use)
- * Body: { user_id, type, title, message, entity_type?, entity_id?, action_url?, priority? }
+ * Create a self-notification (for current user only)
+ * SECURITY: user_id is forced to current user to prevent privilege escalation.
+ * System notifications (to other users) are created server-side in other routes.
  */
 export async function POST(request: NextRequest) {
   try {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
-    const body = await request.json();
 
-    if (!body.user_id || !body.type || !body.title || !body.message) {
+    const body = await request.json();
+    const parsed = createNotificationSchema.safeParse(body);
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: 'user_id, type, title, message son requeridos' },
-        { status: 400 }
+        { error: parsed.error.errors[0]?.message || 'Datos inválidos' },
+        { status: 400 },
       );
     }
+
+    const { type, title, message, entity_type, entity_id, action_url, priority } = parsed.data;
 
     const { data, error } = await client
       .from('notifications')
       .insert({
         organization_id: user.organization_id,
-        user_id: body.user_id,
-        type: body.type,
-        title: body.title,
-        message: body.message,
-        entity_type: body.entity_type || null,
-        entity_id: body.entity_id || null,
-        action_url: body.action_url || null,
-        priority: body.priority || 'normal',
+        user_id: user.id, // SECURITY: Always current user, never from body
+        type,
+        title,
+        message,
+        entity_type: entity_type || null,
+        entity_id: entity_id || null,
+        action_url: action_url || null,
+        priority,
         is_read: false,
       })
       .select()

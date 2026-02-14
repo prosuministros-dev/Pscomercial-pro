@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Button } from '@kit/ui/button';
+import { PermissionGate } from '@kit/rbac/permission-gate';
 import {
   Table,
   TableBody,
@@ -133,13 +134,15 @@ export function QuotesPageClient() {
             />
             Actualizar
           </Button>
-          <Button
-            onClick={() => setIsFormOpen(true)}
-            className="bg-cyan-500 hover:bg-cyan-600 text-white"
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            Nueva Cotización
-          </Button>
+          <PermissionGate permission="quotes:create">
+            <Button
+              onClick={() => setIsFormOpen(true)}
+              className="bg-cyan-500 hover:bg-cyan-600 text-white"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Nueva Cotización
+            </Button>
+          </PermissionGate>
         </div>
       </motion.div>
 

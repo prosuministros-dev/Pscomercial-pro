@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Button } from '@kit/ui/button';
+import { PermissionGate } from '@kit/rbac/permission-gate';
 import { LayoutGrid, LayoutList, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 import { LeadsKanban } from './leads-kanban';
@@ -111,7 +112,9 @@ export function LeadsPageClient() {
             />
             Actualizar
           </Button>
-          <LeadFormDialog onSuccess={handleRefresh} />
+          <PermissionGate permission="leads:create">
+            <LeadFormDialog onSuccess={handleRefresh} />
+          </PermissionGate>
         </div>
       </motion.div>
 

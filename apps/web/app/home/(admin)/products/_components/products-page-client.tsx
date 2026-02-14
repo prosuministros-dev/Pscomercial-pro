@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Plus } from 'lucide-react';
 import { Button } from '@kit/ui/button';
+import { PermissionGate } from '@kit/rbac/permission-gate';
 import { ProductTable } from './product-table';
 import { createProductColumns } from './product-table-columns';
 import { ProductFormDialog } from './product-form-dialog';
@@ -100,10 +101,12 @@ export function ProductsPageClient() {
             Gestione el catálogo de productos de su organización
           </p>
         </div>
-        <Button onClick={handleCreateProduct}>
-          <Plus className="h-4 w-4 mr-2" />
-          Nuevo Producto
-        </Button>
+        <PermissionGate permission="products:create">
+          <Button onClick={handleCreateProduct}>
+            <Plus className="h-4 w-4 mr-2" />
+            Nuevo Producto
+          </Button>
+        </PermissionGate>
       </motion.div>
 
       <motion.div variants={itemVariants}>
