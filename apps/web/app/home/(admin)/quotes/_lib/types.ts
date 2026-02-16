@@ -14,6 +14,7 @@ export interface Quote {
     | 'offer_created'
     | 'negotiation'
     | 'risk'
+    | 'pending_approval'
     | 'pending_oc'
     | 'approved'
     | 'rejected'

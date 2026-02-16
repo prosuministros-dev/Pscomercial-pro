@@ -33,13 +33,13 @@
 ### 📊 Progreso Global
 
 **Total Tareas:** 267
-**Completadas:** 94/267 (35%)
+**Completadas:** 120/267 (45%)
 
 ```
 Sprint 0: [██████████] 51/51 (100%) ✅
 Sprint 1: [██████████] 43/43 (100%) ✅
-Sprint 2: [░░░░░░░░░░] 0/36 (0%)
-Sprint 3: [░░░░░░░░░░] 0/60 (0%)
+Sprint 2: [█████░░░░░] 19/36 (53%)
+Sprint 3: [█░░░░░░░░░] 7/60 (12%)
 Sprint 4: [░░░░░░░░░░] 0/42 (0%)
 Sprint 5: [░░░░░░░░░░] 0/25 (0%)
 Sprint 6: [░░░░░░░░░░] 0/10 (0%)
@@ -224,49 +224,49 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 
 #### TAREA 2.1: Aprobación Margen (HU-0005) (6 subtareas)
 
-- [ ] 2.1.1 - RPC `request_margin_approval(quote_id)`
-- [ ] 2.1.2 - API `/api/quotes/[id]/approve-margin` (POST)
-- [ ] 2.1.3 - Comparación automática con `margin_rules`
-- [ ] 2.1.4 - Modal aprobación Gerencia (aprobar/rechazar)
-- [ ] 2.1.5 - Notificaciones (solicitud + resolución)
-- [ ] 2.1.6 - Bloqueo envío si margen bajo sin aprobación
+- [x] 2.1.1 - RPC `request_margin_approval(quote_id)`
+- [x] 2.1.2 - API `/api/quotes/[id]/approve-margin` (POST/PATCH/GET)
+- [x] 2.1.3 - Comparación automática con `margin_rules`
+- [x] 2.1.4 - Modal aprobación Gerencia (aprobar/rechazar)
+- [x] 2.1.5 - Notificaciones (solicitud + resolución)
+- [x] 2.1.6 - Bloqueo envío si margen bajo sin aprobación
 
 #### TAREA 2.2: Generación PDF (HU-0006) (12 subtareas)
 
-- [ ] 2.2.1 - Instalar @react-pdf/renderer (~2MB)
-- [ ] 2.2.2 - Template Cotización PDF (colores cyan, A4, inline styles)
-- [ ] 2.2.3 - Template Proforma PDF (+ datos bancarios)
-- [ ] 2.2.4 - Template Orden PDF (info entrega)
-- [ ] 2.2.5 - API `/api/pdf/quote/[id]` (fetch → render → upload)
-- [ ] 2.2.6 - Upload Storage bucket `generated-pdfs`
-- [ ] 2.2.7 - Signed URL (expiración 7 días)
-- [ ] 2.2.8 - Botón "Generar PDF" (modal preview)
-- [ ] 2.2.9 - Envío email SendGrid (PDF adjunto)
-- [ ] 2.2.10 - Recordatorio 8 días (Cron)
-- [ ] 2.2.11 - Estados envío (Enviada, Aceptada, Rechazada, Pendiente)
-- [ ] 2.2.12 - Lógica cotización vs proforma (crédito cliente)
+- [x] 2.2.1 - Instalar @react-pdf/renderer (~2MB)
+- [x] 2.2.2 - Template Cotización PDF (colores cyan, LETTER, inline styles)
+- [ ] 2.2.3 - Template Proforma PDF (+ datos bancarios) — Sprint 2B
+- [ ] 2.2.4 - Template Orden PDF (info entrega) — Sprint 2B
+- [x] 2.2.5 - API `/api/pdf/quote/[id]` (fetch → render → upload)
+- [x] 2.2.6 - Upload Storage bucket `generated-pdfs`
+- [x] 2.2.7 - Signed URL (expiración 7 días)
+- [x] 2.2.8 - Botón "Generar PDF" en tabla cotizaciones
+- [ ] 2.2.9 - Envío email SendGrid (PDF adjunto) — Sprint 2B
+- [ ] 2.2.10 - Recordatorio 8 días (Cron) — Sprint 2B
+- [ ] 2.2.11 - Estados envío (Enviada, Aceptada, Rechazada, Pendiente) — Sprint 2B
+- [ ] 2.2.12 - Lógica cotización vs proforma (crédito cliente) — Sprint 2B
 
 #### TAREA 2.3: Creación Pedido (HU-00014) (13 subtareas)
 
-- [ ] 2.3.1 - RPC `create_order_from_quote(quote_id)`
-- [ ] 2.3.2 - RPC `generate_consecutive(org_id, 'order')` (#20000)
-- [ ] 2.3.3 - API `/api/orders` POST (validar quote ganada)
-- [ ] 2.3.4 - Formulario Pedidos 1 (campos Excel)
-- [ ] 2.3.5 - Carga automática desde quote (read-only)
-- [ ] 2.3.6 - Tipo facturación (total/parcial)
-- [ ] 2.3.7 - Confirmación entrega (con/sin)
-- [ ] 2.3.8 - Forma pago Anticipado (pendiente confirmación)
-- [ ] 2.3.9 - Confirmación pago Financiera (solo Anticipado)
-- [ ] 2.3.10 - Flujo facturación anticipada (4 pasos)
-- [ ] 2.3.11 - Notificaciones entre áreas (email)
-- [ ] 2.3.12 - Destinos múltiples entrega
-- [ ] 2.3.13 - Info despacho completa
+- [x] 2.3.1 - RPC `create_order_from_quote(quote_id)`
+- [x] 2.3.2 - RPC `generate_consecutive(org_id, 'order')` (#20000)
+- [x] 2.3.3 - API `/api/orders` (GET/POST/DELETE) + `/api/orders/[id]/status` (GET/PATCH)
+- [x] 2.3.4 - Formulario Pedidos (selección cotización + datos entrega)
+- [x] 2.3.5 - Carga automática desde quote (read-only summary)
+- [ ] 2.3.6 - Tipo facturación (total/parcial) — Sprint 2B
+- [x] 2.3.7 - Confirmación entrega (campos delivery en formulario)
+- [ ] 2.3.8 - Forma pago Anticipado (pendiente confirmación) — Sprint 2B
+- [ ] 2.3.9 - Confirmación pago Financiera (solo Anticipado) — Sprint 2B
+- [ ] 2.3.10 - Flujo facturación anticipada (4 pasos) — Sprint 2B
+- [ ] 2.3.11 - Notificaciones entre áreas (email) — Sprint 2B
+- [ ] 2.3.12 - Destinos múltiples entrega — Sprint 2B
+- [x] 2.3.13 - Info despacho completa (address, city, contact, phone, notes, expected_date)
 
 **✅ Entregables Sprint 2:**
-- [ ] Aprobación margen funcional
-- [ ] 3 templates PDF operativos
-- [ ] Envío email + recordatorios
-- [ ] Crear pedidos desde cotización
+- [x] Aprobación margen funcional (API + Dialog + notificaciones)
+- [x] 1 template PDF operativo (Cotización) — Proforma/Orden en Sprint 2B
+- [ ] Envío email + recordatorios — Sprint 2B
+- [x] Crear pedidos desde cotización (API + frontend completo)
 
 ---
 
@@ -276,11 +276,11 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 
 #### TAREA 3.1: Panel Principal Pedidos (HU-0007) (5 subtareas)
 
-- [ ] 3.1.1 - Vista lista pedidos (TanStack Table)
-- [ ] 3.1.2 - Filtros avanzados (estado, cliente, asesor, fechas)
-- [ ] 3.1.3 - Acciones rápidas (detalle, cambiar estado, PDF)
-- [ ] 3.1.4 - Badges estado (colores CONSOLIDADO)
-- [ ] 3.1.5 - Búsqueda (#pedido, cliente, NIT)
+- [x] 3.1.1 - Vista lista pedidos (TanStack Table)
+- [x] 3.1.2 - Filtros avanzados (estado, búsqueda, fechas)
+- [x] 3.1.3 - Acciones rápidas (detalle, cambiar estado)
+- [x] 3.1.4 - Badges estado (11 colores mapeados)
+- [x] 3.1.5 - Búsqueda (#pedido, cliente)
 
 #### TAREA 3.2: Detalle y Trazabilidad (HU-00015) (10 subtareas)
 
@@ -291,8 +291,8 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 - [ ] 3.2.5 - Tab Despachos (pendientes/completados)
 - [ ] 3.2.6 - Tab Pendientes (tareas con semáforo)
 - [ ] 3.2.7 - Tab Trazabilidad (timeline visual)
-- [ ] 3.2.8 - Modal cambio estado (validación flujo)
-- [ ] 3.2.9 - RPC `update_order_status(order_id, status)`
+- [x] 3.2.8 - Modal cambio estado (validación flujo)
+- [x] 3.2.9 - RPC `update_order_status(order_id, status)`
 - [ ] 3.2.10 - Trigger `validate_status_transition`
 
 #### TAREA 3.3: Órdenes de Compra (HU-00016) (7 subtareas)
@@ -546,24 +546,21 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 | Sprint | Tareas | Completadas | Progreso | Status |
 |--------|:------:|:-----------:|:--------:|:------:|
 | Sprint 0 | 51 | 51 | 100% | ✅ Completado |
-| Sprint 1 | 43 | 0 | 0% | ⏳ Siguiente |
-| Sprint 2 | 36 | 0 | 0% | ⏳ Pendiente |
-| Sprint 3 | 60 | 0 | 0% | ⏳ Pendiente |
+| Sprint 1 | 43 | 43 | 100% | ✅ Completado |
+| Sprint 2 | 36 | 19 | 53% | 🚀 En Progreso |
+| Sprint 3 | 60 | 7 | 12% | 🚀 En Progreso |
 | Sprint 4 | 42 | 0 | 0% | ⏳ Pendiente |
 | Sprint 5 | 25 | 0 | 0% | ⏳ Pendiente |
 | Sprint 6 | 10 | 0 | 0% | ⏳ Pendiente |
-| **TOTAL** | **267** | **51** | **19%** | 🚀 **Sprint 1 Next** |
+| **TOTAL** | **267** | **120** | **45%** | 🚀 **Sprint 2 in progress** |
 
 ---
 
-### 🎯 Próximos Pasos Inmediatos
+### 🎯 Próximos Pasos (Sprint 2B + Sprint 3)
 
-1. **Revisar y aprobar** este TODO list
-2. **Asignar responsables** por tarea/sprint
-3. **Iniciar Sprint 0** marcando primera tarea: `[x] 0.1.1`
-4. **Daily standup** usando esta lista como referencia
-5. **Actualizar progreso** diariamente marcando checkboxes
-6. **Celebrar hitos** al completar cada sprint
+1. **Sprint 2B:** Templates Proforma/Orden PDF, SendGrid emails, Cron recordatorios, facturación anticipada
+2. **Sprint 3 pendiente:** Detalle pedidos con tabs (OC, Despachos, Pendientes, Trazabilidad), OC/PO, Logística, Licencias, Facturación
+3. **Sprint 4:** Dashboards y tableros operativos
 
 ---
 
@@ -1260,7 +1257,7 @@ Total Costo incluye: items + transporte - descuentos, en COP (con TRM)
 - [x] CA-7: No envío sin aprobación
 
 **Deliverables:**
-- [ ] RPC aprobación funcional
+- [x] RPC aprobación funcional (migración 20260214000001)
 - [ ] Modal aprobación/rechazo
 - [ ] Bloqueo envío operativo
 
