@@ -39,10 +39,11 @@ async function fetchOrderDetail(orderId: string) {
   return response.json();
 }
 
-export function useOrders(filters: OrderFilters & { page?: number }) {
+export function useOrders(filters: OrderFilters & { page?: number }, initialData?: unknown) {
   return useQuery({
     queryKey: orderKeys.list(filters),
     queryFn: () => fetchOrders(filters),
+    initialData,
   });
 }
 

@@ -28,7 +28,19 @@ import { OrderStatusDialog } from './order-status-dialog';
 import { useOrders } from '../_lib/order-queries';
 import type { Order, OrderFilters as OrderFiltersType } from '../_lib/types';
 
-export function OrdersPageClient() {
+interface OrdersPageClientProps {
+  initialData?: {
+    data: Order[];
+    pagination: {
+      page: number;
+      limit: number;
+      total: number;
+      totalPages: number;
+    };
+  };
+}
+
+export function OrdersPageClient({ initialData }: OrdersPageClientProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<OrderFiltersType>({});
   const [sorting, setSorting] = useState<SortingState>([
@@ -42,11 +54,12 @@ export function OrdersPageClient() {
   const [statusOrder, setStatusOrder] = useState<Order | null>(null);
   const [isStatusOpen, setIsStatusOpen] = useState(false);
 
-  // TanStack Query
-  const { data, isLoading, isFetching, refetch } = useOrders({
-    ...filters,
-    page: currentPage,
-  });
+  // TanStack Query — use server-prefetched data for initial page load
+  const isInitialPage = currentPage === 1 && Object.keys(filters).length === 0;
+  const { data, isLoading, isFetching, refetch } = useOrders(
+    { ...filters, page: currentPage },
+    isInitialPage ? initialData : undefined,
+  );
 
   const orders: Order[] = data?.data || [];
   const totalPages = data?.pagination?.totalPages || 1;
