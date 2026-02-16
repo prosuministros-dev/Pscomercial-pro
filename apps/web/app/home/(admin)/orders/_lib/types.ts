@@ -13,6 +13,10 @@ export type OrderStatus =
 
 export type PaymentStatus = 'pending' | 'confirmed' | 'partial' | 'overdue';
 
+export type BillingType = 'total' | 'parcial';
+
+export type AdvBillingStepValue = string; // e.g. 'not_required', 'required', 'pending', 'approved', etc.
+
 export interface Order {
   id: string;
   organization_id: string;
@@ -23,6 +27,8 @@ export interface Order {
   status: OrderStatus;
   payment_status: PaymentStatus;
   payment_terms: string;
+  billing_type: BillingType;
+  requires_advance_billing: boolean;
   currency: 'COP' | 'USD';
   subtotal: number;
   tax_amount: number;
@@ -37,6 +43,22 @@ export interface Order {
   completed_at: string | null;
   cancelled_at: string | null;
   cancellation_reason: string | null;
+  // Advance billing 4 steps
+  adv_billing_request: AdvBillingStepValue;
+  adv_billing_request_at: string | null;
+  adv_billing_request_by: string | null;
+  adv_billing_approval: AdvBillingStepValue;
+  adv_billing_approval_at: string | null;
+  adv_billing_approval_by: string | null;
+  adv_billing_remission: AdvBillingStepValue;
+  adv_billing_remission_at: string | null;
+  adv_billing_remission_by: string | null;
+  adv_billing_invoice: AdvBillingStepValue;
+  adv_billing_invoice_at: string | null;
+  adv_billing_invoice_by: string | null;
+  // Payment confirmation
+  payment_confirmed_at: string | null;
+  payment_confirmed_by: string | null;
   created_by: string | null;
   created_at: string;
   updated_at: string;
@@ -56,6 +78,23 @@ export interface Order {
     id: string;
     quote_number: number;
   };
+  destinations?: OrderDestination[];
+}
+
+export interface OrderDestination {
+  id: string;
+  organization_id: string;
+  order_id: string;
+  sort_order: number;
+  delivery_address: string;
+  delivery_city: string | null;
+  delivery_contact: string | null;
+  delivery_phone: string | null;
+  delivery_schedule: string | null;
+  dispatch_type: string | null;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface OrderItem {

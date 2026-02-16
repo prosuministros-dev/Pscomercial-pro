@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import type { OrderFilters } from './types';
+import type { CreateOrderFormData } from './schemas';
 
 export const orderKeys = {
   all: ['orders'] as const,
@@ -7,6 +8,8 @@ export const orderKeys = {
   list: (filters: OrderFilters & { page?: number }) =>
     [...orderKeys.lists(), filters] as const,
   detail: (id: string) => [...orderKeys.all, 'detail', id] as const,
+  destinations: (id: string) => [...orderKeys.all, 'destinations', id] as const,
+  billingSteps: (id: string) => [...orderKeys.all, 'billing-steps', id] as const,
 };
 
 async function fetchOrders(filters: OrderFilters & { page?: number; limit?: number }) {
@@ -59,7 +62,7 @@ export function useCreateOrder() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (data: { quote_id: string; delivery_address?: string; delivery_city?: string; delivery_contact?: string; delivery_phone?: string; delivery_notes?: string; expected_delivery_date?: string }) => {
+    mutationFn: async (data: CreateOrderFormData) => {
       const response = await fetch('/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -95,6 +98,126 @@ export function useUpdateOrderStatus() {
     },
     onSuccess: (_data, variables) => {
       queryClient.invalidateQueries({ queryKey: orderKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: orderKeys.detail(variables.orderId) });
+    },
+  });
+}
+
+export function useConfirmPayment() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ orderId, notes }: { orderId: string; notes?: string }) => {
+      const response = await fetch(`/api/orders/${orderId}/confirm-payment`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ notes }),
+      });
+      if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.error || 'Error al confirmar el pago');
+      }
+      return response.json();
+    },
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({ queryKey: orderKeys.lists() });
+      queryClient.invalidateQueries({ queryKey: orderKeys.detail(variables.orderId) });
+    },
+  });
+}
+
+export function useUpdateBillingStep() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ orderId, step, value }: { orderId: string; step: string; value: string }) => {
+      const response = await fetch(`/api/orders/${orderId}/billing-step`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ step, value }),
+      });
+      if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.error || 'Error al actualizar facturación');
+      }
+      return response.json();
+    },
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({ queryKey: orderKeys.detail(variables.orderId) });
+      queryClient.invalidateQueries({ queryKey: orderKeys.billingSteps(variables.orderId) });
+    },
+  });
+}
+
+export function useBillingSteps(orderId: string | null) {
+  return useQuery({
+    queryKey: orderKeys.billingSteps(orderId || ''),
+    queryFn: async () => {
+      const response = await fetch(`/api/orders/${orderId}/billing-step`);
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Error al cargar facturación');
+      }
+      return response.json();
+    },
+    enabled: !!orderId,
+  });
+}
+
+export function useOrderDestinations(orderId: string | null) {
+  return useQuery({
+    queryKey: orderKeys.destinations(orderId || ''),
+    queryFn: async () => {
+      const response = await fetch(`/api/orders/${orderId}/destinations`);
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Error al cargar destinos');
+      }
+      return response.json();
+    },
+    enabled: !!orderId,
+  });
+}
+
+export function useAddDestination() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ orderId, ...data }: { orderId: string; delivery_address: string; delivery_city?: string; delivery_contact?: string; delivery_phone?: string; delivery_schedule?: string; dispatch_type?: string; notes?: string }) => {
+      const response = await fetch(`/api/orders/${orderId}/destinations`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.error || 'Error al agregar destino');
+      }
+      return response.json();
+    },
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({ queryKey: orderKeys.destinations(variables.orderId) });
+      queryClient.invalidateQueries({ queryKey: orderKeys.detail(variables.orderId) });
+    },
+  });
+}
+
+export function useRemoveDestination() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ orderId, destinationId }: { orderId: string; destinationId: string }) => {
+      const response = await fetch(`/api/orders/${orderId}/destinations?destination_id=${destinationId}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.error || 'Error al eliminar destino');
+      }
+      return response.json();
+    },
+    onSuccess: (_data, variables) => {
+      queryClient.invalidateQueries({ queryKey: orderKeys.destinations(variables.orderId) });
       queryClient.invalidateQueries({ queryKey: orderKeys.detail(variables.orderId) });
     },
   });

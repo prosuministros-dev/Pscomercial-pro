@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@kit/ui/dropdown-menu';
 import { PermissionGate } from '@kit/rbac/permission-gate';
-import { MoreHorizontal, Shield, FileText, ShoppingCart, Eye } from 'lucide-react';
+import { MoreHorizontal, Shield, FileText, ShoppingCart, Eye, Send, MessageSquare, Mail } from 'lucide-react';
 import type { Quote } from '../_lib/types';
 
 const STATUS_LABELS: Record<string, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }> = {
@@ -29,12 +29,20 @@ const STATUS_LABELS: Record<string, { label: string; variant: 'default' | 'secon
   expired: { label: 'Expirada', variant: 'secondary' },
 };
 
+const CLIENT_RESPONSE_LABELS: Record<string, { label: string; color: string }> = {
+  accepted: { label: 'Aceptada', color: 'bg-green-100 text-green-800' },
+  changes_requested: { label: 'Cambios', color: 'bg-yellow-100 text-yellow-800' },
+  rejected: { label: 'Rechazada', color: 'bg-red-100 text-red-800' },
+};
+
 // Event types for actions — handled by parent component
 export type QuoteAction =
   | { type: 'view'; quote: Quote }
   | { type: 'approve-margin'; quote: Quote }
   | { type: 'generate-pdf'; quote: Quote }
-  | { type: 'create-order'; quote: Quote };
+  | { type: 'create-order'; quote: Quote }
+  | { type: 'send-to-client'; quote: Quote }
+  | { type: 'client-response'; quote: Quote };
 
 export function createQuotesTableColumns(
   onAction: (action: QuoteAction) => void,
@@ -135,6 +143,28 @@ export function createQuotesTableColumns(
       },
     },
     {
+      id: 'sent',
+      header: 'Envío',
+      cell: ({ row }) => {
+        const quote = row.original;
+        const sent = (quote as unknown as { sent_to_client?: boolean }).sent_to_client;
+        const clientResponse = (quote as unknown as { client_response?: string }).client_response;
+
+        if (clientResponse && CLIENT_RESPONSE_LABELS[clientResponse]) {
+          const info = CLIENT_RESPONSE_LABELS[clientResponse];
+          return <Badge className={`${info.color} text-xs`}>{info.label}</Badge>;
+        }
+        if (sent) {
+          return (
+            <span title="Enviada al cliente">
+              <Mail className="w-4 h-4 text-cyan-500" />
+            </span>
+          );
+        }
+        return <span className="text-gray-300 text-xs">—</span>;
+      },
+    },
+    {
       accessorKey: 'status',
       header: 'Estado',
       cell: ({ row }) => {
@@ -214,6 +244,29 @@ export function createQuotesTableColumns(
                   </DropdownMenuItem>
                 </PermissionGate>
               )}
+              <DropdownMenuSeparator />
+              <PermissionGate permission="quotes:update">
+                <DropdownMenuItem
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onAction({ type: 'send-to-client', quote });
+                  }}
+                >
+                  <Send className="w-4 h-4 mr-2" />
+                  Enviar al Cliente
+                </DropdownMenuItem>
+              </PermissionGate>
+              <PermissionGate permission="quotes:update">
+                <DropdownMenuItem
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onAction({ type: 'client-response', quote });
+                  }}
+                >
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  Respuesta del Cliente
+                </DropdownMenuItem>
+              </PermissionGate>
             </DropdownMenuContent>
           </DropdownMenu>
         );

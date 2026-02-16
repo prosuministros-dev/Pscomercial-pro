@@ -72,10 +72,22 @@ export async function GET(
       console.error('Error fetching status history:', historyError);
     }
 
+    // Fetch order destinations
+    const { data: destinations, error: destError } = await client
+      .from('order_destinations')
+      .select('*')
+      .eq('order_id', orderId)
+      .order('sort_order');
+
+    if (destError) {
+      console.error('Error fetching order destinations:', destError);
+    }
+
     return NextResponse.json({
       ...order,
       items: items || [],
       status_history: statusHistory || [],
+      destinations: destinations || [],
     });
   } catch (error) {
     console.error('Error in GET /api/orders/[id]/status:', error);

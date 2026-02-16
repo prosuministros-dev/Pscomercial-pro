@@ -24,6 +24,8 @@ import { toast } from 'sonner';
 import { createQuotesTableColumns, type QuoteAction } from './quotes-table-columns';
 import { QuoteFormDialog } from './quote-form-dialog';
 import { MarginApprovalDialog } from './margin-approval-dialog';
+import { SendQuoteDialog } from './send-quote-dialog';
+import { ClientResponseDialog } from './client-response-dialog';
 import type { Quote, QuoteFilters } from '../_lib/types';
 
 export function QuotesPageClient() {
@@ -39,6 +41,10 @@ export function QuotesPageClient() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [approvalQuote, setApprovalQuote] = useState<Quote | null>(null);
   const [isApprovalOpen, setIsApprovalOpen] = useState(false);
+  const [sendQuote, setSendQuote] = useState<Quote | null>(null);
+  const [isSendOpen, setIsSendOpen] = useState(false);
+  const [responseQuote, setResponseQuote] = useState<Quote | null>(null);
+  const [isResponseOpen, setIsResponseOpen] = useState(false);
 
   const fetchQuotes = useCallback(
     async (showRefreshIndicator = false) => {
@@ -159,6 +165,14 @@ export function QuotesPageClient() {
         createOrder();
         break;
       }
+      case 'send-to-client':
+        setSendQuote(action.quote);
+        setIsSendOpen(true);
+        break;
+      case 'client-response':
+        setResponseQuote(action.quote);
+        setIsResponseOpen(true);
+        break;
     }
   }, []);
 
@@ -325,6 +339,22 @@ export function QuotesPageClient() {
         quote={approvalQuote}
         open={isApprovalOpen}
         onOpenChange={setIsApprovalOpen}
+        onSuccess={handleRefresh}
+      />
+
+      {/* Send Quote Dialog */}
+      <SendQuoteDialog
+        quote={sendQuote}
+        open={isSendOpen}
+        onOpenChange={setIsSendOpen}
+        onSuccess={handleRefresh}
+      />
+
+      {/* Client Response Dialog */}
+      <ClientResponseDialog
+        quote={responseQuote}
+        open={isResponseOpen}
+        onOpenChange={setIsResponseOpen}
         onSuccess={handleRefresh}
       />
     </div>

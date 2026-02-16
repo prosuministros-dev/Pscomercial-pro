@@ -166,6 +166,23 @@ export function OrderFormDialog({ open, onOpenChange, onSuccess }: OrderFormDial
             </div>
           )}
 
+          {/* Billing type */}
+          <div className="space-y-2 pt-2 border-t">
+            <Label>Tipo de Facturación</Label>
+            <Select
+              value={watch('billing_type') || 'total'}
+              onValueChange={(value) => setValue('billing_type', value as 'total' | 'parcial')}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Selecciona tipo de facturación" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="total">Facturación Total</SelectItem>
+                <SelectItem value="parcial">Facturación Parcial</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           {/* Delivery info */}
           <div className="space-y-3 pt-2 border-t">
             <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300">

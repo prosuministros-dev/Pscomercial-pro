@@ -18,9 +18,13 @@ import {
   TableHeader,
   TableRow,
 } from '@kit/ui/table';
-import { Loader2, CheckCircle2, ArrowRight } from 'lucide-react';
-import type { Order, OrderItem, OrderStatusHistory } from '../_lib/types';
-import { STATUS_LABELS } from '../_lib/schemas';
+import { Loader2, CheckCircle2, ArrowRight, DollarSign, FileText } from 'lucide-react';
+import { toast } from 'sonner';
+import type { Order, OrderItem, OrderStatusHistory, OrderDestination } from '../_lib/types';
+import { STATUS_LABELS, BILLING_TYPE_LABELS, PAYMENT_STATUS_LABELS } from '../_lib/schemas';
+import { AdvanceBillingPanel } from './advance-billing-panel';
+import { OrderDestinationsPanel } from './order-destinations-panel';
+import { useConfirmPayment } from '../_lib/order-queries';
 
 interface OrderDetailDialogProps {
   orderId: string | null;
@@ -31,11 +35,13 @@ interface OrderDetailDialogProps {
 interface OrderDetail extends Order {
   items: OrderItem[];
   status_history: OrderStatusHistory[];
+  destinations: OrderDestination[];
 }
 
 export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDialogProps) {
   const [order, setOrder] = useState<OrderDetail | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const confirmPayment = useConfirmPayment();
 
   useEffect(() => {
     if (!open || !orderId) return;
@@ -59,6 +65,28 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
   const handleClose = () => {
     setOrder(null);
     onOpenChange(false);
+  };
+
+  const handleConfirmPayment = async () => {
+    if (!orderId) return;
+    try {
+      await confirmPayment.mutateAsync({ orderId });
+      toast.success('Pago confirmado exitosamente');
+      // Refresh detail
+      const response = await fetch(`/api/orders/${orderId}/status`);
+      if (response.ok) {
+        setOrder(await response.json());
+      }
+    } catch (error) {
+      toast.error('Error', {
+        description: error instanceof Error ? error.message : 'Error al confirmar pago',
+      });
+    }
+  };
+
+  const handleDownloadPdf = async () => {
+    if (!orderId) return;
+    window.open(`/api/pdf/order/${orderId}`, '_blank');
   };
 
   if (!open) return null;
@@ -107,6 +135,69 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
               </div>
             </div>
 
+            {/* Payment & Billing info */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 p-4 border rounded-lg">
+              <div>
+                <p className="text-xs text-gray-500">Forma de Pago</p>
+                <p className="text-sm font-medium">{order.payment_terms || 'N/A'}</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-500">Estado de Pago</p>
+                <Badge variant={order.payment_status === 'confirmed' ? 'default' : 'outline'} className="mt-0.5">
+                  {PAYMENT_STATUS_LABELS[order.payment_status] || order.payment_status}
+                </Badge>
+              </div>
+              <div>
+                <p className="text-xs text-gray-500">Tipo de Facturación</p>
+                <p className="text-sm font-medium">
+                  {BILLING_TYPE_LABELS[order.billing_type] || order.billing_type || 'Total'}
+                </p>
+              </div>
+              {order.payment_confirmed_at && (
+                <div className="col-span-3">
+                  <p className="text-xs text-green-600">
+                    Pago confirmado el {new Date(order.payment_confirmed_at).toLocaleDateString('es-CO', {
+                      day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit',
+                    })}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Confirm payment button */}
+            {order.status === 'payment_pending' && order.payment_status !== 'confirmed' && (
+              <div className="flex items-center gap-3 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+                <DollarSign className="w-5 h-5 text-amber-600" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
+                    Pago Anticipado Pendiente
+                  </p>
+                  <p className="text-xs text-amber-600 dark:text-amber-300">
+                    Este pedido requiere confirmación de pago para proceder
+                  </p>
+                </div>
+                <Button
+                  size="sm"
+                  onClick={handleConfirmPayment}
+                  disabled={confirmPayment.isPending}
+                  className="bg-amber-500 hover:bg-amber-600 text-white"
+                >
+                  {confirmPayment.isPending ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    'Confirmar Pago'
+                  )}
+                </Button>
+              </div>
+            )}
+
+            {/* Advance billing panel */}
+            {order.requires_advance_billing && orderId && (
+              <div className="p-4 border rounded-lg">
+                <AdvanceBillingPanel orderId={orderId} />
+              </div>
+            )}
+
             {/* Delivery info */}
             {(order.delivery_address || order.delivery_city || order.delivery_contact) && (
               <div className="p-4 border rounded-lg">
@@ -142,6 +233,13 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
                 {order.delivery_notes && (
                   <p className="text-sm text-gray-600 mt-2">{order.delivery_notes}</p>
                 )}
+              </div>
+            )}
+
+            {/* Destinations panel */}
+            {orderId && (
+              <div className="p-4 border rounded-lg">
+                <OrderDestinationsPanel orderId={orderId} />
               </div>
             )}
 
@@ -245,6 +343,12 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
         )}
 
         <DialogFooter>
+          {order && (
+            <Button variant="outline" size="sm" onClick={handleDownloadPdf}>
+              <FileText className="w-4 h-4 mr-1" />
+              PDF
+            </Button>
+          )}
           <Button variant="outline" onClick={handleClose}>
             Cerrar
           </Button>

@@ -5,14 +5,26 @@ import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
 
 // --- Zod Schemas ---
+const destinationSchema = z.object({
+  delivery_address: z.string().min(1, 'Dirección de entrega es requerida'),
+  delivery_city: z.string().optional(),
+  delivery_contact: z.string().optional(),
+  delivery_phone: z.string().optional(),
+  delivery_schedule: z.string().optional(),
+  dispatch_type: z.string().optional(),
+  notes: z.string().optional(),
+});
+
 const createOrderSchema = z.object({
   quote_id: z.string().uuid('ID de cotización es requerido'),
+  billing_type: z.enum(['total', 'parcial']).default('total'),
   delivery_address: z.string().optional(),
   delivery_city: z.string().optional(),
   delivery_contact: z.string().optional(),
   delivery_phone: z.string().optional(),
   delivery_notes: z.string().optional(),
   expected_delivery_date: z.string().optional(),
+  destinations: z.array(destinationSchema).optional(),
 });
 
 /**
@@ -121,9 +133,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // Call the RPC to create order from quote
+    // Call the RPC to create order from quote (with billing_type)
     const { data: orderId, error: rpcError } = await client.rpc('create_order_from_quote', {
       p_quote_id: parsed.data.quote_id,
+      p_billing_type: parsed.data.billing_type,
     });
 
     if (rpcError) {
@@ -152,6 +165,30 @@ export async function POST(request: Request) {
       if (updateError) {
         console.error('Error updating delivery info:', updateError);
         // Order was created, just delivery info failed — don't fail the whole request
+      }
+    }
+
+    // Insert destinations if provided
+    if (parsed.data.destinations && parsed.data.destinations.length > 0) {
+      const destinationRows = parsed.data.destinations.map((dest, idx) => ({
+        organization_id: user.organization_id,
+        order_id: orderId,
+        sort_order: idx + 1,
+        delivery_address: dest.delivery_address,
+        delivery_city: dest.delivery_city || null,
+        delivery_contact: dest.delivery_contact || null,
+        delivery_phone: dest.delivery_phone || null,
+        delivery_schedule: dest.delivery_schedule || null,
+        dispatch_type: dest.dispatch_type || null,
+        notes: dest.notes || null,
+      }));
+
+      const { error: destError } = await client
+        .from('order_destinations')
+        .insert(destinationRows);
+
+      if (destError) {
+        console.error('Error inserting destinations:', destError);
       }
     }
 
