@@ -19,7 +19,7 @@ import {
   TableHeader,
   TableRow,
 } from '@kit/ui/table';
-import { Loader2, CheckCircle2, ArrowRight, DollarSign, FileText } from 'lucide-react';
+import { Loader2, CheckCircle2, ArrowRight, DollarSign, FileText, Route } from 'lucide-react';
 import { toast } from 'sonner';
 import type { Order, OrderItem, OrderStatusHistory, OrderDestination } from '../_lib/types';
 import { STATUS_LABELS, BILLING_TYPE_LABELS, PAYMENT_STATUS_LABELS } from '../_lib/schemas';
@@ -31,6 +31,7 @@ import { InvoicesTab } from './invoices-tab';
 import { LicensePanel } from './license-panel';
 import { PendingTasksPanel } from './pending-tasks-panel';
 import { OrderTimeline } from './order-timeline';
+import { ProductJourneyDialog } from './product-journey-dialog';
 import { useConfirmPayment } from '../_lib/order-queries';
 
 interface OrderDetailDialogProps {
@@ -48,6 +49,7 @@ interface OrderDetail extends Order {
 export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDialogProps) {
   const [order, setOrder] = useState<OrderDetail | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [journeyItem, setJourneyItem] = useState<OrderItem | null>(null);
   const confirmPayment = useConfirmPayment();
 
   useEffect(() => {
@@ -273,6 +275,7 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
                         <TableHead className="text-center">Cant.</TableHead>
                         <TableHead className="text-right">Vr. Unit.</TableHead>
                         <TableHead className="text-right">Total</TableHead>
+                        <TableHead className="w-10" />
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -284,6 +287,19 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
                           <TableCell className="text-center">{item.quantity}</TableCell>
                           <TableCell className="text-right font-mono text-sm">{fmt(item.unit_price)}</TableCell>
                           <TableCell className="text-right font-mono font-semibold text-sm">{fmt(item.total)}</TableCell>
+                          <TableCell>
+                            {item.product_id && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-7 w-7 p-0"
+                                title="Ver trazabilidad"
+                                onClick={() => setJourneyItem(item)}
+                              >
+                                <Route className="w-3.5 h-3.5 text-cyan-500" />
+                              </Button>
+                            )}
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -407,6 +423,17 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
           </Button>
         </DialogFooter>
       </DialogContent>
+
+      {/* Product Journey Dialog */}
+      <ProductJourneyDialog
+        productId={journeyItem?.product_id || null}
+        productSku={journeyItem?.sku || ''}
+        productDescription={journeyItem?.description || ''}
+        open={!!journeyItem}
+        onOpenChange={(open) => {
+          if (!open) setJourneyItem(null);
+        }}
+      />
     </Dialog>
   );
 }

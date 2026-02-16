@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import {
+  BarChart3,
   DollarSign,
   FileOutput,
   FileText,
@@ -47,6 +48,12 @@ const NAVIGATION_ITEMS = [
     path: '/home/orders',
     icon: ShoppingCart,
     permission: 'orders:read',
+  },
+  {
+    label: 'Reportes',
+    path: '/home/reports',
+    icon: BarChart3,
+    permission: 'reports:read',
   },
   {
     label: 'Financiero',

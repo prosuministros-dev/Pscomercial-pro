@@ -19,14 +19,18 @@ import {
   getSortedRowModel,
   type SortingState,
 } from '@tanstack/react-table';
-import { RefreshCw, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { RefreshCw, Plus, ChevronLeft, ChevronRight, TableIcon, Columns3, CircleDot } from 'lucide-react';
 import { createOrdersTableColumns, type OrderAction } from './order-table-columns';
 import { OrderFilters } from './order-filters';
 import { OrderFormDialog } from './order-form-dialog';
 import { OrderDetailDialog } from './order-detail-dialog';
 import { OrderStatusDialog } from './order-status-dialog';
+import { OrdersKanban } from './orders-kanban';
+import { SemaforoBoard } from './semaforo-board';
 import { useOrders } from '../_lib/order-queries';
 import type { Order, OrderFilters as OrderFiltersType } from '../_lib/types';
+
+type ViewMode = 'table' | 'kanban' | 'semaforo';
 
 interface OrdersPageClientProps {
   initialData?: {
@@ -41,6 +45,7 @@ interface OrdersPageClientProps {
 }
 
 export function OrdersPageClient({ initialData }: OrdersPageClientProps) {
+  const [view, setView] = useState<ViewMode>('table');
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<OrderFiltersType>({});
   const [sorting, setSorting] = useState<SortingState>([
@@ -115,6 +120,25 @@ export function OrdersPageClient({ initialData }: OrdersPageClientProps) {
           </p>
         </div>
         <div className="flex items-center gap-3">
+          {/* View toggle */}
+          <div className="flex items-center rounded-lg border border-gray-200 dark:border-gray-700 p-0.5">
+            {([
+              { key: 'table' as ViewMode, icon: TableIcon, label: 'Tabla' },
+              { key: 'kanban' as ViewMode, icon: Columns3, label: 'Kanban' },
+              { key: 'semaforo' as ViewMode, icon: CircleDot, label: 'Semáforo' },
+            ]).map(({ key, icon: Icon, label }) => (
+              <Button
+                key={key}
+                variant={view === key ? 'default' : 'ghost'}
+                size="sm"
+                className="h-7 px-2.5 text-xs"
+                onClick={() => setView(key)}
+              >
+                <Icon className="w-3.5 h-3.5 mr-1" />
+                {label}
+              </Button>
+            ))}
+          </div>
           <Button
             variant="outline"
             size="sm"
@@ -138,95 +162,124 @@ export function OrdersPageClient({ initialData }: OrdersPageClientProps) {
         </div>
       </motion.div>
 
-      {/* Filters */}
-      <OrderFilters filters={filters} onFiltersChange={setFilters} />
+      {/* Filters — only for table view */}
+      {view === 'table' && (
+        <OrderFilters filters={filters} onFiltersChange={setFilters} />
+      )}
 
-      {/* Table */}
+      {/* Content by view mode */}
       <motion.div
+        key={view}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
       >
-        {orders.length === 0 ? (
-          <div className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-lg">
-            <p className="text-gray-500 dark:text-gray-400 mb-2">
-              No se encontraron pedidos
-            </p>
-            <p className="text-sm text-gray-400 dark:text-gray-500">
-              Crea tu primer pedido desde una cotización aprobada
-            </p>
-          </div>
-        ) : (
-          <>
-            <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-              <Table>
-                <TableHeader>
-                  {table.getHeaderGroups().map((headerGroup) => (
-                    <TableRow key={headerGroup.id}>
-                      {headerGroup.headers.map((header) => (
-                        <TableHead key={header.id}>
-                          {header.isPlaceholder
-                            ? null
-                            : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext(),
-                              )}
-                        </TableHead>
-                      ))}
-                    </TableRow>
-                  ))}
-                </TableHeader>
-                <TableBody>
-                  {table.getRowModel().rows.map((row) => (
-                    <TableRow
-                      key={row.id}
-                      className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
-                      onClick={() => {
-                        setDetailOrderId(row.original.id);
-                        setIsDetailOpen(true);
-                      }}
-                    >
-                      {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id}>
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext(),
-                          )}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
+        {view === 'kanban' && (
+          <OrdersKanban
+            onOrderClick={(orderId) => {
+              setDetailOrderId(orderId);
+              setIsDetailOpen(true);
+            }}
+            onStatusChange={(order) => {
+              setStatusOrder(order);
+              setIsStatusOpen(true);
+            }}
+          />
+        )}
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex items-center justify-between px-2 mt-4">
-                <div className="text-sm text-gray-600 dark:text-gray-400">
-                  Página {currentPage} de {totalPages}
-                </div>
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                    disabled={currentPage === 1}
-                  >
-                    <ChevronLeft className="w-4 h-4 mr-1" />
-                    Anterior
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                  >
-                    Siguiente
-                    <ChevronRight className="w-4 h-4 ml-1" />
-                  </Button>
-                </div>
+        {view === 'semaforo' && (
+          <SemaforoBoard
+            onOrderClick={(orderId) => {
+              setDetailOrderId(orderId);
+              setIsDetailOpen(true);
+            }}
+          />
+        )}
+
+        {view === 'table' && (
+          <>
+            {orders.length === 0 ? (
+              <div className="flex flex-col items-center justify-center p-12 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-lg">
+                <p className="text-gray-500 dark:text-gray-400 mb-2">
+                  No se encontraron pedidos
+                </p>
+                <p className="text-sm text-gray-400 dark:text-gray-500">
+                  Crea tu primer pedido desde una cotización aprobada
+                </p>
               </div>
+            ) : (
+              <>
+                <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                  <Table>
+                    <TableHeader>
+                      {table.getHeaderGroups().map((headerGroup) => (
+                        <TableRow key={headerGroup.id}>
+                          {headerGroup.headers.map((header) => (
+                            <TableHead key={header.id}>
+                              {header.isPlaceholder
+                                ? null
+                                : flexRender(
+                                    header.column.columnDef.header,
+                                    header.getContext(),
+                                  )}
+                            </TableHead>
+                          ))}
+                        </TableRow>
+                      ))}
+                    </TableHeader>
+                    <TableBody>
+                      {table.getRowModel().rows.map((row) => (
+                        <TableRow
+                          key={row.id}
+                          className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800"
+                          onClick={() => {
+                            setDetailOrderId(row.original.id);
+                            setIsDetailOpen(true);
+                          }}
+                        >
+                          {row.getVisibleCells().map((cell) => (
+                            <TableCell key={cell.id}>
+                              {flexRender(
+                                cell.column.columnDef.cell,
+                                cell.getContext(),
+                              )}
+                            </TableCell>
+                          ))}
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-between px-2 mt-4">
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      Página {currentPage} de {totalPages}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                      >
+                        <ChevronLeft className="w-4 h-4 mr-1" />
+                        Anterior
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                      >
+                        Siguiente
+                        <ChevronRight className="w-4 h-4 ml-1" />
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </>
         )}

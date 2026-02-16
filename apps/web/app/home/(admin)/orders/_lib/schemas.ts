@@ -281,6 +281,17 @@ export const TRAFFIC_LIGHT_COLORS: Record<string, string> = {
   red: 'bg-red-500',
 };
 
+// 7-color semaforo for operational board
+export const SEMAFORO_COLORS: Record<string, { bg: string; text: string; label: string }> = {
+  dark_green: { bg: 'bg-green-800', text: 'text-green-800', label: 'Sin pendientes' },
+  green: { bg: 'bg-green-500', text: 'text-green-500', label: 'Al día' },
+  yellow: { bg: 'bg-yellow-400', text: 'text-yellow-500', label: 'Próximo a vencer' },
+  orange: { bg: 'bg-orange-500', text: 'text-orange-500', label: 'Vencido 1-2 días' },
+  red: { bg: 'bg-red-600', text: 'text-red-600', label: 'Vencido 3-5 días' },
+  fuchsia: { bg: 'bg-fuchsia-600', text: 'text-fuchsia-600', label: 'Vencido >5 días' },
+  black: { bg: 'bg-gray-900', text: 'text-gray-900', label: 'Bloqueado' },
+};
+
 export const DISPATCH_TYPE_LABELS: Record<string, string> = {
   envio: 'Envío',
   retiro: 'Retiro en Bodega',
