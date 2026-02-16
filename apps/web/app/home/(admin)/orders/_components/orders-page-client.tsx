@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { Button } from '@kit/ui/button';
 import { PermissionGate } from '@kit/rbac/permission-gate';
@@ -20,20 +20,16 @@ import {
   type SortingState,
 } from '@tanstack/react-table';
 import { RefreshCw, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
-import { toast } from 'sonner';
 import { createOrdersTableColumns, type OrderAction } from './order-table-columns';
 import { OrderFilters } from './order-filters';
 import { OrderFormDialog } from './order-form-dialog';
 import { OrderDetailDialog } from './order-detail-dialog';
 import { OrderStatusDialog } from './order-status-dialog';
+import { useOrders } from '../_lib/order-queries';
 import type { Order, OrderFilters as OrderFiltersType } from '../_lib/types';
 
 export function OrdersPageClient() {
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [filters, setFilters] = useState<OrderFiltersType>({});
   const [sorting, setSorting] = useState<SortingState>([
     { id: 'order_number', desc: true },
@@ -46,56 +42,14 @@ export function OrdersPageClient() {
   const [statusOrder, setStatusOrder] = useState<Order | null>(null);
   const [isStatusOpen, setIsStatusOpen] = useState(false);
 
-  const fetchOrders = useCallback(
-    async (showRefreshIndicator = false) => {
-      if (showRefreshIndicator) {
-        setIsRefreshing(true);
-      } else {
-        setIsLoading(true);
-      }
+  // TanStack Query
+  const { data, isLoading, isFetching, refetch } = useOrders({
+    ...filters,
+    page: currentPage,
+  });
 
-      try {
-        const params = new URLSearchParams();
-        params.set('page', currentPage.toString());
-        params.set('limit', '20');
-
-        if (filters.status) params.set('status', filters.status);
-        if (filters.customer_id) params.set('customer_id', filters.customer_id);
-        if (filters.advisor_id) params.set('advisor_id', filters.advisor_id);
-        if (filters.payment_status) params.set('payment_status', filters.payment_status);
-        if (filters.search) params.set('search', filters.search);
-        if (filters.from_date) params.set('from_date', filters.from_date);
-        if (filters.to_date) params.set('to_date', filters.to_date);
-
-        const response = await fetch(`/api/orders?${params.toString()}`);
-
-        if (!response.ok) {
-          throw new Error('Error al cargar los pedidos');
-        }
-
-        const data = await response.json();
-        setOrders(data.data || []);
-        setTotalPages(data.pagination?.totalPages || 1);
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-        toast.error('Error', {
-          description: 'No se pudieron cargar los pedidos',
-        });
-      } finally {
-        setIsLoading(false);
-        setIsRefreshing(false);
-      }
-    },
-    [currentPage, filters],
-  );
-
-  useEffect(() => {
-    fetchOrders();
-  }, [fetchOrders]);
-
-  const handleRefresh = () => {
-    fetchOrders(true);
-  };
+  const orders: Order[] = data?.data || [];
+  const totalPages = data?.pagination?.totalPages || 1;
 
   const handleAction = useCallback((action: OrderAction) => {
     switch (action.type) {
@@ -151,11 +105,11 @@ export function OrdersPageClient() {
           <Button
             variant="outline"
             size="sm"
-            onClick={handleRefresh}
-            disabled={isRefreshing}
+            onClick={() => refetch()}
+            disabled={isFetching}
           >
             <RefreshCw
-              className={`w-4 h-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`}
+              className={`w-4 h-4 mr-2 ${isFetching ? 'animate-spin' : ''}`}
             />
             Actualizar
           </Button>
@@ -269,7 +223,7 @@ export function OrdersPageClient() {
       <OrderFormDialog
         open={isFormOpen}
         onOpenChange={setIsFormOpen}
-        onSuccess={handleRefresh}
+        onSuccess={() => refetch()}
       />
 
       <OrderDetailDialog
@@ -282,7 +236,7 @@ export function OrdersPageClient() {
         order={statusOrder}
         open={isStatusOpen}
         onOpenChange={setIsStatusOpen}
-        onSuccess={handleRefresh}
+        onSuccess={() => refetch()}
       />
     </div>
   );

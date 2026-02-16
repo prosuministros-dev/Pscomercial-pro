@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@kit/ui/dropdown-menu';
+import { PermissionGate } from '@kit/rbac/permission-gate';
 import { MoreHorizontal, Shield, FileText, ShoppingCart, Eye } from 'lucide-react';
 import type { Quote } from '../_lib/types';
 
@@ -177,35 +178,41 @@ export function createQuotesTableColumns(
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               {needsApproval && (
-                <DropdownMenuItem
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onAction({ type: 'approve-margin', quote });
-                  }}
-                >
-                  <Shield className="w-4 h-4 mr-2" />
-                  Aprobación de Margen
-                </DropdownMenuItem>
+                <PermissionGate permission="quotes:approve">
+                  <DropdownMenuItem
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onAction({ type: 'approve-margin', quote });
+                    }}
+                  >
+                    <Shield className="w-4 h-4 mr-2" />
+                    Aprobación de Margen
+                  </DropdownMenuItem>
+                </PermissionGate>
               )}
-              <DropdownMenuItem
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onAction({ type: 'generate-pdf', quote });
-                }}
-              >
-                <FileText className="w-4 h-4 mr-2" />
-                Generar PDF
-              </DropdownMenuItem>
-              {canCreateOrder && (
+              <PermissionGate permission="quotes:read">
                 <DropdownMenuItem
                   onClick={(e) => {
                     e.stopPropagation();
-                    onAction({ type: 'create-order', quote });
+                    onAction({ type: 'generate-pdf', quote });
                   }}
                 >
-                  <ShoppingCart className="w-4 h-4 mr-2" />
-                  Crear Pedido
+                  <FileText className="w-4 h-4 mr-2" />
+                  Generar PDF
                 </DropdownMenuItem>
+              </PermissionGate>
+              {canCreateOrder && (
+                <PermissionGate permission="orders:create">
+                  <DropdownMenuItem
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onAction({ type: 'create-order', quote });
+                    }}
+                  >
+                    <ShoppingCart className="w-4 h-4 mr-2" />
+                    Crear Pedido
+                  </DropdownMenuItem>
+                </PermissionGate>
               )}
             </DropdownMenuContent>
           </DropdownMenu>

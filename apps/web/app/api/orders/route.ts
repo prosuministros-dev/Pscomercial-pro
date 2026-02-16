@@ -200,8 +200,12 @@ export async function DELETE(request: Request) {
     const { searchParams } = new URL(request.url);
     const orderId = searchParams.get('id');
 
-    if (!orderId) {
-      return NextResponse.json({ error: 'ID de pedido es requerido' }, { status: 400 });
+    const idValidation = z.string().uuid('ID de pedido inválido').safeParse(orderId);
+    if (!idValidation.success) {
+      return NextResponse.json(
+        { error: idValidation.error.errors[0]?.message || 'ID de pedido es requerido' },
+        { status: 400 },
+      );
     }
 
     const { data: existingOrder, error: fetchError } = await client

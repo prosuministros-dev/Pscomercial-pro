@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@kit/ui/dropdown-menu';
+import { PermissionGate } from '@kit/rbac/permission-gate';
 import { MoreHorizontal, Eye, ArrowRightLeft } from 'lucide-react';
 import type { Order } from '../_lib/types';
 
@@ -164,7 +165,7 @@ export function createOrdersTableColumns(
                 Ver Detalle
               </DropdownMenuItem>
               {!isTerminal && (
-                <>
+                <PermissionGate permission="orders:update">
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
                     onClick={(e) => {
@@ -175,7 +176,7 @@ export function createOrdersTableColumns(
                     <ArrowRightLeft className="w-4 h-4 mr-2" />
                     Cambiar Estado
                   </DropdownMenuItem>
-                </>
+                </PermissionGate>
               )}
             </DropdownMenuContent>
           </DropdownMenu>

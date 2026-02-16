@@ -246,6 +246,18 @@ export async function GET(
       return NextResponse.json({ error: 'No tienes permiso' }, { status: 403 });
     }
 
+    // Verify quote belongs to user's org
+    const { data: quote, error: quoteError } = await client
+      .from('quotes')
+      .select('id')
+      .eq('id', quoteId)
+      .eq('organization_id', user.organization_id)
+      .single();
+
+    if (quoteError || !quote) {
+      return NextResponse.json({ error: 'Cotización no encontrada' }, { status: 404 });
+    }
+
     const { data: approvals, error } = await client
       .from('quote_approvals')
       .select(`
