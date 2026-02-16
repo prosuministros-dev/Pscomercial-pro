@@ -79,7 +79,7 @@ export async function PATCH(
     // Verify license belongs to org
     const { data: existing, error: fetchError } = await client
       .from('license_records')
-      .select('id, organization_id')
+      .select('*')
       .eq('id', licenseId)
       .eq('organization_id', user.organization_id)
       .single();
@@ -89,6 +89,49 @@ export async function PATCH(
     }
 
     const body = await request.json();
+
+    // Handle renewal: create a new license linked to the old one
+    if (body.action === 'renew') {
+      const { license_key, activation_date, expiry_date, seats, activation_notes } = body;
+
+      // Mark current license as renewed
+      await client
+        .from('license_records')
+        .update({ status: 'renewed', renewal_date: new Date().toISOString() })
+        .eq('id', licenseId);
+
+      // Create new license linked to old one
+      const { data: newLicense, error: createError } = await client
+        .from('license_records')
+        .insert({
+          organization_id: existing.organization_id,
+          order_id: existing.order_id,
+          order_item_id: existing.order_item_id,
+          product_id: existing.product_id,
+          license_type: existing.license_type,
+          vendor: existing.vendor,
+          license_key: license_key || existing.license_key,
+          activation_date: activation_date || new Date().toISOString().split('T')[0],
+          expiry_date: expiry_date || null,
+          seats: seats || existing.seats,
+          status: license_key ? 'active' : 'pending',
+          end_user_name: existing.end_user_name,
+          end_user_email: existing.end_user_email,
+          activation_notes: activation_notes || null,
+          previous_license_id: licenseId,
+          created_by: user.id,
+        })
+        .select()
+        .single();
+
+      if (createError) {
+        console.error('Error creating renewal:', createError);
+        return NextResponse.json({ error: 'Error al renovar licencia' }, { status: 500 });
+      }
+
+      return NextResponse.json(newLicense, { status: 201 });
+    }
+
     const parsed = updateLicenseSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json({ error: parsed.error.errors[0]?.message || 'Datos inválidos' }, { status: 400 });

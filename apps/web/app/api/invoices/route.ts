@@ -98,10 +98,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // Verify order belongs to org and get customer_id
+    // Verify order belongs to org, get customer_id, and validate delivery status
     const { data: order, error: orderError } = await client
       .from('orders')
-      .select('id, organization_id, customer_id')
+      .select('id, organization_id, customer_id, status')
       .eq('id', parsed.data.order_id)
       .eq('organization_id', user.organization_id)
       .is('deleted_at', null)
@@ -109,6 +109,15 @@ export async function POST(request: Request) {
 
     if (orderError || !order) {
       return NextResponse.json({ error: 'Pedido no encontrado' }, { status: 404 });
+    }
+
+    // Validate: order must be delivered or later to invoice
+    const invoiceableStatuses = ['delivered', 'invoiced', 'completed'];
+    if (!invoiceableStatuses.includes(order.status)) {
+      return NextResponse.json(
+        { error: 'Solo se puede facturar un pedido entregado. Estado actual: ' + order.status },
+        { status: 400 },
+      );
     }
 
     // Insert invoice

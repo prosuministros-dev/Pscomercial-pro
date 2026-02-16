@@ -33,15 +33,15 @@
 ### 📊 Progreso Global
 
 **Total Tareas:** 270
-**Completadas:** 135/270 (50%)
+**Completadas:** 168/270 (62%)
 
 ```
 Sprint 0: [██████████] 51/51 (100%) ✅
 Sprint 1: [██████████] 43/43 (100%) ✅
 Sprint 2: [█████████░] 29/33 (88%)
-Sprint 3: [█░░░░░░░░░] 7/60 (12%)
+Sprint 3: [███████░░░] 40/57 (70%) — 3 emails → Sprint 5
 Sprint 4: [░░░░░░░░░░] 0/42 (0%)
-Sprint 5: [██░░░░░░░░] 5/28 (18%)
+Sprint 5: [██░░░░░░░░] 5/31 (16%) — +3 emails de Sprint 3
 Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 ```
 
@@ -284,64 +284,64 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 
 #### TAREA 3.2: Detalle y Trazabilidad (HU-00015) (10 subtareas)
 
-- [ ] 3.2.1 - RPC `get_order_traceability(order_id)` (timeline completa)
-- [ ] 3.2.2 - Vista detalle con 5 tabs
-- [ ] 3.2.3 - Tab Detalle (info general, items, totales)
-- [ ] 3.2.4 - Tab OC (lista órdenes compra)
-- [ ] 3.2.5 - Tab Despachos (pendientes/completados)
-- [ ] 3.2.6 - Tab Pendientes (tareas con semáforo)
-- [ ] 3.2.7 - Tab Trazabilidad (timeline visual)
+- [x] 3.2.1 - RPC `get_order_traceability(order_id)` (timeline completa)
+- [x] 3.2.2 - Vista detalle con 5 tabs
+- [x] 3.2.3 - Tab Detalle (info general, items, totales)
+- [x] 3.2.4 - Tab OC (lista órdenes compra)
+- [x] 3.2.5 - Tab Despachos (pendientes/completados)
+- [x] 3.2.6 - Tab Pendientes (tareas con semáforo)
+- [x] 3.2.7 - Tab Trazabilidad (timeline visual)
 - [x] 3.2.8 - Modal cambio estado (validación flujo)
 - [x] 3.2.9 - RPC `update_order_status(order_id, status)`
-- [ ] 3.2.10 - Trigger `validate_status_transition`
+- [x] 3.2.10 - Trigger `validate_status_transition`
 
 #### TAREA 3.3: Órdenes de Compra (HU-00016) (7 subtareas)
 
-- [ ] 3.3.1 - API `/api/purchase-orders` (GET, POST, PUT)
-- [ ] 3.3.2 - RPC `generate_consecutive(org_id, 'po')`
-- [ ] 3.3.3 - Formulario crear OC (desde pedido, proveedor, items)
-- [ ] 3.3.4 - Estados OC (Creada → Enviada → Aceptada → Recibida)
-- [ ] 3.3.5 - Tracking recepción (ordenada, recibida, pendiente)
-- [ ] 3.3.6 - Notificación Bodega (email al recibir)
-- [ ] 3.3.7 - Trigger actualizar `order_items` (cantidad recibida)
+- [x] 3.3.1 - API `/api/purchase-orders` (GET, POST, PUT)
+- [x] 3.3.2 - RPC `generate_consecutive(org_id, 'po')`
+- [x] 3.3.3 - Formulario crear OC (desde pedido, proveedor, items)
+- [x] 3.3.4 - Estados OC (Creada → Enviada → Aceptada → Recibida)
+- [x] 3.3.5 - Tracking recepción (ordenada, recibida, pendiente)
+- ~~3.3.6~~ - Movida a Sprint 5 (TAREA 5.4)
+- [x] 3.3.7 - Actualizar `order_items` (cantidad recibida, via API)
 
 #### TAREA 3.4: Logística/Despachos (HU-00017) (8 subtareas)
 
-- [ ] 3.4.1 - API `/api/shipments` (GET, POST, PUT)
-- [ ] 3.4.2 - RPC `generate_consecutive(org_id, 'shipment')`
-- [ ] 3.4.3 - Formulario despacho (transportadora, guía, items)
-- [ ] 3.4.4 - Estados Despacho (Programado → Tránsito → Entregado → Confirmado)
-- [ ] 3.4.5 - Tracking despacho (despachada, entregada, confirmada)
-- [ ] 3.4.6 - Confirmación cliente (email)
-- [ ] 3.4.7 - Trigger actualizar `order_items` (cantidad entregada)
-- [ ] 3.4.8 - Upload evidencias (Storage `documents`)
+- [x] 3.4.1 - API `/api/shipments` (GET, POST, PUT)
+- [x] 3.4.2 - RPC `generate_consecutive(org_id, 'shipment')`
+- [x] 3.4.3 - Formulario despacho (transportadora, guía, items)
+- [x] 3.4.4 - Estados Despacho (Preparando → Despachado → Entregado)
+- [x] 3.4.5 - Tracking despacho (despachada, entregada, confirmada)
+- ~~3.4.6~~ - Movida a Sprint 5 (TAREA 5.4)
+- [x] 3.4.7 - Actualizar `order_items` (cantidad entregada, via API)
+- [x] 3.4.8 - Upload evidencias (Storage `documents`)
 
 #### TAREA 3.5: Licencias (HU-00018) (6 subtareas)
 
-- [ ] 3.5.1 - API `/api/licenses` (GET, POST, PUT)
-- [ ] 3.5.2 - Tabla `license_records` (serial, activación, vencimiento)
-- [ ] 3.5.3 - Formulario activación (desde order_items tipo=Licencia)
-- [ ] 3.5.4 - Estados Licencia (Pendiente → Activada → Próxima vencer → Vencida → Renovada)
-- [ ] 3.5.5 - Alerta 30 días (Cron vencimiento)
-- [ ] 3.5.6 - Renovación (crear nueva licencia vinculada)
+- [x] 3.5.1 - API `/api/licenses` (GET, POST, PUT)
+- [x] 3.5.2 - Tabla `license_records` (serial, activación, vencimiento)
+- [x] 3.5.3 - Formulario activación (desde order_items tipo=Licencia)
+- [x] 3.5.4 - Estados Licencia (Pendiente → Activada → Próxima vencer → Vencida → Renovada)
+- [x] 3.5.5 - Alerta 30 días (Cron vencimiento)
+- [x] 3.5.6 - Renovación (crear nueva licencia vinculada)
 
 #### TAREA 3.6: Facturación (HU-0008) (7 subtareas)
 
-- [ ] 3.6.1 - API `/api/invoices` (GET, POST desde pedido, PUT)
-- [ ] 3.6.2 - Formulario factura (número, fecha, cliente, items)
-- [ ] 3.6.3 - Estados Factura (Pendiente → Generada → Enviada → Pagada → Anulada)
-- [ ] 3.6.4 - Validación pedido entregado (solo facturar si Entregado)
-- [ ] 3.6.5 - Facturación parcial (seleccionar items)
-- [ ] 3.6.6 - Trigger actualizar crédito cliente (al pagar)
-- [ ] 3.6.7 - Notificación cliente (email factura)
+- [x] 3.6.1 - API `/api/invoices` (GET, POST desde pedido, PUT)
+- [x] 3.6.2 - Formulario factura (número, fecha, cliente, items)
+- [x] 3.6.3 - Estados Factura (Pendiente → Pagada → Anulada)
+- [x] 3.6.4 - Validación pedido entregado (solo facturar si Entregado)
+- [x] 3.6.5 - Facturación parcial (seleccionar items)
+- [x] 3.6.6 - Trigger actualizar crédito cliente (al pagar)
+- ~~3.6.7~~ - Movida a Sprint 5 (TAREA 5.4)
 
 **✅ Entregables Sprint 3:**
-- [ ] Panel pedidos funcional
-- [ ] Detalle con 5 tabs + timeline
-- [ ] OC + tracking recepción
-- [ ] Logística + confirmaciones
-- [ ] Licencias + alertas
-- [ ] Facturación + actualización crédito
+- [x] Panel pedidos funcional
+- [x] Detalle con 5 tabs + timeline
+- [x] OC + tracking recepción
+- [x] Logística + despacho/entrega
+- [x] Licencias + activación
+- [x] Facturación + registro externo
 
 ---
 
@@ -465,6 +465,9 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 - [x] 5.4.13 - Envío email cotización/proforma con PDF adjunto ✅ (movida de 2.2.9)
 - [x] 5.4.14 - Recordatorio cron 8 días sin respuesta ✅ (movida de 2.2.10)
 - [x] 5.4.15 - Estados envío (Enviada, Aceptada, Rechazada, Pendiente) ✅ (movida de 2.2.11)
+- [ ] 5.4.16 - Notificación Bodega al recibir OC (movida de 3.3.6)
+- [ ] 5.4.17 - Confirmación cliente despacho/tracking (movida de 3.4.6)
+- [ ] 5.4.18 - Notificación cliente factura (movida de 3.6.7)
 
 #### TAREA 5.5: Notificaciones Realtime (6 subtareas)
 

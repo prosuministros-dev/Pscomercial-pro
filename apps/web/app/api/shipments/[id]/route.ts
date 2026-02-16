@@ -162,6 +162,30 @@ export async function PATCH(
       return NextResponse.json({ success: true });
     }
 
+    if (body.action === 'upload_evidence') {
+      const { attachment_id, url, file_name } = body;
+      if (!attachment_id) {
+        return NextResponse.json({ error: 'attachment_id es requerido' }, { status: 400 });
+      }
+
+      // Store evidence reference in shipment metadata
+      const currentMeta = (shipment as any).metadata || {};
+      const evidences = currentMeta.evidences || [];
+      evidences.push({ attachment_id, url, file_name, uploaded_at: new Date().toISOString(), uploaded_by: user.id });
+
+      const { error: updateError } = await client
+        .from('shipments')
+        .update({ metadata: { ...currentMeta, evidences } })
+        .eq('id', shipmentId);
+
+      if (updateError) {
+        console.error('Error saving evidence:', updateError);
+        return NextResponse.json({ error: 'Error al guardar evidencia' }, { status: 500 });
+      }
+
+      return NextResponse.json({ success: true });
+    }
+
     return NextResponse.json({ error: 'Acción no reconocida' }, { status: 400 });
   } catch (error) {
     console.error('Error in PATCH /api/shipments/[id]:', error);
