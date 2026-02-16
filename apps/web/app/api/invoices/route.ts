@@ -1,0 +1,172 @@
+import { NextResponse } from 'next/server';
+import { z } from 'zod';
+import { getSupabaseServerClient } from '@kit/supabase/server-client';
+import { checkPermission } from '@kit/rbac/check-permission';
+import { requireUser } from '~/lib/require-auth';
+
+const registerInvoiceSchema = z.object({
+  order_id: z.string().uuid('Pedido es requerido'),
+  invoice_number: z.string().min(1, 'Número de factura es requerido'),
+  invoice_date: z.string().min(1, 'Fecha de factura es requerida'),
+  due_date: z.string().optional(),
+  currency: z.enum(['COP', 'USD']).default('COP'),
+  subtotal: z.number().min(0),
+  tax_amount: z.number().min(0),
+  total: z.number().positive('Total debe ser mayor a 0'),
+  payment_method: z.string().optional(),
+  notes: z.string().optional(),
+  items: z.array(z.object({
+    order_item_id: z.string().uuid().optional(),
+    sku: z.string().min(1),
+    description: z.string().min(1),
+    quantity: z.number().positive(),
+    unit_price: z.number().positive(),
+    subtotal: z.number().min(0),
+    tax_amount: z.number().min(0),
+    total: z.number().positive(),
+  })).optional(),
+});
+
+/**
+ * GET /api/invoices?order_id=xxx
+ * List invoices for an order
+ * Permission: billing:read
+ */
+export async function GET(request: Request) {
+  try {
+    const client = getSupabaseServerClient();
+    const user = await requireUser(client);
+
+    const allowed = await checkPermission(user.id, 'billing:read');
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para ver facturas' }, { status: 403 });
+    }
+
+    const { searchParams } = new URL(request.url);
+    const orderId = searchParams.get('order_id');
+
+    if (!orderId) {
+      return NextResponse.json({ error: 'order_id es requerido' }, { status: 400 });
+    }
+
+    const { data, error } = await client
+      .from('invoices')
+      .select(`
+        *,
+        items:invoice_items(*)
+      `)
+      .eq('organization_id', user.organization_id)
+      .eq('order_id', orderId)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error('Error fetching invoices:', error);
+      return NextResponse.json({ error: 'Error al obtener facturas' }, { status: 500 });
+    }
+
+    return NextResponse.json(data || []);
+  } catch (error) {
+    console.error('Error in GET /api/invoices:', error);
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
+      { status: 500 },
+    );
+  }
+}
+
+/**
+ * POST /api/invoices
+ * Register an external invoice
+ * Permission: billing:create
+ */
+export async function POST(request: Request) {
+  try {
+    const client = getSupabaseServerClient();
+    const user = await requireUser(client);
+
+    const allowed = await checkPermission(user.id, 'billing:create');
+    if (!allowed) {
+      return NextResponse.json({ error: 'No tienes permiso para registrar facturas' }, { status: 403 });
+    }
+
+    const body = await request.json();
+    const parsed = registerInvoiceSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.errors[0]?.message || 'Datos inválidos' },
+        { status: 400 },
+      );
+    }
+
+    // Verify order belongs to org and get customer_id
+    const { data: order, error: orderError } = await client
+      .from('orders')
+      .select('id, organization_id, customer_id')
+      .eq('id', parsed.data.order_id)
+      .eq('organization_id', user.organization_id)
+      .is('deleted_at', null)
+      .single();
+
+    if (orderError || !order) {
+      return NextResponse.json({ error: 'Pedido no encontrado' }, { status: 404 });
+    }
+
+    // Insert invoice
+    const { data: invoice, error: invError } = await client
+      .from('invoices')
+      .insert({
+        organization_id: user.organization_id,
+        invoice_number: parsed.data.invoice_number,
+        order_id: parsed.data.order_id,
+        customer_id: order.customer_id,
+        invoice_date: parsed.data.invoice_date,
+        due_date: parsed.data.due_date || null,
+        currency: parsed.data.currency,
+        subtotal: parsed.data.subtotal,
+        tax_amount: parsed.data.tax_amount,
+        total: parsed.data.total,
+        status: 'pending',
+        payment_method: parsed.data.payment_method || null,
+        notes: parsed.data.notes || null,
+        created_by: user.id,
+      })
+      .select()
+      .single();
+
+    if (invError) {
+      console.error('Error creating invoice:', invError);
+      return NextResponse.json({ error: 'Error al registrar la factura' }, { status: 500 });
+    }
+
+    // Insert invoice items if provided
+    if (parsed.data.items && parsed.data.items.length > 0) {
+      const invItems = parsed.data.items.map(item => ({
+        invoice_id: invoice.id,
+        order_item_id: item.order_item_id || null,
+        sku: item.sku,
+        description: item.description,
+        quantity: item.quantity,
+        unit_price: item.unit_price,
+        subtotal: item.subtotal,
+        tax_amount: item.tax_amount,
+        total: item.total,
+      }));
+
+      const { error: itemsError } = await client
+        .from('invoice_items')
+        .insert(invItems);
+
+      if (itemsError) {
+        console.error('Error inserting invoice items:', itemsError);
+      }
+    }
+
+    return NextResponse.json(invoice, { status: 201 });
+  } catch (error) {
+    console.error('Error in POST /api/invoices:', error);
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
+      { status: 500 },
+    );
+  }
+}

@@ -32,16 +32,16 @@
 
 ### 📊 Progreso Global
 
-**Total Tareas:** 267
-**Completadas:** 120/267 (45%)
+**Total Tareas:** 270
+**Completadas:** 135/270 (50%)
 
 ```
 Sprint 0: [██████████] 51/51 (100%) ✅
 Sprint 1: [██████████] 43/43 (100%) ✅
-Sprint 2: [█████░░░░░] 19/36 (53%)
+Sprint 2: [█████████░] 29/33 (88%)
 Sprint 3: [█░░░░░░░░░] 7/60 (12%)
 Sprint 4: [░░░░░░░░░░] 0/42 (0%)
-Sprint 5: [░░░░░░░░░░] 0/25 (0%)
+Sprint 5: [██░░░░░░░░] 5/28 (18%)
 Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 ```
 
@@ -235,16 +235,16 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 
 - [x] 2.2.1 - Instalar @react-pdf/renderer (~2MB)
 - [x] 2.2.2 - Template Cotización PDF (colores cyan, LETTER, inline styles)
-- [ ] 2.2.3 - Template Proforma PDF (+ datos bancarios) — Sprint 2B
-- [ ] 2.2.4 - Template Orden PDF (info entrega) — Sprint 2B
+- [x] 2.2.3 - Template Proforma PDF (+ datos bancarios) — Sprint 2B ✅
+- [x] 2.2.4 - Template Orden PDF (info entrega) — Sprint 2B ✅
 - [x] 2.2.5 - API `/api/pdf/quote/[id]` (fetch → render → upload)
 - [x] 2.2.6 - Upload Storage bucket `generated-pdfs`
 - [x] 2.2.7 - Signed URL (expiración 7 días)
 - [x] 2.2.8 - Botón "Generar PDF" en tabla cotizaciones
-- [ ] 2.2.9 - Envío email SendGrid (PDF adjunto) — Sprint 2B
-- [ ] 2.2.10 - Recordatorio 8 días (Cron) — Sprint 2B
-- [ ] 2.2.11 - Estados envío (Enviada, Aceptada, Rechazada, Pendiente) — Sprint 2B
-- [ ] 2.2.12 - Lógica cotización vs proforma (crédito cliente) — Sprint 2B
+- ~~2.2.9~~ - Movida a Sprint 5 (TAREA 5.4)
+- ~~2.2.10~~ - Movida a Sprint 5 (TAREA 5.4)
+- ~~2.2.11~~ - Movida a Sprint 5 (TAREA 5.4)
+- [x] 2.2.12 - Lógica cotización vs proforma (crédito cliente) — Sprint 2B ✅
 
 #### TAREA 2.3: Creación Pedido (HU-00014) (13 subtareas)
 
@@ -253,19 +253,19 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 - [x] 2.3.3 - API `/api/orders` (GET/POST/DELETE) + `/api/orders/[id]/status` (GET/PATCH)
 - [x] 2.3.4 - Formulario Pedidos (selección cotización + datos entrega)
 - [x] 2.3.5 - Carga automática desde quote (read-only summary)
-- [ ] 2.3.6 - Tipo facturación (total/parcial) — Sprint 2B
+- [x] 2.3.6 - Tipo facturación (total/parcial) — Sprint 2B ✅
 - [x] 2.3.7 - Confirmación entrega (campos delivery en formulario)
-- [ ] 2.3.8 - Forma pago Anticipado (pendiente confirmación) — Sprint 2B
-- [ ] 2.3.9 - Confirmación pago Financiera (solo Anticipado) — Sprint 2B
-- [ ] 2.3.10 - Flujo facturación anticipada (4 pasos) — Sprint 2B
-- [ ] 2.3.11 - Notificaciones entre áreas (email) — Sprint 2B
-- [ ] 2.3.12 - Destinos múltiples entrega — Sprint 2B
+- [x] 2.3.8 - Forma pago Anticipado (pendiente confirmación) — Sprint 2B ✅
+- [x] 2.3.9 - Confirmación pago Financiera (solo Anticipado) — Sprint 2B ✅
+- [x] 2.3.10 - Flujo facturación anticipada (4 pasos) — Sprint 2B ✅
+- [x] 2.3.11 - Notificaciones entre áreas (email) — Sprint 2B ✅
+- [x] 2.3.12 - Destinos múltiples entrega — Sprint 2B ✅
 - [x] 2.3.13 - Info despacho completa (address, city, contact, phone, notes, expected_date)
 
 **✅ Entregables Sprint 2:**
 - [x] Aprobación margen funcional (API + Dialog + notificaciones)
 - [x] 1 template PDF operativo (Cotización) — Proforma/Orden en Sprint 2B
-- [ ] Envío email + recordatorios — Sprint 2B
+- ~~Envío email + recordatorios~~ — Movido a Sprint 5 (ya implementado)
 - [x] Crear pedidos desde cotización (API + frontend completo)
 
 ---
@@ -448,9 +448,9 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 - [ ] 5.3.4 - Envío proforma (adjuntar PDF como documento)
 - [ ] 5.3.5 - Realtime mensajes (Supabase channel `whatsapp_messages`)
 
-#### TAREA 5.4: SendGrid Templates (12 subtareas)
+#### TAREA 5.4: SendGrid Templates (15 subtareas)
 
-- [ ] 5.4.1 - Setup SendGrid (API key, dominio verificado)
+- [x] 5.4.1 - Setup SendGrid (API key, dominio verificado) ✅ (implementado Sprint 2B)
 - [ ] 5.4.2 - Tabla `email_templates` (7 templates seeded)
 - [ ] 5.4.3 - Template 1: Lead asignado (notificar asesor)
 - [ ] 5.4.4 - Template 2: Cotización enviada (cliente + PDF)
@@ -460,8 +460,11 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 - [ ] 5.4.8 - Template 6: Factura (cliente con factura)
 - [ ] 5.4.9 - Template 7: Licencia vencimiento (alerta cliente)
 - [ ] 5.4.10 - API `/api/email/send` (POST con template)
-- [ ] 5.4.11 - Tabla `email_logs` (registro envíos)
+- [x] 5.4.11 - Tabla `email_logs` (registro envíos) ✅ (implementado Sprint 2B)
 - [ ] 5.4.12 - Webhook SendGrid (status: delivered, bounced, opened)
+- [x] 5.4.13 - Envío email cotización/proforma con PDF adjunto ✅ (movida de 2.2.9)
+- [x] 5.4.14 - Recordatorio cron 8 días sin respuesta ✅ (movida de 2.2.10)
+- [x] 5.4.15 - Estados envío (Enviada, Aceptada, Rechazada, Pendiente) ✅ (movida de 2.2.11)
 
 #### TAREA 5.5: Notificaciones Realtime (6 subtareas)
 
@@ -547,20 +550,21 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 |--------|:------:|:-----------:|:--------:|:------:|
 | Sprint 0 | 51 | 51 | 100% | ✅ Completado |
 | Sprint 1 | 43 | 43 | 100% | ✅ Completado |
-| Sprint 2 | 36 | 19 | 53% | 🚀 En Progreso |
-| Sprint 3 | 60 | 7 | 12% | 🚀 En Progreso |
+| Sprint 2 | 33 | 29 | 88% | 🚀 En Progreso |
+| Sprint 3 | 60 | 7 | 12% | ⏳ Pendiente |
 | Sprint 4 | 42 | 0 | 0% | ⏳ Pendiente |
-| Sprint 5 | 25 | 0 | 0% | ⏳ Pendiente |
+| Sprint 5 | 28 | 5 | 18% | 🚀 Adelantado (email/cron ya implementados) |
 | Sprint 6 | 10 | 0 | 0% | ⏳ Pendiente |
-| **TOTAL** | **267** | **120** | **45%** | 🚀 **Sprint 2 in progress** |
+| **TOTAL** | **270** | **135** | **50%** | 🚀 **Sprint 2 casi completo** |
 
 ---
 
-### 🎯 Próximos Pasos (Sprint 2B + Sprint 3)
+### 🎯 Próximos Pasos (Sprint 2 restante + Sprint 3)
 
-1. **Sprint 2B:** Templates Proforma/Orden PDF, SendGrid emails, Cron recordatorios, facturación anticipada
-2. **Sprint 3 pendiente:** Detalle pedidos con tabs (OC, Despachos, Pendientes, Trazabilidad), OC/PO, Logística, Licencias, Facturación
-3. **Sprint 4:** Dashboards y tableros operativos
+1. **Sprint 2B:** ✅ Completado — Templates Proforma/Orden PDF, SendGrid emails, Cron recordatorios, facturación anticipada
+2. **Sprint 2 restante (4 tareas):** Validación arquitectura, validación template Figma, pruebas E2E básicas
+3. **Sprint 3:** Detalle pedidos con tabs (OC, Despachos, Pendientes, Trazabilidad), OC/PO, Logística, Licencias, Facturación
+4. **Sprint 4:** Dashboards y tableros operativos
 
 ---
 
