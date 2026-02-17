@@ -69,15 +69,7 @@ export default function AuditLogPage() {
     queryFn: async () => {
       let query = supabase
         .from('audit_logs')
-        .select(
-          `
-          *,
-          profile:profiles!audit_logs_user_id_fkey(
-            full_name,
-            email
-          )
-        `,
-        )
+        .select('*')
         .order('created_at', { ascending: false })
         .limit(100);
 
@@ -104,7 +96,31 @@ export default function AuditLogPage() {
       const { data, error } = await query;
 
       if (error) throw error;
-      return data as unknown as AuditLog[];
+
+      // audit_logs.user_id references auth.users, not profiles,
+      // so we fetch profile data separately
+      const logs = data as unknown as AuditLog[];
+      const userIds = [...new Set(logs.map((l) => l.user_id))];
+
+      if (userIds.length > 0) {
+        const { data: profiles } = await supabase
+          .from('profiles')
+          .select('id, full_name, email')
+          .in('id', userIds);
+
+        const profileMap = new Map(
+          (profiles || []).map((p: any) => [p.id, p]),
+        );
+
+        for (const log of logs) {
+          const p = profileMap.get(log.user_id);
+          log.profile = p
+            ? { full_name: p.full_name, email: p.email }
+            : null;
+        }
+      }
+
+      return logs;
     },
   });
 
