@@ -1,8 +1,8 @@
 # PLAN DE IMPLEMENTACIÓN COMPLETO V2 - Pscomercial-pro
 
 **Proyecto:** Pscomercial-pro (PROSUMINISTROS CRM/ERP Comercial)
-**Versión:** 2.0 - Actualizada
-**Fecha:** 2026-02-11
+**Versión:** 2.1 - Sprint 0 + Sprint 1 completados
+**Fecha:** 2026-02-13
 **Cobertura:** 100% Template Figma (18 módulos) + 100% Arquitectura (11 FASEs) + 21 HUs
 **Agentes:** @coordinator, @business-analyst, @db-integration, @fullstack-dev, @designer-ux-ui
 
@@ -32,17 +32,18 @@
 
 ### 📊 Progreso Global
 
-**Total Tareas:** 270
-**Completadas:** 210/270 (78%)
+**Total Tareas:** 267
+**Completadas:** 94/267 (35%)
+**Última actualización:** 2026-02-13
 
 ```
-Sprint 0: [██████████] 51/51 (100%) ✅
-Sprint 1: [██████████] 43/43 (100%) ✅
-Sprint 2: [█████████░] 29/33 (88%)
-Sprint 3: [███████░░░] 40/57 (70%) — 3 emails → Sprint 5
-Sprint 4: [██████████] 42/42 (100%) ✅
-Sprint 5: [██░░░░░░░░] 5/31 (16%) — +3 emails de Sprint 3
-Sprint 6: [░░░░░░░░░░] 0/10 (0%)
+Sprint 0: [██████████] 51/51 (100%) ✅ COMPLETADO
+Sprint 1: [██████████] 43/43 (100%) ✅ COMPLETADO
+Sprint 2: [░░░░░░░░░░]  0/36 (0%)  ⏳ SIGUIENTE
+Sprint 3: [░░░░░░░░░░]  0/60 (0%)
+Sprint 4: [░░░░░░░░░░]  0/42 (0%)
+Sprint 5: [░░░░░░░░░░]  0/25 (0%)
+Sprint 6: [░░░░░░░░░░]  0/10 (0%)
 ```
 
 ---
@@ -224,49 +225,49 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 
 #### TAREA 2.1: Aprobación Margen (HU-0005) (6 subtareas)
 
-- [x] 2.1.1 - RPC `request_margin_approval(quote_id)`
-- [x] 2.1.2 - API `/api/quotes/[id]/approve-margin` (POST/PATCH/GET)
-- [x] 2.1.3 - Comparación automática con `margin_rules`
-- [x] 2.1.4 - Modal aprobación Gerencia (aprobar/rechazar)
-- [x] 2.1.5 - Notificaciones (solicitud + resolución)
-- [x] 2.1.6 - Bloqueo envío si margen bajo sin aprobación
+- [ ] 2.1.1 - RPC `request_margin_approval(quote_id)`
+- [ ] 2.1.2 - API `/api/quotes/[id]/approve-margin` (POST)
+- [ ] 2.1.3 - Comparación automática con `margin_rules`
+- [ ] 2.1.4 - Modal aprobación Gerencia (aprobar/rechazar)
+- [ ] 2.1.5 - Notificaciones (solicitud + resolución)
+- [ ] 2.1.6 - Bloqueo envío si margen bajo sin aprobación
 
 #### TAREA 2.2: Generación PDF (HU-0006) (12 subtareas)
 
-- [x] 2.2.1 - Instalar @react-pdf/renderer (~2MB)
-- [x] 2.2.2 - Template Cotización PDF (colores cyan, LETTER, inline styles)
-- [x] 2.2.3 - Template Proforma PDF (+ datos bancarios) — Sprint 2B ✅
-- [x] 2.2.4 - Template Orden PDF (info entrega) — Sprint 2B ✅
-- [x] 2.2.5 - API `/api/pdf/quote/[id]` (fetch → render → upload)
-- [x] 2.2.6 - Upload Storage bucket `generated-pdfs`
-- [x] 2.2.7 - Signed URL (expiración 7 días)
-- [x] 2.2.8 - Botón "Generar PDF" en tabla cotizaciones
-- ~~2.2.9~~ - Movida a Sprint 5 (TAREA 5.4)
-- ~~2.2.10~~ - Movida a Sprint 5 (TAREA 5.4)
-- ~~2.2.11~~ - Movida a Sprint 5 (TAREA 5.4)
-- [x] 2.2.12 - Lógica cotización vs proforma (crédito cliente) — Sprint 2B ✅
+- [ ] 2.2.1 - Instalar @react-pdf/renderer (~2MB)
+- [ ] 2.2.2 - Template Cotización PDF (colores cyan, A4, inline styles)
+- [ ] 2.2.3 - Template Proforma PDF (+ datos bancarios)
+- [ ] 2.2.4 - Template Orden PDF (info entrega)
+- [ ] 2.2.5 - API `/api/pdf/quote/[id]` (fetch → render → upload)
+- [ ] 2.2.6 - Upload Storage bucket `generated-pdfs`
+- [ ] 2.2.7 - Signed URL (expiración 7 días)
+- [ ] 2.2.8 - Botón "Generar PDF" (modal preview)
+- [ ] 2.2.9 - Envío email SendGrid (PDF adjunto)
+- [ ] 2.2.10 - Recordatorio 8 días (Cron)
+- [ ] 2.2.11 - Estados envío (Enviada, Aceptada, Rechazada, Pendiente)
+- [ ] 2.2.12 - Lógica cotización vs proforma (crédito cliente)
 
 #### TAREA 2.3: Creación Pedido (HU-00014) (13 subtareas)
 
-- [x] 2.3.1 - RPC `create_order_from_quote(quote_id)`
-- [x] 2.3.2 - RPC `generate_consecutive(org_id, 'order')` (#20000)
-- [x] 2.3.3 - API `/api/orders` (GET/POST/DELETE) + `/api/orders/[id]/status` (GET/PATCH)
-- [x] 2.3.4 - Formulario Pedidos (selección cotización + datos entrega)
-- [x] 2.3.5 - Carga automática desde quote (read-only summary)
-- [x] 2.3.6 - Tipo facturación (total/parcial) — Sprint 2B ✅
-- [x] 2.3.7 - Confirmación entrega (campos delivery en formulario)
-- [x] 2.3.8 - Forma pago Anticipado (pendiente confirmación) — Sprint 2B ✅
-- [x] 2.3.9 - Confirmación pago Financiera (solo Anticipado) — Sprint 2B ✅
-- [x] 2.3.10 - Flujo facturación anticipada (4 pasos) — Sprint 2B ✅
-- [x] 2.3.11 - Notificaciones entre áreas (email) — Sprint 2B ✅
-- [x] 2.3.12 - Destinos múltiples entrega — Sprint 2B ✅
-- [x] 2.3.13 - Info despacho completa (address, city, contact, phone, notes, expected_date)
+- [ ] 2.3.1 - RPC `create_order_from_quote(quote_id)`
+- [ ] 2.3.2 - RPC `generate_consecutive(org_id, 'order')` (#20000)
+- [ ] 2.3.3 - API `/api/orders` POST (validar quote ganada)
+- [ ] 2.3.4 - Formulario Pedidos 1 (campos Excel)
+- [ ] 2.3.5 - Carga automática desde quote (read-only)
+- [ ] 2.3.6 - Tipo facturación (total/parcial)
+- [ ] 2.3.7 - Confirmación entrega (con/sin)
+- [ ] 2.3.8 - Forma pago Anticipado (pendiente confirmación)
+- [ ] 2.3.9 - Confirmación pago Financiera (solo Anticipado)
+- [ ] 2.3.10 - Flujo facturación anticipada (4 pasos)
+- [ ] 2.3.11 - Notificaciones entre áreas (email)
+- [ ] 2.3.12 - Destinos múltiples entrega
+- [ ] 2.3.13 - Info despacho completa
 
 **✅ Entregables Sprint 2:**
-- [x] Aprobación margen funcional (API + Dialog + notificaciones)
-- [x] 1 template PDF operativo (Cotización) — Proforma/Orden en Sprint 2B
-- ~~Envío email + recordatorios~~ — Movido a Sprint 5 (ya implementado)
-- [x] Crear pedidos desde cotización (API + frontend completo)
+- [ ] Aprobación margen funcional
+- [ ] 3 templates PDF operativos
+- [ ] Envío email + recordatorios
+- [ ] Crear pedidos desde cotización
 
 ---
 
@@ -276,72 +277,72 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 
 #### TAREA 3.1: Panel Principal Pedidos (HU-0007) (5 subtareas)
 
-- [x] 3.1.1 - Vista lista pedidos (TanStack Table)
-- [x] 3.1.2 - Filtros avanzados (estado, búsqueda, fechas)
-- [x] 3.1.3 - Acciones rápidas (detalle, cambiar estado)
-- [x] 3.1.4 - Badges estado (11 colores mapeados)
-- [x] 3.1.5 - Búsqueda (#pedido, cliente)
+- [ ] 3.1.1 - Vista lista pedidos (TanStack Table)
+- [ ] 3.1.2 - Filtros avanzados (estado, cliente, asesor, fechas)
+- [ ] 3.1.3 - Acciones rápidas (detalle, cambiar estado, PDF)
+- [ ] 3.1.4 - Badges estado (colores CONSOLIDADO)
+- [ ] 3.1.5 - Búsqueda (#pedido, cliente, NIT)
 
 #### TAREA 3.2: Detalle y Trazabilidad (HU-00015) (10 subtareas)
 
-- [x] 3.2.1 - RPC `get_order_traceability(order_id)` (timeline completa)
-- [x] 3.2.2 - Vista detalle con 5 tabs
-- [x] 3.2.3 - Tab Detalle (info general, items, totales)
-- [x] 3.2.4 - Tab OC (lista órdenes compra)
-- [x] 3.2.5 - Tab Despachos (pendientes/completados)
-- [x] 3.2.6 - Tab Pendientes (tareas con semáforo)
-- [x] 3.2.7 - Tab Trazabilidad (timeline visual)
-- [x] 3.2.8 - Modal cambio estado (validación flujo)
-- [x] 3.2.9 - RPC `update_order_status(order_id, status)`
-- [x] 3.2.10 - Trigger `validate_status_transition`
+- [ ] 3.2.1 - RPC `get_order_traceability(order_id)` (timeline completa)
+- [ ] 3.2.2 - Vista detalle con 5 tabs
+- [ ] 3.2.3 - Tab Detalle (info general, items, totales)
+- [ ] 3.2.4 - Tab OC (lista órdenes compra)
+- [ ] 3.2.5 - Tab Despachos (pendientes/completados)
+- [ ] 3.2.6 - Tab Pendientes (tareas con semáforo)
+- [ ] 3.2.7 - Tab Trazabilidad (timeline visual)
+- [ ] 3.2.8 - Modal cambio estado (validación flujo)
+- [ ] 3.2.9 - RPC `update_order_status(order_id, status)`
+- [ ] 3.2.10 - Trigger `validate_status_transition`
 
 #### TAREA 3.3: Órdenes de Compra (HU-00016) (7 subtareas)
 
-- [x] 3.3.1 - API `/api/purchase-orders` (GET, POST, PUT)
-- [x] 3.3.2 - RPC `generate_consecutive(org_id, 'po')`
-- [x] 3.3.3 - Formulario crear OC (desde pedido, proveedor, items)
-- [x] 3.3.4 - Estados OC (Creada → Enviada → Aceptada → Recibida)
-- [x] 3.3.5 - Tracking recepción (ordenada, recibida, pendiente)
-- ~~3.3.6~~ - Movida a Sprint 5 (TAREA 5.4)
-- [x] 3.3.7 - Actualizar `order_items` (cantidad recibida, via API)
+- [ ] 3.3.1 - API `/api/purchase-orders` (GET, POST, PUT)
+- [ ] 3.3.2 - RPC `generate_consecutive(org_id, 'po')`
+- [ ] 3.3.3 - Formulario crear OC (desde pedido, proveedor, items)
+- [ ] 3.3.4 - Estados OC (Creada → Enviada → Aceptada → Recibida)
+- [ ] 3.3.5 - Tracking recepción (ordenada, recibida, pendiente)
+- [ ] 3.3.6 - Notificación Bodega (email al recibir)
+- [ ] 3.3.7 - Trigger actualizar `order_items` (cantidad recibida)
 
 #### TAREA 3.4: Logística/Despachos (HU-00017) (8 subtareas)
 
-- [x] 3.4.1 - API `/api/shipments` (GET, POST, PUT)
-- [x] 3.4.2 - RPC `generate_consecutive(org_id, 'shipment')`
-- [x] 3.4.3 - Formulario despacho (transportadora, guía, items)
-- [x] 3.4.4 - Estados Despacho (Preparando → Despachado → Entregado)
-- [x] 3.4.5 - Tracking despacho (despachada, entregada, confirmada)
-- ~~3.4.6~~ - Movida a Sprint 5 (TAREA 5.4)
-- [x] 3.4.7 - Actualizar `order_items` (cantidad entregada, via API)
-- [x] 3.4.8 - Upload evidencias (Storage `documents`)
+- [ ] 3.4.1 - API `/api/shipments` (GET, POST, PUT)
+- [ ] 3.4.2 - RPC `generate_consecutive(org_id, 'shipment')`
+- [ ] 3.4.3 - Formulario despacho (transportadora, guía, items)
+- [ ] 3.4.4 - Estados Despacho (Programado → Tránsito → Entregado → Confirmado)
+- [ ] 3.4.5 - Tracking despacho (despachada, entregada, confirmada)
+- [ ] 3.4.6 - Confirmación cliente (email)
+- [ ] 3.4.7 - Trigger actualizar `order_items` (cantidad entregada)
+- [ ] 3.4.8 - Upload evidencias (Storage `documents`)
 
 #### TAREA 3.5: Licencias (HU-00018) (6 subtareas)
 
-- [x] 3.5.1 - API `/api/licenses` (GET, POST, PUT)
-- [x] 3.5.2 - Tabla `license_records` (serial, activación, vencimiento)
-- [x] 3.5.3 - Formulario activación (desde order_items tipo=Licencia)
-- [x] 3.5.4 - Estados Licencia (Pendiente → Activada → Próxima vencer → Vencida → Renovada)
-- [x] 3.5.5 - Alerta 30 días (Cron vencimiento)
-- [x] 3.5.6 - Renovación (crear nueva licencia vinculada)
+- [ ] 3.5.1 - API `/api/licenses` (GET, POST, PUT)
+- [ ] 3.5.2 - Tabla `license_records` (serial, activación, vencimiento)
+- [ ] 3.5.3 - Formulario activación (desde order_items tipo=Licencia)
+- [ ] 3.5.4 - Estados Licencia (Pendiente → Activada → Próxima vencer → Vencida → Renovada)
+- [ ] 3.5.5 - Alerta 30 días (Cron vencimiento)
+- [ ] 3.5.6 - Renovación (crear nueva licencia vinculada)
 
 #### TAREA 3.6: Facturación (HU-0008) (7 subtareas)
 
-- [x] 3.6.1 - API `/api/invoices` (GET, POST desde pedido, PUT)
-- [x] 3.6.2 - Formulario factura (número, fecha, cliente, items)
-- [x] 3.6.3 - Estados Factura (Pendiente → Pagada → Anulada)
-- [x] 3.6.4 - Validación pedido entregado (solo facturar si Entregado)
-- [x] 3.6.5 - Facturación parcial (seleccionar items)
-- [x] 3.6.6 - Trigger actualizar crédito cliente (al pagar)
-- ~~3.6.7~~ - Movida a Sprint 5 (TAREA 5.4)
+- [ ] 3.6.1 - API `/api/invoices` (GET, POST desde pedido, PUT)
+- [ ] 3.6.2 - Formulario factura (número, fecha, cliente, items)
+- [ ] 3.6.3 - Estados Factura (Pendiente → Generada → Enviada → Pagada → Anulada)
+- [ ] 3.6.4 - Validación pedido entregado (solo facturar si Entregado)
+- [ ] 3.6.5 - Facturación parcial (seleccionar items)
+- [ ] 3.6.6 - Trigger actualizar crédito cliente (al pagar)
+- [ ] 3.6.7 - Notificación cliente (email factura)
 
 **✅ Entregables Sprint 3:**
-- [x] Panel pedidos funcional
-- [x] Detalle con 5 tabs + timeline
-- [x] OC + tracking recepción
-- [x] Logística + despacho/entrega
-- [x] Licencias + activación
-- [x] Facturación + registro externo
+- [ ] Panel pedidos funcional
+- [ ] Detalle con 5 tabs + timeline
+- [ ] OC + tracking recepción
+- [ ] Logística + confirmaciones
+- [ ] Licencias + alertas
+- [ ] Facturación + actualización crédito
 
 ---
 
@@ -351,66 +352,66 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 
 #### TAREA 4.1: Dashboard Comercial (HU-0013) (6 subtareas)
 
-- [x] 4.1.1 - RPC `get_commercial_pipeline(org_id)` ✅
-- [x] 4.1.2 - ~~Vista materializada~~ → RPC con indexes (suficiente para ~50 usuarios) ✅
-- [x] 4.1.3 - KPI Cards (leads, quotes, conversión, $ pipeline) ✅
-- [x] 4.1.4 - Gráfico Funnel (Recharts BarChart horizontal) ✅
-- [x] 4.1.5 - Gráfico Barras (cotizaciones/asesor, Recharts) ✅
-- [x] 4.1.6 - Filtros (fechas, asesor, estado) ✅
+- [ ] 4.1.1 - RPC `get_commercial_pipeline(org_id)`
+- [ ] 4.1.2 - Vista materializada `mv_commercial_dashboard` (refresh 15min)
+- [ ] 4.1.3 - KPI Cards (leads, quotes, conversión, $ pipeline)
+- [ ] 4.1.4 - Gráfico Funnel (Recharts FunnelChart)
+- [ ] 4.1.5 - Gráfico Barras (cotizaciones/asesor, Recharts)
+- [ ] 4.1.6 - Filtros (fechas, asesor, estado)
 
 #### TAREA 4.2: Dashboard Operativo (HU-0014) (5 subtareas)
 
-- [x] 4.2.1 - RPC `get_operational_dashboard(org_id)` ✅
-- [x] 4.2.2 - ~~Vista materializada~~ → RPC con indexes ✅
-- [x] 4.2.3 - KPI Cards (pedidos activos, $ facturado, entregas pendientes) ✅
-- [x] 4.2.4 - Gráfico Línea (pedidos/semana, Recharts LineChart) ✅
-- [x] 4.2.5 - Gráfico Pie (distribución/estado, Recharts PieChart) ✅
+- [ ] 4.2.1 - RPC `get_operational_dashboard(org_id)`
+- [ ] 4.2.2 - Vista materializada `mv_operational_dashboard`
+- [ ] 4.2.3 - KPI Cards (pedidos activos, $ facturado, entregas pendientes)
+- [ ] 4.2.4 - Gráfico Línea (pedidos/semana, Recharts LineChart)
+- [ ] 4.2.5 - Gráfico Pie (distribución/estado, Recharts PieChart)
 
 #### TAREA 4.3: Semáforo Operativo (HU-00019) (6 subtareas)
 
-- [x] 4.3.1 - Tabla `order_pending_tasks` (ya existe de Sprint 3) ✅
-- [x] 4.3.2 - RPC `get_semaforo_operativo(org_id)` (7 colores computados) ✅
-- [x] 4.3.3 - ~~Trigger~~ → Color calculado en RPC via CASE (sin schema change) ✅
-- [x] 4.3.4 - Vista tablero (grid pedidos con badge color) ✅
-- [x] 4.3.5 - Implementar 7 colores (verde oscuro → negro) ✅
-- [x] 4.3.6 - Filtro por color (click → filtrar) ✅
+- [ ] 4.3.1 - Tabla `order_pending_tasks` (relacionada orders)
+- [ ] 4.3.2 - RPC `calculate_traffic_light(order_id)` (7 colores)
+- [ ] 4.3.3 - Trigger `set_traffic_light` (en INSERT/UPDATE tasks)
+- [ ] 4.3.4 - Vista tablero (grid pedidos con badge color)
+- [ ] 4.3.5 - Implementar 7 colores (verde oscuro → negro)
+- [ ] 4.3.6 - Filtro por color (click → filtrar)
 
 #### TAREA 4.4: Kanban Ejecutivo (3 subtareas)
 
-- [x] 4.4.1 - Vista Kanban pedidos (11 columnas por estado) ✅
-- [x] 4.4.2 - Cards info clave (cliente, total, asesor, días) ✅
-- [x] 4.4.3 - ~~Drag & drop~~ → Botón "Cambiar estado" (sin DnD lib) ✅
+- [ ] 4.4.1 - Vista Kanban pedidos (columnas por estado)
+- [ ] 4.4.2 - Cards info clave (cliente, total, asesor, días)
+- [ ] 4.4.3 - Drag & drop cambiar estado (validar transiciones)
 
 #### TAREA 4.5: Trazabilidad Producto (HU-00020) (3 subtareas)
 
-- [x] 4.5.1 - RPC `get_product_journey(product_id)` (cotización → factura) ✅
-- [x] 4.5.2 - Vista timeline producto (línea tiempo visual, dialog) ✅
-- [x] 4.5.3 - Acceso desde items del pedido (botón Route por item) ✅
+- [ ] 4.5.1 - RPC `get_product_route(product_id)` (cotización → factura)
+- [ ] 4.5.2 - Vista timeline producto (línea tiempo visual)
+- [ ] 4.5.3 - Filtros (N/parte, nombre, fecha)
 
 #### TAREA 4.6: Alertas y Seguimiento (HU-0009) (5 subtareas)
 
-- [x] 4.6.1 - Sistema alertas automáticas (notificaciones integradas) ✅
-- [x] 4.6.2 - Cron cotizaciones vencimiento (diario 6am COL, quote-expiry) ✅
-- [x] 4.6.3 - Cron recordatorios leads (diario 7am COL, lead-followup) ✅
-- [x] 4.6.4 - Cron licencias vencimiento (ya existía Sprint 3, license-alerts) ✅
-- [x] 4.6.5 - Panel notificaciones Sheet (ya existía Sprint 2B) ✅
+- [ ] 4.6.1 - Sistema alertas automáticas (15+ eventos FASE-10)
+- [ ] 4.6.2 - Cron cotizaciones vencimiento (diario 6am)
+- [ ] 4.6.3 - Cron recordatorios (diario 7am: leads sin avance, quotes sin respuesta)
+- [ ] 4.6.4 - Cron licencias vencimiento (lunes 8am, 30 días)
+- [ ] 4.6.5 - Panel notificaciones Sheet (filtros pendientes/vistas)
 
 #### TAREA 4.7: Reportes Recharts (HU-0010) (6 subtareas)
 
-- [x] 4.7.1 - Recharts ya instalado (v2.15.3) ✅
-- [x] 4.7.2 - Módulo Reportes (ruta `/home/reports`) ✅
-- [x] 4.7.3 - Report Builder (5 tipos: leads, quotes, orders, revenue, performance) ✅
-- [x] 4.7.4 - Gráficos disponibles (Barras, Línea, Pie) ✅
-- [x] 4.7.5 - Exportación CSV (endpoint `/api/reports/export`) ✅
-- [x] 4.7.6 - Guardar reportes (tabla `saved_reports` + CRUD API) ✅
+- [ ] 4.7.1 - Instalar Recharts library
+- [ ] 4.7.2 - Módulo Reportes (ruta `/reports`)
+- [ ] 4.7.3 - Report Builder (entidad, campos, filtros, agrupación)
+- [ ] 4.7.4 - Gráficos disponibles (Barras, Línea, Pie, Funnel)
+- [ ] 4.7.5 - Exportación CSV (streaming datasets grandes)
+- [ ] 4.7.6 - Guardar reportes (tabla `saved_filters`)
 
 **✅ Entregables Sprint 4:**
-- [x] Dashboard comercial con Recharts ✅
-- [x] Dashboard operativo con KPIs ✅
-- [x] Semáforo 7 colores funcional ✅
-- [x] Kanban ejecutivo (botón cambiar estado) ✅
-- [x] Reportes con Recharts + export CSV ✅
-- [x] 4 cron jobs alertas ✅
+- [ ] Dashboard comercial con Recharts
+- [ ] Dashboard operativo con KPIs
+- [ ] Semáforo 7 colores funcional
+- [ ] Kanban ejecutivo drag & drop
+- [ ] Reportes con Recharts + export CSV
+- [ ] 4 cron jobs alertas
 
 ---
 
@@ -448,9 +449,9 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 - [ ] 5.3.4 - Envío proforma (adjuntar PDF como documento)
 - [ ] 5.3.5 - Realtime mensajes (Supabase channel `whatsapp_messages`)
 
-#### TAREA 5.4: SendGrid Templates (15 subtareas)
+#### TAREA 5.4: SendGrid Templates (12 subtareas)
 
-- [x] 5.4.1 - Setup SendGrid (API key, dominio verificado) ✅ (implementado Sprint 2B)
+- [ ] 5.4.1 - Setup SendGrid (API key, dominio verificado)
 - [ ] 5.4.2 - Tabla `email_templates` (7 templates seeded)
 - [ ] 5.4.3 - Template 1: Lead asignado (notificar asesor)
 - [ ] 5.4.4 - Template 2: Cotización enviada (cliente + PDF)
@@ -460,14 +461,8 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 - [ ] 5.4.8 - Template 6: Factura (cliente con factura)
 - [ ] 5.4.9 - Template 7: Licencia vencimiento (alerta cliente)
 - [ ] 5.4.10 - API `/api/email/send` (POST con template)
-- [x] 5.4.11 - Tabla `email_logs` (registro envíos) ✅ (implementado Sprint 2B)
+- [ ] 5.4.11 - Tabla `email_logs` (registro envíos)
 - [ ] 5.4.12 - Webhook SendGrid (status: delivered, bounced, opened)
-- [x] 5.4.13 - Envío email cotización/proforma con PDF adjunto ✅ (movida de 2.2.9)
-- [x] 5.4.14 - Recordatorio cron 8 días sin respuesta ✅ (movida de 2.2.10)
-- [x] 5.4.15 - Estados envío (Enviada, Aceptada, Rechazada, Pendiente) ✅ (movida de 2.2.11)
-- [ ] 5.4.16 - Notificación Bodega al recibir OC (movida de 3.3.6)
-- [ ] 5.4.17 - Confirmación cliente despacho/tracking (movida de 3.4.6)
-- [ ] 5.4.18 - Notificación cliente factura (movida de 3.6.7)
 
 #### TAREA 5.5: Notificaciones Realtime (6 subtareas)
 
@@ -553,21 +548,23 @@ Sprint 6: [░░░░░░░░░░] 0/10 (0%)
 |--------|:------:|:-----------:|:--------:|:------:|
 | Sprint 0 | 51 | 51 | 100% | ✅ Completado |
 | Sprint 1 | 43 | 43 | 100% | ✅ Completado |
-| Sprint 2 | 33 | 29 | 88% | ✅ Completado (3 emails → Sprint 5) |
-| Sprint 3 | 57 | 40 | 70% | ✅ Completado (3 emails → Sprint 5) |
-| Sprint 4 | 42 | 42 | 100% | ✅ Completado |
-| Sprint 5 | 31 | 5 | 16% | ⏳ Pendiente (+6 emails de Sprint 2/3) |
+| Sprint 2 | 36 | 0 | 0% | ⏳ Siguiente |
+| Sprint 3 | 60 | 0 | 0% | ⏳ Pendiente |
+| Sprint 4 | 42 | 0 | 0% | ⏳ Pendiente |
+| Sprint 5 | 25 | 0 | 0% | ⏳ Pendiente |
 | Sprint 6 | 10 | 0 | 0% | ⏳ Pendiente |
-| **TOTAL** | **270** | **210** | **78%** | 🚀 **Sprint 4 completado** |
+| **TOTAL** | **267** | **94** | **35%** | 🚀 **Sprint 2 Next** |
 
 ---
 
-### 🎯 Próximos Pasos (Sprint 2 restante + Sprint 3)
+### 🎯 Próximos Pasos Inmediatos
 
-1. **Sprint 2B:** ✅ Completado — Templates Proforma/Orden PDF, SendGrid emails, Cron recordatorios, facturación anticipada
-2. **Sprint 2 restante (4 tareas):** Validación arquitectura, validación template Figma, pruebas E2E básicas
-3. **Sprint 3:** Detalle pedidos con tabs (OC, Despachos, Pendientes, Trazabilidad), OC/PO, Logística, Licencias, Facturación
-4. **Sprint 4:** Dashboards y tableros operativos
+1. **Iniciar Sprint 2** - Pipeline Completo (Aprobación margen, PDF, Pedidos)
+2. **TAREA 2.1** - Aprobación de margen (HU-0005): RPC + API + modal Gerencia
+3. **TAREA 2.2** - Generación PDF (@react-pdf/renderer): 3 templates + envío email
+4. **TAREA 2.3** - Creación Pedidos (HU-00014): RPC desde cotización ganada
+5. **Configurar Playwright MCP** para E2E testing automatizado (`.mcp.json` ya creado)
+6. **Daily standup** usando esta lista como referencia
 
 ---
 
@@ -1264,7 +1261,7 @@ Total Costo incluye: items + transporte - descuentos, en COP (con TRM)
 - [x] CA-7: No envío sin aprobación
 
 **Deliverables:**
-- [x] RPC aprobación funcional (migración 20260214000001)
+- [ ] RPC aprobación funcional
 - [ ] Modal aprobación/rechazo
 - [ ] Bloqueo envío operativo
 
