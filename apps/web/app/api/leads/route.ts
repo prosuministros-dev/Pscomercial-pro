@@ -58,8 +58,7 @@ export async function GET(request: NextRequest) {
       .select(
         `
         *,
-        assigned_advisor:profiles!leads_assigned_to_fkey(id, full_name, email),
-        created_by_user:profiles!leads_created_by_fkey(id, full_name)
+        assigned_advisor:profiles!leads_assigned_to_fkey(id, full_name, email)
         `,
         { count: 'exact' }
       )
