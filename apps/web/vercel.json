@@ -15,6 +15,14 @@
     {
       "path": "/api/cron/lead-followup",
       "schedule": "0 12 * * *"
+    },
+    {
+      "path": "/api/cron/refresh-trm",
+      "schedule": "0 10 * * 1-5"
+    },
+    {
+      "path": "/api/cron/refresh-views",
+      "schedule": "*/15 * * * *"
     }
   ]
 }
