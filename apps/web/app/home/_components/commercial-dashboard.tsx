@@ -24,12 +24,21 @@ interface CommercialDashboardProps {
 const FUNNEL_COLORS = ['#06b6d4', '#3b82f6', '#8b5cf6'];
 
 export function CommercialDashboard({ filters }: CommercialDashboardProps) {
-  const { data, isLoading } = useCommercialDashboard(filters);
+  const { data, isLoading, error } = useCommercialDashboard(filters);
 
-  if (isLoading || !data) {
+  if (isLoading) {
     return (
       <div className="flex justify-center py-12">
         <Loader2 className="w-8 h-8 animate-spin text-cyan-500" />
+      </div>
+    );
+  }
+
+  if (error || !data) {
+    return (
+      <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
+        <p className="text-sm">No se pudo cargar el dashboard comercial.</p>
+        <p className="text-xs mt-1">Verifica tu sesión e intenta de nuevo.</p>
       </div>
     );
   }

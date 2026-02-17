@@ -56,10 +56,10 @@ export async function GET(request: NextRequest) {
             .insert({
               organization_id: quote.organization_id,
               user_id: quote.advisor_id,
-              type: 'warning',
+              type: 'alert',
               title: `Cotización #${quote.quote_number} expirada`,
               message: `La cotización ha superado su fecha de validez y fue marcada como expirada.`,
-              link: `/home/quotes`,
+              action_url: `/home/quotes`,
             });
 
           if (!notifError) notified++;

@@ -37,7 +37,7 @@ export async function checkPermission(
       return false;
     }
 
-    const permissions = data.map((p: { slug: string }) => p.slug);
+    const permissions = data.map((p: { permission_slug: string }) => p.permission_slug);
 
     return permissions.includes(permission);
   } catch (error) {

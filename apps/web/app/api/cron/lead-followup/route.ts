@@ -57,10 +57,10 @@ export async function GET(request: NextRequest) {
         .insert({
           organization_id: group.orgId,
           user_id: advisorId,
-          type: 'info',
+          type: 'alert',
           title: `${count} lead${count > 1 ? 's' : ''} sin seguimiento`,
           message: `Tienes ${count} lead${count > 1 ? 's' : ''} sin actividad hace más de 3 días. Revisa y actualiza su estado.`,
-          link: '/home/leads',
+          action_url: '/home/leads',
         });
 
       if (!notifError) notified++;

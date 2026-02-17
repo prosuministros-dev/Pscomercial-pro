@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
-import { requireUser } from '~/lib/require-auth';
+import { requireUser, AuthError } from '~/lib/require-auth';
 
 // --- Zod Schemas ---
 const markReadSchema = z.object({
@@ -61,6 +61,9 @@ export async function GET(request: NextRequest) {
       unread_count: filter === 'unread' ? (count || 0) : unreadCount,
     });
   } catch (error) {
+    if (error instanceof AuthError) {
+      return NextResponse.json({ error: error.message }, { status: error.status });
+    }
     console.error('Error in GET /api/notifications:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
@@ -88,7 +91,7 @@ export async function PUT(request: NextRequest) {
     if (parsed.data.mark_all) {
       const { error } = await client
         .from('notifications')
-        .update({ is_read: true, updated_at: new Date().toISOString() })
+        .update({ is_read: true, read_at: new Date().toISOString() })
         .eq('user_id', user.id)
         .eq('is_read', false);
 
@@ -101,7 +104,7 @@ export async function PUT(request: NextRequest) {
     if (parsed.data.id) {
       const { error } = await client
         .from('notifications')
-        .update({ is_read: true, updated_at: new Date().toISOString() })
+        .update({ is_read: true, read_at: new Date().toISOString() })
         .eq('id', parsed.data.id)
         .eq('user_id', user.id);
 
@@ -112,6 +115,9 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
+    if (error instanceof AuthError) {
+      return NextResponse.json({ error: error.message }, { status: error.status });
+    }
     console.error('Error in PUT /api/notifications:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
@@ -163,6 +169,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ data }, { status: 201 });
   } catch (error) {
+    if (error instanceof AuthError) {
+      return NextResponse.json({ error: error.message }, { status: error.status });
+    }
     console.error('Error in POST /api/notifications:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }

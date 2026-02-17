@@ -8,13 +8,22 @@ export interface AuthenticatedUser {
   email?: string;
 }
 
+export class AuthError extends Error {
+  status: number;
+
+  constructor(message: string, status: number = 401) {
+    super(message);
+    this.status = status;
+  }
+}
+
 /**
  * Wrapper around requireUser that:
  * 1. Validates the user is authenticated
  * 2. Fetches the user's profile to get organization_id
  * 3. Returns a flat object with id and organization_id
  *
- * Throws an error if the user is not authenticated.
+ * Throws AuthError if the user is not authenticated.
  * Use in API route handlers.
  */
 export async function requireUser(
@@ -23,13 +32,13 @@ export async function requireUser(
   const result = await baseRequireUser(client);
 
   if (result.error || !result.data) {
-    throw new Error('Authentication required');
+    throw new AuthError('Authentication required', 401);
   }
 
   const userId = result.data.sub ?? result.data.id;
 
   if (!userId) {
-    throw new Error('User ID not found in token');
+    throw new AuthError('User ID not found in token', 401);
   }
 
   // Fetch profile to get organization_id
@@ -40,7 +49,8 @@ export async function requireUser(
     .single();
 
   if (profileError || !profile) {
-    throw new Error('User profile not found');
+    console.error('[requireUser] Profile not found for userId:', userId, profileError?.message);
+    throw new AuthError('User profile not found', 403);
   }
 
   return {
