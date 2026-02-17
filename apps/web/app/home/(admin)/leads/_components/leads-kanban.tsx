@@ -238,7 +238,7 @@ export function LeadsKanban({ leads, onRefresh }: LeadsKanbanProps) {
                             Asignado a:
                           </p>
                           <p className="text-gray-700 dark:text-gray-300 font-medium">
-                            {lead.assigned_user.display_name}
+                            {lead.assigned_user.full_name}
                           </p>
                         </div>
                       )}

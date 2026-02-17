@@ -25,7 +25,7 @@ export interface Lead {
   deleted_at: string | null;
   assigned_user?: {
     id: string;
-    display_name: string;
+    full_name: string;
     email: string;
   };
 }

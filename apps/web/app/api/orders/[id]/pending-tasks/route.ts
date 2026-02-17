@@ -57,7 +57,7 @@ export async function GET(
       .from('order_pending_tasks')
       .select(`
         *,
-        assigned_user:profiles!order_pending_tasks_assigned_to_fkey(id, display_name)
+        assigned_user:profiles!order_pending_tasks_assigned_to_fkey(id, full_name)
       `)
       .eq('organization_id', user.organization_id)
       .eq('order_id', orderId)

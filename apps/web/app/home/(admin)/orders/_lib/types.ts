@@ -71,7 +71,7 @@ export interface Order {
   };
   advisor?: {
     id: string;
-    display_name: string;
+    full_name: string;
     email: string;
   };
   quote?: {
@@ -122,7 +122,7 @@ export interface OrderStatusHistory {
   created_at: string;
   changed_by_user?: {
     id: string;
-    display_name: string;
+    full_name: string;
     email: string;
   };
 }
@@ -327,7 +327,7 @@ export interface OrderPendingTask {
   created_by: string | null;
   created_at: string;
   updated_at: string;
-  assigned_user?: { id: string; display_name: string };
+  assigned_user?: { id: string; full_name: string };
 }
 
 export interface TraceabilityEvent {

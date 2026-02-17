@@ -17,7 +17,7 @@ export default async function OrdersPage() {
       `
       *,
       customer:customers(id, business_name, nit, city),
-      advisor:profiles!orders_advisor_id_fkey(id, display_name, email),
+      advisor:profiles!orders_advisor_id_fkey(id, full_name, email),
       quote:quotes!orders_quote_id_fkey(id, quote_number)
     `,
       { count: 'exact' },

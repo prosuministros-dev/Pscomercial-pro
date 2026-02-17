@@ -32,10 +32,10 @@ export async function GET(request: Request) {
         quote:quotes!quote_approvals_quote_id_fkey(
           id, quote_number, customer_id, advisor_id, margin_pct, total, currency, status,
           customer:customers(id, business_name, nit),
-          advisor:profiles!quotes_advisor_id_fkey(id, display_name, email)
+          advisor:profiles!quotes_advisor_id_fkey(id, full_name, email)
         ),
-        requester:profiles!quote_approvals_requested_by_fkey(id, display_name, email),
-        reviewer:profiles!quote_approvals_reviewed_by_fkey(id, display_name, email)
+        requester:profiles!quote_approvals_requested_by_fkey(id, full_name, email),
+        reviewer:profiles!quote_approvals_reviewed_by_fkey(id, full_name, email)
       `,
         { count: 'exact' },
       )

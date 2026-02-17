@@ -33,8 +33,8 @@ interface ApprovalRecord {
   reviewed_at: string | null;
   review_notes: string | null;
   created_at: string;
-  requester?: { id: string; display_name: string; email: string };
-  reviewer?: { id: string; display_name: string; email: string } | null;
+  requester?: { id: string; full_name: string; email: string };
+  reviewer?: { id: string; full_name: string; email: string } | null;
 }
 
 export function MarginApprovalDialog({
@@ -234,13 +234,13 @@ export function MarginApprovalDialog({
                         {approval.requester && (
                           <span className="font-normal text-gray-500">
                             {' — Solicitado por '}
-                            {approval.requester.display_name}
+                            {approval.requester.full_name}
                           </span>
                         )}
                       </p>
                       {approval.reviewer && (
                         <p className="text-gray-500">
-                          Revisado por {approval.reviewer.display_name}
+                          Revisado por {approval.reviewer.full_name}
                         </p>
                       )}
                       {approval.review_notes && (

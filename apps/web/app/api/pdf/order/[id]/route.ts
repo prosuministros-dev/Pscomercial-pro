@@ -33,7 +33,7 @@ export async function GET(
         id, order_number, created_at, currency, subtotal, tax_amount, total,
         payment_terms, billing_type, notes, organization_id,
         customer:customers(id, business_name, nit, address, city, phone, email),
-        advisor:profiles!orders_advisor_id_fkey(id, display_name, email, phone)
+        advisor:profiles!orders_advisor_id_fkey(id, full_name, email, phone)
       `)
       .eq('id', orderId)
       .eq('organization_id', user.organization_id)

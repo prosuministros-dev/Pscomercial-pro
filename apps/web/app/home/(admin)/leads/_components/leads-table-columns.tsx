@@ -125,7 +125,7 @@ export const leadsTableColumns: ColumnDef<Lead>[] = [
       return (
         <div>
           <div className="font-medium text-sm">
-            {assignedUser.display_name}
+            {assignedUser.full_name}
           </div>
           <div className="text-xs text-gray-500">{assignedUser.email}</div>
         </div>

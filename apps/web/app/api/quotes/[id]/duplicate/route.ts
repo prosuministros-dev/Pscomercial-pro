@@ -106,7 +106,7 @@ export async function POST(
       .select(`
         *,
         customer:customers(id, business_name, nit),
-        advisor:profiles!quotes_advisor_id_fkey(id, display_name, email)
+        advisor:profiles!quotes_advisor_id_fkey(id, full_name, email)
       `)
       .eq('id', newQuote.id)
       .single();

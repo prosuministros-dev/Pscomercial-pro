@@ -62,7 +62,7 @@ export interface Quote {
   };
   advisor?: {
     id: string;
-    display_name: string;
+    full_name: string;
     email: string;
   };
   lead?: {

@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
         quote:quotes(
           id, quote_number, organization_id, sent_to_client, client_response, status,
           customer:customers(id, business_name, email),
-          advisor:profiles!quotes_advisor_id_fkey(id, display_name, email)
+          advisor:profiles!quotes_advisor_id_fkey(id, full_name, email)
         )
       `)
       .eq('status', 'pending')
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
         client_response: string | null;
         status: string;
         customer: { id: string; business_name: string; email: string | null };
-        advisor: { id: string; display_name: string; email: string };
+        advisor: { id: string; full_name: string; email: string };
       };
 
       // Skip if client already responded or quote is no longer active
@@ -88,7 +88,7 @@ export async function GET(request: NextRequest) {
       const html = buildReminderHtml({
         customerName: quote.customer.business_name,
         quoteNumber: quote.quote_number,
-        advisorName: quote.advisor.display_name,
+        advisorName: quote.advisor.full_name,
         advisorEmail: quote.advisor.email,
       });
 

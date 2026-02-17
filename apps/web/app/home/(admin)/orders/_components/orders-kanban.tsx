@@ -113,7 +113,7 @@ export function OrdersKanban({ onOrderClick, onStatusChange }: OrdersKanbanProps
                         {order.customer?.business_name || 'N/A'}
                       </p>
                       <p className="text-[10px] text-muted-foreground truncate">
-                        {order.advisor?.display_name || order.advisor?.full_name || 'N/A'}
+                        {order.advisor?.full_name || order.advisor?.full_name || 'N/A'}
                       </p>
                       <div className="flex items-center justify-between">
                         <span className="font-mono text-xs">{fmt(order.total)}</span>

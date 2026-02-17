@@ -262,8 +262,8 @@ export async function GET(
       .from('quote_approvals')
       .select(`
         *,
-        requester:profiles!quote_approvals_requested_by_fkey(id, display_name, email),
-        reviewer:profiles!quote_approvals_reviewed_by_fkey(id, display_name, email)
+        requester:profiles!quote_approvals_requested_by_fkey(id, full_name, email),
+        reviewer:profiles!quote_approvals_reviewed_by_fkey(id, full_name, email)
       `)
       .eq('quote_id', quoteId)
       .order('created_at', { ascending: false });

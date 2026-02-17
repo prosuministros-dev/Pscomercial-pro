@@ -132,7 +132,7 @@ export function PendingTasksPanel({ orderId }: PendingTasksPanelProps) {
                     <span>Vence: {new Date(task.due_date).toLocaleDateString('es-CO')}</span>
                   )}
                   {task.assigned_user && (
-                    <span>Asignado: {task.assigned_user.display_name}</span>
+                    <span>Asignado: {task.assigned_user.full_name}</span>
                   )}
                 </div>
               </div>

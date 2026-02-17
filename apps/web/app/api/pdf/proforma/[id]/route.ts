@@ -35,7 +35,7 @@ export async function GET(
         transport_cost, transport_included, total,
         payment_terms, notes, organization_id,
         customer:customers(id, business_name, nit, address, city, phone, email),
-        advisor:profiles!quotes_advisor_id_fkey(id, display_name, email, phone)
+        advisor:profiles!quotes_advisor_id_fkey(id, full_name, email, phone)
       `)
       .eq('id', quoteId)
       .eq('organization_id', user.organization_id)

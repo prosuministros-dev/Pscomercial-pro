@@ -79,7 +79,7 @@ export function createOrdersTableColumns(
       cell: ({ row }) => {
         const advisor = row.original.advisor;
         if (!advisor) return <span className="text-gray-400">N/A</span>;
-        return <div className="font-medium text-sm">{advisor.display_name}</div>;
+        return <div className="font-medium text-sm">{advisor.full_name}</div>;
       },
     },
     {

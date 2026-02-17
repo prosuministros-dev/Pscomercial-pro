@@ -61,7 +61,7 @@ export async function GET(request: Request) {
         `
         *,
         customer:customers(id, business_name, nit, city),
-        advisor:profiles!orders_advisor_id_fkey(id, display_name, email),
+        advisor:profiles!orders_advisor_id_fkey(id, full_name, email),
         quote:quotes!orders_quote_id_fkey(id, quote_number)
       `,
         { count: 'exact' },
@@ -198,7 +198,7 @@ export async function POST(request: Request) {
       .select(`
         *,
         customer:customers(id, business_name, nit, city),
-        advisor:profiles!orders_advisor_id_fkey(id, display_name, email),
+        advisor:profiles!orders_advisor_id_fkey(id, full_name, email),
         quote:quotes!orders_quote_id_fkey(id, quote_number)
       `)
       .eq('id', orderId)

@@ -142,7 +142,7 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
                 </div>
                 <div>
                   <p className="text-xs text-gray-500">Asesor</p>
-                  <p className="font-medium text-sm">{order.advisor?.display_name || 'N/A'}</p>
+                  <p className="font-medium text-sm">{order.advisor?.full_name || 'N/A'}</p>
                 </div>
                 <div>
                   <p className="text-xs text-gray-500">Total</p>
@@ -347,7 +347,7 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
                           </div>
                           {entry.changed_by_user && (
                             <p className="text-xs text-gray-500 mt-1">
-                              Por {entry.changed_by_user.display_name}
+                              Por {entry.changed_by_user.full_name}
                             </p>
                           )}
                           {entry.notes && (

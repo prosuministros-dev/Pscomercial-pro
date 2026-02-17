@@ -81,7 +81,7 @@ export async function GET(request: Request) {
         `
         *,
         customer:customers(id, business_name, nit, city),
-        advisor:profiles!quotes_advisor_id_fkey(id, display_name, email),
+        advisor:profiles!quotes_advisor_id_fkey(id, full_name, email),
         lead:leads(id, lead_number, business_name)
       `,
         { count: 'exact' }
@@ -169,7 +169,7 @@ export async function POST(request: Request) {
         .select(`
           *,
           customer:customers(id, business_name, nit),
-          advisor:profiles!quotes_advisor_id_fkey(id, display_name, email)
+          advisor:profiles!quotes_advisor_id_fkey(id, full_name, email)
         `)
         .eq('id', quoteId)
         .single();
@@ -220,7 +220,7 @@ export async function POST(request: Request) {
       .select(`
         *,
         customer:customers(id, business_name, nit),
-        advisor:profiles!quotes_advisor_id_fkey(id, display_name, email)
+        advisor:profiles!quotes_advisor_id_fkey(id, full_name, email)
       `)
       .single();
 
@@ -324,7 +324,7 @@ export async function PUT(request: Request) {
       .select(`
         *,
         customer:customers(id, business_name, nit),
-        advisor:profiles!quotes_advisor_id_fkey(id, display_name, email)
+        advisor:profiles!quotes_advisor_id_fkey(id, full_name, email)
       `)
       .single();
 

@@ -35,7 +35,7 @@ export async function GET(
       .select(`
         *,
         customer:customers(id, business_name, nit, city, address, phone, email),
-        advisor:profiles!orders_advisor_id_fkey(id, display_name, email),
+        advisor:profiles!orders_advisor_id_fkey(id, full_name, email),
         quote:quotes!orders_quote_id_fkey(id, quote_number)
       `)
       .eq('id', orderId)
@@ -63,7 +63,7 @@ export async function GET(
       .from('order_status_history')
       .select(`
         *,
-        changed_by_user:profiles!order_status_history_changed_by_fkey(id, display_name, email)
+        changed_by_user:profiles!order_status_history_changed_by_fkey(id, full_name, email)
       `)
       .eq('order_id', orderId)
       .order('created_at', { ascending: true });
@@ -160,7 +160,7 @@ export async function PATCH(
       .select(`
         *,
         customer:customers(id, business_name, nit, city),
-        advisor:profiles!orders_advisor_id_fkey(id, display_name, email),
+        advisor:profiles!orders_advisor_id_fkey(id, full_name, email),
         quote:quotes!orders_quote_id_fkey(id, quote_number)
       `)
       .eq('id', orderId)
