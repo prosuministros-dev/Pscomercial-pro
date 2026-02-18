@@ -2,7 +2,7 @@
 
 > **Proyecto**: Pscomercial-pro (PROSUMINISTROS)
 > **Fecha**: 2026-02-17
-> **Version**: 5.0
+> **Version**: 5.2
 > **Cobertura objetivo**: 100% de HUs, Arquitectura y Flujos E2E
 > **Herramienta de automatizacion**: Playwright MCP + API Testing Manual
 > **Estado**: [~] En progreso (T1✅ T2✅ T3✅ T4~API T5~API T6✅ T7✅ T8✅ T9✅ T10✅ T11~RPC T12✅ T13✅ T14✅ T15✅ T16✅ T17✅ T18✅ T19~API T20✅ T22~UI | UI Smoke✅)
@@ -382,7 +382,7 @@ Para CADA rol, verificar:
 - [x] T3.1.10: Registro fecha, hora y usuario creador automaticos ✅ "17 feb a las 16:17"
 - [x] T3.1.11: Fecha de creacion NO editable (server-set only, lead_date no expuesto en form de edicion) ✅
 - [x] T3.1.12: Creacion manual disponible (no solo chatbot) ✅ Boton "Nuevo Lead" + formulario
-- [ ] T3.1.13: Multiples contactos bajo misma razon social ❌ BUG-012: tabla lead_contacts no existe en migraciones
+- [x] T3.1.13: Multiples contactos bajo misma razon social ✅ BUG-012 CORREGIDO: migration creada, 3 contactos CRUD + primary flag verificados
 
 ### T3.2 Vista Kanban (HU-0001 CA-12)
 - [x] T3.2.1: Vista Kanban muestra columnas por estado (Creado, Pendiente, Convertido) ✅
@@ -424,7 +424,7 @@ Para CADA rol, verificar:
 - [x] T3.7.2: POST /api/leads crea lead y ejecuta auto-asignacion ✅ Lead #100, #101 creados
 - [x] T3.7.3: PUT /api/leads actualiza lead con transiciones de estado validas ✅ Edit + Convert
 - [x] T3.7.4: DELETE /api/leads soft-delete (no elimina convertidos) ✅ Lead #101 eliminado, Lead #100 protegido (400)
-- [ ] T3.7.5: GET /api/leads/[id]/contacts ❌ BUG-012: API route existe pero tabla lead_contacts no creada en migraciones
+- [x] T3.7.5: GET /api/leads/[id]/contacts ✅ BUG-012 CORREGIDO: tabla creada, filtrable por lead_id con RLS
 
 ---
 
@@ -1294,12 +1294,12 @@ Paso 4: Asesor crea pedido exitosamente
 ```
 ╔══════════════════════════════════════════════════════════════════╗
 ║  PSCOMERCIAL-PRO - PLAN DE TESTING                              ║
-║  Total: 621 tests | Completados: 341 | Fallidos: 0 | Bugs: 12 ║
+║  Total: 621 tests | Completados: 343 | Fallidos: 0 | Bugs: 12 ║
 ║  Progreso General: ███████████░░░░░░░░░ 55%                   ║
 ║  Estado: EN PROGRESO                                            ║
 ║  T1✅ T2✅ T3✅ T4~API T5~API T6✅ T7✅ T8✅ T9✅ T10✅ T11~RPC  ║
 ║  T12✅ T13✅ T14✅ T15✅ T16✅ T17✅ T18✅ T19~API T20~API T22~UI ║
-║  Bugs corregidos: 11/12 (92%) — 1 abierto: lead_contacts table  ║
+║  Bugs corregidos: 12/12 (100%) — 0 abiertos                     ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
@@ -1308,7 +1308,7 @@ Paso 4: Asesor crea pedido exitosamente
 ```
 T1  Auth/Seguridad    ████████████████████  18/18  (100%) [x] Completado
 T2  RBAC/Permisos     ████████████████████  30/30  (100%) [x] Completado
-T3  Leads             █████████████████░░░  38/43  (88%)  [x] API+UI+Assign+Cron OK, falta lead_contacts+notif UI
+T3  Leads             ███████████████████░  40/43  (93%)  [x] API+UI+Assign+Cron+Contacts OK, solo falta notif UI
 T4  Cotizaciones      ████████░░░░░░░░░░░░  16/40  (40%)  [~] API CRUD+Items+Status OK
 T5  Pedidos           ████████░░░░░░░░░░░░  13/34  (38%)  [~] API CRUD+Status cycle OK
 T6  Compras           ██████████████████░░  8/9    (89%)  [x] Suppliers+PO CRUD+Status OK
@@ -1329,7 +1329,7 @@ T20 Performance       ████████████░░░░░░░�
 T21 Flujos E2E        ░░░░░░░░░░░░░░░░░░░░  0/18   (0%)   [ ] No iniciado
 T22 UX/UI             ███░░░░░░░░░░░░░░░░░  7/42   (17%)  [~] Nav+DarkMode+Mobile+EmptyState OK
 ────────────────────────────────────────────────────────────────────
-TOTAL                 ███████████░░░░░░░░░  341/621 (55%)
+TOTAL                 ███████████░░░░░░░░░  343/621 (55%)
 ```
 
 > **Leyenda de barras**: `█` = completado, `░` = pendiente
@@ -1341,7 +1341,7 @@ TOTAL                 ███████████░░░░░░░░�
 |---|------|-----------|-------|------|------|------|---|--------|
 | 1 | T1: Auth y Seguridad | P0 | 18 | 18 | 0 | 4 | 100% | [x] Completado |
 | 2 | T2: RBAC y Permisos | P0 | 30 | 30 | 0 | 1 | 100% | [x] Completado |
-| 3 | T3: Leads | P0 | 43 | 38 | 0 | 7 | 88% | [x] API+UI+Assign+Cron OK |
+| 3 | T3: Leads | P0 | 43 | 40 | 0 | 7 | 93% | [x] API+UI+Assign+Contacts OK |
 | 4 | T4: Cotizaciones | P0 | 40 | 16 | 0 | 0 | 40% | [~] API CRUD OK |
 | 5 | T5: Pedidos | P0 | 34 | 13 | 0 | 0 | 38% | [~] API+Status OK |
 | 6 | T6: Compras | P1 | 9 | 8 | 0 | 0 | 89% | [x] Suppliers+PO OK |
@@ -1361,24 +1361,24 @@ TOTAL                 ███████████░░░░░░░░�
 | 20 | T20: Performance/Crons | P2 | 22 | 12 | 0 | 0 | 55% | [~] API perf+crons OK |
 | 21 | T21: Flujos E2E | P0 | 18 | 0 | 0 | 0 | 0% | [ ] No iniciado |
 | 22 | T22: UX/UI | P3 | 42 | 7 | 0 | 0 | 17% | [~] Nav+DarkMode+Mobile OK |
-| | **TOTAL** | | **621** | **341** | **0** | **12** | **55%** | **En progreso** |
+| | **TOTAL** | | **621** | **343** | **0** | **12** | **55%** | **En progreso** |
 
 ### Progreso por Prioridad
 
 | Prioridad | Descripcion | Tests | PASS | FAIL | Bugs | % | Criterio Aprobacion |
 |-----------|-------------|-------|------|------|------|---|---------------------|
-| P0 (Critico) | Auth, RBAC, Pipeline, Multi-tenant, E2E | ~186 | 132 | 0 | 12 | 71% | 100% requerido |
+| P0 (Critico) | Auth, RBAC, Pipeline, Multi-tenant, E2E | ~186 | 134 | 0 | 12 | 72% | 100% requerido |
 | P1 (Alto) | Compras, Logistica, Facturacion, Dashboards, PDF, Admin, Trazab | ~186 | 139 | 0 | 1 | 75% | 95% requerido |
 | P2 (Medio) | WhatsApp, Email, Performance | ~95 | 77 | 0 | 0 | 81% | 80% requerido |
 | P3 (Bajo) | UX/UI Visual | ~42 | 7 | 0 | 0 | 17% | 50% requerido |
-| | **TOTAL** | **~621** | **341** | **0** | **12** | **55%** | |
+| | **TOTAL** | **~621** | **343** | **0** | **12** | **55%** | |
 
 ### Progreso del Pipeline Comercial (Flujo Principal)
 
 ```
 Lead ──── Cotizacion ──── Pedido ──── Compra ──── Logistica ──── Facturacion
  T3          T4             T5          T6          T7              T8
- 84%         40%            38%         89%         71%             64%
+ 93%         40%            38%         89%         71%             64%
  ██          █░             █░          ██          █░              █░
 ```
 
@@ -1388,7 +1388,7 @@ Lead ──── Cotizacion ──── Pedido ──── Compra ───�
 |--------|--------------|-------------|-------|------|---|------------|
 | Autenticacion | Transversal | T1 | 18 | 18 | 100% | [x] Listo |
 | Permisos/RBAC | HU-0011 | T2 | 30 | 30 | 100% | [x] Listo |
-| Leads | HU-0001, HU-0002 | T3 | 43 | 38 | 88% | [x] Listo |
+| Leads | HU-0001, HU-0002 | T3 | 43 | 40 | 93% | [x] Listo |
 | Cotizaciones | HU-0003 a HU-0006 | T4 | 40 | 16 | 40% | [x] Listo (TRM+clientes seeded) |
 | Pedidos | HU-0007, HU-0008, HU-0014, HU-0015 | T5 | 34 | 13 | 38% | [x] Listo |
 | Compras | HU-0016 | T6 | 9 | 8 | 89% | [x] Listo |
@@ -1444,9 +1444,9 @@ Lead ──── Cotizacion ──── Pedido ──── Compra ───�
 | Bugs P1 (High) | 6 (BUG-001, BUG-002, BUG-003, BUG-008, BUG-009, BUG-010) |
 | Bugs P2 (Medium) | 3 (BUG-004, BUG-006, BUG-007) |
 | Bugs P3 (Low) | 1 (BUG-011: supplier column name in RPC) |
-| Bugs corregidos y re-testeados | 11/12 |
-| Bugs abiertos | 1 (BUG-012: lead_contacts table missing) |
-| Tasa de correccion | 92% |
+| Bugs corregidos y re-testeados | 12/12 |
+| Bugs abiertos | 0 |
+| Tasa de correccion | 100% |
 
 ### Historial de Sesiones de Testing
 
@@ -1476,6 +1476,7 @@ Lead ──── Cotizacion ──── Pedido ──── Compra ───�
 | 22 | 2026-02-18 | T13 WhatsApp/Email | 57 | 57 | 0 | 0 | WA accounts+conversations+messages CRUD, 4 statuses, 3 types, 4 intents, 8 msg types, email logs 6 statuses |
 | 23 | 2026-02-18 | T22 UX/UI Browser | ~15 | 7 | 0 | 0 | Dashboard light+dark, Leads kanban, Pedidos 3-view, Reportes 5-tab, Admin, WhatsApp, Mobile 390px, 0 errors |
 | 24 | 2026-02-18 | T3 Leads (remaining) | 18 | 16 | 2 | 1 | Assign RPC+limit+inactive+deact trigger, audit log, cron followup, pagination, BUG-012 lead_contacts missing |
+| 25 | 2026-02-18 | BUG-012 Fix + Re-test | 22 | 22 | 0 | 0 | Migration 20260221000002_create_lead_contacts.sql pushed, 22/22 PASS including contacts CRUD |
 
 ---
 
@@ -1617,14 +1618,14 @@ Lead ──── Cotizacion ──── Pedido ──── Compra ───�
 - **Fix**: Cambiado a `s.name` en migration `20260219000002_fix_product_journey_rpc.sql`
 - **Re-test**: PASS - RPC retorna `{"events":[]}` sin error
 
-### BUG-012: tabla lead_contacts no existe en migraciones (ABIERTO)
+### BUG-012: tabla lead_contacts no existe en migraciones (CORREGIDO)
 - **Severidad**: P2 (Medium)
 - **Fase**: T3 Leads
 - **Test**: T3.1.13, T3.7.5
 - **Descripcion**: API route `/api/leads/[id]/contacts/route.ts` referencia tabla `lead_contacts` pero no existe CREATE TABLE en ninguna migracion. El endpoint retornaria 500 al usarse.
 - **Root Cause**: Se creo el API route y UI component (lead-contacts.tsx) pero nunca se creo la migracion para la tabla
-- **Fix requerido**: Crear migration con `CREATE TABLE lead_contacts (id, lead_id, organization_id, contact_name, position, phone, email, is_primary, deleted_at, created_at, updated_at)` + RLS + indexes
-- **Re-test**: PENDIENTE
+- **Fix**: Migration `20260221000002_create_lead_contacts.sql` con CREATE TABLE + 3 indexes + RLS (4 policies) + GRANT
+- **Re-test**: PASS - 22/22 tests T3 remaining (3 contactos CRUD + primary flag + filtro por lead_id)
 
 | ID | Severidad | Test | Descripcion | Fix | Re-test | Fecha |
 |----|-----------|------|-------------|-----|---------|-------|
@@ -1634,12 +1635,12 @@ Lead ──── Cotizacion ──── Pedido ──── Compra ───�
 | BUG-009 | P1 | T3.4.2 | leads:comment no existe | Cambiado a leads:read | PASS | 2026-02-18 |
 | BUG-010 | P1 | T3.3.1 | assigned_advisor vs assigned_user | Renombrado alias PostgREST | PASS | 2026-02-18 |
 | BUG-011 | P3 | T11.1.11 | s.business_name→s.name suppliers | Migration fix RPC | PASS | 2026-02-18 |
-| BUG-012 | P2 | T3.1.13, T3.7.5 | tabla lead_contacts no existe en migraciones | Pendiente: crear migration | OPEN | 2026-02-18 |
+| BUG-012 | P2 | T3.1.13, T3.7.5 | tabla lead_contacts no existe en migraciones | Migration 20260221000002 | PASS | 2026-02-18 |
 
 ---
 
 **Elaborado por**: Claude Code (business-analyst + fullstack-dev + db-integration + designer-ux-ui + arquitecto)
 **Fecha**: 2026-02-18
-**Version**: 5.1 - Actualizado con sesion 24 (T3 Leads remaining: assign+cron+pagination+BUG-012)
+**Version**: 5.2 - Actualizado con sesion 25 (BUG-012 CORREGIDO: lead_contacts migration + 22/22 re-test PASS, 0 bugs abiertos)
 **Datos de prueba**: Contexto/HU/TEST-DATA-REFERENCE.md
 **Aprobado por**: [ ] Pendiente aprobacion
