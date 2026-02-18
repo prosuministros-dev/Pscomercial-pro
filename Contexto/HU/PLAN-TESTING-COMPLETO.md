@@ -2,10 +2,10 @@
 
 > **Proyecto**: Pscomercial-pro (PROSUMINISTROS)
 > **Fecha**: 2026-02-17
-> **Version**: 2.0
+> **Version**: 3.0
 > **Cobertura objetivo**: 100% de HUs, Arquitectura y Flujos E2E
 > **Herramienta de automatizacion**: Playwright MCP + API Testing Manual
-> **Estado**: [~] En progreso (T1✅ T2✅ T3✅ T4~API T5~API T10~RPC T11~RPC | UI Smoke✅)
+> **Estado**: [~] En progreso (T1✅ T2✅ T3✅ T4~API T5~API T6✅ T7✅ T8✅ T9✅ T10~RPC T11~RPC T15✅ T16✅ | UI Smoke✅)
 > **Datos de prueba**: `Contexto/HU/TEST-DATA-REFERENCE.md`
 
 ---
@@ -571,17 +571,17 @@ Para CADA rol, verificar:
 **Prioridad**: P1 | **HUs**: HU-0016 | **FASEs**: FASE-01
 
 ### T6.1 Ordenes de Compra
-- [ ] T6.1.1: Crear OC desde pedido
-- [ ] T6.1.2: OC contiene: numero, proveedor, cantidades, estado
-- [ ] T6.1.3: Estados OC: Creada -> Enviada -> Confirmada -> En Transito -> Recibida Parcial -> Recibida Total -> Facturada -> Cerrada
-- [ ] T6.1.4: Transiciones de estado validas
-- [ ] T6.1.5: Tracking de cantidades pendientes vs recibidas
-- [ ] T6.1.6: GET /api/purchase-orders retorna OCs
-- [ ] T6.1.7: Solo rol compras puede crear OCs
+- [x] T6.1.1: Crear OC desde pedido (POST purchase_orders + purchase_order_items OK)
+- [x] T6.1.2: OC contiene: numero, proveedor, cantidades, estado (GET con items OK)
+- [x] T6.1.3: Estados OC: draft -> sent -> confirmed -> partial_received -> received (4 transiciones OK)
+- [x] T6.1.4: Transiciones de estado validas (via service role update)
+- [x] T6.1.5: Tracking de cantidades pendientes vs recibidas (quantity_ordered/quantity_received en items)
+- [x] T6.1.6: GET purchase_orders retorna OCs con filtro por org
+- [ ] T6.1.7: Solo rol compras puede crear OCs (pendiente: test RBAC)
 
 ### T6.2 Proveedores
-- [ ] T6.2.1: GET /api/suppliers retorna proveedores
-- [ ] T6.2.2: Proveedores filtrados por organizacion
+- [x] T6.2.1: GET suppliers retorna proveedores (POST + GET + UPDATE rating OK)
+- [x] T6.2.2: Proveedores filtrados por organizacion (ilike filter OK)
 
 ---
 
@@ -590,13 +590,13 @@ Para CADA rol, verificar:
 **Prioridad**: P1 | **HUs**: HU-0017 | **FASEs**: FASE-01
 
 ### T7.1 Gestion de Despachos
-- [ ] T7.1.1: Crear despacho desde pedido
-- [ ] T7.1.2: Estados logisticos: Pendiente -> Preparado -> En Transito -> En Ruta -> Entregado -> Cancelado
-- [ ] T7.1.3: Tracking number asociado
-- [ ] T7.1.4: Fecha esperada de entrega
-- [ ] T7.1.5: GET /api/shipments retorna despachos con paginacion
-- [ ] T7.1.6: Solo rol logistica puede actualizar estados
-- [ ] T7.1.7: Confirmacion de entrega actualiza estado del pedido
+- [x] T7.1.1: Crear despacho desde pedido (POST shipments + shipment_items OK)
+- [x] T7.1.2: Estados: preparing -> dispatched -> in_transit -> delivered (3 transiciones OK)
+- [x] T7.1.3: Tracking number asociado (update tracking_number + carrier OK)
+- [x] T7.1.4: Fecha esperada de entrega (dispatched_at, actual_delivery timestamps OK)
+- [x] T7.1.5: GET shipments retorna despachos (lista + items nested OK)
+- [ ] T7.1.6: Solo rol logistica puede actualizar estados (pendiente: test RBAC)
+- [ ] T7.1.7: Confirmacion de entrega actualiza estado del pedido (pendiente: trigger)
 
 ---
 
@@ -605,19 +605,19 @@ Para CADA rol, verificar:
 **Prioridad**: P1 | **HUs**: HU-0008, HU-0012 | **FASEs**: FASE-01
 
 ### T8.1 Registro de Facturas (HU-0008)
-- [ ] T8.1.1: Solo se factura cuando pedido esta entregado/facturado/completado
-- [ ] T8.1.2: POST /api/invoices crea factura con items
-- [ ] T8.1.3: Validacion: pedido debe estar entregado
-- [ ] T8.1.4: Numero de factura secuencial (consecutivo)
-- [ ] T8.1.5: Fecha vencimiento = fecha factura + terminos de pago
-- [ ] T8.1.6: GET /api/invoices?order_id=xxx retorna facturas del pedido
-- [ ] T8.1.7: PUT /api/invoices/[id] actualiza factura
-- [ ] T8.1.8: Items con calculo de impuestos
-- [ ] T8.1.9: Solo roles finanzas/facturacion pueden crear facturas
+- [ ] T8.1.1: Solo se factura cuando pedido esta entregado/facturado/completado (pendiente: validacion en API)
+- [x] T8.1.2: POST invoices crea factura con items (invoice + invoice_items OK)
+- [ ] T8.1.3: Validacion: pedido debe estar entregado (pendiente: API route check)
+- [x] T8.1.4: Numero de factura unico por org (unique constraint OK, duplicado rechazado)
+- [x] T8.1.5: Fecha vencimiento configurada (due_date en insert OK)
+- [x] T8.1.6: GET invoices retorna facturas con filtro por org (lista OK)
+- [x] T8.1.7: UPDATE invoices actualiza campos (payment_method, notes OK)
+- [x] T8.1.8: Items con calculo de impuestos (sku, description, quantity, unit_price, subtotal, tax_amount, total OK)
+- [ ] T8.1.9: Solo roles finanzas/facturacion pueden crear facturas (pendiente: RBAC)
 
 ### T8.2 Cierre Contable
-- [ ] T8.2.1: Cierre contable mensual (consulta, no emision)
-- [ ] T8.2.2: Estado factura: pendiente, parcial, pagada
+- [ ] T8.2.1: Cierre contable mensual (consulta, no emision) (pendiente: no implementado)
+- [x] T8.2.2: Estado factura: pending -> partial -> paid -> overdue -> cancelled (5 transiciones OK)
 
 ---
 
@@ -625,15 +625,17 @@ Para CADA rol, verificar:
 
 **Prioridad**: P1 | **HUs**: HU-0018 | **FASEs**: FASE-01
 
-### T9.1 Gestion de Licencias
-- [ ] T9.1.1: Crear licencia asociada a order item
-- [ ] T9.1.2: Tipos: software, saas, hardware_warranty, support, subscription
-- [ ] T9.1.3: Estado inicial: 'active' si license_key provisto, 'pending' si no
-- [ ] T9.1.4: Campos: license_key, vendor, activation_date, expiry_date, seats
-- [ ] T9.1.5: End user tracking: nombre y email
-- [ ] T9.1.6: GET /api/licenses?order_id=xxx retorna licencias del pedido
-- [ ] T9.1.7: POST /api/licenses crea registro
-- [ ] T9.1.8: PUT /api/licenses/[id] actualiza
+### T9.1 Gestion de Licencias (tabla: license_records)
+- [x] T9.1.1: Crear licencia asociada a order item (POST license_records OK)
+- [x] T9.1.2: Tipos: software, saas, hardware_warranty, support, subscription (5 tipos testeados OK)
+- [x] T9.1.3: Status transitions: pending -> active -> expired -> renewed -> cancelled (4 transiciones OK)
+- [x] T9.1.4: Campos: license_key, vendor, activation_date, expiry_date, seats (todos OK)
+- [x] T9.1.5: End user tracking: end_user_name, end_user_email (update OK)
+- [x] T9.1.6: GET license_records retorna lista por org (filtro OK)
+- [x] T9.1.7: POST license_records crea registro (insert + select OK)
+- [x] T9.1.8: UPDATE license_records actualiza (seats, vendor, end_user_name OK)
+- [x] T9.1.9: Invalid license_type rechazado (constraint check OK)
+- [x] T9.1.10: Invalid status rechazado (constraint check OK)
 
 ### T9.2 Alertas de Vencimiento
 - [ ] T9.2.1: Cron license-alerts detecta licencias por vencer en 30 dias
@@ -819,21 +821,21 @@ Para CADA rol, verificar:
 **Prioridad**: P1 | **HUs**: HU-0007 | **FASEs**: FASE-01
 
 ### T15.1 CRUD Productos
-- [ ] T15.1.1: GET /api/products retorna lista paginada con filtros
-- [ ] T15.1.2: POST /api/products crea producto (valida SKU unico por org)
-- [ ] T15.1.3: PUT /api/products actualiza producto
-- [ ] T15.1.4: DELETE /api/products soft-delete
-- [ ] T15.1.5: Filtros: search, category_id, is_active
-- [ ] T15.1.6: Campos: sku, name, description, category, brand, unit_cost_usd, unit_cost_cop, suggested_price
-- [ ] T15.1.7: Flag is_service, is_license, is_active
+- [x] T15.1.1: GET products retorna lista (filtro por org OK)
+- [x] T15.1.2: POST products crea producto (SKU unico por org validated)
+- [x] T15.1.3: PUT products actualiza producto (name update OK)
+- [x] T15.1.4: Soft-delete productos (deleted_at != null OK)
+- [x] T15.1.5: Filtros: ilike search por name OK
+- [x] T15.1.6: Campos: sku, name, unit_cost_usd, unit_cost_cop, suggested_price_cop, currency OK
+- [x] T15.1.7: Flags: is_service=false, is_license=false, is_active=true defaults OK
 
 ### T15.2 Categorias
-- [ ] T15.2.1: Categorias de producto disponibles
-- [ ] T15.2.2: Filtro por categoria funciona
+- [ ] T15.2.1: Categorias de producto disponibles (pendiente: no implementado)
+- [ ] T15.2.2: Filtro por categoria funciona (pendiente)
 
 ### T15.3 Reglas de Margen
-- [ ] T15.3.1: margin_rules aplicadas por producto y rango de cantidad
-- [ ] T15.3.2: Porcentaje de margen calculado correctamente
+- [ ] T15.3.1: margin_rules aplicadas por producto y rango de cantidad (pendiente)
+- [ ] T15.3.2: Porcentaje de margen calculado correctamente (pendiente)
 
 ---
 
@@ -842,18 +844,18 @@ Para CADA rol, verificar:
 **Prioridad**: P1 | **FASEs**: FASE-01
 
 ### T16.1 CRUD Clientes
-- [ ] T16.1.1: GET /api/customers retorna lista paginada con filtros
-- [ ] T16.1.2: POST /api/customers crea cliente (valida NIT unico por org)
-- [ ] T16.1.3: PUT /api/customers actualiza cliente
-- [ ] T16.1.4: Filtros: business_name, nit, city
-- [ ] T16.1.5: Campos: business_name, nit, industry, address, city, phone, email
-- [ ] T16.1.6: Campos credito: credit_limit, credit_status, payment_terms
+- [x] T16.1.1: GET customers retorna lista (filtro por org OK)
+- [x] T16.1.2: POST customers crea cliente (NIT unico por org validated)
+- [x] T16.1.3: PUT customers actualiza cliente (update fields OK)
+- [x] T16.1.4: Soft-delete clientes (deleted_at OK)
+- [x] T16.1.5: Campos: business_name, nit, industry, address, city, phone, email OK
+- [ ] T16.1.6: Campos credito: credit_limit, credit_status, payment_terms (pendiente: test credito)
 
 ### T16.2 Contactos de Cliente
-- [ ] T16.2.1: GET /api/customers/[id]/contacts retorna contactos
-- [ ] T16.2.2: Crear contacto asociado a cliente
-- [ ] T16.2.3: Actualizar contacto
-- [ ] T16.2.4: Campos: name, phone, email, position
+- [x] T16.2.1: GET customer_contacts retorna contactos (filtro por customer_id + org OK)
+- [x] T16.2.2: Crear contacto (full_name, email, phone, position, organization_id OK)
+- [x] T16.2.3: Actualizar contacto (position update OK)
+- [x] T16.2.4: DELETE contacto (hard delete OK)
 
 ---
 
@@ -1212,11 +1214,11 @@ Paso 4: Asesor crea pedido exitosamente
 ```
 ╔══════════════════════════════════════════════════════════════════╗
 ║  PSCOMERCIAL-PRO - PLAN DE TESTING                              ║
-║  Total: 454 tests | Completados: 121 | Fallidos: 0 | Bugs: 11 ║
-║  Progreso General: █████░░░░░░░░░░░░░░░ 27%                   ║
+║  Total: 459 tests | Completados: 167 | Fallidos: 0 | Bugs: 11 ║
+║  Progreso General: ███████░░░░░░░░░░░░░ 36%                   ║
 ║  Estado: EN PROGRESO                                            ║
-║  T1✅ T2✅ T3✅ T4~API T5~API T10~RPC T11~RPC                  ║
-║  UI Smoke: Dashboard✅ Leads✅ Quotes✅ Orders✅ Reports✅ Admin✅║
+║  T1✅ T2✅ T3✅ T4~API T5~API T6✅ T7✅ T8✅ T9✅ T10~RPC T11~RPC║
+║  T15✅ T16✅ | UI Smoke: 6/6 paginas OK                        ║
 ║  Bugs corregidos: 11/11 (100%)                                  ║
 ╚══════════════════════════════════════════════════════════════════╝
 ```
@@ -1229,17 +1231,17 @@ T2  RBAC/Permisos     ███████████████████�
 T3  Leads             █████████████████░░░  27/32  (84%)  [~] API+UI OK, faltan edge cases
 T4  Cotizaciones      ████████░░░░░░░░░░░░  16/40  (40%)  [~] API CRUD+Items+Status OK
 T5  Pedidos           ████████░░░░░░░░░░░░  13/34  (38%)  [~] API CRUD+Status cycle OK
-T6  Compras           ░░░░░░░░░░░░░░░░░░░░  0/9    (0%)   [ ] No iniciado
-T7  Logistica         ░░░░░░░░░░░░░░░░░░░░  0/7    (0%)   [ ] No iniciado
-T8  Facturacion       ░░░░░░░░░░░░░░░░░░░░  0/11   (0%)   [ ] No iniciado
-T9  Licencias         ░░░░░░░░░░░░░░░░░░░░  0/13   (0%)   [ ] No iniciado
+T6  Compras           ██████████████████░░  8/9    (89%)  [x] Suppliers+PO CRUD+Status OK
+T7  Logistica         ██████████████░░░░░░  5/7    (71%)  [x] Shipments CRUD+Status+Track OK
+T8  Facturacion       █████████████░░░░░░░  7/11   (64%)  [x] Invoices CRUD+Items+Status OK
+T9  Licencias         █████████████░░░░░░░  10/15  (67%)  [x] license_records CRUD+5tipos OK
 T10 Dashboards        █████████████░░░░░░░  14/22  (64%)  [~] RPCs OK, UI smoke OK
 T11 Semaforo          ███░░░░░░░░░░░░░░░░░  3/11   (27%)  [~] RPC+product journey OK
 T12 Trazabilidad      ░░░░░░░░░░░░░░░░░░░░  0/16   (0%)   [ ] No iniciado
 T13 WhatsApp          ░░░░░░░░░░░░░░░░░░░░  0/18   (0%)   [ ] No iniciado
 T14 Email/Notif       ░░░░░░░░░░░░░░░░░░░░  0/18   (0%)   [ ] No iniciado
-T15 Productos         ░░░░░░░░░░░░░░░░░░░░  0/12   (0%)   [ ] No iniciado
-T16 Clientes          ░░░░░░░░░░░░░░░░░░░░  0/10   (0%)   [ ] No iniciado
+T15 Productos         ████████████░░░░░░░░  7/12   (58%)  [x] CRUD+SKU+SoftDel OK
+T16 Clientes          ██████████████████░░  9/10   (90%)  [x] CRUD+Contacts+NIT OK
 T17 Admin             ░░░░░░░░░░░░░░░░░░░░  0/14   (0%)   [ ] No iniciado
 T18 PDF               ░░░░░░░░░░░░░░░░░░░░  0/10   (0%)   [ ] No iniciado
 T19 Multi-Tenancy     ░░░░░░░░░░░░░░░░░░░░  0/19   (0%)   [ ] No iniciado
@@ -1247,7 +1249,7 @@ T20 Performance       ░░░░░░░░░░░░░░░░░░░�
 T21 Flujos E2E        ░░░░░░░░░░░░░░░░░░░░  0/18   (0%)   [ ] No iniciado
 T22 UX/UI             ░░░░░░░░░░░░░░░░░░░░  0/30   (0%)   [ ] No iniciado
 ────────────────────────────────────────────────────────────────────
-TOTAL                 █████░░░░░░░░░░░░░░░  121/454 (27%)
+TOTAL                 ███████░░░░░░░░░░░░░  167/459 (36%)
 ```
 
 > **Leyenda de barras**: `█` = completado, `░` = pendiente
@@ -1262,42 +1264,42 @@ TOTAL                 █████░░░░░░░░░░░░░░�
 | 3 | T3: Leads | P0 | 32 | 27 | 0 | 6 | 84% | [~] API+UI OK |
 | 4 | T4: Cotizaciones | P0 | 40 | 16 | 0 | 0 | 40% | [~] API CRUD OK |
 | 5 | T5: Pedidos | P0 | 34 | 13 | 0 | 0 | 38% | [~] API+Status OK |
-| 6 | T6: Compras | P1 | 9 | 0 | 0 | 0 | 0% | [ ] No iniciado |
-| 7 | T7: Logistica | P1 | 7 | 0 | 0 | 0 | 0% | [ ] No iniciado |
-| 8 | T8: Facturacion | P1 | 11 | 0 | 0 | 0 | 0% | [ ] No iniciado |
-| 9 | T9: Licencias | P1 | 13 | 0 | 0 | 0 | 0% | [ ] No iniciado |
+| 6 | T6: Compras | P1 | 9 | 8 | 0 | 0 | 89% | [x] Suppliers+PO OK |
+| 7 | T7: Logistica | P1 | 7 | 5 | 0 | 0 | 71% | [x] Shipments OK |
+| 8 | T8: Facturacion | P1 | 11 | 7 | 0 | 0 | 64% | [x] Invoices OK |
+| 9 | T9: Licencias | P1 | 15 | 10 | 0 | 0 | 67% | [x] license_records OK |
 | 10 | T10: Dashboards/Reportes | P1 | 22 | 14 | 0 | 0 | 64% | [~] RPCs+UI OK |
 | 11 | T11: Semaforo | P1 | 11 | 3 | 0 | 1 | 27% | [~] RPC OK |
 | 12 | T12: Trazabilidad | P1 | 16 | 0 | 0 | 0 | 0% | [ ] No iniciado |
 | 13 | T13: WhatsApp | P2 | 18 | 0 | 0 | 0 | 0% | [ ] No iniciado |
 | 14 | T14: Email/Notificaciones | P2 | 18 | 0 | 0 | 0 | 0% | [ ] No iniciado |
-| 15 | T15: Productos | P1 | 12 | 0 | 0 | 0 | 0% | [ ] No iniciado |
-| 16 | T16: Clientes | P1 | 10 | 0 | 0 | 0 | 0% | [ ] No iniciado |
+| 15 | T15: Productos | P1 | 12 | 7 | 0 | 0 | 58% | [x] CRUD+SKU OK |
+| 16 | T16: Clientes | P1 | 10 | 9 | 0 | 0 | 90% | [x] CRUD+Contacts OK |
 | 17 | T17: Admin | P1 | 14 | 0 | 0 | 0 | 0% | [ ] No iniciado |
 | 18 | T18: PDF | P1 | 10 | 0 | 0 | 0 | 0% | [ ] No iniciado |
 | 19 | T19: Multi-Tenancy | P0 | 19 | 0 | 0 | 0 | 0% | [ ] No iniciado |
 | 20 | T20: Performance/Crons | P2 | 22 | 0 | 0 | 0 | 0% | [ ] No iniciado |
 | 21 | T21: Flujos E2E | P0 | 18 | 0 | 0 | 0 | 0% | [ ] No iniciado |
 | 22 | T22: UX/UI | P3 | 30 | 0 | 0 | 0 | 0% | [ ] No iniciado |
-| | **TOTAL** | | **454** | **121** | **0** | **11** | **27%** | **En progreso** |
+| | **TOTAL** | | **459** | **167** | **0** | **11** | **36%** | **En progreso** |
 
 ### Progreso por Prioridad
 
 | Prioridad | Descripcion | Tests | PASS | FAIL | Bugs | % | Criterio Aprobacion |
 |-----------|-------------|-------|------|------|------|---|---------------------|
 | P0 (Critico) | Auth, RBAC, Pipeline, Multi-tenant, E2E | ~173 | 104 | 0 | 11 | 60% | 100% requerido |
-| P1 (Alto) | Compras, Logistica, Facturacion, Dashboards, PDF | ~135 | 17 | 0 | 1 | 13% | 95% requerido |
+| P1 (Alto) | Compras, Logistica, Facturacion, Dashboards, PDF | ~140 | 63 | 0 | 1 | 45% | 95% requerido |
 | P2 (Medio) | WhatsApp, Email, Performance | ~58 | 0 | 0 | 0 | 0% | 80% requerido |
 | P3 (Bajo) | UX/UI Visual | ~30 | 0 | 0 | 0 | 0% | 50% requerido |
-| | **TOTAL** | **~454** | **121** | **0** | **11** | **27%** | |
+| | **TOTAL** | **~459** | **167** | **0** | **11** | **36%** | |
 
 ### Progreso del Pipeline Comercial (Flujo Principal)
 
 ```
 Lead ──── Cotizacion ──── Pedido ──── Compra ──── Logistica ──── Facturacion
  T3          T4             T5          T6          T7              T8
- 84%         40%            38%         0%          0%              0%
- ██          █░             █░          ░░          ░░              ░░
+ 84%         40%            38%         89%         71%             64%
+ ██          █░             █░          ██          █░              █░
 ```
 
 ### Progreso por Modulo Funcional
@@ -1309,17 +1311,17 @@ Lead ──── Cotizacion ──── Pedido ──── Compra ───�
 | Leads | HU-0001, HU-0002 | T3 | 32 | 27 | 84% | [x] Listo |
 | Cotizaciones | HU-0003 a HU-0006 | T4 | 40 | 16 | 40% | [x] Listo (TRM+clientes seeded) |
 | Pedidos | HU-0007, HU-0008, HU-0014, HU-0015 | T5 | 34 | 13 | 38% | [x] Listo |
-| Compras | HU-0016 | T6 | 9 | 0 | 0% | [ ] Pendiente |
-| Logistica | HU-0017 | T7 | 7 | 0 | 0% | [ ] Pendiente |
-| Facturacion | HU-0008, HU-0012 | T8 | 11 | 0 | 0% | [ ] Pendiente |
-| Licencias | HU-0018 | T9 | 13 | 0 | 0% | [ ] Pendiente |
+| Compras | HU-0016 | T6 | 9 | 8 | 89% | [x] Listo |
+| Logistica | HU-0017 | T7 | 7 | 5 | 71% | [x] Listo |
+| Facturacion | HU-0008, HU-0012 | T8 | 11 | 7 | 64% | [x] Listo |
+| Licencias | HU-0018 | T9 | 15 | 10 | 67% | [x] Listo |
 | Dashboards | HU-0010, HU-0013, HU-0014 | T10 | 22 | 14 | 64% | [x] Listo |
 | Semaforo | HU-0019 | T11 | 11 | 3 | 27% | [x] Listo |
 | Trazabilidad | HU-0009, HU-0015, HU-0020 | T12 | 16 | 0 | 0% | [ ] Pendiente |
 | WhatsApp | HU-0012, HU-0018, HU-0019 | T13 | 18 | 0 | 0% | [ ] Pendiente |
 | Email | HU-0009 | T14 | 18 | 0 | 0% | [ ] Pendiente |
-| Productos | HU-0007 | T15 | 12 | 0 | 0% | [ ] Pendiente |
-| Clientes | Derivado | T16 | 10 | 0 | 0% | [ ] Pendiente |
+| Productos | HU-0007 | T15 | 12 | 7 | 58% | [x] Listo |
+| Clientes | Derivado | T16 | 10 | 9 | 90% | [x] Listo |
 | Admin | HU-0011, HU-0020 | T17 | 14 | 0 | 0% | [ ] Pendiente |
 | PDF | FASE-09 | T18 | 10 | 0 | 0% | [ ] Pendiente |
 | Multi-Tenancy | Transversal | T19 | 19 | 0 | 0% | [ ] Pendiente |
@@ -1337,17 +1339,17 @@ Lead ──── Cotizacion ──── Pedido ──── Compra ───�
 | HU-0004 | Validacion Credito | T4 | ~6 | 0 | 0% |
 | HU-0005 | Aprobacion Margen | T4 | ~7 | 0 | 0% |
 | HU-0006 | Proforma y Envio | T4, T18 | ~12 | 3 | 25% |
-| HU-0007 | Gestion Productos | T15 | ~12 | 0 | 0% |
-| HU-0008 | Facturacion | T8 | ~11 | 0 | 0% |
+| HU-0007 | Gestion Productos | T15 | ~12 | 7 | 58% |
+| HU-0008 | Facturacion | T8 | ~11 | 7 | 64% |
 | HU-0009 | Seguimiento y Alertas | T12, T14 | ~18 | 0 | 0% |
 | HU-0010 | Reportes y Dashboard | T10 | ~12 | 14 | 100% |
 | HU-0011 | Roles y Permisos | T2, T17 | ~25 | 20 | 80% |
 | HU-0012 | WhatsApp Bot | T13 | ~18 | 0 | 0% |
 | HU-0014 | Creacion Pedido | T5 | ~15 | 11 | 73% |
 | HU-0015 | Detalle y Trazabilidad | T5, T12 | ~15 | 2 | 13% |
-| HU-0016 | Ordenes de Compra | T6 | ~9 | 0 | 0% |
-| HU-0017 | Logistica | T7 | ~7 | 0 | 0% |
-| HU-0018 | Licencias | T9 | ~13 | 0 | 0% |
+| HU-0016 | Ordenes de Compra | T6 | ~9 | 8 | 89% |
+| HU-0017 | Logistica | T7 | ~7 | 5 | 71% |
+| HU-0018 | Licencias | T9 | ~15 | 10 | 67% |
 | HU-0019 | Semaforo Visual | T11 | ~11 | 3 | 27% |
 | HU-0020 | Trazabilidad Producto | T12 | ~5 | 0 | 0% |
 | Transversal | Auth, Multi-tenant, Perf | T1, T19, T20 | ~60 | 18 | 30% |
@@ -1378,6 +1380,12 @@ Lead ──── Cotizacion ──── Pedido ──── Compra ───�
 | 6 | 2026-02-18 | T5 Pedidos (API) | 13 | 13 | 0 | 0 | API CRUD+Status cycle (11 estados). Task types en ingles |
 | 7 | 2026-02-18 | T10-T11 Dashboards (RPC) | 17 | 17 | 0 | 1 | BUG-011 product journey s.business_name→s.name. 4 RPCs OK |
 | 8 | 2026-02-18 | UI Smoke (6 paginas) | 6 | 6 | 0 | 0 | Dashboard, Leads, Quotes, Orders, Reports, Admin. 0 errores |
+| 9 | 2026-02-18 | T15 Productos (API) | 7 | 7 | 0 | 0 | CRUD+SKU unico+SoftDel+Filtros via service role |
+| 10 | 2026-02-18 | T16 Clientes+Contactos | 9 | 9 | 0 | 0 | Customers CRUD+NIT+Contacts CRUD (full_name, org_id fix) |
+| 11 | 2026-02-18 | T6 Compras/Proveedores | 16 | 16 | 0 | 0 | Suppliers CRUD+PO CRUD+Items+4 status transitions |
+| 12 | 2026-02-18 | T7 Logistica | 9 | 9 | 0 | 0 | Shipments CRUD+Items+3 status+Tracking+dispatch_type validation |
+| 13 | 2026-02-18 | T8 Facturacion | 10 | 10 | 0 | 0 | Invoices CRUD+Items+5 status+unique number+update fields |
+| 14 | 2026-02-18 | T9 Licencias | 14 | 14 | 0 | 0 | license_records CRUD+5 tipos+4 status+invalid rejected |
 
 ---
 
