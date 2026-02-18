@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 const registerInvoiceSchema = z.object({
   order_id: z.string().uuid('Pedido es requerido'),
@@ -66,11 +67,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json(data || []);
   } catch (error) {
-    console.error('Error in GET /api/invoices:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/invoices');
   }
 }
 
@@ -172,10 +169,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json(invoice, { status: 201 });
   } catch (error) {
-    console.error('Error in POST /api/invoices:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'POST /api/invoices');
   }
 }

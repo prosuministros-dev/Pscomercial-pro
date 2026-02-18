@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 import { decrypt } from '~/lib/encryption';
 import { sendTextMessage, sendTemplateMessage } from '~/lib/whatsapp/send-message';
 
@@ -185,10 +186,6 @@ export async function POST(request: NextRequest) {
       wa_message_id: waMessageId,
     });
   } catch (error) {
-    console.error('Unexpected error in POST /api/whatsapp/send:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'POST /api/whatsapp/send');
   }
 }

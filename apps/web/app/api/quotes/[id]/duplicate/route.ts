@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 /**
  * POST /api/quotes/[id]/duplicate
@@ -113,7 +114,6 @@ export async function POST(
 
     return NextResponse.json(completeQuote || newQuote, { status: 201 });
   } catch (error) {
-    console.error('Error in POST /api/quotes/[id]/duplicate:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return handleApiError(error, 'POST /api/quotes/[id]/duplicate');
   }
 }

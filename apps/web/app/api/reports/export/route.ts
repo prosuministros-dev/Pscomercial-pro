@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
-import { requireUser, AuthError } from '~/lib/require-auth';
+import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 /**
  * GET /api/reports/export?type=leads&from=...&to=...
@@ -133,13 +134,6 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    if (error instanceof AuthError) {
-      return NextResponse.json({ error: error.message }, { status: error.status });
-    }
-    console.error('Error in GET /api/reports/export:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al exportar' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/reports/export');
   }
 }

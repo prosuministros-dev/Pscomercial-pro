@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
-import { requireUser, AuthError } from '~/lib/require-auth';
+import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 /**
  * GET /api/dashboard/semaforo
@@ -29,13 +30,6 @@ export async function GET() {
 
     return NextResponse.json(data || []);
   } catch (error) {
-    if (error instanceof AuthError) {
-      return NextResponse.json({ error: error.message }, { status: error.status });
-    }
-    console.error('Error in GET /api/dashboard/semaforo:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/dashboard/semaforo');
   }
 }

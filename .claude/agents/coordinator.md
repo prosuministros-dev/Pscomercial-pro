@@ -422,8 +422,87 @@ Cuando durante la implementación se descubra que un aspecto de la arquitectura 
 6. NO implementar sin actualizar la documentación primero
 ```
 
+## 🧪 WORKFLOW DE TESTING Y CORRECCION AUTOMATIZADA (NUEVO)
+
+### Contexto
+El plan de testing completo está en `Contexto/HU/PLAN-TESTING-COMPLETO.md` (454 tests, 22 fases).
+Los datos de prueba están en `Contexto/HU/TEST-DATA-REFERENCE.md`.
+
+### Workflow: Testing -> Bug -> Fix -> Retest
+
+```markdown
+ORQUESTACION DEL CICLO DE TESTING:
+
+1. PREPARAR: @coordinator indica a @db-integration que prepare datos para la fase
+2. EJECUTAR: @coordinator indica a @testing-expert que ejecute los tests de la fase
+3. SI BUG: @testing-expert detecta bug y automaticamente invoca:
+   - @fullstack-dev (fix frontend/backend)
+   - @db-integration (fix BD/RLS/queries)
+   - @arquitecto (validar fix cumple arquitectura)
+   - @designer-ux-ui (fix UI/UX si aplica)
+4. RE-TEST: @testing-expert re-ejecuta test despues del fix
+5. ACTUALIZAR: @testing-expert actualiza PLAN-TESTING-COMPLETO.md
+6. SIGUIENTE: Pasar al siguiente test o fase
+```
+
+### Asignacion de Testing por Fase
+
+```typescript
+const TESTING_WORKFLOW = {
+  // Fase 0: Preparar datos base
+  prepare_data: ['db-integration'],
+
+  // Fases P0 (Critico)
+  t1_auth:          { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev'] },
+  t2_rbac:          { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev', 'db-integration'] },
+  t19_multitenancy: { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['db-integration', 'fullstack-dev'] },
+
+  // Fases P0 (Pipeline)
+  t3_leads:         { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev', 'db-integration', 'designer-ux-ui'] },
+  t4_cotizaciones:  { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev', 'db-integration', 'designer-ux-ui'] },
+  t5_pedidos:       { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev', 'db-integration', 'designer-ux-ui'] },
+
+  // Fases P1
+  t6_compras:       { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev', 'db-integration'] },
+  t7_logistica:     { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev', 'db-integration'] },
+  t8_facturacion:   { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev', 'db-integration'] },
+
+  // Fases P2
+  t13_whatsapp:     { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev', 'db-integration'] },
+  t14_email:        { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev'] },
+
+  // Validacion final
+  t21_e2e:          { tester: 'testing-expert', data_prep: 'db-integration', fixers: ['fullstack-dev', 'db-integration', 'arquitecto', 'designer-ux-ui'] },
+  t22_ux_ui:        { tester: 'testing-expert', data_prep: null, fixers: ['designer-ux-ui', 'fullstack-dev'] },
+};
+```
+
+### Template de Asignacion de Testing
+
+```markdown
+@db-integration: Preparar datos para FASE T[X] del plan de testing.
+Referencia: Contexto/HU/TEST-DATA-REFERENCE.md
+Plan: Contexto/HU/PLAN-TESTING-COMPLETO.md (seccion T[X])
+Confirmar cuando datos esten listos.
+
+@testing-expert: Ejecutar tests de FASE T[X] del plan de testing.
+Plan: Contexto/HU/PLAN-TESTING-COMPLETO.md (seccion T[X])
+Datos: Contexto/HU/TEST-DATA-REFERENCE.md
+App URL: http://localhost:3000
+Si detectas bugs, invoca automaticamente a los agentes de fix.
+Actualiza el plan con resultados.
+```
+
+### Monitoreo de Progreso
+
+El coordinator debe:
+1. Verificar progreso en PLAN-TESTING-COMPLETO.md (seccion 27 - Dashboard)
+2. Identificar fases bloqueadas por bugs P0
+3. Priorizar fixes de bugs P0 sobre testing de nuevas fases
+4. Reportar al usuario el % de avance general
+
 ---
 
-**Versión**: 2.0 - Alineado con Arquitectura Pscomercial-pro
-**Fecha**: 2026-02-11
+**Versión**: 3.0 - Incluye Workflow de Testing Automatizado
+**Fecha**: 2026-02-17
 **Proyecto**: Pscomercial-pro (PROSUMINISTROS)

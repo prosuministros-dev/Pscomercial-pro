@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 const dispatchSchema = z.object({
   action: z.literal('dispatch'),
@@ -49,11 +50,7 @@ export async function GET(
 
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error in GET /api/shipments/[id]:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/shipments/[id]');
   }
 }
 
@@ -188,10 +185,6 @@ export async function PATCH(
 
     return NextResponse.json({ error: 'Acción no reconocida' }, { status: 400 });
   } catch (error) {
-    console.error('Error in PATCH /api/shipments/[id]:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'PATCH /api/shipments/[id]');
   }
 }

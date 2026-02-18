@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 const createTaskSchema = z.object({
   order_item_id: z.string().uuid().optional(),
@@ -70,11 +71,7 @@ export async function GET(
 
     return NextResponse.json(data || []);
   } catch (error) {
-    console.error('Error in GET /api/orders/[id]/pending-tasks:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/orders/[id]/pending-tasks');
   }
 }
 
@@ -155,11 +152,7 @@ export async function POST(
 
     return NextResponse.json(data, { status: 201 });
   } catch (error) {
-    console.error('Error in POST /api/orders/[id]/pending-tasks:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'POST /api/orders/[id]/pending-tasks');
   }
 }
 
@@ -224,10 +217,6 @@ export async function PATCH(
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error in PATCH /api/orders/[id]/pending-tasks:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'PATCH /api/orders/[id]/pending-tasks');
   }
 }

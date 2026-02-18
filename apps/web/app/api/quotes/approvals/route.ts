@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 /**
  * GET /api/quotes/approvals
@@ -65,10 +66,6 @@ export async function GET(request: Request) {
       },
     });
   } catch (error) {
-    console.error('Error in GET /api/quotes/approvals:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/quotes/approvals');
   }
 }

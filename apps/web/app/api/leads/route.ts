@@ -3,6 +3,8 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
+import { withRateLimit } from '~/lib/with-rate-limit';
 
 // --- Zod Schemas ---
 const createLeadSchema = z.object({
@@ -34,6 +36,9 @@ const updateLeadSchema = z.object({
  * Permission required: leads:read
  */
 export async function GET(request: NextRequest) {
+  const limited = withRateLimit(request, { prefix: 'leads' });
+  if (limited) return limited;
+
   try {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
@@ -99,8 +104,7 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Unexpected error in GET /api/leads:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return handleApiError(error, 'GET /api/leads');
   }
 }
 
@@ -110,6 +114,9 @@ export async function GET(request: NextRequest) {
  * Permission required: leads:create
  */
 export async function POST(request: NextRequest) {
+  const limited = withRateLimit(request, { prefix: 'leads' });
+  if (limited) return limited;
+
   try {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
@@ -249,8 +256,7 @@ export async function POST(request: NextRequest) {
       { status: 201 },
     );
   } catch (error) {
-    console.error('Unexpected error in POST /api/leads:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return handleApiError(error, 'POST /api/leads');
   }
 }
 
@@ -260,6 +266,9 @@ export async function POST(request: NextRequest) {
  * Permission required: leads:update
  */
 export async function PUT(request: NextRequest) {
+  const limited = withRateLimit(request, { prefix: 'leads' });
+  if (limited) return limited;
+
   try {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
@@ -388,8 +397,7 @@ export async function PUT(request: NextRequest) {
 
     return NextResponse.json({ data });
   } catch (error) {
-    console.error('Unexpected error in PUT /api/leads:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return handleApiError(error, 'PUT /api/leads');
   }
 }
 
@@ -399,6 +407,9 @@ export async function PUT(request: NextRequest) {
  * Permission required: leads:delete
  */
 export async function DELETE(request: NextRequest) {
+  const limited = withRateLimit(request, { prefix: 'leads' });
+  if (limited) return limited;
+
   try {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
@@ -444,7 +455,6 @@ export async function DELETE(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Unexpected error in DELETE /api/leads:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return handleApiError(error, 'DELETE /api/leads');
   }
 }

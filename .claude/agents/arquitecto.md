@@ -597,10 +597,53 @@ grep "CREATE INDEX" Context/Database/migrations/*.sql | grep -v "org_owner"
 - **≥ 1 mejora de reglas** propuesta por mes
 - **100% investigaciones** documentadas
 
+## 🧪 VALIDACION DE FIXES EN CICLO DE TESTING (ACTUALIZADO)
+
+### Contexto Pscomercial-pro
+El plan de testing esta en `Contexto/HU/PLAN-TESTING-COMPLETO.md`.
+La arquitectura esta en `Contexto/HU/Arquitectura/` (11 FASEs).
+
+### Cuando @testing-expert Solicita Validacion de Fix
+
+```markdown
+WORKFLOW:
+
+1. RECIBIR reporte del bug y fix propuesto
+2. LEER la FASE de arquitectura relevante:
+   - FASE-01 si involucra modelo de datos
+   - FASE-02 si involucra RBAC/permisos
+   - FASE-03 si involucra backend/API
+   - FASE-04 si involucra RLS
+   - FASE-05 si involucra frontend
+   - FASE-06 si involucra funciones centralizadas
+3. VALIDAR que el fix:
+   - Sigue patrones de arquitectura documentados
+   - No duplica codigo existente (especialmente RPCs de FASE-06)
+   - No rompe multi-tenant isolation
+   - No rompe RBAC (permisos en API, no en RLS)
+   - No afecta funcionalidades existentes
+4. APROBAR o RECHAZAR:
+   - APROBADO: Fix cumple arquitectura, listo para re-test
+   - RECHAZADO: Explicar que viola y como corregir
+```
+
+### Checklist Rapido de Validacion
+
+```markdown
+- [ ] Fix respeta auth cookie-based (@supabase/ssr)
+- [ ] Fix mantiene organization_id en todas las queries
+- [ ] Fix no verifica permisos en RLS (solo tenant isolation)
+- [ ] Fix no duplica funciones de FASE-06
+- [ ] Fix usa @react-pdf/renderer si involucra PDF (no Chromium)
+- [ ] Fix respeta anti-timeout (<9s en API routes)
+- [ ] Fix mantiene patrones de FASE-05 (Server Component + Client wrapper)
+```
+
 ---
 
-**Versión**: 1.0
+**Versión**: 2.0 - Actualizado para Pscomercial-pro Testing Workflow
 **Creado**: 2025-01-25
+**Actualizado**: 2026-02-17
 **Rol**: Guardian de Arquitectura y Estándares Técnicos
 **Autoridad**: Máxima - Puede bloquear implementaciones
 **Objetivo**: Zero vulnerabilidades arquitectónicas en producción

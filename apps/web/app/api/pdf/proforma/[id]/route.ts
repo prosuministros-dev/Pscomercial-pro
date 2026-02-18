@@ -4,6 +4,7 @@ import { renderToBuffer } from '@react-pdf/renderer';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 import { ProformaPdfTemplate } from '~/lib/pdf/proforma-pdf-template';
 import type { QuoteForPdf, OrgForPdf } from '~/lib/pdf/pdf-types';
 
@@ -162,10 +163,6 @@ export async function GET(
       fileName,
     });
   } catch (error) {
-    console.error('Error in GET /api/pdf/proforma/[id]:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al generar el PDF' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/pdf/proforma/[id]');
   }
 }

@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 const clientResponseSchema = z.object({
   response: z.enum(['accepted', 'changes_requested', 'rejected']),
@@ -96,10 +97,6 @@ export async function PATCH(
       newStatus: updateData.status || quote.status,
     });
   } catch (error) {
-    console.error('Error in PATCH /api/quotes/[id]/client-response:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'PATCH /api/quotes/[id]/client-response');
   }
 }

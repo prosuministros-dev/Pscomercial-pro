@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 // --- Zod Schema ---
 const updateStatusSchema = z.object({
@@ -90,11 +91,7 @@ export async function GET(
       destinations: destinations || [],
     });
   } catch (error) {
-    console.error('Error in GET /api/orders/[id]/status:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/orders/[id]/status');
   }
 }
 
@@ -173,10 +170,6 @@ export async function PATCH(
 
     return NextResponse.json(updatedOrder);
   } catch (error) {
-    console.error('Error in PATCH /api/orders/[id]/status:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'PATCH /api/orders/[id]/status');
   }
 }

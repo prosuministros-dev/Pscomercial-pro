@@ -4,6 +4,7 @@ import crypto from 'crypto';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 import { encrypt } from '~/lib/encryption';
 
 // --- Zod Schema ---
@@ -212,10 +213,6 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    console.error('Unexpected error in POST /api/whatsapp/setup:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'POST /api/whatsapp/setup');
   }
 }

@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 // --- Zod Schemas ---
 const createQuoteSchema = z.object({
@@ -120,11 +121,7 @@ export async function GET(request: Request) {
       },
     });
   } catch (error) {
-    console.error('Error in GET /api/quotes:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/quotes');
   }
 }
 
@@ -231,11 +228,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(quote, { status: 201 });
   } catch (error) {
-    console.error('Error in POST /api/quotes:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'POST /api/quotes');
   }
 }
 
@@ -335,11 +328,7 @@ export async function PUT(request: Request) {
 
     return NextResponse.json(quote);
   } catch (error) {
-    console.error('Error in PUT /api/quotes:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'PUT /api/quotes');
   }
 }
 
@@ -388,10 +377,6 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error in DELETE /api/quotes:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'DELETE /api/quotes');
   }
 }

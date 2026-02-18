@@ -24,6 +24,24 @@ export async function checkPermission(
   const client = getSupabaseServerClient();
 
   try {
+    // Fast path: if the user has the super_admin role, grant all permissions.
+    // This is a defense-in-depth measure -- even if role_permissions rows are
+    // missing for a new organization, super admins are never locked out.
+    const { data: roles, error: rolesError } = await client.rpc('get_user_roles', {
+      p_user_id: userId,
+    });
+
+    if (!rolesError && roles) {
+      const isSuperAdmin = roles.some(
+        (r: { role_slug: string }) => r.role_slug === 'super_admin',
+      );
+
+      if (isSuperAdmin) {
+        return true;
+      }
+    }
+
+    // Standard path: check via role_permissions mapping
     const { data, error } = await client.rpc('get_user_permissions', {
       p_user_id: userId,
     });

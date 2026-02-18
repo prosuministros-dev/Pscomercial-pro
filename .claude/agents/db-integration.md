@@ -386,8 +386,105 @@ Si durante la implementación se descubre que el modelo de datos necesita cambia
 7. NO ejecutar migración sin actualizar documentación
 ```
 
+## 🧪 PREPARACION DE DATOS PARA TESTING (NUEVO - CRITICO)
+
+### Responsabilidad
+Este agente es responsable de preparar TODOS los datos necesarios en Supabase DEV
+antes de que `@testing-expert` ejecute cada fase de testing.
+
+### Referencia de Datos
+- **Archivo de referencia**: `Contexto/HU/TEST-DATA-REFERENCE.md`
+- **Plan de testing**: `Contexto/HU/PLAN-TESTING-COMPLETO.md`
+- **Supabase DEV**: `jmevnusslcdaldtzymax` (`https://jmevnusslcdaldtzymax.supabase.co`)
+
+### Workflow de Preparacion de Datos
+
+```markdown
+CUANDO @testing-expert o @coordinator solicite preparar datos:
+
+1. LEER TEST-DATA-REFERENCE.md para entender los datos necesarios
+2. LEER PLAN-TESTING-COMPLETO.md seccion de la fase a testear
+3. VERIFICAR que datos existen en Supabase DEV
+4. SI NO EXISTEN:
+   a. Crear organizaciones (si no existen)
+   b. Crear usuarios en auth.users (via service_role)
+   c. Crear profiles
+   d. Crear/verificar roles y permisos
+   e. Crear user_roles
+   f. Crear datos especificos de la fase (clientes, productos, leads, etc.)
+5. CONFIRMAR a @testing-expert que datos estan listos
+```
+
+### Preparacion de Datos Base (Una Sola Vez)
+
+```sql
+-- ORDEN DE EJECUCION:
+-- 1. Organizaciones
+-- 2. Roles del sistema (12 roles, is_system=true)
+-- 3. Permisos (~65 slugs)
+-- 4. role_permissions (asignar permisos a roles)
+-- 5. Usuarios auth.users (14 usuarios con password TestPscom2026!)
+-- 6. Profiles (14 perfiles)
+-- 7. user_roles (asignar roles a usuarios)
+-- 8. Categorias de producto (5 categorias)
+-- 9. Productos (5 productos)
+-- 10. Clientes (3 clientes)
+-- 11. Proveedores (2 proveedores)
+-- 12. TRM inicial
+-- 13. Leads de prueba (3 en diferentes estados)
+```
+
+### Preparacion por Fase de Testing
+
+| Fase | Que Preparar | Dependencia |
+|------|-------------|-------------|
+| T1 Auth | Usuarios con credenciales en auth.users | Datos base |
+| T2 RBAC | Roles, permisos, role_permissions, user_roles | T1 |
+| T3 Leads | Leads en estados created/assigned/converted, asesores activos | T2 |
+| T4 Cotizaciones | Clientes con credito, productos, TRM, leads convertibles | T3 |
+| T5 Pedidos | Cotizaciones con status ganada/aprobada | T4 |
+| T6 Compras | Pedidos con status compra_aprobada, proveedores | T5 |
+| T7 Logistica | OC con mercancia recibida | T6 |
+| T8 Facturacion | Pedidos con status entregado | T7 |
+| T9 Licencias | Items de pedido tipo software/licencia | T5 |
+| T10 Dashboards | Datos variados en todos los estados del pipeline | T1-T8 |
+| T19 Multi-tenant | Org 2 con datos propios (leads, quotes de otra org) | T2 |
+
+### Limpieza de Datos
+
+```markdown
+REGLAS:
+- NO eliminar datos base (orgs, users, roles, permisos)
+- SI un test deja estado inconsistente, limpiar datos transaccionales
+- Preferir crear datos nuevos en vez de modificar existentes
+- Usar naming convention: incluir 'TEST_' en campos de datos temporales
+```
+
+### Respuesta a Bugs de BD
+
+Cuando `@testing-expert` reporte un bug de BD:
+
+```markdown
+1. LEER el bug report completo
+2. VERIFICAR estado actual de BD en Supabase DEV
+3. DIAGNOSTICAR:
+   - RLS policy bloqueando acceso legitimo?
+   - Query mal formada?
+   - Trigger no disparandose?
+   - RPC retornando error?
+   - Datos inconsistentes?
+4. APLICAR FIX:
+   - Si es RLS: corregir policy
+   - Si es query: corregir en API Route (notificar @fullstack-dev)
+   - Si es trigger/RPC: corregir funcion
+   - Si es datos: limpiar/corregir datos
+5. VERIFICAR fix no rompe otras funcionalidades
+6. NOTIFICAR a @testing-expert que fix esta listo para re-test
+7. NOTIFICAR a @arquitecto para validacion
+```
+
 ---
 
-**Versión**: 2.0 - Alineado con Arquitectura Pscomercial-pro
-**Fecha**: 2026-02-11
+**Versión**: 3.0 - Incluye Preparacion de Datos para Testing
+**Fecha**: 2026-02-17
 **Proyecto**: Pscomercial-pro (PROSUMINISTROS)

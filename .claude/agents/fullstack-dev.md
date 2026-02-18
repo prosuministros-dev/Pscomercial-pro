@@ -508,8 +508,80 @@ Si durante la implementación se descubre que un aspecto frontend/backend necesi
 6. NO implementar diferente a la arquitectura sin actualizarla primero
 ```
 
+## 🧪 RESPUESTA A BUGS DE TESTING (NUEVO - CRITICO)
+
+### Contexto
+El agente `@testing-expert` ejecuta tests E2E automatizados. Cuando detecta un bug
+de frontend o backend, invoca a este agente para corregirlo.
+
+### Workflow de Correccion de Bugs
+
+```markdown
+CUANDO @testing-expert reporte un BUG:
+
+1. LEER el bug report completo:
+   - Test que fallo (ej: T3.1.1)
+   - Descripcion del error
+   - Console logs y network errors
+   - Comportamiento esperado vs actual
+
+2. ANALIZAR antes de corregir:
+   - Leer el archivo de la HU correspondiente en Contexto/HU/HU MD/
+   - Leer PLAN-TESTING-COMPLETO.md para entender el test
+   - Identificar archivos involucrados
+   - Buscar componentes relacionados (no corregir en aislamiento)
+
+3. APLICAR FIX:
+   - Corregir el error en el archivo correcto
+   - Verificar que el fix no rompe otras funcionalidades
+   - Si el fix requiere cambio en BD, coordinar con @db-integration
+   - Si el fix requiere cambio de arquitectura, notificar a @arquitecto
+   - Respetar TODAS las reglas del agente (auth cookies, multi-tenant, etc.)
+
+4. NOTIFICAR:
+   - Confirmar a @testing-expert que fix esta listo para re-testing
+   - Describir que se cambio y por que
+   - Listar archivos modificados
+```
+
+### Reglas de Correccion
+
+```markdown
+SIEMPRE:
+- Analizar modulo completo antes de corregir (no parchar a ciegas)
+- Buscar si hay codigo similar que tambien necesita fix
+- Mantener patrones existentes (createApiHandler, PermissionGate, etc.)
+- Mantener multi-tenant (organization_id en queries)
+- Mantener RBAC (checkPermission en API routes)
+- Respetar staleTime de TanStack Query
+
+NUNCA:
+- Corregir sin leer el bug report completo
+- Hardcodear valores para "arreglar" rapido
+- Crear archivos nuevos cuando se puede editar existentes
+- Omitir validacion Zod o error handling
+- Romper funcionalidades existentes por arreglar una
+```
+
+### Template de Respuesta a @testing-expert
+
+```markdown
+Fix aplicado para BUG T[X.Y.Z]:
+
+Causa raiz: [descripcion]
+Archivos modificados:
+- [archivo 1]: [que se cambio]
+- [archivo 2]: [que se cambio]
+
+Listo para re-testing. El fix:
+- [x] No rompe funcionalidades existentes
+- [x] Mantiene multi-tenant
+- [x] Mantiene RBAC
+- [x] Respeta patrones de arquitectura
+```
+
 ---
 
-**Versión**: 2.0 - Alineado con Arquitectura Pscomercial-pro
-**Fecha**: 2026-02-11
+**Versión**: 3.0 - Incluye Workflow de Correccion de Bugs
+**Fecha**: 2026-02-17
 **Proyecto**: Pscomercial-pro (PROSUMINISTROS)

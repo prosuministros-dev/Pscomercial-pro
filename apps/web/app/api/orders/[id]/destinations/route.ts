@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 const destinationSchema = z.object({
   delivery_address: z.string().min(1, 'Dirección de entrega es requerida'),
@@ -59,11 +60,7 @@ export async function GET(
 
     return NextResponse.json(data || []);
   } catch (error) {
-    console.error('Error in GET /api/orders/[id]/destinations:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/orders/[id]/destinations');
   }
 }
 
@@ -138,11 +135,7 @@ export async function POST(
 
     return NextResponse.json(dest, { status: 201 });
   } catch (error) {
-    console.error('Error in POST /api/orders/[id]/destinations:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'POST /api/orders/[id]/destinations');
   }
 }
 
@@ -217,11 +210,7 @@ export async function PUT(
 
     return NextResponse.json(dest);
   } catch (error) {
-    console.error('Error in PUT /api/orders/[id]/destinations:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'PUT /api/orders/[id]/destinations');
   }
 }
 
@@ -278,10 +267,6 @@ export async function DELETE(
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error in DELETE /api/orders/[id]/destinations:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'DELETE /api/orders/[id]/destinations');
   }
 }

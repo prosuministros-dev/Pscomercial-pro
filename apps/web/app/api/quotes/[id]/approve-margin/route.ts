@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 // --- Zod Schemas ---
 const requestApprovalSchema = z.object({
@@ -79,11 +80,7 @@ export async function POST(
 
     return NextResponse.json({ success: true, approval }, { status: 201 });
   } catch (error) {
-    console.error('Error in POST /api/quotes/[id]/approve-margin:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'POST /api/quotes/[id]/approve-margin');
   }
 }
 
@@ -219,11 +216,7 @@ export async function PATCH(
       quote: updatedQuote,
     });
   } catch (error) {
-    console.error('Error in PATCH /api/quotes/[id]/approve-margin:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'PATCH /api/quotes/[id]/approve-margin');
   }
 }
 
@@ -275,10 +268,6 @@ export async function GET(
 
     return NextResponse.json({ data: approvals || [] });
   } catch (error) {
-    console.error('Error in GET /api/quotes/[id]/approve-margin:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/quotes/[id]/approve-margin');
   }
 }

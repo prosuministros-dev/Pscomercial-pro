@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 /**
  * GET /api/whatsapp/conversations/[id]/messages
@@ -97,10 +98,6 @@ export async function GET(
       },
     });
   } catch (error) {
-    console.error('Unexpected error in GET /api/whatsapp/conversations/[id]/messages:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/whatsapp/conversations/[id]/messages');
   }
 }

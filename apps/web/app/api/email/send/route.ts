@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
-import { requireUser, AuthError } from '~/lib/require-auth';
+import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 import { sendEmail } from '~/lib/email/send-email';
+import { withRateLimit } from '~/lib/with-rate-limit';
 
 // --- Zod Schema ---
 const sendEmailSchema = z.object({
@@ -47,6 +49,9 @@ function applyTemplate(
  * for verifying their own permissions before invoking this endpoint.
  */
 export async function POST(request: NextRequest) {
+  const limited = withRateLimit(request, { tier: 'email', prefix: 'email:send' });
+  if (limited) return limited;
+
   try {
     const client = getSupabaseServerClient();
     const user = await requireUser(client);
@@ -140,17 +145,6 @@ export async function POST(request: NextRequest) {
       error: result.error,
     });
   } catch (error) {
-    if (error instanceof AuthError) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.status },
-      );
-    }
-
-    console.error('Error in POST /api/email/send:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al enviar email' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'POST /api/email/send');
   }
 }

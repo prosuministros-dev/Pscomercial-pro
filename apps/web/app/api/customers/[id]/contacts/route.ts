@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 
 // --- Zod Schemas ---
 const createContactSchema = z.object({
@@ -70,8 +71,7 @@ export async function GET(
 
     return NextResponse.json({ data });
   } catch (error) {
-    console.error('Unexpected error in GET /api/customers/[id]/contacts:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return handleApiError(error, 'GET /api/customers/[id]/contacts');
   }
 }
 
@@ -146,8 +146,7 @@ export async function POST(
 
     return NextResponse.json({ data }, { status: 201 });
   } catch (error) {
-    console.error('Unexpected error in POST /api/customers/[id]/contacts:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return handleApiError(error, 'POST /api/customers/[id]/contacts');
   }
 }
 
@@ -237,8 +236,7 @@ export async function PUT(
 
     return NextResponse.json({ data });
   } catch (error) {
-    console.error('Unexpected error in PUT /api/customers/[id]/contacts:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return handleApiError(error, 'PUT /api/customers/[id]/contacts');
   }
 }
 
@@ -305,7 +303,6 @@ export async function DELETE(
 
     return NextResponse.json({ message: 'Contacto eliminado exitosamente' });
   } catch (error) {
-    console.error('Unexpected error in DELETE /api/customers/[id]/contacts:', error);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return handleApiError(error, 'DELETE /api/customers/[id]/contacts');
   }
 }

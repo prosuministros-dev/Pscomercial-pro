@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 import { sendEmail } from '~/lib/email/send-email';
 
 const sendQuoteSchema = z.object({
@@ -132,11 +133,7 @@ export async function POST(
       error: emailResult.error,
     });
   } catch (error) {
-    console.error('Error in POST /api/quotes/[id]/send:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al enviar' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'POST /api/quotes/[id]/send');
   }
 }
 

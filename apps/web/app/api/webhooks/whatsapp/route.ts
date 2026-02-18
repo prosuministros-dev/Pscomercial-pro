@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseServerAdminClient } from '@kit/supabase/server-admin-client';
 import { verifyWebhookSignature } from '~/lib/whatsapp/verify-signature';
 import { processWithChatbot } from '~/lib/whatsapp/chatbot';
+import { withRateLimit } from '~/lib/with-rate-limit';
 
 // ---------------------------------------------------------------------------
 // Types for Meta webhook payload
@@ -88,6 +89,9 @@ export async function GET(request: NextRequest) {
 // ---------------------------------------------------------------------------
 
 export async function POST(request: NextRequest) {
+  const limited = withRateLimit(request, { tier: 'webhook', prefix: 'webhook:whatsapp' });
+  if (limited) return limited;
+
   try {
     // ------------------------------------------------------------------
     // 1. Verify webhook signature

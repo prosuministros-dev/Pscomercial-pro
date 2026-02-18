@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
-import { requireUser, AuthError } from '~/lib/require-auth';
+import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 import { z } from 'zod';
 
 const saveReportSchema = z.object({
@@ -39,14 +40,7 @@ export async function GET() {
 
     return NextResponse.json(data);
   } catch (error) {
-    if (error instanceof AuthError) {
-      return NextResponse.json({ error: error.message }, { status: error.status });
-    }
-    console.error('Error in GET /api/reports/saved:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/reports/saved');
   }
 }
 
@@ -93,14 +87,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(data, { status: 201 });
   } catch (error) {
-    if (error instanceof AuthError) {
-      return NextResponse.json({ error: error.message }, { status: error.status });
-    }
-    console.error('Error in POST /api/reports/saved:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'POST /api/reports/saved');
   }
 }
 
@@ -137,13 +124,6 @@ export async function DELETE(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    if (error instanceof AuthError) {
-      return NextResponse.json({ error: error.message }, { status: error.status });
-    }
-    console.error('Error in DELETE /api/reports/saved:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'DELETE /api/reports/saved');
   }
 }

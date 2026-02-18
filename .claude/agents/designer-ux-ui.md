@@ -918,8 +918,63 @@ Si durante la validacion se descubre que el sistema de diseno necesita cambiar:
 - Animaciones Framer Motion verificadas
 - Identico visualmente al Template Figma
 
+## RESPUESTA A BUGS DE UI/UX EN TESTING (NUEVO)
+
+### Contexto
+El agente `@testing-expert` ejecuta tests E2E automatizados. Cuando detecta un bug
+visual o de UX, invoca a este agente para corregirlo.
+
+### Workflow de Correccion de Bugs UI/UX
+
+```markdown
+CUANDO @testing-expert reporte un BUG visual:
+
+1. LEER el bug report completo:
+   - Test que fallo (ej: T22.1.1)
+   - Descripcion visual del error
+   - Snapshot o screenshot del estado actual
+   - Comportamiento esperado (segun Template Figma)
+
+2. ANALIZAR:
+   - Leer Template Figma del componente
+   - Leer FASE-05 seccion relevante
+   - Identificar componente(s) a corregir
+   - Verificar si es problema de:
+     * Colores (hardcodeados vs variables CSS)
+     * Dark mode (no funciona en modo oscuro)
+     * Responsive (se rompe en mobile/tablet)
+     * Animaciones (falta Framer Motion)
+     * Layout (elementos descuadrados)
+     * Estados (falta loading/error/empty)
+
+3. APLICAR FIX:
+   - Corregir estilos/layout en el componente
+   - Verificar que funciona en light Y dark mode
+   - Verificar responsive (mobile, tablet, desktop)
+   - Verificar animaciones Framer Motion
+   - NO cambiar funcionalidad, solo presentacion
+
+4. NOTIFICAR:
+   - Confirmar a @testing-expert que fix visual esta listo
+   - Describir que se cambio
+   - Confirmar que pasa validaciones BLOCKER de UX
+```
+
+### Tipos Comunes de Bugs UI/UX en Testing
+
+| Tipo | Ejemplo | Fix Tipico |
+|------|---------|-----------|
+| Color hardcodeado | `bg-[#00C8CF]` | Cambiar a `bg-primary` |
+| Dark mode roto | `bg-white text-black` | Cambiar a `bg-background text-foreground` |
+| Responsive roto | Layout fijo sin breakpoints | Agregar clases responsive `md:` `lg:` |
+| Sin animacion | `<div>` sin motion | Agregar `<motion.div initial/animate>` |
+| Sin estado loading | Componente sin spinner | Agregar `if (isLoading) return <Spinner/>` |
+| Sin estado empty | No muestra nada si 0 datos | Agregar EmptyState component |
+| Toast incorrecto | Usando alert() | Cambiar a sonner toast |
+| Icono incorrecto | Tamano inconsistente | Estandarizar a h-4 w-4 |
+
 ---
 
-**Version**: 3.0 - Alineado con Template Figma (Fuente de Verdad)
-**Fecha**: 2026-02-11
+**Version**: 4.0 - Incluye Workflow de Correccion en Testing
+**Fecha**: 2026-02-17
 **Proyecto**: Pscomercial-pro (PROSUMINISTROS)

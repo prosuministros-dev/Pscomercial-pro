@@ -30,28 +30,27 @@ BEGIN
     ELSE 1
   END;
 
-  -- Thread-safe: Use FOR UPDATE to lock the row during read
-  -- This prevents concurrent transactions from getting the same number
+  -- Thread-safe: Use advisory lock to prevent race conditions
+  -- pg_advisory_xact_lock is released automatically at end of transaction
+  PERFORM pg_advisory_xact_lock(hashtext(org_uuid::text || entity_type));
+
   IF entity_type = 'lead' THEN
     SELECT COALESCE(MAX(lead_number), start_number - 1) + 1
     INTO next_number
     FROM leads
-    WHERE organization_id = org_uuid
-    FOR UPDATE;
+    WHERE organization_id = org_uuid;
 
   ELSIF entity_type = 'quote' THEN
     SELECT COALESCE(MAX(quote_number), start_number - 1) + 1
     INTO next_number
     FROM quotes
-    WHERE organization_id = org_uuid
-    FOR UPDATE;
+    WHERE organization_id = org_uuid;
 
   ELSIF entity_type = 'order' THEN
     SELECT COALESCE(MAX(order_number), start_number - 1) + 1
     INTO next_number
     FROM orders
-    WHERE organization_id = org_uuid
-    FOR UPDATE;
+    WHERE organization_id = org_uuid;
   ELSE
     RAISE EXCEPTION 'Invalid entity_type: %. Must be lead, quote, or order', entity_type;
   END IF;

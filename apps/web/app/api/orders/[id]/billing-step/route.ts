@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
+import { handleApiError } from '~/lib/api-error-handler';
 import { getUserRoleSlugs, canEditBillingStep, getBillingStepNotifyTarget } from '~/lib/rbac/get-user-role-slugs';
 import { notifyAreaTeam, createNotification } from '~/lib/notifications/create-notification';
 
@@ -80,11 +81,7 @@ export async function GET(
 
     return NextResponse.json({ ...order, editableSteps });
   } catch (error) {
-    console.error('Error in GET /api/orders/[id]/billing-step:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'GET /api/orders/[id]/billing-step');
   }
 }
 
@@ -236,10 +233,6 @@ export async function PATCH(
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error in PATCH /api/orders/[id]/billing-step:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Error al procesar la solicitud' },
-      { status: 500 },
-    );
+    return handleApiError(error, 'PATCH /api/orders/[id]/billing-step');
   }
 }
