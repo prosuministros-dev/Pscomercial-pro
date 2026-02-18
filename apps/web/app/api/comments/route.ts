@@ -18,9 +18,10 @@ const createCommentSchema = z.object({
  */
 function getCommentPermission(entityType: string): string {
   switch (entityType) {
-    case 'lead': return 'leads:comment';
+    case 'lead': return 'leads:read';
     case 'quote': return 'quotes:read';
     case 'customer': return 'customers:read';
+    case 'order': return 'orders:read';
     default: return 'leads:read';
   }
 }

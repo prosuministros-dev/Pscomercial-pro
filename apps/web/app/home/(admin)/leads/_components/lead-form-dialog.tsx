@@ -26,6 +26,7 @@ import { toast } from 'sonner';
 import { Plus, Loader2 } from 'lucide-react';
 import { leadFormSchema, type LeadFormSchema } from '../_lib/schema';
 import type { Lead } from '../_lib/types';
+import { CommentThread } from './comment-thread';
 
 interface LeadFormDialogProps {
   lead?: Lead;
@@ -323,6 +324,13 @@ export function LeadFormDialog({
             </Button>
           </div>
         </form>
+
+        {/* Comments section - only when editing */}
+        {lead && (
+          <div className="border-t pt-6">
+            <CommentThread entityType="lead" entityId={lead.id} />
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );

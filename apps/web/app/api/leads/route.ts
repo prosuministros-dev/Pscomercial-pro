@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
       .select(
         `
         *,
-        assigned_advisor:profiles!leads_assigned_to_fkey(id, full_name, email)
+        assigned_user:profiles!leads_assigned_to_fkey(id, full_name, email)
         `,
         { count: 'exact' }
       )
@@ -238,7 +238,7 @@ export async function POST(request: NextRequest) {
       .from('leads')
       .select(`
         *,
-        assigned_advisor:profiles!leads_assigned_to_fkey(id, full_name, email)
+        assigned_user:profiles!leads_assigned_to_fkey(id, full_name, email)
       `)
       .eq('id', lead.id)
       .single();
@@ -385,7 +385,7 @@ export async function PUT(request: NextRequest) {
       .eq('organization_id', user.organization_id)
       .select(`
         *,
-        assigned_advisor:profiles!leads_assigned_to_fkey(id, full_name, email),
+        assigned_user:profiles!leads_assigned_to_fkey(id, full_name, email),
         rejection_reason:rejection_reasons(id, label)
       `)
       .single();
