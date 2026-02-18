@@ -233,7 +233,7 @@ export function ProformaPdfTemplate({ quote, org }: ProformaPdfTemplateProps) {
           </View>
           <View style={styles.clientCol}>
             <Text style={styles.sectionTitle}>Asesor Comercial</Text>
-            <Text style={styles.infoValue}>{quote.advisor.display_name}</Text>
+            <Text style={styles.infoValue}>{quote.advisor.full_name}</Text>
             <Text style={styles.infoValue}>{quote.advisor.email}</Text>
             {quote.advisor.phone && (
               <Text style={styles.infoValue}>Tel: {quote.advisor.phone}</Text>

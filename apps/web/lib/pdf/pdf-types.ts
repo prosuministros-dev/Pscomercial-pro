@@ -34,7 +34,7 @@ export interface QuoteForPdf {
     email: string | null;
   };
   advisor: {
-    display_name: string;
+    full_name: string;
     email: string;
     phone: string | null;
   };
@@ -102,7 +102,7 @@ export interface OrderForPdf {
     email: string | null;
   };
   advisor: {
-    display_name: string;
+    full_name: string;
     email: string;
     phone: string | null;
   };

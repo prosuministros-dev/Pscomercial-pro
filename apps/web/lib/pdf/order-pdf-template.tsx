@@ -258,7 +258,7 @@ export function OrderPdfTemplate({ order, org }: OrderPdfTemplateProps) {
           </View>
           <View style={styles.clientCol}>
             <Text style={styles.sectionTitle}>Asesor Comercial</Text>
-            <Text style={styles.infoValue}>{order.advisor.display_name}</Text>
+            <Text style={styles.infoValue}>{order.advisor.full_name}</Text>
             <Text style={styles.infoValue}>{order.advisor.email}</Text>
             {order.advisor.phone && (
               <Text style={styles.infoValue}>Tel: {order.advisor.phone}</Text>
