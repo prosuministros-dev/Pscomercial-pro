@@ -13,21 +13,9 @@ import {
   DropdownMenuTrigger,
 } from '@kit/ui/dropdown-menu';
 import { PermissionGate } from '@kit/rbac/permission-gate';
-import { MoreHorizontal, Shield, FileText, ShoppingCart, Eye, Send, MessageSquare, Mail } from 'lucide-react';
+import { MoreHorizontal, Shield, FileText, ShoppingCart, Eye, Send, MessageSquare, Mail, Pencil } from 'lucide-react';
 import type { Quote } from '../_lib/types';
-
-const STATUS_LABELS: Record<string, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline' }> = {
-  draft: { label: 'Borrador', variant: 'secondary' },
-  offer_created: { label: 'Oferta Creada', variant: 'outline' },
-  negotiation: { label: 'En Negociación', variant: 'default' },
-  risk: { label: 'Riesgo', variant: 'destructive' },
-  pending_approval: { label: 'Pend. Aprobación', variant: 'outline' },
-  pending_oc: { label: 'Pendiente OC', variant: 'outline' },
-  approved: { label: 'Aprobada', variant: 'default' },
-  rejected: { label: 'Rechazada', variant: 'destructive' },
-  lost: { label: 'Perdida', variant: 'destructive' },
-  expired: { label: 'Expirada', variant: 'secondary' },
-};
+import { STATUS_LABELS } from '../_lib/schema';
 
 const CLIENT_RESPONSE_LABELS: Record<string, { label: string; color: string }> = {
   accepted: { label: 'Aceptada', color: 'bg-green-100 text-green-800' },
@@ -38,6 +26,7 @@ const CLIENT_RESPONSE_LABELS: Record<string, { label: string; color: string }> =
 // Event types for actions — handled by parent component
 export type QuoteAction =
   | { type: 'view'; quote: Quote }
+  | { type: 'edit'; quote: Quote }
   | { type: 'approve-margin'; quote: Quote }
   | { type: 'generate-pdf'; quote: Quote }
   | { type: 'create-order'; quote: Quote }
@@ -206,6 +195,17 @@ export function createQuotesTableColumns(
                 <Eye className="w-4 h-4 mr-2" />
                 Ver Detalle
               </DropdownMenuItem>
+              <PermissionGate permission="quotes:update">
+                <DropdownMenuItem
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onAction({ type: 'edit', quote });
+                  }}
+                >
+                  <Pencil className="w-4 h-4 mr-2" />
+                  Editar
+                </DropdownMenuItem>
+              </PermissionGate>
               <DropdownMenuSeparator />
               {needsApproval && (
                 <PermissionGate permission="quotes:approve">
