@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import type { OrderFilters } from './types';
+import type { OrderFilters, PanelPrincipalOrder, PendienteOrder, TableroOperativoOrder } from './types';
 import type {
   CreateOrderFormData,
   CreatePurchaseOrderFormData,
@@ -24,6 +24,9 @@ export const orderKeys = {
   licenses: (orderId: string) => [...orderKeys.all, 'licenses', orderId] as const,
   pendingTasks: (orderId: string) => [...orderKeys.all, 'pending-tasks', orderId] as const,
   traceability: (orderId: string) => [...orderKeys.all, 'traceability', orderId] as const,
+  panelPrincipal: () => [...orderKeys.all, 'panel-principal'] as const,
+  controlPendientes: () => [...orderKeys.all, 'control-pendientes'] as const,
+  tableroOperativo: () => [...orderKeys.all, 'tablero-operativo'] as const,
 };
 
 export const supplierKeys = {
@@ -631,5 +634,55 @@ export function useOrderTraceability(orderId: string | null) {
       return response.json();
     },
     enabled: !!orderId,
+  });
+}
+
+// --- Orders Redesign Hooks ---
+
+export function usePanelPrincipal() {
+  return useQuery({
+    queryKey: orderKeys.panelPrincipal(),
+    queryFn: async () => {
+      const res = await fetch('/api/orders/panel-principal');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Error al cargar panel principal');
+      }
+      return res.json() as Promise<PanelPrincipalOrder[]>;
+    },
+    staleTime: 30_000,
+    refetchInterval: 60_000,
+  });
+}
+
+export function useControlPendientes() {
+  return useQuery({
+    queryKey: orderKeys.controlPendientes(),
+    queryFn: async () => {
+      const res = await fetch('/api/orders/control-pendientes');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Error al cargar pendientes');
+      }
+      return res.json() as Promise<PendienteOrder[]>;
+    },
+    staleTime: 30_000,
+    refetchInterval: 60_000,
+  });
+}
+
+export function useTableroOperativo() {
+  return useQuery({
+    queryKey: orderKeys.tableroOperativo(),
+    queryFn: async () => {
+      const res = await fetch('/api/orders/tablero-operativo');
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || 'Error al cargar tablero operativo');
+      }
+      return res.json() as Promise<TableroOperativoOrder[]>;
+    },
+    staleTime: 30_000,
+    refetchInterval: 60_000,
   });
 }

@@ -297,3 +297,112 @@ export const DISPATCH_TYPE_LABELS: Record<string, string> = {
   retiro: 'Retiro en Bodega',
   mensajeria: 'Mensajería',
 };
+
+// --- Orders Redesign Constants (7-color responsibility system from Figma) ---
+
+export const TIPO_LABELS: Record<string, string> = {
+  fisico: 'Físico',
+  intangible: 'Intangible',
+};
+
+export const ESTADO_CONFIG: Record<string, { label: string; icon: string; border: string; bg: string; text: string; solid: string }> = {
+  sin_pendientes: {
+    label: 'Sin Pendientes',
+    icon: 'CheckCircle2',
+    border: 'border-green-500',
+    bg: 'bg-green-500/10',
+    text: 'text-green-600 dark:text-green-500',
+    solid: 'bg-green-500',
+  },
+  atencion_requerida: {
+    label: 'Atención Requerida',
+    icon: 'Clock',
+    border: 'border-yellow-500',
+    bg: 'bg-yellow-500/10',
+    text: 'text-yellow-600 dark:text-yellow-500',
+    solid: 'bg-yellow-500',
+  },
+  critico: {
+    label: 'Crítico',
+    icon: 'AlertCircle',
+    border: 'border-red-500',
+    bg: 'bg-red-500/10',
+    text: 'text-red-600 dark:text-red-500',
+    solid: 'bg-red-500',
+  },
+};
+
+export const RESPONSABLE_COLORS: Record<string, {
+  label: string;
+  description: string;
+  bg: string;
+  border: string;
+  text: string;
+  solid: string;
+}> = {
+  rojo: {
+    label: 'Financiera / Comercial / Bloqueos',
+    description: 'Errores o bloqueos que impiden avanzar',
+    bg: 'bg-red-500/20',
+    border: 'border-red-500/40',
+    text: 'text-red-700 dark:text-red-400',
+    solid: 'bg-red-500',
+  },
+  naranja: {
+    label: 'Auxiliar de Bodega',
+    description: 'Acciones de seguimiento operativo',
+    bg: 'bg-orange-500/20',
+    border: 'border-orange-500/40',
+    text: 'text-orange-700 dark:text-orange-400',
+    solid: 'bg-orange-500',
+  },
+  morado: {
+    label: 'Jefe de Bodega',
+    description: 'Ejecución logística interna',
+    bg: 'bg-purple-500/20',
+    border: 'border-purple-500/40',
+    text: 'text-purple-700 dark:text-purple-400',
+    solid: 'bg-purple-500',
+  },
+  amarillo: {
+    label: 'Compras',
+    description: 'Pendientes del área de compras',
+    bg: 'bg-yellow-500/20',
+    border: 'border-yellow-500/40',
+    text: 'text-yellow-700 dark:text-yellow-500',
+    solid: 'bg-yellow-500',
+  },
+  azul: {
+    label: 'Licencias / Servicios Recurrentes',
+    description: 'Licenciamientos y servicios mes a mes',
+    bg: 'bg-blue-500/20',
+    border: 'border-blue-500/40',
+    text: 'text-blue-700 dark:text-blue-400',
+    solid: 'bg-blue-500',
+  },
+  'verde-claro': {
+    label: 'Proceso Avanzado',
+    description: 'El proceso va bien pero no ha finalizado',
+    bg: 'bg-green-400/20',
+    border: 'border-green-400/40',
+    text: 'text-green-600 dark:text-green-400',
+    solid: 'bg-green-400',
+  },
+  'verde-oscuro': {
+    label: 'Proceso Completado',
+    description: 'Cierre exitoso del flujo',
+    bg: 'bg-green-600/20',
+    border: 'border-green-600/40',
+    text: 'text-green-700 dark:text-green-500',
+    solid: 'bg-green-600',
+  },
+};
+
+export const MACRO_STATE_CONFIG: Record<string, { label: string; icon: string; color: string; headerColor: string; textColor: string }> = {
+  en_compras: { label: 'En Compras', icon: 'ShoppingCart', color: 'bg-amber-500/10 border-amber-500/30', headerColor: 'bg-amber-500', textColor: 'text-amber-700 dark:text-amber-400' },
+  en_proveedor: { label: 'En Proveedor', icon: 'Building2', color: 'bg-blue-500/10 border-blue-500/30', headerColor: 'bg-blue-500', textColor: 'text-blue-700 dark:text-blue-400' },
+  en_transporte: { label: 'En Transporte', icon: 'Truck', color: 'bg-purple-500/10 border-purple-500/30', headerColor: 'bg-purple-500', textColor: 'text-purple-700 dark:text-purple-400' },
+  en_bodega: { label: 'En Bodega', icon: 'Package', color: 'bg-indigo-500/10 border-indigo-500/30', headerColor: 'bg-indigo-500', textColor: 'text-indigo-700 dark:text-indigo-400' },
+  bloqueado: { label: 'Bloqueado', icon: 'AlertTriangle', color: 'bg-red-500/10 border-red-500/30', headerColor: 'bg-red-500', textColor: 'text-red-700 dark:text-red-400' },
+  cerrado: { label: 'Cerrado', icon: 'CheckCircle2', color: 'bg-green-500/10 border-green-500/30', headerColor: 'bg-green-500', textColor: 'text-green-700 dark:text-green-400' },
+};

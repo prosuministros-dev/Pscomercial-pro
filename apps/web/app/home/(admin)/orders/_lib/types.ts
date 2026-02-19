@@ -338,3 +338,63 @@ export interface TraceabilityEvent {
   user_name: string | null;
   metadata: Record<string, unknown>;
 }
+
+// --- Orders Redesign Types (Figma alignment) ---
+
+export type OrderTipo = 'fisico' | 'intangible';
+export type OrderEstado = 'sin_pendientes' | 'atencion_requerida' | 'critico';
+export type ResponsableColor = 'rojo' | 'naranja' | 'morado' | 'amarillo' | 'azul' | 'verde-claro' | 'verde-oscuro';
+export type MacroState = 'en_compras' | 'en_proveedor' | 'en_transporte' | 'en_bodega' | 'bloqueado' | 'cerrado';
+
+export interface PanelPrincipalOrder {
+  order_id: string;
+  order_number: number;
+  customer_name: string;
+  customer_id: string;
+  quote_number: number | null;
+  tipo: OrderTipo;
+  estado: OrderEstado;
+  fecha_clave: string;
+  indicador_pendientes: string;
+  total: number;
+  currency: string;
+  status: string;
+  advisor_name: string;
+  created_at: string;
+}
+
+export interface PendienteOrder {
+  order_id: string;
+  order_number: number;
+  customer_name: string;
+  tipo: OrderTipo;
+  nivel_atencion: OrderEstado;
+  motivo_pendiente: string;
+  fecha_clave: string;
+  dias_restantes: number;
+  pending_count: number;
+  critical_count: number;
+}
+
+export interface TableroOperativoOrder {
+  order_id: string;
+  order_number: number;
+  customer_name: string;
+  supplier_name: string;
+  po_number: number | null;
+  order_product: string;
+  order_quantity: number;
+  expected_delivery: string | null;
+  responsable_color: ResponsableColor;
+  novedades: string;
+  sub_rem: ResponsableColor | null;
+  sub_factura: ResponsableColor | null;
+  sub_transportadora: ResponsableColor | null;
+  sub_guia: ResponsableColor | null;
+  sub_crm: ResponsableColor | null;
+  sub_correo_uf: ResponsableColor | null;
+  total: number;
+  currency: string;
+  status: string;
+  macro_state: MacroState;
+}
