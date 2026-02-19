@@ -33,6 +33,7 @@ import { PendingTasksPanel } from './pending-tasks-panel';
 import { OrderTimeline } from './order-timeline';
 import { ProductJourneyDialog } from './product-journey-dialog';
 import { useConfirmPayment } from '../_lib/order-queries';
+import { CommentThread } from '../../leads/_components/comment-thread';
 
 interface OrderDetailDialogProps {
   orderId: string | null;
@@ -318,6 +319,13 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
               {orderId && (
                 <div className="p-4 border rounded-lg">
                   <LicensePanel orderId={orderId} orderItems={order.items} />
+                </div>
+              )}
+
+              {/* Observaciones */}
+              {orderId && (
+                <div className="p-4 border rounded-lg">
+                  <CommentThread entityType="order" entityId={orderId} />
                 </div>
               )}
 

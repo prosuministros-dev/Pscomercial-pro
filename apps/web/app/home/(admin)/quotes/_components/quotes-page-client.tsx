@@ -39,6 +39,7 @@ export function QuotesPageClient() {
     { id: 'quote_number', desc: true },
   ]);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [editQuote, setEditQuote] = useState<Quote | null>(null);
   const [approvalQuote, setApprovalQuote] = useState<Quote | null>(null);
   const [isApprovalOpen, setIsApprovalOpen] = useState(false);
   const [sendQuote, setSendQuote] = useState<Quote | null>(null);
@@ -99,8 +100,8 @@ export function QuotesPageClient() {
   const handleAction = useCallback((action: QuoteAction) => {
     switch (action.type) {
       case 'view':
-        // Open the form dialog in edit/view mode
-        toast.info('Funcionalidad en desarrollo');
+        setEditQuote(action.quote);
+        setIsFormOpen(true);
         break;
       case 'approve-margin':
         setApprovalQuote(action.quote);
@@ -112,19 +113,39 @@ export function QuotesPageClient() {
           try {
             const response = await fetch(`/api/pdf/quote/${action.quote.id}`);
             if (!response.ok) {
-              const data = await response.json();
-              throw new Error(data.error || 'Error al generar el PDF');
+              const errorText = await response.text();
+              let errorMsg = 'Error al generar el PDF';
+              try {
+                const errorData = JSON.parse(errorText);
+                errorMsg = errorData.error || errorMsg;
+              } catch {
+                // response wasn't JSON
+              }
+              throw new Error(errorMsg);
             }
-            const data = await response.json();
-            if (data.url) {
-              window.open(data.url, '_blank');
+            const contentType = response.headers.get('content-type') || '';
+            if (contentType.includes('application/pdf')) {
+              // Storage upload failed — API returned raw PDF bytes
+              const blob = await response.blob();
+              const blobUrl = URL.createObjectURL(blob);
+              window.open(blobUrl, '_blank');
               toast.success('PDF generado', {
                 id: toastId,
                 description: `Cotización #${action.quote.quote_number}`,
               });
             } else {
-              toast.dismiss(toastId);
-              toast.error('Error', { description: 'No se pudo generar la URL del PDF' });
+              // Normal JSON response with signed URL
+              const data = await response.json();
+              if (data.url) {
+                window.open(data.url, '_blank');
+                toast.success('PDF generado', {
+                  id: toastId,
+                  description: `Cotización #${action.quote.quote_number}`,
+                });
+              } else {
+                toast.dismiss(toastId);
+                toast.error('Error', { description: 'No se pudo generar la URL del PDF' });
+              }
             }
           } catch (error) {
             toast.error('Error', {
@@ -227,7 +248,10 @@ export function QuotesPageClient() {
           </Button>
           <PermissionGate permission="quotes:create">
             <Button
-              onClick={() => setIsFormOpen(true)}
+              onClick={() => {
+                setEditQuote(null);
+                setIsFormOpen(true);
+              }}
               className="bg-cyan-500 hover:bg-cyan-600 text-white"
             >
               <Plus className="w-4 h-4 mr-2" />
@@ -326,10 +350,15 @@ export function QuotesPageClient() {
 
       {/* Quote Form Dialog */}
       <QuoteFormDialog
+        quote={editQuote || undefined}
         open={isFormOpen}
-        onOpenChange={setIsFormOpen}
+        onOpenChange={(open) => {
+          setIsFormOpen(open);
+          if (!open) setEditQuote(null);
+        }}
         onSuccess={() => {
           setIsFormOpen(false);
+          setEditQuote(null);
           handleRefresh();
         }}
       />

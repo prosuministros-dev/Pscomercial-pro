@@ -76,9 +76,30 @@ export async function GET(request: Request) {
     if (advisorId) query = query.eq('advisor_id', advisorId);
     if (paymentStatus) query = query.eq('payment_status', paymentStatus);
     if (search) {
-      query = query.or(
-        `order_number.eq.${search},customer.business_name.ilike.%${search}%`,
-      );
+      const trimmed = search.trim();
+      const asNumber = parseInt(trimmed, 10);
+      if (!isNaN(asNumber)) {
+        query = query.eq('order_number', asNumber);
+      } else {
+        // Search by customer name via a sub-query on customer_id
+        const { data: matchingCustomers } = await client
+          .from('customers')
+          .select('id')
+          .eq('organization_id', user.organization_id)
+          .ilike('business_name', `%${trimmed}%`)
+          .limit(50);
+
+        const customerIds = (matchingCustomers || []).map((c) => c.id);
+        if (customerIds.length > 0) {
+          query = query.in('customer_id', customerIds);
+        } else {
+          // No matching customers — return empty
+          return NextResponse.json({
+            data: [],
+            pagination: { page, limit, total: 0, totalPages: 0 },
+          });
+        }
+      }
     }
     if (fromDate) query = query.gte('created_at', fromDate);
     if (toDate) query = query.lte('created_at', toDate);
