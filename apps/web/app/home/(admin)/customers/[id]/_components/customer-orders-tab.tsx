@@ -88,7 +88,7 @@ export function CustomerOrdersTab({ customerId }: CustomerOrdersTabProps) {
                       href={`/home/orders`}
                       className="text-sm font-medium text-primary hover:underline"
                     >
-                      {order.consecutive || 'Sin consecutivo'}
+                      {order.order_number || 'Sin número'}
                     </Link>
                     <p className="text-xs text-muted-foreground">
                       {new Date(order.created_at).toLocaleDateString('es-CO')}
@@ -96,9 +96,9 @@ export function CustomerOrdersTab({ customerId }: CustomerOrdersTabProps) {
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
-                    {order.total_cop > 0 && (
+                    {order.total > 0 && (
                       <p className="text-sm font-medium">
-                        {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(order.total_cop)}
+                        {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(order.total)}
                       </p>
                     )}
                     <Badge className={statusInfo.className}>

@@ -14,9 +14,9 @@ const createCustomerSchema = z.object({
   city: z.string().nullish(),
   department: z.string().nullish(),
   phone: z.string().nullish(),
-  email: z.string().email('Email inválido').nullish(),
+  email: z.string().email('Email inválido').nullish().or(z.literal('')).transform(val => val || null),
   payment_terms: z.string().nullish(),
-  assigned_sales_rep_id: z.string().uuid().nullish(),
+  assigned_sales_rep_id: z.union([z.string().uuid(), z.literal(''), z.null()]).optional().transform(val => val || null),
   status: z.enum(['active', 'inactive']).optional().default('active'),
   notes: z.string().nullish(),
 });
@@ -29,9 +29,9 @@ const updateCustomerSchema = z.object({
   city: z.string().nullish(),
   department: z.string().nullish(),
   phone: z.string().nullish(),
-  email: z.string().email('Email inválido').nullish(),
+  email: z.string().email('Email inválido').nullish().or(z.literal('')).transform(val => val || null),
   payment_terms: z.string().nullish(),
-  assigned_sales_rep_id: z.string().uuid().nullish(),
+  assigned_sales_rep_id: z.union([z.string().uuid(), z.literal(''), z.null()]).optional().transform(val => val || null),
   status: z.enum(['active', 'inactive']).optional(),
   notes: z.string().nullish(),
 });

@@ -88,7 +88,7 @@ export function CustomerQuotesTab({ customerId }: CustomerQuotesTabProps) {
                         href={`/home/quotes`}
                         className="text-sm font-medium text-primary hover:underline"
                       >
-                        {quote.consecutive || 'Sin consecutivo'}
+                        {quote.quote_number || 'Sin número'}
                       </Link>
                       <p className="text-xs text-muted-foreground">
                         {new Date(quote.created_at).toLocaleDateString('es-CO')}
@@ -98,9 +98,9 @@ export function CustomerQuotesTab({ customerId }: CustomerQuotesTabProps) {
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="text-right">
-                      {quote.total_cop > 0 && (
+                      {quote.total > 0 && (
                         <p className="text-sm font-medium">
-                          {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(quote.total_cop)}
+                          {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(quote.total)}
                         </p>
                       )}
                     </div>

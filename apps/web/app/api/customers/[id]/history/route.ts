@@ -49,7 +49,7 @@ export async function GET(
     if (!type || type === 'quotes') {
       let quotesQuery = client
         .from('quotes')
-        .select('id, consecutive, status, total_cop, total_usd, valid_until, created_at, advisor:profiles!quotes_advisor_id_fkey(full_name)', { count: 'exact' })
+        .select('id, quote_number, status, total, expires_at, created_at, advisor:profiles!quotes_advisor_id_fkey(full_name)', { count: 'exact' })
         .eq('organization_id', user.organization_id)
         .eq('customer_id', customerId)
         .order('created_at', { ascending: false })
@@ -69,7 +69,7 @@ export async function GET(
     if (!type || type === 'orders') {
       let ordersQuery = client
         .from('orders')
-        .select('id, consecutive, status, total_cop, created_at, advisor:profiles!orders_advisor_id_fkey(full_name)', { count: 'exact' })
+        .select('id, order_number, status, total, created_at, advisor:profiles!orders_advisor_id_fkey(full_name)', { count: 'exact' })
         .eq('organization_id', user.organization_id)
         .eq('customer_id', customerId)
         .order('created_at', { ascending: false })
@@ -85,19 +85,31 @@ export async function GET(
       }
     }
 
-    // Fetch purchase orders related to this customer's orders
+    // Fetch purchase orders related to this customer's orders (via order_id)
     if (!type || type === 'purchase_orders') {
-      const purchaseQuery = client
-        .from('purchase_orders')
-        .select('id, consecutive, status, total_cop, supplier:suppliers(business_name), created_at', { count: 'exact' })
+      // First get order IDs for this customer
+      const { data: customerOrders } = await client
+        .from('orders')
+        .select('id')
         .eq('organization_id', user.organization_id)
-        .eq('customer_id', customerId)
-        .order('created_at', { ascending: false })
-        .range(offset, offset + limit - 1);
+        .eq('customer_id', customerId);
 
-      const { data: purchaseOrders, count: poCount, error: poError } = await purchaseQuery;
-      if (!poError) {
-        result.purchase_orders = { data: purchaseOrders, total: poCount || 0 };
+      if (customerOrders && customerOrders.length > 0) {
+        const orderIds = customerOrders.map((o: { id: string }) => o.id);
+        const purchaseQuery = client
+          .from('purchase_orders')
+          .select('id, po_number, status, total, supplier:suppliers(business_name), created_at', { count: 'exact' })
+          .eq('organization_id', user.organization_id)
+          .in('order_id', orderIds)
+          .order('created_at', { ascending: false })
+          .range(offset, offset + limit - 1);
+
+        const { data: purchaseOrders, count: poCount, error: poError } = await purchaseQuery;
+        if (!poError) {
+          result.purchase_orders = { data: purchaseOrders, total: poCount || 0 };
+        }
+      } else {
+        result.purchase_orders = { data: [], total: 0 };
       }
     }
 

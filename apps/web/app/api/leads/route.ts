@@ -295,7 +295,7 @@ export async function PUT(request: NextRequest) {
     // Verify lead belongs to organization
     const { data: existing, error: checkError } = await client
       .from('leads')
-      .select('id, status, assigned_to, nit, email')
+      .select('id, status, assigned_to, nit, email, business_name, phone, contact_name')
       .eq('id', id)
       .eq('organization_id', user.organization_id)
       .is('deleted_at', null)
@@ -361,12 +361,65 @@ export async function PUT(request: NextRequest) {
       }
     }
 
+    // When converting a lead, create or find the customer record
+    let convertedCustomerId: string | null = null;
+    if (status === 'converted' && existing.status !== 'converted') {
+      const leadNit = nit || existing.nit;
+      const leadBusiness = business_name || existing.business_name;
+      const leadPhone = phone || existing.phone;
+      const leadEmail = email || existing.email;
+      const leadAssigned = existing.assigned_to;
+
+      // Check if customer with this NIT already exists in org
+      if (leadNit) {
+        const { data: existingCustomer } = await client
+          .from('customers')
+          .select('id')
+          .eq('organization_id', user.organization_id)
+          .eq('nit', leadNit)
+          .is('deleted_at', null)
+          .maybeSingle();
+
+        if (existingCustomer) {
+          convertedCustomerId = existingCustomer.id;
+        }
+      }
+
+      // If no existing customer, create one
+      if (!convertedCustomerId && leadBusiness) {
+        const { data: newCustomer, error: customerError } = await client
+          .from('customers')
+          .insert({
+            organization_id: user.organization_id,
+            business_name: leadBusiness,
+            nit: leadNit || '',
+            phone: leadPhone,
+            email: leadEmail,
+            assigned_sales_rep_id: leadAssigned || null,
+            status: 'active',
+            created_by: user.id,
+          })
+          .select('id')
+          .single();
+
+        if (customerError) {
+          console.error('Error creating customer from lead:', customerError);
+          // Non-fatal: continue with conversion even if customer creation fails
+        } else if (newCustomer) {
+          convertedCustomerId = newCustomer.id;
+        }
+      }
+    }
+
     // Build update object
     const updateData: Record<string, unknown> = { updated_at: new Date().toISOString() };
     if (status !== undefined) {
       updateData.status = status;
       if (status === 'converted') {
         updateData.converted_at = new Date().toISOString();
+        if (convertedCustomerId) {
+          updateData.customer_id = convertedCustomerId;
+        }
       }
     }
     if (business_name !== undefined) updateData.business_name = business_name;
