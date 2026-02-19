@@ -8,8 +8,10 @@ import type {
   CustomerFilters,
   CustomersResponse,
   CustomerContactsResponse,
+  CustomerVisitsResponse,
+  CustomerHistoryResponse,
 } from './types';
-import type { CustomerFormData, ContactFormData } from './schemas';
+import type { CustomerFormData, ContactFormData, VisitFormData } from './schemas';
 
 // Query Keys
 export const customerKeys = {
@@ -19,6 +21,8 @@ export const customerKeys = {
   details: () => [...customerKeys.all, 'detail'] as const,
   detail: (id: string) => [...customerKeys.details(), id] as const,
   contacts: (customerId: string) => [...customerKeys.detail(customerId), 'contacts'] as const,
+  visits: (customerId: string) => [...customerKeys.detail(customerId), 'visits'] as const,
+  history: (customerId: string, type?: string) => [...customerKeys.detail(customerId), 'history', type] as const,
 };
 
 // Fetch customers with filters and pagination
@@ -31,6 +35,8 @@ export function useCustomers(filters: CustomerFilters = {}) {
       if (filters.business_name) params.set('business_name', filters.business_name);
       if (filters.nit) params.set('nit', filters.nit);
       if (filters.city) params.set('city', filters.city);
+      if (filters.status) params.set('status', filters.status);
+      if (filters.assigned_sales_rep_id) params.set('assigned_sales_rep_id', filters.assigned_sales_rep_id);
       if (filters.page) params.set('page', filters.page.toString());
       if (filters.limit) params.set('limit', filters.limit.toString());
 
@@ -187,6 +193,97 @@ export function useUpdateContact() {
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: customerKeys.contacts(variables.customerId) });
       toast.success('Contacto actualizado exitosamente');
+    },
+    onError: (error: Error) => {
+      toast.error(error.message);
+    },
+  });
+}
+
+// Fetch single customer detail
+export function useCustomerDetail(customerId: string | null) {
+  return useQuery<{ data: Customer }>({
+    queryKey: customerKeys.detail(customerId || ''),
+    queryFn: async () => {
+      const response = await fetch(`/api/customers?nit=&business_name=&page=1&limit=1`);
+      // We use the list endpoint with the customer loaded via RLS
+      // Actually, let's fetch all and find; better to just use the list
+      const params = new URLSearchParams({ page: '1', limit: '1000' });
+      const res = await fetch(`/api/customers?${params.toString()}`);
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.error || 'Error al cargar cliente');
+      }
+      const result = await res.json();
+      const customer = result.data?.find((c: Customer) => c.id === customerId);
+      if (!customer) throw new Error('Cliente no encontrado');
+      return { data: customer };
+    },
+    enabled: !!customerId,
+    staleTime: 30000,
+  });
+}
+
+// Fetch customer history (quotes, orders, purchase_orders)
+export function useCustomerHistory(customerId: string | null, type?: string) {
+  return useQuery<CustomerHistoryResponse>({
+    queryKey: customerKeys.history(customerId || '', type),
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (type) params.set('type', type);
+
+      const response = await fetch(`/api/customers/${customerId}/history?${params.toString()}`);
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Error al cargar historial');
+      }
+      return response.json();
+    },
+    enabled: !!customerId,
+    staleTime: 60000, // 1 min - dynamic data
+  });
+}
+
+// Fetch customer visits
+export function useCustomerVisits(customerId: string | null) {
+  return useQuery<CustomerVisitsResponse>({
+    queryKey: customerKeys.visits(customerId || ''),
+    queryFn: async () => {
+      const response = await fetch(`/api/customers/${customerId}/visits`);
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Error al cargar visitas');
+      }
+      return response.json();
+    },
+    enabled: !!customerId,
+    staleTime: 30000,
+  });
+}
+
+// Create visit mutation
+export function useCreateVisit() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ customerId, data }: { customerId: string; data: VisitFormData }) => {
+      const response = await fetch(`/api/customers/${customerId}/visits`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Error al registrar visita');
+      }
+
+      return response.json();
+    },
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: customerKeys.visits(variables.customerId) });
+      queryClient.invalidateQueries({ queryKey: customerKeys.lists() });
+      toast.success('Visita registrada exitosamente');
     },
     onError: (error: Error) => {
       toast.error(error.message);

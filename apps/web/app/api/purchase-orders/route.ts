@@ -90,7 +90,7 @@ export async function POST(request: Request) {
     // Verify order belongs to org
     const { data: order, error: orderError } = await client
       .from('orders')
-      .select('id, organization_id')
+      .select('id, organization_id, payment_terms, payment_status')
       .eq('id', parsed.data.order_id)
       .eq('organization_id', user.organization_id)
       .is('deleted_at', null)
@@ -98,6 +98,14 @@ export async function POST(request: Request) {
 
     if (orderError || !order) {
       return NextResponse.json({ error: 'Pedido no encontrado' }, { status: 404 });
+    }
+
+    // T21.6.5: Block PO creation if payment not confirmed for anticipado orders
+    if (order.payment_terms === 'anticipado' && order.payment_status !== 'confirmed') {
+      return NextResponse.json(
+        { error: 'No se puede generar OC: el pago anticipado no ha sido confirmado' },
+        { status: 400 },
+      );
     }
 
     // Fetch order items to validate quantities

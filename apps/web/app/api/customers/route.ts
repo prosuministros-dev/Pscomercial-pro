@@ -12,9 +12,12 @@ const createCustomerSchema = z.object({
   nit: z.string().min(1, 'nit es requerido'),
   address: z.string().nullish(),
   city: z.string().nullish(),
+  department: z.string().nullish(),
   phone: z.string().nullish(),
   email: z.string().email('Email inválido').nullish(),
   payment_terms: z.string().nullish(),
+  assigned_sales_rep_id: z.string().uuid().nullish(),
+  status: z.enum(['active', 'inactive']).optional().default('active'),
   notes: z.string().nullish(),
 });
 
@@ -24,9 +27,12 @@ const updateCustomerSchema = z.object({
   nit: z.string().min(1).optional(),
   address: z.string().nullish(),
   city: z.string().nullish(),
+  department: z.string().nullish(),
   phone: z.string().nullish(),
   email: z.string().email('Email inválido').nullish(),
   payment_terms: z.string().nullish(),
+  assigned_sales_rep_id: z.string().uuid().nullish(),
+  status: z.enum(['active', 'inactive']).optional(),
   notes: z.string().nullish(),
 });
 
@@ -54,13 +60,16 @@ export async function GET(request: NextRequest) {
     const business_name = searchParams.get('business_name');
     const nit = searchParams.get('nit');
     const city = searchParams.get('city');
+    const status = searchParams.get('status');
+    const assigned_sales_rep_id = searchParams.get('assigned_sales_rep_id');
 
     const offset = (page - 1) * limit;
 
     let query = client
       .from('customers')
-      .select('*', { count: 'exact' })
+      .select('*, assigned_advisor:profiles!customers_assigned_sales_rep_id_fkey(id, full_name)', { count: 'exact' })
       .eq('organization_id', user.organization_id)
+      .is('deleted_at', null)
       .order('created_at', { ascending: false })
       .range(offset, offset + limit - 1);
 
@@ -72,6 +81,12 @@ export async function GET(request: NextRequest) {
     }
     if (city) {
       query = query.ilike('city', `%${city}%`);
+    }
+    if (status) {
+      query = query.eq('status', status);
+    }
+    if (assigned_sales_rep_id) {
+      query = query.eq('assigned_sales_rep_id', assigned_sales_rep_id);
     }
 
     const { data, error, count } = await query;
@@ -122,7 +137,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { business_name, nit, address, city, phone, email, payment_terms, notes } = parsed.data;
+    const { business_name, nit, address, city, department, phone, email, payment_terms, assigned_sales_rep_id, status, notes } = parsed.data;
 
     // Verificar NIT único en la organización
     const { data: existing, error: checkError } = await client
@@ -152,9 +167,12 @@ export async function POST(request: NextRequest) {
         nit,
         address,
         city,
+        department,
         phone,
         email,
         payment_terms,
+        assigned_sales_rep_id: assigned_sales_rep_id || null,
+        status: status || 'active',
         notes,
         created_by: user.id,
       })
@@ -199,7 +217,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const { id, business_name, nit, address, city, phone, email, payment_terms, notes } = parsed.data;
+    const { id, business_name, nit, address, city, department, phone, email, payment_terms, assigned_sales_rep_id, status, notes } = parsed.data;
 
     // Verificar que el cliente pertenece a la organización
     const { data: existing, error: checkError } = await client
@@ -240,9 +258,12 @@ export async function PUT(request: NextRequest) {
     if (nit !== undefined) updateData.nit = nit;
     if (address !== undefined) updateData.address = address;
     if (city !== undefined) updateData.city = city;
+    if (department !== undefined) updateData.department = department;
     if (phone !== undefined) updateData.phone = phone;
     if (email !== undefined) updateData.email = email;
     if (payment_terms !== undefined) updateData.payment_terms = payment_terms;
+    if (assigned_sales_rep_id !== undefined) updateData.assigned_sales_rep_id = assigned_sales_rep_id || null;
+    if (status !== undefined) updateData.status = status;
     if (notes !== undefined) updateData.notes = notes;
 
     const { data, error } = await client

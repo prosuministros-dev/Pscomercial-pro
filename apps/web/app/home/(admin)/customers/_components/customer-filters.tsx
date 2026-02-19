@@ -5,11 +5,18 @@ import { Search, X } from 'lucide-react';
 import { Input } from '@kit/ui/input';
 import { Button } from '@kit/ui/button';
 import { Label } from '@kit/ui/label';
-import type { CustomerFilters } from '../_lib/types';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@kit/ui/select';
+import type { CustomerFilters as CustomerFiltersType } from '../_lib/types';
 
 interface CustomerFiltersProps {
-  onFiltersChange: (filters: CustomerFilters) => void;
-  initialFilters?: CustomerFilters;
+  onFiltersChange: (filters: CustomerFiltersType) => void;
+  initialFilters?: CustomerFiltersType;
 }
 
 export function CustomerFilters({
@@ -19,6 +26,7 @@ export function CustomerFilters({
   const [businessName, setBusinessName] = useState(initialFilters.business_name || '');
   const [nit, setNit] = useState(initialFilters.nit || '');
   const [city, setCity] = useState(initialFilters.city || '');
+  const [status, setStatus] = useState(initialFilters.status || '');
 
   // Debounce filters
   useEffect(() => {
@@ -27,19 +35,21 @@ export function CustomerFilters({
         business_name: businessName || undefined,
         nit: nit || undefined,
         city: city || undefined,
+        status: status || undefined,
       });
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [businessName, nit, city, onFiltersChange]);
+  }, [businessName, nit, city, status, onFiltersChange]);
 
   const handleClearFilters = () => {
     setBusinessName('');
     setNit('');
     setCity('');
+    setStatus('');
   };
 
-  const hasActiveFilters = businessName || nit || city;
+  const hasActiveFilters = businessName || nit || city || status;
 
   return (
     <div className="space-y-4">
@@ -58,7 +68,7 @@ export function CustomerFilters({
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="space-y-2">
           <Label htmlFor="filter-business-name">Razón Social</Label>
           <div className="relative">
@@ -99,6 +109,23 @@ export function CustomerFilters({
               className="pl-9"
             />
           </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="filter-status">Estado</Label>
+          <Select
+            value={status}
+            onValueChange={(value) => setStatus(value === 'all' ? '' : value)}
+          >
+            <SelectTrigger id="filter-status">
+              <SelectValue placeholder="Todos" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todos</SelectItem>
+              <SelectItem value="active">Activo</SelectItem>
+              <SelectItem value="inactive">Inactivo</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </div>

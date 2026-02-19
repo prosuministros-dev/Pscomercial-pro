@@ -69,13 +69,39 @@ export const customerFormSchema = z.object({
 
   assigned_sales_rep_id: z
     .string()
-    .optional(),
+    .optional()
+    .or(z.literal('')),
+
+  status: z
+    .enum(['active', 'inactive'])
+    .optional()
+    .default('active'),
 
   notes: z
     .string()
     .max(1000, 'Las notas no pueden exceder 1000 caracteres')
     .optional(),
 });
+
+export const visitFormSchema = z.object({
+  visit_date: z
+    .string()
+    .min(1, 'La fecha de visita es obligatoria'),
+
+  visit_type: z.enum(['presencial', 'virtual', 'telefonica'], {
+    errorMap: () => ({ message: 'Seleccione un tipo de visita' }),
+  }),
+
+  status: z.enum(['programada', 'realizada', 'cancelada']).default('realizada'),
+
+  observations: z
+    .string()
+    .max(2000, 'Las observaciones no pueden exceder 2000 caracteres')
+    .optional()
+    .or(z.literal('')),
+});
+
+export type VisitFormData = z.infer<typeof visitFormSchema>;
 
 export const contactFormSchema = z.object({
   full_name: z

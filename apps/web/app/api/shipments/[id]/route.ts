@@ -4,6 +4,7 @@ import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
 import { handleApiError } from '~/lib/api-error-handler';
+import { notifyAreaTeam } from '~/lib/notifications/create-notification';
 
 const dispatchSchema = z.object({
   action: z.literal('dispatch'),
@@ -111,6 +112,25 @@ export async function PATCH(
         return NextResponse.json({ error: 'Error al despachar' }, { status: 500 });
       }
 
+      // T21.9: Notify Financiera about dispatch
+      const { data: orderForNotif } = await client
+        .from('orders')
+        .select('order_number, billing_type')
+        .eq('id', shipment.order_id)
+        .single();
+
+      if (orderForNotif) {
+        await notifyAreaTeam(user.organization_id, 'finanzas', {
+          type: 'shipment_dispatched',
+          title: 'Despacho realizado',
+          message: `Pedido #${orderForNotif.order_number} — Despacho #${shipment.shipment_number} fue despachado.${orderForNotif.billing_type === 'parcial' ? ' (Facturación parcial)' : ''}`,
+          entityType: 'shipment',
+          entityId: shipmentId,
+          actionUrl: `/home/orders/${shipment.order_id}`,
+          priority: 'normal',
+        });
+      }
+
       return NextResponse.json({ success: true });
     }
 
@@ -154,6 +174,25 @@ export async function PATCH(
             .update({ quantity_delivered: (currentOI.quantity_delivered || 0) + si.quantity_shipped })
             .eq('id', si.order_item_id);
         }
+      }
+
+      // T21.10: Notify Financiera that delivery is complete — ready for invoicing
+      const { data: orderForDeliv } = await client
+        .from('orders')
+        .select('order_number')
+        .eq('id', shipment.order_id)
+        .single();
+
+      if (orderForDeliv) {
+        await notifyAreaTeam(user.organization_id, 'finanzas', {
+          type: 'shipment_delivered',
+          title: 'Entrega confirmada — Listo para facturar',
+          message: `Pedido #${orderForDeliv.order_number} — Despacho #${shipment.shipment_number} fue entregado. Proceder con facturación.`,
+          entityType: 'order',
+          entityId: shipment.order_id,
+          actionUrl: `/home/orders/${shipment.order_id}`,
+          priority: 'high',
+        });
       }
 
       return NextResponse.json({ success: true });

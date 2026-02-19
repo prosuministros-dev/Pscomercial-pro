@@ -123,6 +123,21 @@ export async function PATCH(
       );
     }
 
+    // T21.19.1: Cancel restricted to Gerencia roles only
+    if (parsed.data.status === 'cancelled') {
+      const { getUserRoleSlugs } = await import('~/lib/rbac/get-user-role-slugs');
+      const roleSlugs = await getUserRoleSlugs(user.id);
+      const canCancel = roleSlugs.some((slug: string) =>
+        ['gerente_general', 'gerente_comercial', 'director_comercial', 'super_admin'].includes(slug),
+      );
+      if (!canCancel) {
+        return NextResponse.json(
+          { error: 'Solo Gerencia puede anular pedidos' },
+          { status: 403 },
+        );
+      }
+    }
+
     // Verify order belongs to user's org
     const { data: order, error: fetchError } = await client
       .from('orders')

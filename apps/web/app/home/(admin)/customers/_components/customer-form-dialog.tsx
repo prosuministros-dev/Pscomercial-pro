@@ -81,12 +81,14 @@ export function CustomerFormDialog({
       phone: '',
       email: '',
       payment_terms: '',
+      status: 'active',
       notes: '',
     },
   });
 
   const selectedDepartment = watch('department');
   const selectedPaymentTerms = watch('payment_terms');
+  const selectedStatus = watch('status');
 
   // Reset form when dialog opens/closes or customer changes
   useEffect(() => {
@@ -100,6 +102,8 @@ export function CustomerFormDialog({
         phone: customer.phone || '',
         email: customer.email || '',
         payment_terms: customer.payment_terms || '',
+        assigned_sales_rep_id: customer.assigned_sales_rep_id || '',
+        status: (customer.status as 'active' | 'inactive') || 'active',
         notes: customer.notes || '',
       });
     } else if (open && mode === 'create') {
@@ -112,6 +116,7 @@ export function CustomerFormDialog({
         phone: '',
         email: '',
         payment_terms: '',
+        status: 'active',
         notes: '',
       });
     }
@@ -276,29 +281,48 @@ export function CustomerFormDialog({
             </div>
           </div>
 
-          {/* Forma de Pago */}
-          <div className="space-y-2">
-            <Label htmlFor="payment_terms">Forma de Pago</Label>
-            <Select
-              value={selectedPaymentTerms}
-              onValueChange={(value) => setValue('payment_terms', value)}
-            >
-              <SelectTrigger id="payment_terms">
-                <SelectValue placeholder="Seleccione forma de pago" />
-              </SelectTrigger>
-              <SelectContent>
-                {PAYMENT_TERMS.map((term) => (
-                  <SelectItem key={term.value} value={term.value}>
-                    {term.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.payment_terms && (
-              <p className="text-sm text-destructive">
-                {errors.payment_terms.message}
-              </p>
-            )}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Forma de Pago */}
+            <div className="space-y-2">
+              <Label htmlFor="payment_terms">Forma de Pago</Label>
+              <Select
+                value={selectedPaymentTerms}
+                onValueChange={(value) => setValue('payment_terms', value)}
+              >
+                <SelectTrigger id="payment_terms">
+                  <SelectValue placeholder="Seleccione forma de pago" />
+                </SelectTrigger>
+                <SelectContent>
+                  {PAYMENT_TERMS.map((term) => (
+                    <SelectItem key={term.value} value={term.value}>
+                      {term.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.payment_terms && (
+                <p className="text-sm text-destructive">
+                  {errors.payment_terms.message}
+                </p>
+              )}
+            </div>
+
+            {/* Estado */}
+            <div className="space-y-2">
+              <Label htmlFor="status">Estado</Label>
+              <Select
+                value={selectedStatus}
+                onValueChange={(value) => setValue('status', value as 'active' | 'inactive')}
+              >
+                <SelectTrigger id="status">
+                  <SelectValue placeholder="Seleccione estado" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="active">Activo</SelectItem>
+                  <SelectItem value="inactive">Inactivo</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           {/* Notas */}

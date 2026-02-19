@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 
 import {
   BarChart3,
+  Building2,
   DollarSign,
   FileOutput,
   FileText,
@@ -41,6 +42,12 @@ const MOBILE_TABS = [
     path: '/home/orders',
     icon: ShoppingCart,
     permission: 'orders:read',
+  },
+  {
+    label: 'Clientes',
+    path: '/home/customers',
+    icon: Building2,
+    permission: 'customers:read',
   },
   {
     label: 'Reportes',

@@ -177,7 +177,7 @@ export async function PUT(
     // Verify order + destination belong to org
     const { data: order } = await client
       .from('orders')
-      .select('id')
+      .select('id, status')
       .eq('id', orderId)
       .eq('organization_id', user.organization_id)
       .is('deleted_at', null)
@@ -186,6 +186,12 @@ export async function PUT(
     if (!order) {
       return NextResponse.json({ error: 'Pedido no encontrado' }, { status: 404 });
     }
+
+    // T21.22.1: Dispatch data immutability - once saved, destinations cannot be edited
+    return NextResponse.json(
+      { error: 'Los datos de despacho no son editables después de ser guardados' },
+      { status: 400 },
+    );
 
     const { data: dest, error: updateError } = await client
       .from('order_destinations')
@@ -244,7 +250,7 @@ export async function DELETE(
     // Verify order belongs to org
     const { data: order } = await client
       .from('orders')
-      .select('id')
+      .select('id, status')
       .eq('id', orderId)
       .eq('organization_id', user.organization_id)
       .is('deleted_at', null)
@@ -253,6 +259,12 @@ export async function DELETE(
     if (!order) {
       return NextResponse.json({ error: 'Pedido no encontrado' }, { status: 404 });
     }
+
+    // T21.22.1: Dispatch data immutability - once saved, destinations cannot be deleted
+    return NextResponse.json(
+      { error: 'Los datos de despacho no son eliminables después de ser guardados' },
+      { status: 400 },
+    );
 
     const { error: deleteError } = await client
       .from('order_destinations')

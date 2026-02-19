@@ -2,7 +2,8 @@
 
 import { useState, useCallback } from 'react';
 import { motion } from 'motion/react';
-import { Plus } from 'lucide-react';
+import { Download, Plus } from 'lucide-react';
+import { toast } from 'sonner';
 import { Button } from '@kit/ui/button';
 import { PermissionGate } from '@kit/rbac/permission-gate';
 import { CustomerTable } from './customer-table';
@@ -37,6 +38,7 @@ export function CustomersPageClient() {
   const [contactsOpen, setContactsOpen] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
   const [formMode, setFormMode] = useState<'create' | 'edit'>('create');
+  const [isExporting, setIsExporting] = useState(false);
 
   const { data, isLoading, error } = useCustomers(filters);
 
@@ -69,6 +71,30 @@ export function CustomersPageClient() {
     setContactsOpen(true);
   };
 
+  const handleExport = async () => {
+    try {
+      setIsExporting(true);
+      const response = await fetch('/api/customers/export');
+      if (!response.ok) {
+        throw new Error('Error al exportar clientes');
+      }
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `clientes-${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      toast.success('Clientes exportados exitosamente');
+    } catch {
+      toast.error('Error al exportar clientes');
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
   const columns = createCustomerColumns({
     onEdit: handleEditCustomer,
     onViewContacts: handleViewContacts,
@@ -86,17 +112,25 @@ export function CustomersPageClient() {
         className="flex items-center justify-between"
       >
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Clientes</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl font-medium tracking-tight">Clientes</h1>
+          <p className="text-sm text-muted-foreground">
             Gestione los clientes de su organización
           </p>
         </div>
-        <PermissionGate permission="customers:create">
-          <Button onClick={handleCreateCustomer}>
-            <Plus className="h-4 w-4 mr-2" />
-            Nuevo Cliente
-          </Button>
-        </PermissionGate>
+        <div className="flex items-center gap-2">
+          <PermissionGate permission="customers:export">
+            <Button variant="outline" onClick={handleExport} disabled={isExporting}>
+              <Download className="h-4 w-4 mr-2" />
+              {isExporting ? 'Exportando...' : 'Exportar'}
+            </Button>
+          </PermissionGate>
+          <PermissionGate permission="customers:create">
+            <Button onClick={handleCreateCustomer}>
+              <Plus className="h-4 w-4 mr-2" />
+              Nuevo Cliente
+            </Button>
+          </PermissionGate>
+        </div>
       </motion.div>
 
       <motion.div variants={itemVariants}>

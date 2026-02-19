@@ -41,9 +41,32 @@ export function QuoteItemsTable({
 }: QuoteItemsTableProps) {
   const [editingItems, setEditingItems] = useState<QuoteItem[]>(items);
   const [isAddingNew, setIsAddingNew] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+
+  // Load existing items from API when quoteId changes
+  useEffect(() => {
+    if (!quoteId) return;
+    const loadItems = async () => {
+      try {
+        const response = await fetch(`/api/quotes/${quoteId}/items`);
+        if (response.ok) {
+          const data = await response.json();
+          const itemsList = Array.isArray(data) ? data : (data.data || []);
+          if (itemsList.length > 0) {
+            setEditingItems(itemsList);
+          }
+        }
+      } catch (error) {
+        console.error('Error loading items:', error);
+      }
+    };
+    loadItems();
+  }, [quoteId]);
 
   useEffect(() => {
-    setEditingItems(items);
+    if (items.length > 0) {
+      setEditingItems(items);
+    }
   }, [items]);
 
   const calculateItemTotals = (item: Partial<QuoteItem>) => {
@@ -84,6 +107,10 @@ export function QuoteItemsTable({
   };
 
   const handleSaveItem = async (index: number, item: Partial<QuoteItem>) => {
+    // Prevent concurrent saves for the same item
+    if (isSaving) return;
+    setIsSaving(true);
+
     try {
       const calculated = calculateItemTotals(item);
       const itemData = {
@@ -102,6 +129,13 @@ export function QuoteItemsTable({
         if (!response.ok) {
           throw new Error('Error al actualizar el item');
         }
+
+        const savedItem = await response.json();
+        if (savedItem && savedItem.id) {
+          const newItems = [...editingItems];
+          newItems[index] = { ...newItems[index]!, ...savedItem };
+          setEditingItems(newItems);
+        }
       } else {
         // Create new item
         const response = await fetch(`/api/quotes/${quoteId}/items`, {
@@ -113,6 +147,14 @@ export function QuoteItemsTable({
         if (!response.ok) {
           throw new Error('Error al crear el item');
         }
+
+        // Store returned id to prevent duplicate POSTs on subsequent blurs
+        const savedItem = await response.json();
+        if (savedItem && savedItem.id) {
+          const newItems = [...editingItems];
+          newItems[index] = { ...newItems[index]!, ...savedItem };
+          setEditingItems(newItems);
+        }
       }
 
       toast.success('Item guardado correctamente');
@@ -121,6 +163,8 @@ export function QuoteItemsTable({
     } catch (error) {
       console.error('Error saving item:', error);
       toast.error('Error al guardar el item');
+    } finally {
+      setIsSaving(false);
     }
   };
 

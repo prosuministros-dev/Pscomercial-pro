@@ -19,6 +19,7 @@ const destinationSchema = z.object({
 const createOrderSchema = z.object({
   quote_id: z.string().uuid('ID de cotización es requerido'),
   billing_type: z.enum(['total', 'parcial']).default('total'),
+  item_ids: z.array(z.string().uuid()).optional(),
   delivery_address: z.string().optional(),
   delivery_city: z.string().optional(),
   delivery_contact: z.string().optional(),
@@ -151,10 +152,54 @@ export async function POST(request: Request) {
       );
     }
 
-    // Call the RPC to create order from quote (with billing_type)
+    // T21.7+T21.8: Validate credit limit before creating order
+    const { data: quoteForCredit } = await client
+      .from('quotes')
+      .select('customer_id, total, payment_terms')
+      .eq('id', parsed.data.quote_id)
+      .single();
+
+    if (quoteForCredit && quoteForCredit.payment_terms !== 'anticipado') {
+      // Only validate credit for non-anticipado (credit-based) orders
+      const { data: creditOk, error: creditError } = await client.rpc('validate_credit_limit', {
+        p_customer_id: quoteForCredit.customer_id,
+        p_amount: quoteForCredit.total || 0,
+      });
+
+      if (creditError) {
+        console.error('Credit validation error:', creditError);
+      } else if (creditOk === false) {
+        const { data: custInfo } = await client
+          .from('customers')
+          .select('is_blocked, credit_status, credit_limit, outstanding_balance')
+          .eq('id', quoteForCredit.customer_id)
+          .single();
+
+        if (custInfo?.is_blocked) {
+          return NextResponse.json(
+            { error: 'Cliente bloqueado por cartera. Solicite desbloqueo a Gerencia/Financiera.' },
+            { status: 400 },
+          );
+        }
+        if (custInfo?.credit_status !== 'approved') {
+          return NextResponse.json(
+            { error: `Crédito del cliente no aprobado (estado: ${custInfo?.credit_status}). Solicite aprobación.` },
+            { status: 400 },
+          );
+        }
+        const available = (custInfo?.credit_limit || 0) - (custInfo?.outstanding_balance || 0);
+        return NextResponse.json(
+          { error: `Pedido excede cupo disponible ($${available.toLocaleString()} de $${custInfo?.credit_limit?.toLocaleString()}). Solicite extra cupo a Gerencia.` },
+          { status: 400 },
+        );
+      }
+    }
+
+    // Call the RPC to create order from quote (with billing_type + optional item_ids)
     const { data: orderId, error: rpcError } = await client.rpc('create_order_from_quote', {
       p_quote_id: parsed.data.quote_id,
       p_billing_type: parsed.data.billing_type,
+      p_item_ids: parsed.data.item_ids || null,
     });
 
     if (rpcError) {

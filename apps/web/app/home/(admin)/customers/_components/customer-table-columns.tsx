@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { ColumnDef } from '@tanstack/react-table';
+import { Badge } from '@kit/ui/badge';
 import { Button } from '@kit/ui/button';
 import { PermissionGate } from '@kit/rbac/permission-gate';
 import { Eye, Pencil, Users } from 'lucide-react';
@@ -31,7 +33,12 @@ export function createCustomerColumns({
       accessorKey: 'business_name',
       header: 'Razón Social',
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue('business_name')}</div>
+        <Link
+          href={`/home/customers/${row.original.id}`}
+          className="font-medium text-primary hover:underline"
+        >
+          {row.getValue('business_name')}
+        </Link>
       ),
     },
     {
@@ -43,14 +50,6 @@ export function createCustomerColumns({
       },
     },
     {
-      accessorKey: 'department',
-      header: 'Departamento',
-      cell: ({ row }) => {
-        const department = row.getValue('department') as string | undefined;
-        return <div className="text-sm">{department || '-'}</div>;
-      },
-    },
-    {
       accessorKey: 'phone',
       header: 'Teléfono',
       cell: ({ row }) => {
@@ -59,14 +58,41 @@ export function createCustomerColumns({
       },
     },
     {
-      accessorKey: 'contacts_count',
-      header: 'Contactos',
+      id: 'assigned_advisor',
+      header: 'Asesor',
       cell: ({ row }) => {
-        const count = row.original.contacts_count || 0;
+        const advisor = row.original.assigned_advisor;
         return (
-          <div className="flex items-center gap-2">
-            <Users className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm">{count}</span>
+          <div className="text-sm">
+            {advisor?.full_name || <span className="text-muted-foreground">Sin asignar</span>}
+          </div>
+        );
+      },
+    },
+    {
+      accessorKey: 'status',
+      header: 'Estado',
+      cell: ({ row }) => {
+        const status = row.getValue('status') as string;
+        return (
+          <Badge
+            variant={status === 'active' ? 'default' : 'secondary'}
+            className={status === 'active' ? 'bg-green-500/10 text-green-700 dark:text-green-400' : ''}
+          >
+            {status === 'active' ? 'Activo' : 'Inactivo'}
+          </Badge>
+        );
+      },
+    },
+    {
+      accessorKey: 'last_interaction_at',
+      header: 'Última Interacción',
+      cell: ({ row }) => {
+        const date = row.getValue('last_interaction_at') as string | undefined;
+        if (!date) return <span className="text-sm text-muted-foreground">-</span>;
+        return (
+          <div className="text-sm">
+            {new Date(date).toLocaleDateString('es-CO', { day: '2-digit', month: 'short', year: 'numeric' })}
           </div>
         );
       },
@@ -78,7 +104,17 @@ export function createCustomerColumns({
         const customer = row.original;
 
         return (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              asChild
+              aria-label="Ver ficha del cliente"
+            >
+              <Link href={`/home/customers/${customer.id}`}>
+                <Eye className="h-4 w-4" />
+              </Link>
+            </Button>
             <PermissionGate permission="customers:update">
               <Button
                 variant="ghost"

@@ -183,6 +183,14 @@ export async function PATCH(
       }
     }
 
+    // BUG-027 FIX: Step 1 (request) is irreversible once set to "required"
+    if (step === 'request' && order.adv_billing_request === 'required' && value === 'not_required') {
+      return NextResponse.json(
+        { error: 'La solicitud de facturación anticipada no es reversible una vez marcada como "requerida"' },
+        { status: 400 },
+      );
+    }
+
     // Build update
     const colName = STEP_COLUMNS[step];
     const updateData: Record<string, unknown> = {

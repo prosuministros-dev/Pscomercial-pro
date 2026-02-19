@@ -4,6 +4,7 @@ import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
 import { handleApiError } from '~/lib/api-error-handler';
+import { createNotification } from '~/lib/notifications/create-notification';
 
 const registerInvoiceSchema = z.object({
   order_id: z.string().uuid('Pedido es requerido'),
@@ -98,7 +99,7 @@ export async function POST(request: Request) {
     // Verify order belongs to org, get customer_id, and validate delivery status
     const { data: order, error: orderError } = await client
       .from('orders')
-      .select('id, organization_id, customer_id, status')
+      .select('id, organization_id, customer_id, status, advisor_id, order_number, requires_acta, acta_uploaded')
       .eq('id', parsed.data.order_id)
       .eq('organization_id', user.organization_id)
       .is('deleted_at', null)
@@ -113,6 +114,14 @@ export async function POST(request: Request) {
     if (!invoiceableStatuses.includes(order.status)) {
       return NextResponse.json(
         { error: 'Solo se puede facturar un pedido entregado. Estado actual: ' + order.status },
+        { status: 400 },
+      );
+    }
+
+    // T21.20: Validate acta para facturar if required
+    if (order.requires_acta && !order.acta_uploaded) {
+      return NextResponse.json(
+        { error: 'Este pedido requiere acta para facturar. Suba el acta antes de registrar la factura.' },
         { status: 400 },
       );
     }
@@ -165,6 +174,20 @@ export async function POST(request: Request) {
       if (itemsError) {
         console.error('Error inserting invoice items:', itemsError);
       }
+    }
+
+    // T21.11: Notify advisor that invoice was registered
+    if (order.advisor_id) {
+      await createNotification({
+        organizationId: user.organization_id,
+        userId: order.advisor_id,
+        type: 'invoice_created',
+        title: 'Factura registrada',
+        message: `Factura ${parsed.data.invoice_number} registrada para pedido #${order.order_number}`,
+        entityType: 'invoice',
+        entityId: invoice.id,
+        actionUrl: `/home/orders/${order.id}`,
+      });
     }
 
     return NextResponse.json(invoice, { status: 201 });

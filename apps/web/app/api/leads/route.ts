@@ -385,14 +385,20 @@ export async function PUT(request: NextRequest) {
       .eq('organization_id', user.organization_id)
       .select(`
         *,
-        assigned_user:profiles!leads_assigned_to_fkey(id, full_name, email),
-        rejection_reason:rejection_reasons(id, label)
+        assigned_user:profiles!leads_assigned_to_fkey(id, full_name, email)
       `)
-      .single();
+      .maybeSingle();
 
     if (error) {
       console.error('Error updating lead:', error);
       return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    if (!data) {
+      return NextResponse.json(
+        { error: 'No se pudo actualizar el lead. Verifica que tienes permiso o que el lead esté asignado a ti.' },
+        { status: 403 },
+      );
     }
 
     return NextResponse.json({ data });
