@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Button } from '@kit/ui/button';
 import { Input } from '@kit/ui/input';
 import {
@@ -18,9 +18,26 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@kit/ui/select';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@kit/ui/popover';
 import { Plus, Trash2, GripVertical } from 'lucide-react';
 import { toast } from 'sonner';
 import type { QuoteItem } from '../_lib/types';
+
+interface ProductOption {
+  id: string;
+  sku: string;
+  name: string;
+  unit_cost_usd: number;
+  unit_cost_cop: number;
+  suggested_price_cop: number | null;
+  currency: string;
+  is_service: boolean;
+  is_license: boolean;
+}
 
 interface QuoteItemsTableProps {
   quoteId: string;
@@ -42,6 +59,11 @@ export function QuoteItemsTable({
   const [editingItems, setEditingItems] = useState<QuoteItem[]>(items);
   const [isAddingNew, setIsAddingNew] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+
+  // Product search state
+  const [productResults, setProductResults] = useState<Record<number, ProductOption[]>>({});
+  const [openPopovers, setOpenPopovers] = useState<Record<number, boolean>>({});
+  const searchTimers = useRef<Record<number, ReturnType<typeof setTimeout>>>({});
 
   // Load existing items from API when quoteId changes
   useEffect(() => {
@@ -199,6 +221,58 @@ export function QuoteItemsTable({
     setEditingItems(newItems);
   };
 
+  const searchProducts = useCallback(async (index: number, query: string) => {
+    if (query.length < 2) {
+      setProductResults((prev) => ({ ...prev, [index]: [] }));
+      setOpenPopovers((prev) => ({ ...prev, [index]: false }));
+      return;
+    }
+    try {
+      const res = await fetch(
+        `/api/products?search=${encodeURIComponent(query)}&minimal=true&limit=10`
+      );
+      if (res.ok) {
+        const data = await res.json();
+        const results: ProductOption[] = data.data || [];
+        setProductResults((prev) => ({ ...prev, [index]: results }));
+        setOpenPopovers((prev) => ({ ...prev, [index]: results.length > 0 }));
+      }
+    } catch {
+      // Silencioso – no interrumpir el flujo de edición
+    }
+  }, []);
+
+  const handleProductSelect = (index: number, product: ProductOption) => {
+    const unitPrice = product.suggested_price_cop ?? product.unit_cost_cop ?? 0;
+    const costPrice =
+      currency === 'USD' ? product.unit_cost_usd ?? 0 : product.unit_cost_cop ?? 0;
+
+    const newItems = [...editingItems];
+    newItems[index] = {
+      ...newItems[index]!,
+      product_id: product.id,
+      sku: product.sku,
+      description: product.name,
+      unit_price: unitPrice,
+      cost_price: costPrice,
+    } as QuoteItem;
+    setEditingItems(newItems);
+    setOpenPopovers((prev) => ({ ...prev, [index]: false }));
+    setProductResults((prev) => ({ ...prev, [index]: [] }));
+  };
+
+  const debouncedSearch = useCallback(
+    (index: number, value: string) => {
+      if (searchTimers.current[index]) {
+        clearTimeout(searchTimers.current[index]);
+      }
+      searchTimers.current[index] = setTimeout(() => {
+        searchProducts(index, value);
+      }, 300);
+    },
+    [searchProducts]
+  );
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('es-CO', {
       style: 'currency',
@@ -272,15 +346,58 @@ export function QuoteItemsTable({
                       </TableCell>
                     )}
                     <TableCell>
-                      <Input
-                        value={item.sku || ''}
-                        onChange={(e) =>
-                          handleFieldChange(index, 'sku', e.target.value)
+                      <Popover
+                        open={!!openPopovers[index] && !readOnly}
+                        onOpenChange={(open) =>
+                          setOpenPopovers((prev) => ({ ...prev, [index]: open }))
                         }
-                        onBlur={() => handleSaveItem(index, item)}
-                        disabled={readOnly}
-                        className="w-24"
-                      />
+                      >
+                        <PopoverTrigger asChild>
+                          <Input
+                            value={item.sku || ''}
+                            onChange={(e) => {
+                              handleFieldChange(index, 'sku', e.target.value);
+                              debouncedSearch(index, e.target.value);
+                            }}
+                            onBlur={() => {
+                              setTimeout(() => {
+                                setOpenPopovers((prev) => ({ ...prev, [index]: false }));
+                                handleSaveItem(index, editingItems[index]!);
+                              }, 200);
+                            }}
+                            disabled={readOnly}
+                            className="w-24"
+                            autoComplete="off"
+                            placeholder="SKU..."
+                          />
+                        </PopoverTrigger>
+                        {(productResults[index] || []).length > 0 && (
+                          <PopoverContent
+                            className="w-80 p-1"
+                            align="start"
+                            onOpenAutoFocus={(e) => e.preventDefault()}
+                          >
+                            <div className="max-h-48 overflow-y-auto">
+                              {(productResults[index] || []).map((product) => (
+                                <button
+                                  key={product.id}
+                                  type="button"
+                                  className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-muted rounded cursor-pointer text-left"
+                                  onMouseDown={(e) => {
+                                    e.preventDefault();
+                                    handleProductSelect(index, product);
+                                  }}
+                                >
+                                  <span className="font-mono text-xs text-muted-foreground w-20 shrink-0 truncate">
+                                    {product.sku}
+                                  </span>
+                                  <span className="truncate">{product.name}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </PopoverContent>
+                        )}
+                      </Popover>
                     </TableCell>
                     <TableCell>
                       <Input

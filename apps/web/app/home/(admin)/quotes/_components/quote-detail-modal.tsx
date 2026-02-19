@@ -28,6 +28,7 @@ import { STATUS_LABELS, MARGIN_HEALTH } from '../_lib/schema';
 import { QuoteTotalsPanel } from './quote-totals-panel';
 import type { Quote, QuoteItem } from '../_lib/types';
 import type { QuoteAction } from './quotes-table-columns';
+import { CommentThread } from '../../leads/_components/comment-thread';
 
 interface QuoteDetailModalProps {
   quote: Quote | null;
@@ -581,10 +582,11 @@ export function QuoteDetailModal({
         </DialogHeader>
 
         <Tabs defaultValue="general" className="mt-4">
-          <TabsList className="w-full grid grid-cols-3">
+          <TabsList className="w-full grid grid-cols-4">
             <TabsTrigger value="general">General</TabsTrigger>
             <TabsTrigger value="productos">Productos</TabsTrigger>
             <TabsTrigger value="liquidacion">Liquidación</TabsTrigger>
+            <TabsTrigger value="observaciones">Observaciones</TabsTrigger>
           </TabsList>
 
           <TabsContent value="general" className="mt-4">
@@ -597,6 +599,10 @@ export function QuoteDetailModal({
 
           <TabsContent value="liquidacion" className="mt-4">
             <LiquidacionTab quote={quote} />
+          </TabsContent>
+
+          <TabsContent value="observaciones" className="mt-4">
+            <CommentThread entityType="quote" entityId={quote.id} />
           </TabsContent>
         </Tabs>
       </DialogContent>

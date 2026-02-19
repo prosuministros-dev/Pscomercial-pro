@@ -34,6 +34,7 @@ import { OrderTimeline } from './order-timeline';
 import { ProductJourneyDialog } from './product-journey-dialog';
 import { useConfirmPayment } from '../_lib/order-queries';
 import { CommentThread } from '../../leads/_components/comment-thread';
+import { PurchaseApprovalPanel } from './purchase-approval-panel';
 
 interface OrderDetailDialogProps {
   orderId: string | null;
@@ -208,6 +209,24 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
                       'Confirmar Pago'
                     )}
                   </Button>
+                </div>
+              )}
+
+              {/* Purchase approval panel */}
+              {orderId && (
+                <div className="p-4 border rounded-lg">
+                  <PurchaseApprovalPanel
+                    orderId={orderId}
+                    orderNumber={order.order_number}
+                    onSuccess={() => {
+                      // Re-fetch order data to reflect any status changes
+                      const fetchDetail = async () => {
+                        const response = await fetch(`/api/orders/${orderId}/status`);
+                        if (response.ok) setOrder(await response.json());
+                      };
+                      fetchDetail();
+                    }}
+                  />
                 </div>
               )}
 

@@ -53,13 +53,41 @@ export async function GET(request: NextRequest) {
     }
 
     const { searchParams } = new URL(request.url);
+    const minimal = searchParams.get('minimal') === 'true';
     const page = parseInt(searchParams.get('page') || '1');
-    const limit = parseInt(searchParams.get('limit') || '10');
+    const limit = parseInt(searchParams.get('limit') || (minimal ? '20' : '10'));
     const search = searchParams.get('search') || '';
     const category_id = searchParams.get('category_id');
     const is_active = searchParams.get('is_active');
 
     const offset = (page - 1) * limit;
+
+    // Modo minimal: solo campos necesarios para selector, siempre activos, sin paginación pesada
+    if (minimal) {
+      let minimalQuery = client
+        .from('products')
+        .select('id, sku, name, unit_cost_usd, unit_cost_cop, suggested_price_cop, currency, is_service, is_license')
+        .eq('organization_id', user.organization_id)
+        .eq('is_active', true)
+        .order('name', { ascending: true })
+        .limit(limit);
+
+      if (search) {
+        minimalQuery = minimalQuery.or(`sku.ilike.%${search}%,name.ilike.%${search}%`);
+      }
+      if (category_id) {
+        minimalQuery = minimalQuery.eq('category_id', category_id);
+      }
+
+      const { data: minimalData, error: minimalError } = await minimalQuery;
+
+      if (minimalError) {
+        console.error('Error fetching products (minimal):', minimalError);
+        return NextResponse.json({ error: minimalError.message }, { status: 500 });
+      }
+
+      return NextResponse.json({ data: minimalData });
+    }
 
     let query = client
       .from('products')
