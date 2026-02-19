@@ -342,7 +342,7 @@ function ProductItemCard({
   );
 }
 
-function ProductosTab({ quote }: { quote: Quote }) {
+function ProductosTab({ quote, onEdit }: { quote: Quote; onEdit: () => void }) {
   const { data: items, isLoading, error } = useQuoteItems(quote.id);
 
   if (isLoading) {
@@ -367,6 +367,17 @@ function ProductosTab({ quote }: { quote: Quote }) {
       <div className="flex flex-col items-center justify-center py-12 text-gray-400">
         <Package className="mb-2 h-10 w-10" />
         <p className="text-sm">No hay productos en esta cotización</p>
+        <PermissionGate permission="quotes:update">
+          <Button
+            variant="outline"
+            size="sm"
+            className="mt-4"
+            onClick={onEdit}
+          >
+            <Pencil className="mr-1.5 h-3.5 w-3.5" />
+            Agregar productos
+          </Button>
+        </PermissionGate>
       </div>
     );
   }
@@ -383,12 +394,20 @@ function ProductosTab({ quote }: { quote: Quote }) {
           </span>{' '}
           {items.length === 1 ? 'producto' : 'productos'}
         </span>
-        <span className="text-sm text-gray-600 dark:text-gray-400">
-          Subtotal:{' '}
-          <span className="font-mono font-semibold text-gray-900 dark:text-white">
-            {formatCurrency(itemsSubtotal, quote.currency)}
+        <div className="flex items-center gap-3">
+          <span className="text-sm text-gray-600 dark:text-gray-400">
+            Subtotal:{' '}
+            <span className="font-mono font-semibold text-gray-900 dark:text-white">
+              {formatCurrency(itemsSubtotal, quote.currency)}
+            </span>
           </span>
-        </span>
+          <PermissionGate permission="quotes:update">
+            <Button variant="outline" size="sm" onClick={onEdit}>
+              <Pencil className="mr-1.5 h-3.5 w-3.5" />
+              Editar
+            </Button>
+          </PermissionGate>
+        </div>
       </div>
 
       {/* Product cards */}
@@ -594,7 +613,7 @@ export function QuoteDetailModal({
           </TabsContent>
 
           <TabsContent value="productos" className="mt-4">
-            <ProductosTab quote={quote} />
+            <ProductosTab quote={quote} onEdit={() => onEdit(quote)} />
           </TabsContent>
 
           <TabsContent value="liquidacion" className="mt-4">
