@@ -63,7 +63,7 @@ BEGIN
     COALESCE(o.delivery_date::date, o.created_at::date) AS fecha_clave,
     -- indicador_pendientes
     COALESCE(
-      (SELECT t.title FROM order_pending_tasks t
+      (SELECT t.title::text FROM order_pending_tasks t
        WHERE t.order_id = o.id AND t.status IN ('pending', 'in_progress')
        ORDER BY (t.priority = 'critical') DESC, t.due_date ASC NULLS LAST LIMIT 1),
       CASE o.status
@@ -73,11 +73,11 @@ BEGIN
         WHEN 'cancelled' THEN 'Cancelado'
         ELSE 'Sin pendientes'
       END
-    ) AS indicador_pendientes,
+    )::text AS indicador_pendientes,
     o.total,
     o.currency,
     o.status,
-    COALESCE(p.full_name, p.email, '') AS advisor_name,
+    COALESCE(p.full_name::text, p.email::text, '') AS advisor_name,
     o.created_at
   FROM orders o
   JOIN customers c ON c.id = o.customer_id
@@ -149,11 +149,11 @@ BEGIN
     END AS nivel_atencion,
     -- motivo_pendiente: most urgent task
     COALESCE(
-      (SELECT t.title FROM order_pending_tasks t
+      (SELECT t.title::text FROM order_pending_tasks t
        WHERE t.order_id = o.id AND t.status IN ('pending', 'in_progress')
        ORDER BY (t.priority = 'critical') DESC, t.due_date ASC NULLS LAST LIMIT 1),
       'Todo OK - Sin pendientes'
-    ) AS motivo_pendiente,
+    )::text AS motivo_pendiente,
     COALESCE(o.delivery_date::date, o.created_at::date) AS fecha_clave,
     -- dias_restantes (negative = overdue)
     EXTRACT(DAY FROM (
@@ -222,7 +222,7 @@ BEGIN
     COALESCE(s_sup.name, 'Sin proveedor')::text AS supplier_name,
     po_latest.po_number,
     COALESCE(
-      (SELECT oi.description FROM order_items oi WHERE oi.order_id = o.id ORDER BY oi.created_at LIMIT 1),
+      (SELECT oi.description::text FROM order_items oi WHERE oi.order_id = o.id ORDER BY oi.created_at LIMIT 1),
       'N/A'
     )::text AS order_product,
     COALESCE(
@@ -269,7 +269,7 @@ BEGIN
 
     -- novedades: most urgent pending task or status text
     COALESCE(
-      (SELECT t.title FROM order_pending_tasks t
+      (SELECT t.title::text FROM order_pending_tasks t
        WHERE t.order_id = o.id AND t.status IN ('pending', 'in_progress')
        ORDER BY (t.priority = 'critical') DESC, t.due_date ASC NULLS LAST LIMIT 1),
       CASE o.status
