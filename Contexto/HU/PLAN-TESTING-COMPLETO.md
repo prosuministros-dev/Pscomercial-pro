@@ -2,10 +2,10 @@
 
 > **Proyecto**: Pscomercial-pro (PROSUMINISTROS)
 > **Fecha**: 2026-02-18
-> **Version**: 5.8
+> **Version**: 6.0
 > **Cobertura objetivo**: 100% de HUs, Arquitectura y Flujos E2E
 > **Herramienta de automatizacion**: Playwright MCP + API Testing Manual
-> **Estado**: [~] En progreso (T1✅ T2✅ T3✅PW T4✅PW T5✅PW T6✅ T7✅ T8✅ T9✅ T10✅ T11✅PW T12✅PW T13✅ T14✅ T15✅ T16✅ T17✅ T18✅ T19~API T20✅ T22~UI | PW=Playwright verified)
+> **Estado**: [~] En progreso (T1✅ T2✅ T3✅PW T4✅PW T5✅PW T6✅ T7✅ T8✅ T9✅ T10✅ T11✅PW T12✅PW T13✅ T14✅ T15✅ T16✅ T17✅ T18✅ T19~API T20✅ T21◻116tests T22~UI | PW=Playwright verified)
 > **Datos de prueba**: `Contexto/HU/TEST-DATA-REFERENCE.md`
 
 ---
@@ -1094,142 +1094,682 @@ Para CADA rol, verificar:
 ## 25. FASE T21: FLUJOS E2E COMPLETOS (PIPELINE COMERCIAL)
 
 **Prioridad**: P0 | **HUs**: Todas | **FASEs**: Todas
+**Fuentes de diseño**: `ANALISIS-PROCESO-COMERCIAL-ACTUAL.md` (14 fases, 24 variantes, reglas de negocio) + `CONSOLIDADO-DOCUMENTOS-GENERALES.md` (matrices de permisos, flujos facturación, PRD tablero operativo)
+**Total tests**: 120 | **Objetivo**: Validar que la plataforma cubre 100% del pipeline comercial documentado
 
-### T21.1 FLUJO E2E #1: Lead Manual -> Cotizacion -> Pedido -> Entregado -> Facturado
+---
 
-**Rol**: Asesor Comercial + Gerente Comercial + Compras + Logistica + Facturacion
+### GRUPO A: FLUJOS PRINCIPALES DEL PIPELINE (Happy Paths)
 
-```
-Paso 1:  Asesor crea lead manual
-Paso 2:  Sistema auto-asigna lead a asesor
-Paso 3:  Asesor valida lead como valido
-Paso 4:  Asesor crea cotizacion desde lead
-Paso 5:  Asesor agrega items con precios y margenes
-Paso 6:  Sistema aplica TRM vigente
-Paso 7:  Si margen < minimo -> Gerente aprueba margen
-Paso 8:  Asesor envia cotizacion por email (PDF)
-Paso 9:  Cliente responde aceptando
-Paso 10: Asesor marca cotizacion como "Ganada"
-Paso 11: Lead cambia a "Convertido"
-Paso 12: Asesor crea pedido desde cotizacion ganada
-Paso 13: Datos comerciales heredados (no editables)
-Paso 14: Asesor agrega destinos de entrega
-Paso 15: Compras crea orden de compra
-Paso 16: OC enviada a proveedor
-Paso 17: Mercancia recibida
-Paso 18: Logistica despacha pedido
-Paso 19: Entrega confirmada
-Paso 20: Facturacion registra factura
-Paso 21: Pedido marcado como "Facturado"
-```
+---
 
-- [ ] T21.1.1: Flujo completo de 21 pasos ejecutado exitosamente
-- [ ] T21.1.2: Trazabilidad completa visible en cada paso
-- [ ] T21.1.3: Notificaciones generadas en cada transicion
-- [ ] T21.1.4: Audit trail registra todos los cambios
-- [ ] T21.1.5: Dashboard refleja metricas actualizadas
+### T21.1 FLUJO E2E #1: Lead Manual → Cotización → Pedido Crédito → OC → Despacho Total → Factura Total → Cierre
 
-### T21.2 FLUJO E2E #2: Lead WhatsApp -> Cotizacion Perdida
-
-**Rol**: Chatbot + Asesor Comercial
+**Rol**: Asesor Comercial → Gerente Comercial → Compras → Logística → Financiera
+**Variantes cubiertas**: Flujo estándar completo (14 fases), cliente con crédito 30 días, margen dentro del mínimo
+**Ref. Análisis**: Fases 1-14, Variante estándar
 
 ```
-Paso 1: Cliente envia mensaje por WhatsApp
-Paso 2: Chatbot inicia flujo de captura
-Paso 3: Chatbot recopila datos (empresa, NIT, contacto, email, requerimiento)
-Paso 4: Sistema crea lead automaticamente
-Paso 5: Lead asignado a asesor
-Paso 6: Asesor crea cotizacion
-Paso 7: Envia proforma por email
-Paso 8: Cliente no responde
-Paso 9: Cron envia recordatorio
-Paso 10: Cotizacion expira (vencimiento)
-Paso 11: Asesor marca como "Perdida" con motivo
+Fase 1  (Lead):        Asesor crea lead manual → sistema asigna consecutivo (#100+) y asesor (round-robin)
+Fase 2  (Validación):  Asesor revisa lead, valida como válido
+Fase 3  (Cliente):     Asesor verifica/crea cliente con NIT, razón social, dirección, ciudad, teléfono
+Fase 4  (Cotización):  Asesor crea cotización desde lead → consecutivo #30000+
+                        Agrega productos (N° parte, vertical, marca, costo, moneda, margen, IVA, proveedor, garantía)
+                        Sistema aplica TRM vigente, valida margen >= mínimo (7% HW crédito 30d)
+                        Calcula: Precio = Costo / (1 - Margen%)
+Fase 5  (Margen OK):   Margen cumple mínimo → no requiere aprobación
+Fase 6  (Envío):       Asesor genera PDF y envía cotización por email
+Fase 7  (Aprobación):  Flujo A (crédito): Cliente con crédito 30d, cupo disponible suficiente → directo
+Fase 8  (Pedido):      Asesor marca cotización "Ganada" → crea pedido (selecciona items)
+                        Datos comerciales heredados (NIT, razón social, contacto, forma de pago) → inmutables
+                        Asesor configura: despacho total, facturación total, con confirmación de entrega
+                        Asesor llena datos despacho (receptor, teléfono, dirección, departamento, ciudad, horario, emails)
+                        Lead cambia a "Convertido"
+Fase 9  (OC):          Compras genera orden de compra al proveedor sugerido → consecutivo OC propio
+                        Sistema no permite comprar más de las cantidades vendidas
+Fase 10 (Recepción):   Compras registra ingreso de mercancía (factura proveedor, cantidad, fecha)
+Fase 11 (Despacho):    Logística despacha: registra transportadora, guía, fecha despacho
+                        Notificación por chat interno al equipo
+Fase 12 (Entrega):     Cliente confirma recepción → entrega confirmada
+                        Notificación a Financiera para facturar
+Fase 13 (Factura):     Financiera registra factura total → número de factura, fecha, valor, productos
+Fase 14 (Cierre):      Compras verifica documentos completos → cierra pedido
 ```
 
-- [ ] T21.2.1: Flujo WhatsApp -> Lead funciona
-- [ ] T21.2.2: Expiracion automatica funciona
-- [ ] T21.2.3: Motivo de perdida registrado
+- [ ] T21.1.1: Flujo completo de 14 fases ejecutado exitosamente de inicio a fin
+- [ ] T21.1.2: Consecutivos asignados correctamente (lead #100+, cotización #30000+, pedido #20000+, OC propio)
+- [ ] T21.1.3: Datos comerciales heredados del cliente a cotización a pedido son inmutables en pedido
+- [ ] T21.1.4: Fórmula de margen correcta: Precio = Costo / (1 - Margen%), margen validado contra mínimo 7%
+- [ ] T21.1.5: TRM del día aplicada automáticamente en cotización y actualizada en pedido
+- [ ] T21.1.6: Trazabilidad bidireccional: lead → cotización → pedido → OC → factura (links navegables)
+- [ ] T21.1.7: Notificaciones generadas en cada transición de estado (campanita interna)
+- [ ] T21.1.8: Audit trail registra todos los cambios con usuario, fecha, acción
 
-### T21.3 FLUJO E2E #3: Lead Rechazado
+### T21.2 FLUJO E2E #2: Lead WhatsApp → Cotización → Seguimiento Automático → Cotización Perdida
+
+**Rol**: Chatbot WhatsApp + Sistema + Asesor Comercial
+**Variantes cubiertas**: Canal WhatsApp, seguimiento automático por template, expiración, pérdida con motivo
+**Ref. Análisis**: Fase 1 (canal WA), Variante 22 (seguimiento automático), Variante 20 (pérdida)
+
+```
+Paso 1:  Cliente escribe al número principal de WhatsApp
+Paso 2:  Chatbot muestra template de bienvenida → menú: Solicitar cotización / Estado pedido / Otro
+Paso 3:  Cliente selecciona "Solicitar cotización"
+Paso 4:  Chatbot captura: nombre contacto, empresa/razón social, teléfono, correo, requerimiento
+Paso 5:  Sistema crea lead automáticamente con canal="WhatsApp"
+Paso 6:  Round-robin asigna lead a asesor (máx 5 pendientes)
+Paso 7:  Asesor recibe notificación (campanita) de nuevo lead asignado
+Paso 8:  Asesor crea cotización desde lead, agrega productos, genera PDF
+Paso 9:  Asesor envía cotización (template WA con link a PDF, NO adjunto directo)
+Paso 10: Cliente no responde → X días (configurable, default 8 días) sin respuesta
+Paso 11: Cron de seguimiento dispara template automático por WhatsApp con link a cotización
+Paso 12: Cotización alcanza vigencia (default 5 días calendario) → vencida
+Paso 13: Asesor marca cotización como "Perdida" con motivo de pérdida obligatorio
+```
+
+- [ ] T21.2.1: Chatbot crea lead automáticamente con datos capturados y canal="WhatsApp"
+- [ ] T21.2.2: Round-robin asigna lead respetando máximo 5 pendientes por asesor
+- [ ] T21.2.3: Notificación de nuevo lead aparece en campanita del asesor
+- [ ] T21.2.4: Cron de seguimiento envía template automático después de X días sin respuesta
+- [ ] T21.2.5: Motivo de pérdida obligatorio al marcar cotización como "Perdida"
+
+### T21.3 FLUJO E2E #3: Lead Descartado (No Válido)
 
 **Rol**: Asesor Comercial
+**Variantes cubiertas**: Lead basura/no calificado, razón de descarte, bloqueo de conversión
+**Ref. Análisis**: Fase 2 (validación), Variante 1 (lead inválido)
 
 ```
-Paso 1: Lead creado (manual o chatbot)
-Paso 2: Asesor recibe notificacion
-Paso 3: Asesor revisa lead
-Paso 4: Lead no cumple criterios -> Rechazado
-Paso 5: Motivo, usuario y fecha registrados
-Paso 6: Lead no puede convertirse a cotizacion
+Paso 1: Lead creado (manual o por chatbot)
+Paso 2: Sistema asigna lead a asesor automáticamente
+Paso 3: Asesor recibe notificación, revisa lead
+Paso 4: Lead no cumple criterios → Asesor marca como "Descartado"
+Paso 5: Sistema requiere razón de descarte obligatoria (lista desplegable)
+Paso 6: Sistema registra: motivo, usuario, fecha/hora
+Paso 7: Lead descartado NO puede convertirse a cotización (botón deshabilitado)
 ```
 
-- [ ] T21.3.1: Rechazo registra motivo correctamente
-- [ ] T21.3.2: Lead rechazado bloqueado de crear cotizacion
+- [ ] T21.3.1: Razón de descarte obligatoria (lista desplegable, no puede quedar vacío)
+- [ ] T21.3.2: Lead descartado no permite crear cotización (acción bloqueada)
+- [ ] T21.3.3: Registro de trazabilidad: usuario que descartó, fecha/hora, motivo
 
-### T21.4 FLUJO E2E #4: Pedido con Licencias
+---
 
-**Rol**: Asesor + Compras + Admin
+### GRUPO B: VARIANTES DE APROBACIÓN Y CRÉDITO
 
-```
-Paso 1: Cotizacion con productos tipo licencia
-Paso 2: Pedido creado
-Paso 3: Licencias registradas (pending)
-Paso 4: Licencia activada con key
-Paso 5: Monitoreo de vencimiento
-Paso 6: Alerta de vencimiento proximo
-Paso 7: Renovacion de licencia
-```
+---
 
-- [ ] T21.4.1: Productos tipo licencia no siguen flujo logistico
-- [ ] T21.4.2: Alertas de vencimiento funcionan
-- [ ] T21.4.3: Status tracking de licencia correcto
+### T21.4 FLUJO E2E #4: Margen Inferior al Mínimo → Aprobación por Gerencia
 
-### T21.5 FLUJO E2E #5: Advance Billing (4 Pasos)
-
-**Rol**: Asesor -> Compras -> Logistica -> Facturacion
+**Rol**: Asesor Comercial → Gerente General (Daniel)
+**Variantes cubiertas**: Margen bajo, solicitud automática, aprobación con % específico
+**Ref. Análisis**: Fase 5, Variante 5-6, Punto de Decisión 2-3, Regla de negocio margen
 
 ```
-Paso 1: Asesor solicita facturacion anticipada (billing_request)
-Paso 2: Compras aprueba (billing_approval)
-Paso 3: Logistica emite remision (billing_remission)
-Paso 4: Facturacion registra factura (billing_invoice)
+Paso 1: Asesor crea cotización para cliente con crédito 45 días
+Paso 2: Agrega producto Hardware con margen 6% (mínimo para crédito 45d = 9%)
+Paso 3: Sistema detecta margen < mínimo → genera solicitud de aprobación automática
+Paso 4: Notificación a Gerente General (Daniel)
+Paso 5: Gerente revisa solicitud → Aprueba con margen específico (ej: 6%)
+Paso 6: Campo "Menor utilidad autorizada" aparece en línea del producto
+Paso 7: Asesor continúa con cotización usando margen aprobado
 ```
 
-- [ ] T21.5.1: Cada paso solo accesible por roles autorizados
-- [ ] T21.5.2: Notificaciones al equipo correcto en cada paso
-- [ ] T21.5.3: Flujo secuencial (no se puede saltar pasos)
+- [ ] T21.4.1: Sistema valida margen contra tabla: vertical × forma de pago (ej: HW+crédito45d = 9%)
+- [ ] T21.4.2: Solicitud de aprobación generada automáticamente cuando margen < mínimo
+- [ ] T21.4.3: Gerente puede aprobar con porcentaje específico → campo "menor utilidad autorizada" visible
+- [ ] T21.4.4: Asesor puede continuar cotización con margen aprobado inferior al mínimo
 
-### T21.6 FLUJO E2E #6: Multi-Tenant Isolation
+### T21.5 FLUJO E2E #5: Margen Rechazado por Gerencia → Asesor Ajusta
+
+**Rol**: Asesor Comercial → Gerente General
+**Variantes cubiertas**: Margen rechazado, ajuste obligatorio
+**Ref. Análisis**: Variante 6 (margen rechazado)
+
+```
+Paso 1: Asesor crea cotización con margen 3% en producto Software (mínimo 5%)
+Paso 2: Sistema genera solicitud de aprobación a Gerencia
+Paso 3: Gerente rechaza la solicitud de margen
+Paso 4: Notificación al asesor de rechazo
+Paso 5: Asesor debe ajustar margen >= mínimo (5%) o solicitar nueva aprobación
+Paso 6: Asesor ajusta a 5% → sistema acepta → cotización continúa
+```
+
+- [ ] T21.5.1: Gerente puede rechazar solicitud de margen
+- [ ] T21.5.2: Notificación de rechazo llega al asesor
+- [ ] T21.5.3: Asesor no puede avanzar con margen rechazado sin ajustar o re-solicitar
+
+### T21.6 FLUJO E2E #6: Cliente Pago Anticipado → Proforma → Verificación de Pago → Pedido
+
+**Rol**: Asesor Comercial → Financiera (Laura) → Compras
+**Variantes cubiertas**: Pago anticipado (default clientes nuevos), proforma, verificación de pago
+**Ref. Análisis**: Fase 7 Flujo B (anticipado), Variante 8-9, Punto de Decisión 4,7
+
+```
+Paso 1:  Asesor crea cotización para cliente nuevo (forma de pago = ANTICIPADO por defecto)
+Paso 2:  Cliente acepta cotización → Asesor marca como "Ganada"
+Paso 3:  Al crear pedido: sistema detecta forma de pago = Anticipado
+Paso 4:  Pedido creado con campo "Confirmación de pago" = "Pendiente por confirmar"
+Paso 5:  Asesor o Gerencia solicita proforma a Financiera (Laura)
+Paso 6:  Financiera genera proforma → notificación al asesor
+Paso 7:  Asesor envía proforma al cliente → cliente realiza el pago
+Paso 8:  Financiera verifica recepción del pago → cambia a "Pago confirmado"
+Paso 9:  Al confirmar pago → notificación email a Compras con referencia del pedido
+Paso 10: Compras puede generar OC (antes del pago estaba bloqueado)
+```
+
+- [ ] T21.6.1: Clientes creados por comerciales quedan con forma de pago "ANTICIPADO" por defecto
+- [ ] T21.6.2: Solo Financiera puede cambiar confirmación de pago (campo exclusivo)
+- [ ] T21.6.3: Proforma generada notifica automáticamente al asesor
+- [ ] T21.6.4: Confirmación de pago genera notificación email a Compras
+- [ ] T21.6.5: Compras NO puede generar OC hasta que pago esté confirmado
+
+### T21.7 FLUJO E2E #7: Cliente Bloqueado por Cartera → Solicitud Desbloqueo → Aprobación
+
+**Rol**: Financiera (Laura) → Asesor Comercial → Gerencia/Financiera
+**Variantes cubiertas**: Bloqueo de cartera, solicitud de desbloqueo, aprobación/rechazo
+**Ref. Análisis**: Fase 7 Flujo C (bloqueado), Variante 10-11, Punto de Decisión 5
+
+```
+Paso 1: Financiera bloquea cliente por cartera vencida (motivo: "Cartera en mora")
+Paso 2: Asesor crea cotización para cliente bloqueado (cotización funciona normalmente)
+Paso 3: Asesor intenta crear pedido desde cotización ganada → SISTEMA BLOQUEA
+Paso 4: Sistema muestra banner/alerta: "Cliente bloqueado por cartera"
+Paso 5: Sistema genera solicitud de desbloqueo automática a Laura/Daniel
+Paso 6: Laura/Daniel aprueba desbloqueo
+Paso 7: Bloqueo removido → asesor puede crear pedido exitosamente
+```
+
+- [ ] T21.7.1: Bloqueo de cartera impide generar pedido (NO impide cotizar)
+- [ ] T21.7.2: Banner/alerta visible al intentar crear pedido con cliente bloqueado
+- [ ] T21.7.3: Solicitud de desbloqueo generada automáticamente a Financiera/Gerencia
+- [ ] T21.7.4: Tras aprobación de desbloqueo, asesor puede crear pedido exitosamente
+
+### T21.8 FLUJO E2E #8: Extra Cupo → Solicitud → Aprobación → Pedido
+
+**Rol**: Asesor Comercial → Gerencia/Financiera
+**Variantes cubiertas**: Cotización excede cupo disponible del cliente
+**Ref. Análisis**: Fase 7 Flujo D (excede cupo), Variante 12, Punto de Decisión 6
+
+```
+Paso 1: Cliente tiene cupo de crédito asignado de $10M, cupo disponible $2M
+Paso 2: Asesor crea cotización por valor de $5M (excede cupo disponible)
+Paso 3: Al intentar generar pedido → sistema detecta que excede cupo
+Paso 4: Sistema genera solicitud automática de "extra cupo" a Laura/Daniel
+Paso 5: Laura/Daniel aprueba extra cupo
+Paso 6: Asesor puede crear pedido exitosamente
+```
+
+- [ ] T21.8.1: Sistema detecta cuando cotización excede cupo disponible del cliente
+- [ ] T21.8.2: Solicitud automática de extra cupo generada a Financiera/Gerencia
+- [ ] T21.8.3: Tras aprobación de extra cupo, pedido se crea exitosamente
+
+---
+
+### GRUPO C: COMBINATORIA DESPACHO / FACTURACIÓN (5 Casos de la Matriz)
+
+---
+
+### T21.9 FLUJO E2E #9: Despacho Parcial + Facturación Parcial (Caso 1)
+
+**Rol**: Asesor → Compras → Logística → Financiera
+**Variantes cubiertas**: Matriz caso 1: Facturación parcial=SI, Entrega parcial=SI, Sin confirmación
+**Ref. Consolidado**: Sección 10.1 Caso 1, Sección 9.4 Reglas del flujo
+
+```
+Paso 1:  Asesor crea pedido con 3 productos (A×2, B×3, C×1)
+         Configura: despacho parcial=SI, facturación parcial=SI, sin confirmación entrega
+Paso 2:  Compras genera OC y recibe mercancía del producto A (2 unidades)
+Paso 3:  Logística despacha producto A (parcial)
+Paso 4:  → Acción automática a Financiera: puede facturar parcial (solo producto A)
+Paso 5:  Financiera registra factura parcial #1 (producto A)
+Paso 6:  Compras recibe mercancía de B y C
+Paso 7:  Logística despacha B y C
+Paso 8:  → Acción automática a Financiera: facturar restante
+Paso 9:  Financiera registra factura parcial #2 (productos B + C) → pedido "Facturado total"
+Paso 10: Compras verifica documentos → cierra pedido
+```
+
+- [ ] T21.9.1: Despacho parcial permitido cuando configurado en pedido
+- [ ] T21.9.2: Facturación parcial habilitada: Financiera puede facturar tras cada despacho parcial
+- [ ] T21.9.3: Notificación automática a Financiera tras cada despacho parcial
+- [ ] T21.9.4: Múltiples facturas parciales asociadas al mismo pedido sin duplicidad
+- [ ] T21.9.5: Pedido transiciona a "Facturado total" solo cuando TODO está facturado
+
+### T21.10 FLUJO E2E #10: Despacho Parcial + Facturación Total (Caso 2)
+
+**Rol**: Asesor → Compras → Logística → Financiera
+**Variantes cubiertas**: Matriz caso 2: Facturación parcial=NO, Entrega parcial=SI
+**Ref. Consolidado**: Sección 10.1 Caso 2
+
+```
+Paso 1: Asesor crea pedido con 2 productos
+        Configura: despacho parcial=SI, facturación parcial=NO
+Paso 2: Logística despacha producto A (parcial)
+Paso 3: → NO se notifica a Financiera (facturación parcial deshabilitada)
+Paso 4: Logística despacha producto B (completa el despacho total)
+Paso 5: → Ahora SÍ se notifica a Financiera: puede facturar total
+Paso 6: Financiera registra factura total → pedido "Facturado total"
+```
+
+- [ ] T21.10.1: Con facturación parcial=NO, despacho parcial NO genera notificación a Financiera
+- [ ] T21.10.2: Solo cuando despacho total completado → notificación a Financiera
+- [ ] T21.10.3: Financiera registra una sola factura total
+- [ ] T21.10.4: Estado del pedido correcto en cada fase intermedia
+
+### T21.11 FLUJO E2E #11: Despacho Total + Facturación Total (Caso 3)
+
+**Rol**: Asesor → Compras → Logística → Financiera
+**Variantes cubiertas**: Matriz caso 3: Todo total, sin parciales
+**Ref. Consolidado**: Sección 10.1 Caso 3
+
+```
+Paso 1: Asesor crea pedido con productos
+        Configura: despacho parcial=NO, facturación parcial=NO
+Paso 2: Compras genera OC, recibe toda la mercancía
+Paso 3: Logística despacha todo en un solo envío
+Paso 4: → Acción a Financiera para factura total
+Paso 5: Financiera registra factura total
+Paso 6: Compras cierra pedido
+```
+
+- [ ] T21.11.1: Despacho parcial NO permitido cuando configurado como NO
+- [ ] T21.11.2: Logística solo puede hacer un despacho total
+- [ ] T21.11.3: Factura total registrada exitosamente → cierre del pedido
+
+### T21.12 FLUJO E2E #12: Facturación CON Confirmación de Entrega (Caso 4)
+
+**Rol**: Asesor → Logística → Cliente → Financiera
+**Variantes cubiertas**: Matriz caso 4: Requiere confirmación de entrega antes de facturar
+**Ref. Consolidado**: Sección 10.1 Caso 4, Sección 9.4 Caso 4
+
+```
+Paso 1: Asesor crea pedido nacional con confirmación de entrega = SI
+Paso 2: Logística despacha mercancía por transportadora nacional
+Paso 3: → Notificación a Comercial: "Se despachó pedido, pendiente confirmación"
+Paso 4: Pedido queda en estado "En proceso de entrega" → NO aparece para facturar
+Paso 5: Cliente confirma recepción en destino final
+Paso 6: Logística registra entrega confirmada con fecha
+Paso 7: → Ahora SÍ notificación a Financiera: puede facturar
+Paso 8: Financiera registra factura
+```
+
+- [ ] T21.12.1: Con confirmación entrega=SI, despacho NO genera notificación a Financiera
+- [ ] T21.12.2: Pedido queda "En proceso de entrega" hasta confirmación
+- [ ] T21.12.3: Solo tras confirmación de entrega → Financiera puede facturar
+- [ ] T21.12.4: Fecha de entrega registrada al confirmar recepción
+
+### T21.13 FLUJO E2E #13: Facturación SIN Confirmación de Entrega (Caso 5)
+
+**Rol**: Asesor → Logística → Financiera
+**Variantes cubiertas**: Matriz caso 5: Se puede facturar al despachar, sin esperar entrega
+**Ref. Consolidado**: Sección 10.1 Caso 5
+
+```
+Paso 1: Asesor crea pedido con confirmación de entrega = NO
+Paso 2: Logística despacha mercancía
+Paso 3: → Inmediatamente notificación a Financiera: puede facturar
+Paso 4: Financiera registra factura sin esperar confirmación de entrega
+```
+
+- [ ] T21.13.1: Con confirmación entrega=NO, despacho genera notificación inmediata a Financiera
+- [ ] T21.13.2: Financiera puede facturar sin esperar confirmación de entrega del cliente
+- [ ] T21.13.3: Flujo completo más rápido que caso con confirmación
+
+### T21.14 FLUJO E2E #14: Facturación Anticipada 4 Pasos Secuenciales
+
+**Rol**: Asesor/Gerencia → Compras → Logística → Financiera
+**Variantes cubiertas**: Advance billing de 4 pasos con permisos diferenciados por área
+**Ref. Consolidado**: Sección 7.4 (Pasos 1-4 detallados con matrices de permisos)
+
+```
+Paso 1 (Solicitud):   Asesor o Gerencia selecciona "Requerida" → NO reversible
+                       Registra fecha/hora → notificación email a Compras
+                       Permisos: solo Comercial (1 vez) y Gerencia pueden editar
+
+Paso 2 (Aprobación):  Compras cambia a "Aprobada"
+                       Registra fecha/hora + usuario → notificación email a Logística (Sebastián)
+                       Permisos: solo Compras puede editar
+
+Paso 3 (Remisión):    Logística o Compras selecciona "Generada"
+                       Registra fecha/hora → notificación email a Financiera
+                       Permisos: solo Logística y Compras pueden editar
+
+Paso 4 (Factura):     Financiera selecciona "Generada"
+                       Registra fecha/hora → notificación email a Compras Y al Comercial asignado
+                       Permisos: solo Financiera puede editar
+```
+
+- [ ] T21.14.1: Paso 1 irreversible: una vez "Requerida" no se puede volver a "No requerida"
+- [ ] T21.14.2: Cada paso solo editable por el área autorizada (RBAC verificado)
+- [ ] T21.14.3: Secuencia obligatoria: no se puede ejecutar paso N sin completar paso N-1
+- [ ] T21.14.4: Cada paso registra fecha/hora y usuario (inmutable)
+- [ ] T21.14.5: Notificaciones email correctas: Paso1→Compras, Paso2→Logística, Paso3→Financiera, Paso4→Compras+Comercial
+
+---
+
+### GRUPO D: FLUJOS ESPECIALES
+
+---
+
+### T21.15 FLUJO E2E #15: Pedido con Intangibles/Licencias (Microsoft CSP + Cisco)
+
+**Rol**: Asesor Comercial → Compras → (sin flujo logístico físico)
+**Variantes cubiertas**: Licenciamiento por marca con formularios específicos, renovación vs nuevo
+**Ref. Consolidado**: Sección 8.3.4 (Licenciamiento por marca), Análisis Fase 11 (intangibles)
+
+```
+Paso 1:  Asesor crea cotización con 2 productos tipo licencia:
+         - Microsoft O365 CSP (nuevo, cliente CON tenant → Tenant ID + Dominio)
+         - Cisco (renovación → N° serie + Fecha inicio/fin contrato + N° parte HW + Serial HW)
+Paso 2:  Pedido creado → sección de intangibles habilitada
+Paso 3:  Asesor llena formulario Microsoft CSP: razón social, NIT, sector, contacto, teléfono,
+         cargo, dirección, email, país, departamento, ciudad, código postal + tenant ID + dominio
+Paso 4:  Asesor llena formulario Cisco renovación: mismos datos base + serial + fechas contrato
+Paso 5:  Formularios guardados → inmutables después de guardar
+Paso 6:  Compras gestiona activación de licencias (sin flujo de despacho físico)
+Paso 7:  Licencias registradas como activadas → Financiera puede facturar
+```
+
+- [ ] T21.15.1: Formulario Microsoft CSP muestra campos de tenant (con/sin tenant) según selección
+- [ ] T21.15.2: Formulario Cisco renovación incluye campos específicos (serial, fechas contrato)
+- [ ] T21.15.3: Datos de intangibles inmutables después de guardar
+- [ ] T21.15.4: Productos tipo licencia NO requieren flujo de despacho logístico
+- [ ] T21.15.5: Los 12 campos base obligatorios para cada marca (razón social, NIT, sector, etc.)
+
+### T21.16 FLUJO E2E #16: Pedido con Múltiples Proveedores (N Órdenes de Compra)
+
+**Rol**: Asesor → Compras
+**Variantes cubiertas**: Un pedido puede generar N órdenes de compra a diferentes proveedores
+**Ref. Análisis**: Fase 9, Variante 14 (múltiples OC), Punto de Decisión 12
+
+```
+Paso 1: Cotización con 3 productos de 3 proveedores distintos (HP, Dell, Cisco)
+Paso 2: Pedido creado con los 3 productos
+Paso 3: Compras genera OC #1 para proveedor HP (producto A)
+Paso 4: Compras genera OC #2 para proveedor Dell (producto B) → puede cambiar proveedor sugerido
+Paso 5: Compras genera OC #3 para proveedor Cisco (producto C)
+Paso 6: Cada OC muestra: historial de precio de última compra con ese N° de parte
+Paso 7: Pedido muestra: "pendientes por comprar" = 0 cuando todas las OC generadas
+```
+
+- [ ] T21.16.1: Múltiples OC generadas desde un solo pedido, cada una con su consecutivo
+- [ ] T21.16.2: Compras puede cambiar proveedor sugerido por otro al generar OC
+- [ ] T21.16.3: Historial de precio de última compra visible al generar OC
+- [ ] T21.16.4: Indicador "pendientes por comprar" se actualiza correctamente
+
+### T21.17 FLUJO E2E #17: Cotización Duplicada → Versiones Múltiples → Selección Ganadora
+
+**Rol**: Asesor Comercial
+**Variantes cubiertas**: Duplicar cotización para crear versiones alternativas vinculadas
+**Ref. Consolidado**: Sección 5.4 Observación 1, Análisis Variante 19, Punto de Decisión 15
+
+```
+Paso 1: Asesor crea cotización original #30001 con productos A, B, C
+Paso 2: Asesor selecciona productos A, B → duplica cotización → nueva #30002 (versión alternativa)
+Paso 3: Asesor modifica precios/márgenes en #30002 (oferta más económica)
+Paso 4: Asesor envía ambas versiones al cliente
+Paso 5: Cliente elige versión #30002 → Asesor marca #30002 como "Ganada"
+Paso 6: Asesor marca #30001 como "Perdida"
+Paso 7: Pedido se crea desde #30002
+```
+
+- [ ] T21.17.1: Duplicar cotización crea nueva con productos seleccionados
+- [ ] T21.17.2: Cotización duplicada tiene su propio consecutivo
+- [ ] T21.17.3: Cada versión es independiente (modificar una no afecta la otra)
+- [ ] T21.17.4: Pedido se crea desde la cotización ganada, no desde la perdida
+
+### T21.18 FLUJO E2E #18: Selección Parcial de Items al Crear Pedido
+
+**Rol**: Asesor Comercial
+**Variantes cubiertas**: Cotización con N productos pero solo algunos pasan al pedido
+**Ref. Análisis**: Fase 8, Punto de Decisión 8, Variante 15
+
+```
+Paso 1: Cotización con 5 productos: A, B, C, D, E
+Paso 2: Cliente acepta solo A, B, D → cotización "Ganada"
+Paso 3: Asesor crea pedido seleccionando solo A, B, D
+Paso 4: Pedido creado contiene SOLO los 3 items seleccionados
+Paso 5: Productos C y E no aparecen en el pedido
+```
+
+- [ ] T21.18.1: Asesor puede seleccionar subconjunto de items al crear pedido
+- [ ] T21.18.2: Pedido contiene solo los items seleccionados
+- [ ] T21.18.3: Totales del pedido calculados solo sobre items seleccionados
+
+### T21.19 FLUJO E2E #19: Pedido Anulado por Gerencia (con motivo)
+
+**Rol**: Gerencia
+**Variantes cubiertas**: Anulación diferente a "perdido", requiere motivo
+**Ref. Análisis**: Punto de Decisión 14, Variante 21
+
+```
+Paso 1: Pedido en proceso con OC ya generada
+Paso 2: Gerencia decide anular pedido
+Paso 3: Sistema requiere motivo de anulación obligatorio
+Paso 4: Pedido cambia a estado "Anulado"
+Paso 5: Pedido anulado visible en filtro de "Anulados" del panel
+Paso 6: Pedido anulado NO editable
+```
+
+- [ ] T21.19.1: Solo Gerencia puede anular pedidos
+- [ ] T21.19.2: Motivo de anulación obligatorio
+- [ ] T21.19.3: Pedido anulado visible en filtro correcto del panel, no editable
+
+### T21.20 FLUJO E2E #20: Acta para Facturar → Comercial Sube Acta → Habilita Facturación
+
+**Rol**: Asesor → Financiera
+**Variantes cubiertas**: Pedido que requiere acta firmada antes de facturar
+**Ref. Consolidado**: Sección 9.4 Regla de Acta, Sección 10.3
+
+```
+Paso 1: Pedido configurado con requisito de acta para facturar
+Paso 2: Mercancía despachada y entregada
+Paso 3: Financiera intenta facturar → BLOQUEADO (falta acta)
+Paso 4: Asesor sube documento de acta firmada al pedido
+Paso 5: → Notificación automática a Financiera: "Acta cargada, puede facturar"
+Paso 6: Financiera puede facturar exitosamente
+```
+
+- [ ] T21.20.1: Facturación bloqueada cuando pedido requiere acta y no se ha cargado
+- [ ] T21.20.2: Al cargar acta → notificación automática a Financiera
+- [ ] T21.20.3: Tras carga de acta, Financiera puede facturar exitosamente
+
+---
+
+### GRUPO E: CONTROLES Y VALIDACIONES TRANSVERSALES
+
+---
+
+### T21.21 FLUJO E2E #21: TRM y Conversión USD→COP en Pipeline Completo
+
+**Rol**: Sistema + Asesor + Compras
+**Variantes cubiertas**: Productos con costo en USD, conversión automática, TRM del día
+**Ref. Análisis**: Reglas de negocio TRM, Fase 4, Sección 9.5 campos producto
+
+```
+Paso 1: Sistema obtiene TRM del día automáticamente (servicio público)
+Paso 2: Asesor crea cotización con producto: costo USD $500, moneda=USD
+Paso 3: Sistema aplica TRM vigente → muestra costo en COP automáticamente
+Paso 4: Asesor aplica margen 10% → precio venta calculado sobre costo COP
+Paso 5: Al crear pedido → TRM se actualiza al día del pedido (puede diferir de la cotización)
+Paso 6: Compras ve costos convertidos al generar OC
+```
+
+- [ ] T21.21.1: TRM automática obtenida diariamente del servicio público
+- [ ] T21.21.2: Conversión USD→COP aplicada correctamente: Costo COP = Costo USD × TRM
+- [ ] T21.21.3: TRM de la cotización puede diferir de la TRM del pedido (se actualiza al día)
+- [ ] T21.21.4: Fallback manual disponible si servicio TRM no responde
+
+### T21.22 FLUJO E2E #22: Datos de Despacho Inmutables + Múltiples Destinos
+
+**Rol**: Asesor Comercial → Logística
+**Variantes cubiertas**: Inmutabilidad de datos guardados, destinos múltiples
+**Ref. Consolidado**: Sección 8.1 y 8.2 (despacho inmutable, destinos múltiples)
+
+```
+Paso 1: Asesor llena datos de despacho: receptor, teléfono, dirección, departamento (33 opciones),
+        ciudad, horario entrega, email guía, email factura
+Paso 2: Asesor guarda → datos se BLOQUEAN (no editables por nadie)
+Paso 3: Asesor intenta modificar datos de despacho → RECHAZADO
+Paso 4: Asesor agrega destino múltiple adicional (cajón complementario)
+Paso 5: Destino adicional también se bloquea al guardar
+Paso 6: Sistema registra fecha/hora y usuario al guardar cada destino
+```
+
+- [ ] T21.22.1: Datos de despacho inmutables después de guardar (ningún rol puede editar)
+- [ ] T21.22.2: Selector de departamentos muestra 33 departamentos de Colombia
+- [ ] T21.22.3: Destinos múltiples: cajón complementario para destinos adicionales
+- [ ] T21.22.4: Fecha/hora y usuario registrados al guardar (trazabilidad)
+
+### T21.23 FLUJO E2E #23: Trazabilidad Completa y Navegabilidad Bidireccional
+
+**Rol**: Todos los roles
+**Variantes cubiertas**: Links navegables entre entidades en toda la cadena
+**Ref. Análisis**: Apéndice A (trazabilidad completa), Sección 12 Requerimientos funcionales
+
+```
+Paso 1: Crear flujo completo: Lead #100 → Cliente → Cotización #30001 → Pedido → OC → Factura
+Paso 2: Desde Pedido → click en "Cotización origen" → navega a Cotización #30001
+Paso 3: Desde Cotización → verificar link al Lead original
+Paso 4: Desde Pedido → verificar OC generadas con links navegables
+Paso 5: Desde OC → verificar link al Pedido y a la Cotización origen
+Paso 6: Observaciones del pedido: cada una muestra remitente, destinatarios, fecha/hora (inmutables)
+```
+
+- [ ] T21.23.1: Pedido muestra link clickeable a cotización origen
+- [ ] T21.23.2: Cotización muestra link al lead de origen
+- [ ] T21.23.3: OC muestra links navegables al pedido y cotización
+- [ ] T21.23.4: Observaciones inmutables con trazabilidad (remitente, destinatarios, fecha/hora)
+
+### T21.24 FLUJO E2E #24: Tablero Operativo 7 Colores por Columna
+
+**Rol**: Gerente Operativo + Gerente General
+**Variantes cubiertas**: PRD tablero operativo, 7 colores, interpretación por columna, vista Kanban
+**Ref. Consolidado**: Sección 11 completa (PRD tablero operativo)
+
+```
+Paso 1:  Crear pedido con productos de diferentes estados
+Paso 2:  Tablero vista tabla: verificar Bloque 1 (Proveedor→Novedades) y Bloque 2 (REM→Correo UF)
+Paso 3:  Verificar ROJO en fila: error en pedido → SLA 1 hora, no se genera OC
+Paso 4:  Verificar AMARILLO: producto pendiente de compra (columnas Producto-Cantidad)
+Paso 5:  Verificar MORADO: producto pendiente de recolección (Jefe Bodega)
+Paso 6:  Verificar NARANJA: auxiliar bodega debe confirmar/registrar guía
+Paso 7:  Verificar VERDE CLARO: producto ingresó a bodega pero no despachado
+Paso 8:  Verificar VERDE OSCURO: producto entregado sin novedad (proceso completado)
+Paso 9:  Verificar AZUL: pedido de licenciamiento/servicio recurrente
+Paso 10: Verificar que una fila tiene MÚLTIPLES colores simultáneamente (por columna)
+Paso 11: Vista Kanban (Gerente General): sin colores, estados macro calculados automáticamente
+```
+
+- [ ] T21.24.1: Tablero muestra 2 bloques separados (operativo + administrativo) con separador visual
+- [ ] T21.24.2: Colores correctos por columna (rojo=error, amarillo=compras, morado=bodega, etc.)
+- [ ] T21.24.3: Una fila puede tener múltiples colores simultáneamente (NO es estado único por fila)
+- [ ] T21.24.4: ROJO bloquea generación de OC (SLA 1 hora para corrección)
+- [ ] T21.24.5: Vista Kanban del Gerente General: sin colores, estados macro (En compras, En proveedor, En transporte, En bodega, Bloqueado, Cerrado)
+
+### T21.25 FLUJO E2E #25: RBAC Pipeline Completo (8 Roles × Todas las Fases)
+
+**Rol**: Todos los 8 roles del sistema
+**Variantes cubiertas**: Verificación de permisos por rol en cada entidad del pipeline
+**Ref. Consolidado**: Secciones 2-8 (matrices de permisos por rol)
+
+```
+Verificar por cada entidad:
+  CLIENTES:    Gerencia/Comercial/Ger.Comercial = Crear/Modificar | Resto = NO
+               Correo facturación: SOLO Financiera puede editar
+               Forma de pago: SOLO Gerencia y Financiera pueden cambiar
+               Comercial asignado: SOLO Gerencia y Ger.Comercial pueden modificar
+
+  PRODUCTOS:   N° parte/nombre: Gerencia, Ger.Comercial, Comerciales = Crear | Compras+ = NO
+               Vertical/Marca/IVA: SOLO Gerencia puede crear/modificar
+
+  COTIZACIONES: Gerencia/Ger.Comercial/Comerciales = Crear/Editar | Compras, Financiera = NO
+                Forma de pago en cotización: SOLO Gerencia y Financiera
+
+  PEDIDOS:     Panel: Comercial SOLO ve sus clientes asignados | Resto ve todos
+               Datos de despacho: SOLO Comercial y Gerencia (1 vez)
+               Confirmación pago: SOLO Financiera puede editar
+               Facturación anticipada paso 1: Comercial (1 vez) + Gerencia
+
+  OC:          SOLO Compras genera y edita OC
+
+  DESPACHO:    Seguimiento entrega: SOLO Logística y Compras pueden editar
+               Facturación: SOLO Financiera puede editar
+```
+
+- [ ] T21.25.1: Comercial SOLO ve pedidos de sus clientes asignados (no de otros comerciales)
+- [ ] T21.25.2: Forma de pago del cliente: SOLO Financiera y Gerencia (no Comercial)
+- [ ] T21.25.3: Vertical/Marca/IVA de producto: SOLO Gerencia puede modificar
+- [ ] T21.25.4: Confirmación de pago en pedido: SOLO Financiera puede editar
+- [ ] T21.25.5: Seguimiento de entrega: SOLO Logística y Compras pueden editar
+- [ ] T21.25.6: Facturación (parcial/total): SOLO Financiera puede editar
+
+### T21.26 FLUJO E2E #26: Multi-Tenant Isolation Pipeline Completo
 
 **Rol**: Admin Org A + Admin Org B
+**Variantes cubiertas**: Aislamiento total entre organizaciones en todo el pipeline
+**Ref. Análisis**: Arquitectura multi-tenant con organization_id en todas las tablas + RLS
 
 ```
-Paso 1: Admin Org A crea lead, cotizacion, pedido
-Paso 2: Admin Org B intenta ver datos de Org A -> NO visible
-Paso 3: Admin Org B crea sus propios datos
-Paso 4: Admin Org A intenta ver datos de Org B -> NO visible
-Paso 5: Dashboards de cada org muestran solo sus datos
-Paso 6: Consecutivos son independientes por org
+Paso 1: Admin Org A crea: lead → cliente → cotización → pedido → OC completo
+Paso 2: Admin Org B inicia sesión → NO ve ningún dato de Org A en ningún módulo
+Paso 3: Admin Org B crea su propio pipeline: lead → cliente → cotización → pedido
+Paso 4: Admin Org A verifica que NO ve datos de Org B
+Paso 5: Consecutivos verificados: cada org tiene sus propios (#100, #30000, #20000)
+Paso 6: Dashboard de cada org muestra SOLO sus métricas
+Paso 7: Tablero operativo de cada org muestra SOLO sus pedidos
 ```
 
-- [ ] T21.6.1: Aislamiento total verificado en cada entidad
-- [ ] T21.6.2: Consecutivos independientes por organizacion
-- [ ] T21.6.3: Dashboards aislados
+- [ ] T21.26.1: Aislamiento total verificado en CADA entidad (leads, clientes, cotizaciones, pedidos, OC)
+- [ ] T21.26.2: Consecutivos independientes por organización
+- [ ] T21.26.3: Dashboards y tablero operativo aislados por org
+- [ ] T21.26.4: RLS impide acceso cross-tenant incluso via API directa
+- [ ] T21.26.5: Datos de un pipeline completo de Org A invisibles para Org B
 
-### T21.7 FLUJO E2E #7: Bloqueo por Credito
+### T21.27 FLUJO E2E #27: Consecutivos Independientes y Correctos
 
-**Rol**: Asesor + Finanzas
+**Rol**: Asesor Comercial (Org A y Org B)
+**Variantes cubiertas**: Leads desde #100, Cotizaciones desde #30000, Pedidos desde #20000
+**Ref. Análisis**: Reglas de consecutivos, Consolidado secciones 4-6
 
 ```
-Paso 1: Finanzas bloquea cliente por cartera vencida
-Paso 2: Asesor intenta crear pedido -> BLOQUEADO
-Paso 3: Finanzas desbloquea cliente
-Paso 4: Asesor crea pedido exitosamente
+Paso 1: Org A crea primer lead → verificar #100
+Paso 2: Org A crea segundo lead → verificar #101
+Paso 3: Org B crea primer lead → verificar #100 (independiente de Org A)
+Paso 4: Org A crea primera cotización → verificar #30000
+Paso 5: Org A crea primer pedido → verificar #20000
+Paso 6: Panel de pedidos muestra orden descendente por número
 ```
 
-- [ ] T21.7.1: Bloqueo impide crear pedido
-- [ ] T21.7.2: Desbloqueo habilita crear pedido
+- [ ] T21.27.1: Lead inicia en #100, incremento secuencial
+- [ ] T21.27.2: Cotización inicia en #30000, incremento secuencial
+- [ ] T21.27.3: Pedido inicia en #20000, orden descendente en panel
+
+### T21.28 FLUJO E2E #28: Restricción de Exportación + Reasignación de Asesor Desactivado
+
+**Rol**: Comercial + Gerencia + Admin
+**Variantes cubiertas**: Seguridad datos (no exportar), reasignación automática
+**Ref. Análisis**: Sección 16.3 (restricciones exportación), Automatización #2 (reasignación)
+
+```
+ESCENARIO A - Restricción de exportación:
+Paso 1: Comercial navega a módulo de clientes/cotizaciones
+Paso 2: Verificar que NO existe botón de exportar para rol Comercial
+Paso 3: Gerencia navega → puede ver datos pero exportación controlada
+
+ESCENARIO B - Reasignación de asesor:
+Paso 1: Asesor X tiene 3 leads pendientes y 2 cotizaciones activas
+Paso 2: Admin desactiva asesor X
+Paso 3: Sistema reasigna automáticamente leads y cotizaciones a la "bolsa"
+Paso 4: Round-robin redistribuye a los asesores restantes
+Paso 5: Verificar que los datos del asesor desactivado no se pierden
+```
+
+- [ ] T21.28.1: Comercial NO tiene botón de exportar en ningún módulo
+- [ ] T21.28.2: Al desactivar asesor, sus leads/cotizaciones se redistribuyen automáticamente
+- [ ] T21.28.3: Datos históricos del asesor desactivado se conservan (trazabilidad)
+- [ ] T21.28.4: Round-robin respeta máximo 5 leads pendientes por asesor en reasignación
 
 ---
 
@@ -1302,8 +1842,8 @@ Paso 4: Asesor crea pedido exitosamente
 ```
 ╔══════════════════════════════════════════════════════════════════╗
 ║  PSCOMERCIAL-PRO - PLAN DE TESTING                              ║
-║  Total: 662 tests | Completados: 456 | Fallidos: 0 | Bugs: 17 ║
-║  Progreso General: █████████████░░░░░░░ 69%                   ║
+║  Total: 760 tests | Completados: 456 | Fallidos: 0 | Bugs: 17 ║
+║  Progreso General: ████████████░░░░░░░░ 60%                   ║
 ║  Estado: EN PROGRESO                                            ║
 ║  T1✅ T2✅ T3✅PW T4✅PW T5✅PW T6✅ T7✅ T8✅ T9✅ T10✅ T11✅PW║
 ║  T12✅PW T13✅ T14✅ T15✅ T16✅ T17✅ T18✅ T19~API T20~API T22~UI║
@@ -1334,10 +1874,10 @@ T17 Admin             ████████████████░░░�
 T18 PDF               █████████████████░░░  17/19  (89%)  [x] Data readiness+storage OK
 T19 Multi-Tenancy     ████████████████░░░░  16/21  (76%)  [~] RLS tables+org isolation OK
 T20 Performance       ████████████░░░░░░░░  12/22  (55%)  [~] API perf+crons endpoints OK
-T21 Flujos E2E        ░░░░░░░░░░░░░░░░░░░░  0/18   (0%)   [ ] No iniciado
+T21 Flujos E2E        ░░░░░░░░░░░░░░░░░░░░  0/116  (0%)   [ ] No iniciado — 28 flujos E2E, 5 grupos (A-E)
 T22 UX/UI             ████░░░░░░░░░░░░░░░░  8/42   (19%)  [~] Nav+DarkMode+Mobile+EmptyState+Toast OK
 ────────────────────────────────────────────────────────────────────
-TOTAL                 ██████████████░░░░░░  456/662 (69%)
+TOTAL                 ████████████░░░░░░░░  456/760 (60%)
 ```
 
 > **Leyenda de barras**: `█` = completado, `░` = pendiente
@@ -1367,9 +1907,9 @@ TOTAL                 ██████████████░░░░░�
 | 18 | T18: PDF | P1 | 19 | 17 | 0 | 0 | 89% | [x] Data readiness+storage OK |
 | 19 | T19: Multi-Tenancy | P0 | 21 | 16 | 0 | 0 | 76% | [~] RLS isolation API OK |
 | 20 | T20: Performance/Crons | P2 | 22 | 12 | 0 | 0 | 55% | [~] API perf+crons OK |
-| 21 | T21: Flujos E2E | P0 | 18 | 0 | 0 | 0 | 0% | [ ] No iniciado |
+| 21 | T21: Flujos E2E | P0 | 116 | 0 | 0 | 0 | 0% | [ ] No iniciado — 28 flujos, 5 grupos |
 | 22 | T22: UX/UI | P3 | 42 | 8 | 0 | 0 | 19% | [~] Nav+DarkMode+Mobile+Toast OK |
-| | **TOTAL** | | **662** | **456** | **0** | **19** | **69%** | **En progreso** |
+| | **TOTAL** | | **760** | **456** | **0** | **19** | **60%** | **En progreso** |
 
 ### Progreso por Prioridad
 
@@ -1379,7 +1919,7 @@ TOTAL                 ██████████████░░░░░�
 | P1 (Alto) | Compras, Logistica, Facturacion, Dashboards, PDF, Admin, Trazab | ~190 | 177 | 0 | 4 | 93% | 95% requerido |
 | P2 (Medio) | WhatsApp, Email, Performance | ~95 | 77 | 0 | 0 | 81% | 80% requerido |
 | P3 (Bajo) | UX/UI Visual | ~42 | 8 | 0 | 0 | 19% | 50% requerido |
-| | **TOTAL** | **~662** | **456** | **0** | **19** | **69%** | |
+| | **TOTAL** | **~760** | **456** | **0** | **19** | **60%** | |
 
 ### Progreso del Pipeline Comercial (Flujo Principal)
 

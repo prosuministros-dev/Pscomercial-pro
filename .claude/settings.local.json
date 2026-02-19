@@ -37,7 +37,9 @@
       "Bash(ls:*)",
       "Bash(npx supabase db push:*)",
       "Bash(npx supabase link:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(git rebase:*)",
+      "Bash(GIT_EDITOR=true git rebase:*)"
     ]
   }
 }
