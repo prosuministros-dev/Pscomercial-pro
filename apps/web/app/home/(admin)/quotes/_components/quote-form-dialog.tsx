@@ -95,6 +95,34 @@ export function QuoteFormDialog({
   const currencyValue = watch('currency');
   const transportIncluded = watch('transport_included');
 
+  // Sync currentQuote and form values when dialog opens (fixes stale state when component stays mounted)
+  useEffect(() => {
+    if (open) {
+      setCurrentQuote(quote || null);
+      if (quote) {
+        reset({
+          customer_id: quote.customer_id,
+          contact_id: quote.contact_id || undefined,
+          advisor_id: quote.advisor_id,
+          quote_date: quote.quote_date.split('T')[0],
+          validity_days: quote.validity_days,
+          status: quote.status,
+          currency: quote.currency,
+          payment_terms: quote.payment_terms,
+          transport_cost: quote.transport_cost,
+          transport_included: quote.transport_included,
+          notes: quote.notes || undefined,
+          credit_blocked: quote.credit_blocked || false,
+          credit_block_reason: quote.credit_block_reason || undefined,
+          estimated_close_month: quote.estimated_close_month || undefined,
+          estimated_close_week: quote.estimated_close_week || undefined,
+          estimated_billing_date: quote.estimated_billing_date || undefined,
+        });
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open, quote]);
+
   // Fetch TRM
   useEffect(() => {
     const fetchTRM = async () => {
