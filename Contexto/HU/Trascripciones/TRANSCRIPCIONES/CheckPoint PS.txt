@@ -1,0 +1,918 @@
+CheckPoint PS-20251211_141424-Meeting Recording
+11 de diciembre de 2025, 7:14p.m.
+43m 26s
+
+Freddy Rincones inició la transcripción
+
+Freddy Rincones   0:03
+Y a compartirme.
+
+Daniel Valbuena   0:04
+Igualmente válido, sí, ya está lo del correo electrónico y todavía ya contestó, la validamos esa buena también.
+
+Freddy Rincones   0:12
+Acá tenemos a Laura también. Bueno, entonces Laura, si quieres comienza tú con el estatus del proyecto que preparaste para Daniel y luego saltamos a revisar el makeup para que Daniel nos dé su feedback y las correcciones que haya que hacer. Y con eso sellamos con sangre, firmamos con sangre ese.
+
+Laura Martinez   0:20
+De una.
+Sí.
+
+Freddy Rincones   0:32
+Esa partecita y empezar a darle.
+
+Laura Martinez   0:33
+Listo.
+De una, ya les comparto mi pantalla. Hola Dani, ¿cómo vas?
+
+Daniel Valbuena   0:39
+Hola, bien, tú.
+
+Laura Martinez   0:41
+Oh, sí, sí.
+Listo, me confirman porfa cuando vea mi pantalla.
+
+Freddy Rincones   0:47
+Señora.
+
+Daniel Valbuena   0:48
+Yeah.
+
+Laura Martinez   0:48
+Listo, Dani, entonces esta es la el espacio que nosotros preparamos. Entonces la idea es como hacerle un barrido muy general a lo.
+
+Freddy Rincones   0:54
+Puedes compartir, perdón, dar el botón de presentar es la cosa.
+
+Laura Martinez   0:56
+Di.
+Okay.
+
+Freddy Rincones   1:02
+No compartir, sino la para que se vea más grande la presentación.
+
+Laura Martinez   1:03
+No.
+Ahí sí, listo.
+
+Freddy Rincones   1:08
+Eso, sí, ahora sí se ve muy bien.
+
+Daniel Valbuena   1:10
+Good.
+
+Laura Martinez   1:11
+Sale listo.
+Entonces, como te decía Dani, pues es como el estatus, como el tenemos el proyecto, lo que hemos avanzado últimamente. Entonces tenemos esta línea de tiempo del proyecto. Entonces el 5 de octubre empezamos con el tema del kick up, el 5 de noviembre fue el demo número uno que te presentamos y el envío inicial de las H.
+El 4 de diciembre fue la sesión de aprobación que tuvimos de las HU contigo y validación del nuevo alcance que tenía el proyecto. Fue una sesión de 2 horas en donde pudimos barrer todo esto y el 10 de diciembre te envié la HU de alcance del bot de WhatsApp, que fue la que tuviste la duda y con todo esto que tuvimos estas sesiones del 4 de diciembre y del 10 de diciembre.
+Acordamos que todos los jueves nos íbamos a reunir a tener sesión de estatus y cómo avance el proyecto que íbamos a tener.
+
+Daniel Valbuena   1:59
+Perfect.
+
+Laura Martinez   1:59
+Entonces, acá como siempre, pues tenemos una identificación de temas de riesgos y bloqueos identificados. Entonces, el riesgo inicial que tenemos en la es en la aprobación de requerimientos, entonces no tenemos por el momento las HU aprobadas del módulo de pedidos. Entonces, como acción que tenemos pendiente del cliente.
+Es pues que debemos entregar todo lo que tenemos de la matriz de pedidos y la historia 7 y 8, que es todo el tema de Andy, no sé en esa parte cómo vas a Dani.
+
+Daniel Valbuena   2:29
+Bien, estamos bien, dame de ese dame un espacio porque integramos a Laura en el proceso, que Laura también tenga unos requerimientos en el proceso de los pedidos y también, por ejemplo, bueno, unas unas ideas que se les ocurrieron, ya las están aterrizando en el documento para que puedan se los puedan enviar.
+
+Laura Martinez   2:49
+I do.
+Ok, listo.
+En el riesgo 2, Dani, que queremos hablar contigo y pues aprovecho que está acá my Freddy. ¿Te acuerdas en el requerimiento uno o en el documento uno que te compartimos que tú querías como el registro del lead que me pediste que agregara formulario web?
+
+Daniel Valbuena   3:14
+Sí.
+
+Laura Martinez   3:15
+Que desde tu página listo. Ahí nosotros tenemos una un problema porque tenemos un tema ya de desarrollo que pues ya Freddy Emma te lo explican un poco más detallado, pero tendremos una dependencia de la API de tu página web. Entonces, ¿qué acción tenemos? Pues esto sería una integración en la segunda fase que tendríamos.
+Con World Office también o ya pues con Freddy validaríamos el tema de si lo quieres en este, pues como podemos de pronto en dado caso ajustar el alcance bajo lo que se haya presupuestado. Entonces no sé Freddy, si tú me puedes ayudar a explicar.
+
+Daniel Valbuena   3:46
+La me perdí, Me perdí ahí, o sea, lo que para mirar al alcance, porque no lo tengo claro. Lo que yo te pedí era que la que en su momento lo hablamos en alguna sesión, era que la información de lo que se iba a pedir en el chatbox era la misma del formulario, debería ser la misma que el formulario.
+
+Laura Martinez   4:09
+No.
+
+Daniel Valbuena   4:09
+De la página web en su momento hablamos algo así, algo de eso, que eso es lo que yo me estaba refiriendo.
+
+Freddy Rincones   4:11
+O K.
+Entonces malinterpretamos tal vez una desconexión, pero lo que estábamos nosotros entendiendo era que se requería una integración entre la página web y la plataforma actual que quieres que te desarrollemos. Lo que tú necesitas es que en el chatbot que vamos a hacer se pide exactamente la misma información que se está pidiendo en el formulario, ¿cierto?
+El formulario de contactos.
+
+Daniel Valbuena   4:37
+Pues la idea es que ese formulario llegue también a la plataforma. ¿En dado caso, entonces ahí supongo que es la integración, cierto? Sí.
+
+Freddy Rincones   4:40
+Send.
+Exact.
+¿Exacto, sí, porque qué pasa? Tu aplicación de la página web es un repositorio aparte. Está en Vercel igual donde vamos a hostear tu aplicación comercial, pero ella funciona sola. Es como una aplicación sola, cierto. Entonces, si lo queremos hacer, tenemos que definir una API a la aplicación de nosotros nueva, la comercial.
+Para que viaje y consuma cada vez que haya un contacto, no vaya para el correo o puede ir para el correo también, pero también vaya esa información y se integre y se inserte en la base de datos de tu plataforma nueva. Eso es una integración. Lo que podemos hacer es, si es la expectativa, es que los mismos datos que se están preguntando en el formulario de contactos.
+Lo pregunté el chatbot. Eso sí, lo eso sí es parte del flujo. Son preguntitas que se tienen que hacer y se incorporan en el chat, pero WhatsApp, cuando la persona ingrese por el le da el botoncito de WhatsApp, cierto que se va a hacer tu número, le vamos a consultar esos datos y eso sí se va a crear directamente dentro de la.
+Plataforma comercial. Si queremos que el formulario de contactos se integre e inserte el lead, eso sí lo consideremos para una segunda fase, porque eso sí requiere una API. Primero, la aplicación tiene que estar lista, la comercial con la API disponible ya podemos hacer una integración que consuma.
+Le decimos por código rapidito, consume cuando la persona le dé enviar, inyéctame esta información directamente en la base de datos mientras lo va a recibir, seguir recibiendo por correo como está configurado el día de hoy. Esa era la diferencia que teníamos que aclarar, pero si la expectativa es la de por WhatsApp, sí es parte del flujo de WhatsApp.
+
+Daniel Valbuena   6:20
+Listo.
+Angel.
+
+Freddy Rincones   6:29
+¿Y estamos considerando que eso genere, inserte el link directamente en tu plataforma, entonces?
+Claro.
+
+Daniel Valbuena   6:38
+O K, perfecto, sí, clarísimo.
+
+Freddy Rincones   6:41
+Hágale, pues entonces no se considera una integración, Laurita, entre el formulario de contactos por el momento sí en el formulario de contactos con la plataforma comercial. Lo que está considerado es que cuando la persona que entra a la página web de ellos le da el botón de WhatsApp, obviamente va.
+
+Laura Martinez   6:42
+Sleep.
+Por el momento.
+Mhm.
+
+Freddy Rincones   7:01
+Va a iniciar el proceso automático que estamos incorporando en el WhatsApp de la plataforma comercial, así queda.
+
+Laura Martinez   7:02
+Sí.
+Sí, entonces para alinearnos, entonces lo que tenemos mapeado que necesitamos para la segunda fase, todo el tema de World Office y esta integración que tendríamos, que ya si nos no nos conectaríamos desde la de la página web a la aplicative, pero inicialmente es lo que hablamos en este momento.
+
+Daniel Valbuena   7:08
+Mhm, tal cual.
+
+Freddy Rincones   7:23
+Mhm.
+Sí, señor.
+
+Daniel Valbuena   7:26
+Okay.
+
+Laura Martinez   7:27
+Listo, entonces, y por último, en el riesgo 3 tenemos todo el tema del cronograma en por el momento no hay una fecha exacta del Go Live, pues porque no tenemos todavía aprobado los requerimientos de pedidos. Eso no quiere decir, Dani, que no estamos avanzando, estamos avanzando con los otros requerimientos que tenemos, pero para poder concluir y decirte exactamente listo, ya.
+
+Freddy Rincones   7:42
+T.
+
+Laura Martinez   7:48
+¿Podemos salir y te entregamos en tal fecha exacta? Necesitamos tener todas las historias de usuario, que son los documentos que te compartimos, aprobadas o validadas. Entonces, por eso te preguntaba inicialmente cuando estimabas que pudiéramos tener esto.
+
+Daniel Valbuena   8:05
+O K, sí, déjame ya presiono, pero están terminando de hacer unas observaciones que cuadraban con Laura que serán de último momento. Entonces dame chance como para que todo quede súper no más porque no habíamos integrado a Laura en mi proceso y pues la idea es que obviamente esté también ella ahí metida.
+
+Freddy Rincones   8:12
+Good.
+Claro, porque ella va a trabajar imagino algunas cosas desde la plataforma. Sí, va a trabajar algunas cosas de la plataforma. Está bien. Es importante que sepas que igual con lo que ya está probado creo que nosotros tenemos bastante como quien dice.
+
+Laura Martinez   8:21
+You still have.
+
+Daniel Valbuena   8:27
+Ajá, es el punto.
+
+Freddy Rincones   8:35
+Funcionalidades que desarrollaron. Sí, ya empezamos. De hecho, ya te mostré lo del mockup, pero sí va a llegar un punto que necesitamos esas definiciones adicionales lo antes posible por para poder ya entregarte el hito.
+
+Laura Martinez   8:37
+Tela para cortar para trabajar.
+
+Freddy Rincones   8:55
+Nosotros te entregamos el desarrollo, listo, nosotros hacemos unas pruebas de calidad, nosotros internas también.
+Y en ese momento, para nosotros es el hito de entrega.
+Luego vienen las pruebas internas de ustedes, que ahí seguramente nos vamos a demorar también, porque no creo que tengas el equipo 100% asignado a este proyecto. Ellos también tienen que estar haciendo sus cosas operativas de tus de tus procesos y tus temas diarios.
+Entonces, lo importante es que sepas que eso va a ser el hito de entrega, el desarrollo y las pruebas de nosotros. Listo, y ahí esperamos hasta que se vayan haciendo las pruebas. Van a salir algunos errores, vamos a estar ahí para corregirlos máximo, 24 horas los corregimos y así evolucionamos hasta que esté 100% probada la plataforma.
+¿Y en ese momento?
+Tenemos una reunión de Go No Go, vamos, no vamos, entrenamos a la gente, nos planificamos bien. ¿Cómo va a ser esa puesta en producción? Hay que entrenar a tu equipo para que aprenda a usar esa plataforma y ya ir como de forma progresiva usando la plataforma para que vayan cogiendo madurez. Y pues obviamente vamos a corregir algunos errores.
+van ahora mejoras A lo mejor cosas vacíos que quedaron en la definición que toca corregirlos como mejora mínima es un book lo sé eso ya te lo vamos a explicar cuando ya estemos en ese momento pero sí es importante que tengas claro como los hitos y las fases que van de ahí en adelante listo
+
+Daniel Valbuena   10:33
+De una, perfect.
+
+Laura Martinez   10:37
+Listo.
+Entonces, decisiones pendientes por parte del cliente de prosuministros. Entonces, como primera parte, tenemos la matriz detallada de los pedidos y los estables. Independiencia para poder finalizar y aprobar las últimas dos historias construidas. Aprobación de la historia de usuario del módulo de WhatsApp, que es la historia de usuario número 12, que fue la que te compartimos el día de ayer.
+Yo te volví a contestar el correo Dani y te la compartí en editable, dime.
+
+Daniel Valbuena   11:02
+Lau, tengo una pregunta, es que fíjate que de eso, bueno, no lo había revisado, pero revisémosla de una vez yo, o sea, del el.
+El menú del chat tenemos 2 menús, uno que pusiste inicialmente en el cero uno y uno que está diferente en el 12 porque son diferentes.
+
+Laura Martinez   11:19
+Mhm.
+Ya te lo corregí en el archivo que te compartí, te pasé el menú que tenemos en el uno.
+
+Daniel Valbuena   11:29
+No, ya mira, espérame 1 segundo, que eso es lo que ahí llegué y frené para mandarte una vez esto.
+A ver, crear, es que mira que crear, hacer una cotización, eso no lo hablamos.
+
+Laura Martinez   11:42
+Pero estás mirando el que te el que te compartí, ese no es, no es el ese es el primero que te compartí, que te compartí el último de ayer.
+
+Daniel Valbuena   11:43
+O sea.
+Mhm.
+No aquí me compartiste ayer a las 3:39 PM lo acabo de abrir.
+
+Laura Martinez   11:55
+Déjame, ya te comes.
+
+Freddy Rincones   11:55
+Pueden compartirlo acá para verlo.
+
+Laura Martinez   11:58
+Sí, ya en este minuto, ya lo voy a abrir.
+1 minuto.
+Este día.
+Yeah.
+Ya en mi pantalla.
+
+Freddy Rincones   12:27
+Sí.
+
+Daniel Valbuena   12:27
+Ya lo veo. Mhm.
+
+Laura Martinez   12:29
+Mira, Dani, yo lo yo te lo cambié.
+
+Daniel Valbuena   12:32
+Okey, sí, mira el que tú me mandaste ayer a las 3:00 y pico dice crear hacer una cotización obstante, solicitar una cotización. Habíamos como habíamos hablado de consultar al estado del pedido, que entonces ahí yo te decía que no me gustaría que tuviéramos, que eso lo charlamos, pero yo no lo dejé por escrito, solo quedó en la reunión, pero no quedó como.
+No sé cómo quedó, pero el yo te yo te decía que solicitar el estado de tu pedido grave porque pues la idea es que.
+La idea es que ahí ya me acordé, si no estoy mal, me recuerdas Freddy si fue así que yo puse comunícate con tu ejecutivo o algo así o para algo así como que para saber el estado del pedido si me entendés o que desde ahí era como que listo, consulta el estado de tu pedido, entonces que pregunte perfecto quién es tu comercial y le mandaba el comercial, no me acuerdo bien que como lo acordamos ahí.
+
+Freddy Rincones   13:13
+A.
+
+Daniel Valbuena   13:21
+Pero yo recuerdo que ese consulta estaba el pedido, te decía como no quiero que el área logística tenga interacción con el cliente final.
+
+Laura Martinez   13:22
+Good morning.
+
+Freddy Rincones   13:30
+¿Esa la reunión la tuvimos cuando la semana pasada, cierto?
+
+Laura Martinez   13:33
+Sí, la semana pasada.
+
+Daniel Valbuena   13:33
+Anti el así.
+
+Freddy Rincones   13:35
+¿El jueves de la semana pasado, cuándo fue?
+
+Laura Martinez   13:38
+El jueves de la semana pasada.
+
+Freddy Rincones   13:41
+El jueves de la semana pasada listo. Ay, está grabado, está grabado también. Entonces lo revisamos porque no lo vamos a poner a revisar ese video que ahorita seguramente ella también tomó de ahí la información de la transcripción y te confirmamos, viejo Dani, cómo quedó el flujo correctamente.
+
+Laura Martinez   13:45
+Mhm.
+Sí.
+
+Freddy Rincones   14:00
+Pero tenemos la grabación, entonces con eso ya matamos.
+
+Daniel Valbuena   14:02
+Bueno, súper bien, no me acuerdo bien cómo quedó, pero entiendo que hacer seguimiento tu pedido creo, no creo, estoy casi que seguro.
+
+Freddy Rincones   14:08
+O sea, y casi seguro que lo que está documentando Laura tiene un gran porcentaje de cercanía de lo que pediste en esa reunión, pero lo vamos a validar nuevamente y si hay que corregir algo, te lo corregimos y te pasamos la versión final. Hoy mismo creo, cierto, Laura, ¿cómo lo ves? Entonces, tú también andas medio embalado ahí.
+
+Daniel Valbuena   14:17
+Perfect.
+
+Laura Martinez   14:27
+sí, hoy.
+
+Freddy Rincones   14:29
+Listo.
+
+Laura Martinez   14:31
+Dani, mira, yo creo que es que estás revisando el el primer documento porque acabo de entrar al correo. y.
+
+Freddy Rincones   14:32
+What?
+
+Laura Martinez   14:42
+¿Ya en mi pantalla, cierto?
+
+Freddy Rincones   14:44
+Hey.
+
+Laura Martinez   14:45
+Mira, Dani, abrí el archivo que te compartí y mira que si está el archivo corregido.
+
+Daniel Valbuena   14:51
+El de las 3:00 de la tarde.
+
+Laura Martinez   14:53
+Este fue, sí, de las 3:39.
+
+Freddy Rincones   14:54
+El de las 3:39 de hoy de ayer.
+
+Daniel Valbuena   14:57
+Sí, de ayer, espérate, yo mira si yo estoy loco, 13 y 39, reemplazar chun, a ver, descargas 2 y 29, listo, perfecto.
+
+Freddy Rincones   15:01
+Miércoles 30.
+
+Daniel Valbuena   15:11
+Pues es que mira lo que me escúchame te comparto pantalla.
+
+Laura Martinez   15:14
+Tranqui, tranqui.
+
+Daniel Valbuena   15:15
+A ver si estoy mirando otra cosa que no es, fíjate, lo acabo de abrir y es esta de acá.
+
+Freddy Rincones   15:23
+No, fíjate que es diferente, abre, abre, busca el correo, a ver.
+
+Daniel Valbuena   15:25
+Mira, es que está aquí frente.
+
+Freddy Rincones   15:29
+Yeah.
+
+Daniel Valbuena   15:32
+con la parte de arriba, mira.
+
+Freddy Rincones   15:34
+Okay.
+Okay, no le importa. Mira, hagamos esa segunda validación con el video, exactamente buscamos la transcripción cuando hablamos de eso y hacemos la validación y corregimos. En ese video quedó muy claro. Yo me acuerdo que hasta dibujamos, ahí están las dibujamos cómo iba a ser el proceso.
+
+Laura Martinez   15:37
+Siri.
+Ajá.
+Sí.
+
+Daniel Valbuena   15:53
+Mhm.
+
+Freddy Rincones   15:56
+¿Entonces esto es el que va por el lado de no por el MB de Synox, sino el que va directo automático e inserta el link, no?
+
+Daniel Valbuena   16:03
+De resto todo está que de resto está que lo que pasa es que si me genera como inquietud porque yo me acuerdo que solo cambiamos. Estoy súper seguro que lo cambiamos.
+
+Freddy Rincones   16:10
+Sí, tranquilo, te aseguro que la siguiente versión va a estar 100% validada con el video y ahí no puede haber pérdida. Listo.
+
+Daniel Valbuena   16:18
+Lisa.
+
+Laura Martinez   16:18
+Ajá, listo y entonces nada, Dani, yo aprovecho ya que dejé de compartir porque el siguiente punto era la validación del demo que Freddy te iba a mostrar como para que podamos revisarlo.
+
+Freddy Rincones   16:31
+Listo, Dani. Bueno, entonces como ayer te lo pasé y te dije, acá te estoy mostrando lo que es el mockup, que es un mockup. Es como un demo sin funcionalidades, sin automatizaciones. Es mucho más para ver el aspecto y los elementos que va a tener tu aplicación y la distribución de 2 módulos y todo.
+OK, lo que estamos considerando. Ayer me preguntaste que había un tema que los campos, que los Estados sí, o sea. Esto no deja de ser una data de mentira. Data mock, lo importante es ver los elementos, ver las modales, ver las opciones que salen. Cambiamos el tema, agregamos el tema de que pudieras verlo tipo kanban y tú pudieras ir moviendo.
+Manualmente los estados si es necesario. Sí, eso aplica para todos los módulos. Bueno, creo que para cotizaciones, para pedidos y está el módulo de WhatsApp de conversaciones donde vas a poder ver todo lo que hagan el bot.
+Que fue lo que dijimos, pero así algo similar va a estar para las personas que van a usar su propio número de usando la el tema del MBB sign up. Okay, ellos van a poder configurarlo y va aquí va a estar lo mismo que va a estar en su celular, por ejemplo, WhatsApp.
+
+Daniel Valbuena   17:37
+Okay.
+O K, yo estuve cacharreándole y me gustó bastante.
+
+Freddy Rincones   17:46
+Yeah.
+Sí, o k súper. Acá está el tema de roles de usuarios de bitácora y acá creo que es la parte donde tú me mencionaste a Laura, entraría por la parte financiera.
+
+Daniel Valbuena   17:49
+Mhm.
+
+Freddy Rincones   18:02
+Y tendría el tema de los bloqueos de cartera.
+
+Laura Martinez   18:08
+Toda la configuración.
+
+Freddy Rincones   18:08
+Ella los lo desbloquearía si lo sería como una parte de configuración el módulo de ella o lo podemos poner también arriba como financiero, algo así y que ella pueda ir viendo todos los configuraciones de márgenes.
+Boys.
+
+Daniel Valbuena   18:26
+Bien, yo sé lo podemos equivocar arriba.
+
+Freddy Rincones   18:27
+Registrarlo.
+
+Daniel Valbuena   18:30
+Para que quede como una pestañita que no tenga que meterse por administrador, no sé qué, sino arriba en la parte de una práctica, sí, financiera, financiera, y ya con eso busca cliente, bloquea, desbloquea y ya uno va.
+
+Freddy Rincones   18:30
+Oh.
+Arriba.
+Financiero.
+Ok, de cara al aspecto, todo perfecto. Los colores son los de la marca. Ya sabes que vas a poder ver esto tipo tarjeticas con los estados. Vas a poder crear tus nuevos leads manual o automáticamente se van a crear por los las diferentes automatizaciones que tengamos.
+Las cotizaciones a ver que se ve acá en las cotizaciones, vamos a ver las ahorita la muestro, estaremos acá las cotizaciones, los productos, el tema de la liquidación. Si queremos duplicar la cotización, tenemos los pedidos también acá podemos ver los pedidos, el despacho, notas adicionales.
+
+Laura Martinez   19:07
+Las notificaciones.
+
+Freddy Rincones   19:24
+Y esto es como una integración, creo que alguna vez hablamos de una integración, pero eso está el WhatsApp.
+Está el admin y.
+
+Daniel Valbuena   19:32
+Falta el módulo de orden de compra, pues que entiendo que no lo has montado, pero falta el módulo de orden de compra aparte, órdenes de compra. Sí, exacto, para alcanzarte eso de uno.
+
+Freddy Rincones   19:38
+Necesito la documentación, si la necesito para poder modelarlo y tengo ay el módulo de notificación módulo, no, si la pestaña de notificaciones con todas las notificaciones que van a que van a salir acá. Creo que esto me permite cambiarlo a oscuro y acá ya.
+
+Daniel Valbuena   19:51
+Sí, por la recesión.
+Mhm.
+
+Freddy Rincones   19:58
+No, ya posiblemente acá esto te lleve. Tenemos que ver bien el layout, pero acá te lleve como un perfil de la persona donde podamos poner la configuración del embedded sign up. Pero bueno, esto es como un mockup. Esto es un bosque, verlo así de tu de cómo se va a ver tu aplicación. Esto nosotros lo insertamos dentro de una plantilla que tenemos.
+En un stack tecnológico que se llama.
+En un lenguaje tecnológico se llama Next y es listo y y ahí empezamos a ajustar. Listo, pero la idea es que puedas tener eso de esa manera o no sé, cualquier otra retroalimentación. De momento lo que tengo es nada más agregarlo del financiero arriba como un módulo y cuando tengan ustedes las aprobaciones de.
+de los documentos, ya eso lo agrego directamente en el template, ya no lo hago desde acá, ya tengo acá una un layout claro, la estructura, una distribución de elementos claro, y cómo lo voy a manejar dudas, preguntas, comentarios, sugerencias. ¿Te gusta o no te gusta?
+
+Daniel Valbuena   21:05
+Me gusta mucho, dame 1 segundo que me surgió una sola inquietud. Ya estoy aquí revisándola, espérame, espérame, espérame 1 segundo, porque yo tengo es que es el tema, aunque entiendo que todavía tal vez no es tal siempre igual para que lo tengas en cuenta. Yo tengo 12345678.
+
+Freddy Rincones   21:12
+A ver.
+
+Daniel Valbuena   21:27
+Por el momento, 8 roles.
+Y de lo que pasé y hay 6.
+
+Freddy Rincones   21:36
+No, no te preocupes, seguramente esos son los problemas que están documentados. OK.
+
+Daniel Valbuena   21:42
+No, eso está documentado. Mira, yo pasé, yo pasé este archivito, espérate, espérate, espérate, mira, pasé este archivito de acá.
+Se lo pasa la una.
+
+Freddy Rincones   21:51
+Sí, sí, sí, sí, sí. O sea, esa esas tablas de referencia nos las compartió Laura. Esa matriz la vas a tener de acá de alguna manera insertada los roles y vas a poder. Ah, mira, ah, es que me quitaste el me quitaste el compartido ya acá el comercial, por ejemplo, el administrador vas a tener la distribución o la matriz de permisos, okay.
+
+Daniel Valbuena   22:05
+Perdón, espérame ahora te lo pongo listo.
+
+Freddy Rincones   22:15
+100% idéntica a esa tablita que me pasaste que me mostraste ahorita listo y los roles también van a estar exactamente todos los roles. No te preocupes, ya esas tablas las vimos, pero esta va a ser la sección donde van a estar todos los roles. Esta va a ser la modal o similar a esta donde vamos a hacer la asignación de roles.
+Los usuarios que se van creando a los que le vamos a asignar el rol que se genera listo y la bitácora de lo que vaya pasando, pero si no va a estar, no solamente de esa tabla, sino en esa. en ese archivo tienes muchas tablas de referencias que van a estar ajustadas acá.
+
+Daniel Valbuena   22:45
+¿De una, de una, sabes?
+Dale importante, por ejemplo, que los comerciales no puedan exportar información de la base de su base de datos. Eso, por ejemplo, yo no lo puse porque está que yo puse como de cada cosita, pero ese tipo de cosas, si me entendés como venga, ninguna persona puede exportar. Bueno, en este caso solamente ellos.
+
+Freddy Rincones   23:13
+Pero no hay, no hay un botón que les permita exportar a ellos.
+
+Daniel Valbuena   23:13
+Y.
+Exacto, sí, exacto, o sea, súper bien que ellos puedan solamente buscar, más no que puedan exportar. Vale que esos botones, en vez de colocarlo como permiso, que no les que no les permita hacer nada, si me entendés, o sea, súper importante.
+
+Freddy Rincones   23:32
+Sí, ellos van a tener, o sea, pero a ver, también quiero que sepas algo, si ellos tienen acá la lista de 20 clientes y hacen esto, lo copian y lo pegan.
+¿Eso quieres que tampoco lo puedan hacer?
+
+Daniel Valbuena   23:47
+Exacto, no, la idea es que no lo pueden hacer.
+
+Freddy Rincones   23:48
+Sí.
+
+Daniel Valbuena   23:51
+Porque es que fácilmente una persona puede que que.
+
+Freddy Rincones   23:53
+¿Cómo hacen hoy?
+
+Daniel Valbuena   23:55
+No es que lo que pasa es que mira que nos pasó con la chica que vino acá, no que con la que tuvimos el inconveniente. Cogió 1:1, y aunque bueno, 1:1, ya es imposible, sí me entendés, pero cogió, exportó y se fue y se llevó toda la base.
+
+Freddy Rincones   24:10
+No exportar no puedes, eso sí, tenlo por seguro. No hay botón que permita hacer la exportación. No va a haber un desarrollo que permita hacer tomar todos los datos de la base de datos, generar un Excel y que lo descargue. Toda esa vaina es un desarrollo que hay que hacer. Eso no está contemplado y no hay ningún botón que lo va a hacer. Lo que digo es que pues ella puede copiar 1:1 y lo puede ir pegando.
+
+Daniel Valbuena   24:32
+Pues yo creo que también cierto, o sea, así la igual le puede tomar una foto. o sea.
+
+Freddy Rincones   24:33
+En.
+
+Daniel Valbuena   24:37
+Aunque fíjate que lo puede copiar, lo puede copiar y lo puede pegar en Excel.
+Y acabo de hacer la prueba y en Excel se puede hacer súper súper fácil.
+
+Freddy Rincones   24:43
+A second.
+Look.
+Y es que como no sé si existe alguna librería que haga ese bloqueo, Emma, porque ya con la foto si no puedo hacer nada, o sea, no.
+
+Daniel Valbuena   25:00
+No, I see that.
+
+Laura Martinez   25:01
+Sí, sí, puede hacer la mete a Chanty PT, él se la pasa en el cel.
+
+Freddy Rincones   25:06
+Sí.
+
+Laura Martinez   25:08
+O sea, es muy difícil. Si ella tiene la imagen y le puede tomar foto de cualquier manera, es muy difícil que nos robé la información.
+
+Freddy Rincones   25:17
+All.
+Um.
+Pues usted manda, patrón, ¿qué información es la que van a poder ver ellos sí o no? Porque ellos necesitan el número. El comercial necesita el número. El no comercial necesita el nombre de la persona o de la cuenta.
+Yo creo que es un tema más, un riesgo más.
+
+Daniel Valbuena   25:40
+Adriana.
+Minimizada, tal vez.
+
+Freddy Rincones   25:47
+No es un riesgo más que puedes mitigar legalmente. que.
+Que por la aplicación es que lo que dice Laura es verdad, yo me puedo matar acá haciendo que el man no pueda copiar y pegar.
+Pero vale, toma un screenshot, lo mete en GPT y eso te hace la tabla hasta con flores y moños. O sea, eso no es nada fácil, digo difícil, súper fácil. La cosa es, yo creo que como es un riesgo de pérdida de de información que.
+Que es considerada información tuya de la empresa, es un riesgo que lo debes mitigar más por el ámbito legal.
+Que cualquier maraña que podamos hacer en la plataforma, lo digo por el ámbito legal dentro de sus contratos, acuerdos de confidencialidad, especificando exactamente el manejo de la información de tus clientes. Y todo eso puede ser considerado con algún delito, como algún delito y con cláusulas penales.
+Eso es algo que puedes hacer firmar a tus a tus colaboradores. Es parte de un acuerdo que tengas que sentar con ellos. Averíguate por el lado legal, porque yo puedo averiguar cómo evitar copiar y pegar, pero si toman una foto, lo meten en GPT, ese GPT te lo hace rapidito.
+
+Daniel Valbuena   27:04
+Sí, y si podemos que no puedan copiar con eso, pues ya lo otro ya es una servicio, sí me entendés.
+
+Freddy Rincones   27:10
+¿Tendría que preguntar, Emma, tú conoces si hay alguna librería que no permita hacer esto que estoy haciendo?
+
+Emma Castillo   27:17
+Yo creo que sí, fíjate si en la al data table le pones que no se puede copiar, así no te deja copiar.
+
+Freddy Rincones   27:27
+Bueno, lo miramos, lo incluimos igual, eso es una, es un tema más de.
+A ver qué se puede hacer, pero sí te recomiendo que te vayas por ese lado porque hay muchas formas externas, como una foto.
+que lo puede. A ver, vamos a ver, déjame ver, porque a lo mejor estoy hablando bobas, aquí así. Algún screenshot, me meto en GPT, le digo GPT, extraer la información y generame una tabla. Cierto es la vuelta, la tengo acá.
+
+Laura Martinez   28:00
+Sí.
+
+Freddy Rincones   28:05
+Trae la información y genera una tabla exacto.
+Vamos, GPT.
+Tu mejor amigo.
+Tú usas JPT, Daniel.
+
+Daniel Valbuena   28:26
+Primsee.
+
+Freddy Rincones   28:28
+Premium.
+
+Daniel Valbuena   28:31
+Es que nos y se y se ayuda y se ayuda bastante para como tengo que ver muchas veces dar respuestas a temas legales.
+
+Laura Martinez   28:31
+Nos cacheteó.
+
+Daniel Valbuena   28:40
+Entonces tú le pones investigación profunda.
+Y le te extrae toda la data, o sea, no es como una consulta normal, sino realmente la hace un buen análisis de eso.
+También para las imágenes. Entonces hay veces tengo que crear imágenes muy puntuales. Entonces tú le pides como, o sea, no le escribes, crea una imagen, sino donde está más, le pones crear imagen y te la crea ya muy pro.
+
+Freddy Rincones   29:02
+Back.
+Bueno, pero mientras eso va cargando, que seguro no tarda más de 5 minutos. ¿Algún otro comentario sobre tu aplicación de cómo va a quedar de todo?
+
+Daniel Valbuena   29:19
+Sí, tengo una duda, además, que obviamente está todavía pendiente, que es el tema en cotizaciones. Yo veo borrador, enviada, aprobada, rechazada, vencida, que es.
+
+Freddy Rincones   29:32
+No estados, estos estados no van, no son.
+
+Daniel Valbuena   29:35
+Cuando yo lo cuando cuando yo lo pongo en la le cambio la forma de verlo.
+Así es que la idea es que nosotros podamos verlo por columna, que tengo creación, que tengo negociación, lo que está al lado izquierdo, eso.
+
+Freddy Rincones   29:45
+Sí.
+Sí.
+Estos son los estados, cierto, son todos tus estados que estén bien o estén mal, esto es data moqueada, no tiene nada que ver con tu tabla de Excel que nos compartiste todos los estados reales, listo, pero esas columnas van a ser todos los estados y en teoría cada una de estas tarjeticas.
+Es la cotización que esté en el estado de la columna que corresponda. Listo, así funciona.
+
+Daniel Valbuena   30:20
+No te entendí, perdón.
+
+Freddy Rincones   30:23
+Vamos de nuevo acá, por ejemplo, la cotización 3000 está en un estado enviado. Olvídate los nombres de los estados. Listo, porque esto es data mock. Esto no es la data real de tus estados cuando cambiamos la vista para que sea tipo planner o Trello o Kanban.
+
+Daniel Valbuena   30:40
+Pasa que mis estados están ya están puestos, están al lado derecho. Mira creación de oferta, negociación, riesgo y pendiente de compra. Ya están ahí puestos, solo que es que lo veo 2 veces, si me entendés.
+
+Freddy Rincones   30:53
+Espérame.
+
+Daniel Valbuena   30:54
+Ahí al lado, o sea, ahí al lado de vencida.
+Aparecía.
+En la cuadrícula, pues en la otra, en la otra vista, mira la vencida y empieza creación de oferta, y esos son los estados de la cuadrícula.
+
+Freddy Rincones   31:08
+No, eso es porque seguramente esos estados están configurados como moc. O sea, no le hagas caso a esos nombres. De hecho, van a estar nada más. ¿Cuántos estados tienes tú?
+
+Daniel Valbuena   31:18
+Cuatro, creación, negociación, riesgo internet de compra.
+
+Freddy Rincones   31:21
+Entonces vas a tener cuatro columnas nada más.
+
+Daniel Valbuena   31:25
+Perfect, perfect.
+
+Freddy Rincones   31:27
+Nada más vas a tener cuatro columnas y lo vas a poder ver de las 2:00 maneras. Tal vez la tarjetita la ajuste un poco más. Vamos a ver dependiendo de la cantidad de datos que se está exigiendo funcionalmente y se coloca, pero.
+Olvídate de lo que está acá nuevamente, esto es data falsa listo.
+
+Daniel Valbuena   31:44
+¿Listo, oye, por dónde va a quedar la creación de la TRM? ¿Por qué módulo la tienen pensado para actualizarla?
+
+Freddy Rincones   31:52
+Créeme que eso ni siquiera lo he revisado. No sé de dónde la voy a tomar. ¿Cuál servicio público existe hoy en día que me de la TM actualizada? Pero deben de haber millones.
+
+Daniel Valbuena   32:03
+No, noso, pues se puede automático, súper bien.
+O sea, que lo generé de manera automática, apenas lo actual. Lo que pasa es que sabes qué pasa, que hay veces algunos portales no lo actualizan a tiempo.
+Sí, me entendés, habrá que buscar eso o si no manual.
+
+Freddy Rincones   32:24
+Bueno.
+¿Si es manual, quién va a ser la persona que lo va a ser manualmente todos los días?
+
+Daniel Valbuena   32:31
+Laura, en este caso.
+
+Freddy Rincones   32:33
+La obra lo hace.
+
+Daniel Valbuena   32:35
+Actualmente lo hace.
+
+Freddy Rincones   32:35
+Laura Martinez o Laura tú Laura Laura Martinez Mira lo podemos colocar acá dentro en configuración listo en el módulo financiero podemos tener alguna partecita que diga actualizar la TRM
+
+Daniel Valbuena   32:38
+Burgos.
+Sí.
+
+Laura Martinez   32:41
+Ya me puso a cambiarla a mi diario, ya me puso tarea diaria.
+
+Freddy Rincones   32:55
+No habría problema, la verdad.
+Pero voy a averiguarte cuáles son los portales que hay para que esa vaina se vea automática, la verdad.
+
+Daniel Valbuena   33:03
+Sería brutal, sería brutal.
+
+Freddy Rincones   33:06
+Sí, pues te quito ese esa que se te descua, se te descuadra una cotización porque Laura no se despertó ese día y se le olvidó a todo el mundo.
+
+Daniel Valbuena   33:08
+Sí, y si en dado caso que se que se caiga el portal.
+Exacto, igual, mira, si en dado caso que se si se cae la del sitio donde nos vamos nosotros a coger, que permita como hacer actualización manual y como que la permitas, si me entiendes como un plan B, por si por si se cae la el sitio.
+
+Freddy Rincones   33:32
+Sí, podemos hacer un follback. Voy a averiguar dónde puedo obtener eso. De hecho, no tengo ni idea dónde ponerlo. No lo había pensado. Mira, ya está la tablita. Mira, lo hizo igualito, sí es.
+
+Daniel Valbuena   33:44
+No, okay, man.
+Sí, total.
+
+Freddy Rincones   33:48
+No es que eso es algo incontrolable. O sea, hoy en día eso es incontrolable. Lo que tienes que controlar es apretar por la parte legal. Es lo que más yo te recomendaría.
+
+Daniel Valbuena   33:56
+Mm.
+
+Freddy Rincones   33:59
+Igual voy a averiguarlo en la librería que no puedan copiar para medio hacer el trabajo un poquito más difícil.
+Averiguo lo de la TRM, pues debe haber algún componente que se pueda tomar eso de ser público por muchos lados, si no lo dejamos manual, listo.
+
+Daniel Valbuena   34:05
+De un.
+Liso de una.
+
+Freddy Rincones   34:19
+Aprobado con sangre, entonces.
+
+Daniel Valbuena   34:19
+De resto todo está, no está súper linda y está como me gusta, simple, sin tanto color, sin tanta vaina, sino así está perfecta, que no que quede visualmente chévere, si me entendés.
+
+Freddy Rincones   34:31
+Y combina con la página tuya, también los colorcitos y todo.
+
+Daniel Valbuena   34:34
+Tal cual, tal cual.
+
+Freddy Rincones   34:36
+Y aquí, bueno, ya aquí más adelante, por favor de Dios, vas a tener acá una lista, un chorizo de puras cotizaciones de leads, de pedidos y todo lo vas a ir manejando de conversaciones, la parte financiera poco a poco. Esto va a ser un trabajo interesante. La El desarrollo lo estamos estimando terminar antes de.
+de lo que queda de año listo para entregar delito el desarrollo y las pruebas de nosotros. En ese momento ese es para nosotros la entrega y de ahí en adelante las pruebas, pruebas, recomendaciones que ya he vivido con otros clientes que estamos en la misma situación. Necesitas asignarle tiempo a una persona que se dedique a pruebas.
+
+Daniel Valbuena   35:06
+Pruebas.
+
+Freddy Rincones   35:18
+Esa persona que se dedica a probar muchos criterios de aceptación. Nosotros vamos a llevar el control de todos los criterios de aceptación y te vamos a ir mostrando. Esta persona aprobó tanto, aprobó tanto se generaron tantos bugs que se fueron a hacer corregidos por nosotros. Se generaron mejoras mínimas porque hay vacíos en la definición. Faltó hablar de eso porque nos pasó mucho o nos ha pasado mucho.
+
+Daniel Valbuena   35:30
+Yeah.
+
+Freddy Rincones   35:41
+Y.
+Esa persona va a estar en constante trabajo con Emi y conmigo, y vamos a estar hablando corriendo. Y esa persona va a quedar con un conocimiento valiosísimo sobre la plataforma. Entonces, internamente sí te sirve a esa persona para entrenar a las personas.
+Que sirva como de champion de guía de todo y que les brinde soporte a tus a tus.
+¿A tus colaboradores, cierto? Recuerda que lo que nosotros ofrecemos post implementación es obviamente la garantía de que todo funcione tal cual fue definido, cierto.
+
+Daniel Valbuena   36:10
+Discovery.
+Okay.
+
+Freddy Rincones   36:22
+Pero si quieres un soporte adicional, nosotros también te lo podemos ofrecer. Entonces es cuestión, es cuestión de que lo decidas como lo quieras manejar.
+
+Daniel Valbuena   36:28
+Okey.
+De una, oye, aquí estoy también para saber esto, si se entendió mal alguna información o si o si en este caso es un ejemplo, aquí vamos bien, cierto, asesor, vigencia o k condiciones comerciales en dado caso que aplique cuadro informativo, no sé esta vaina de qué es.
+
+Freddy Rincones   36:51
+Thank you.
+
+Daniel Valbuena   36:54
+El tema de mes, semana, no sé qué es.
+La fecha estimada de cierre o K, pero la idea es que cuando nosotros exportemos la cuando nosotros queramos anclarnos, se haga, se haga un Power Bi aparte y se se haga una un tema, un tema a como tal a la semana.
+
+Freddy Rincones   37:12
+But.
+
+Daniel Valbuena   37:17
+Que en este caso yo pueda exportarla y que yo pueda seleccionar semana 3. Entonces supongo que es mes de cierre, semana y semana de cierre, mes de cierre, semana de cierre y mes de facturación. ¿Hace falta, vale entonces este de acá?
+Pues no, como que no estaría bien si me entendés. O sea, no sé que cuando yo lo exporte sea mucho más fácil. Si me entendés de que cuando yo llegue y exporte y luego me lo pase por separado, no sé cómo sea.
+
+Freddy Rincones   37:43
+No está bien.
+Dari, necesito acceder a tu cómo carajos hacemos para que me generes un usuario sin acceso a tus datos o como de lectura, no sé a la plataforma actual.
+
+Daniel Valbuena   37:58
+Yo ya te pasé el link, tienes que descargarlo y te doy un usuario.
+
+Freddy Rincones   38:04
+¿Qué pasa, tele?
+
+Daniel Valbuena   38:05
+Claro, de descarga de hace ratico te lo paso una vez.
+
+Freddy Rincones   38:10
+Enviar.
+
+Daniel Valbuena   38:11
+A ver, Alejandro.
+Windows, Windows, cierto, sí.
+
+Freddy Rincones   38:22
+Sí.
+
+Daniel Valbuena   38:25
+Baby.
+Listo, ahí te lo acaba de pasar.
+
+Freddy Rincones   38:31
+Yes.
+Y el usuario sería.
+
+Daniel Valbuena   38:33
+Okay.
+Ya te lo paso, descárgalo y me y me dices si tienes algún problema con la descarga.
+Dale, mira, entonces, bueno, porcentaje de interés. Entiendo que esto es la creación de oferta. Bueno, como en qué estado se encuentra links adicionales. No sé esto de qué es, eso sí, no sé, me gustaría decirte.
+Y.
+
+Freddy Rincones   38:59
+Okay.
+
+Daniel Valbuena   39:03
+Es que Cristian Millos.
+
+Freddy Rincones   39:04
+No te preocupes, eso es modificable.
+
+Daniel Valbuena   39:07
+De una, me está llamando Cristian Millos, será que le contesto.
+Listo.
+
+Freddy Rincones   39:13
+Christian.
+
+Daniel Valbuena   39:14
+Cristian Millos.
+
+Freddy Rincones   39:16
+Yes, I can.
+
+Daniel Valbuena   39:16
+Me pucha cancetera, un gota a gota.
+
+Freddy Rincones   39:22
+Listo, entonces alineados, Laura, el mapeo de los campos. Bueno, ya no hay problema. Ya yo te consulto offline. Bueno, quedamos entonces con la bendición de que este va a ser el estilo de tu aplicación.
+
+Laura Martinez   39:35
+No esperen, nos falta, aprovechando que estamos hablando de credenciales, nos falta la cuenta Office.
+
+Freddy Rincones   39:42
+No, ya pasó.
+
+Laura Martinez   39:42
+But it.
+Yeah, okay.
+
+Daniel Valbuena   39:45
+Hey.
+
+Freddy Rincones   39:46
+Pero hace 2 y 16 entró a la reunión y me lo pasó.
+
+Laura Martinez   39:52
+Me saltaron, entonces me quedé con las ganas de regañar, ¿verdad?
+
+Daniel Valbuena   39:54
+Perú.
+Mhm.
+
+Freddy Rincones   39:59
+¿Oiga, pero te hago una pregunta, quién más usa ese correo?
+
+Daniel Valbuena   40:03
+Nadie, eso está anclado al jetmail de la herramienta de la herramienta actual, por donde se envían a observaciones de intereses y llegan el correo electrónico. O sea, ese correo lo creamos para que lo anclaran a jetmail y jetmail hace como todo el trabajo en la plataforma actual. De resto no es usado para nada más.
+
+Freddy Rincones   40:23
+Correo la finaliza, o sea, a partir de ahora en adelante, ese va a ser tu correo que va relacionado con todo lo que tenga que ver con tu plataforma comercial. Listo todo, o sea, yo de ahí toda la parte de Vercel, base de datos, Frontend, Meta.
+
+Daniel Valbuena   40:32
+Sí, sí, dale.
+¿Te parece? Hagamos algo. Yo prefiero que quede ese compras web, pues no tiene nada que ver con eso. Si me entendés, podemos colocarle como ven te digo yo como licencias arroba prosuministros.com, algo como más asociado a porque si compras web pues no está como tan.
+
+Freddy Rincones   40:58
+No importa, o sea, tú dime el dominio para mí, el alias, el nombre no es lo que me.
+
+Daniel Valbuena   41:03
+O deja ese, qué carajos, deja ese no pasa nada, sí nos complicamos.
+
+Freddy Rincones   41:04
+No.
+Sí, o sea, lo que quiero que sepas es que vamos a usarlo a fondo. Todas las notificaciones de las plataformas de la infraestructura. Toda vaina va a llegar ahí. Entonces tienes que tener pues conciencia de eso, no vaya a ser que eso lo estén usando a alguien más.
+
+Daniel Valbuena   41:20
+Listo.
+
+Freddy Rincones   41:23
+Bueno, alineados.
+
+Daniel Valbuena   41:23
+Actualmente está Actualmente está en la plataforma.
+¿Qué te cuento el resto nada más?
+
+Freddy Rincones   41:32
+No hay problema alineados. Entonces ya tenemos versión inicial de cómo se va a ver la aplicación, el siguiente paso, el siguiente, la siguiente semana.
+Laurita, por favor, esta realiza como una tabla tal cual como la que hemos manejado antes con otros clientes por los módulos, porcentaje de desarrollo, porcentaje de pruebas de TDX, porcentaje y así para que Daniel ya vaya teniendo una visual del progreso.
+
+Daniel Valbuena   42:03
+O.
+
+Freddy Rincones   42:04
+Y vayamos tomando decisiones, identificando riesgos vacíos, lo que sea. Todo eso, o sea, tienen que entender, es muy importante, Daniel, también cómo setear la expectativa. Listo, agarramos y definimos tal vez en 1112 documentos toda una operación de 10 años tienes tú más o menos trabajando.
+
+Laura Martinez   42:10
+Listo.
+
+Freddy Rincones   42:25
+Con tu empresa o con la plataforma anterior y la estamos trasladando ese conocimiento y desarrollándolo en una plataforma nueva. Es muy posible que existan sesgos vacíos, faltas de definición o errores de definición. Y lo importante es que los vamos actualizando, lo identificamos, vemos que se actualiza el documento, la prueba si seguimos.
+O sea, no siempre vas a quedarte con la documentación full actualizada y la idea es que tu plataforma funcione con las necesidades que hoy en día tienes y que está dentro del alcance. Pero pues este tipo de cositas de dejar en un papel 10 años de operación y de funcionalidades es siempre es un reto.
+
+Daniel Valbuena   42:57
+Perfecto.
+See the world, Emily.
+
+Freddy Rincones   43:07
+Listo.
+
+Daniel Valbuena   43:08
+Listo, fabuloso.
+
+Freddy Rincones   43:11
+Alñados, bueno, esperemos avanzar lo antes posible para cumplir el hito y ya con eso irnos a celebrar fin de año.
+
+Daniel Valbuena   43:19
+De una, de una listo, les agradezco mucho.
+
+Freddy Rincones   43:22
+Chao, que les vaya bien, feliz tarde.
+
+Freddy Rincones detuvo la transcripción
