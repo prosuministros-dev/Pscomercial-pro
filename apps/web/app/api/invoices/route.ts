@@ -99,7 +99,7 @@ export async function POST(request: Request) {
     // Verify order belongs to org, get customer_id, and validate delivery status
     const { data: order, error: orderError } = await client
       .from('orders')
-      .select('id, organization_id, customer_id, status, advisor_id, order_number, requires_acta, acta_uploaded')
+      .select('id, organization_id, customer_id, status, advisor_id, order_number, requires_acta, acta_uploaded, quote_id')
       .eq('id', parsed.data.order_id)
       .eq('organization_id', user.organization_id)
       .is('deleted_at', null)
@@ -126,6 +126,17 @@ export async function POST(request: Request) {
       );
     }
 
+    // Resolve contact_id from the quote chain (order -> quote -> contact_id)
+    let contactId: string | null = null;
+    if ((order as Record<string, unknown>).quote_id) {
+      const { data: quote } = await client
+        .from('quotes')
+        .select('contact_id')
+        .eq('id', (order as Record<string, unknown>).quote_id as string)
+        .maybeSingle();
+      contactId = quote?.contact_id || null;
+    }
+
     // Insert invoice
     const { data: invoice, error: invError } = await client
       .from('invoices')
@@ -134,6 +145,7 @@ export async function POST(request: Request) {
         invoice_number: parsed.data.invoice_number,
         order_id: parsed.data.order_id,
         customer_id: order.customer_id,
+        contact_id: contactId,
         invoice_date: parsed.data.invoice_date,
         due_date: parsed.data.due_date || null,
         currency: parsed.data.currency,

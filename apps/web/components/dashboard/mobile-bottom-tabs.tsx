@@ -11,6 +11,7 @@ import {
   FileText,
   LayoutDashboard,
   MessageCircle,
+  Package,
   Settings,
   ShoppingCart,
   UserPlus,
@@ -48,6 +49,12 @@ const MOBILE_TABS = [
     path: '/home/customers',
     icon: Building2,
     permission: 'customers:read',
+  },
+  {
+    label: 'Proveedores',
+    path: '/home/suppliers',
+    icon: Package,
+    permission: 'purchase_orders:read',
   },
   {
     label: 'Reportes',

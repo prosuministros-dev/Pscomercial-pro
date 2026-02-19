@@ -409,6 +409,44 @@ export async function PUT(request: NextRequest) {
           convertedCustomerId = newCustomer.id;
         }
       }
+
+      // Migrate lead contacts to customer contacts
+      if (convertedCustomerId) {
+        try {
+          const { data: existingContacts } = await client
+            .from('customer_contacts')
+            .select('id')
+            .eq('customer_id', convertedCustomerId)
+            .limit(1);
+
+          if (!existingContacts || existingContacts.length === 0) {
+            const { data: leadContacts } = await client
+              .from('lead_contacts')
+              .select('contact_name, email, phone, position, is_primary')
+              .eq('lead_id', id)
+              .eq('organization_id', user.organization_id)
+              .is('deleted_at', null);
+
+            if (leadContacts && leadContacts.length > 0) {
+              await client.from('customer_contacts').insert(
+                leadContacts.map((lc) => ({
+                  organization_id: user.organization_id,
+                  customer_id: convertedCustomerId,
+                  full_name: lc.contact_name,
+                  email: lc.email || null,
+                  phone: lc.phone || null,
+                  position: lc.position || null,
+                  is_primary: lc.is_primary,
+                  is_active: true,
+                })),
+              );
+            }
+          }
+        } catch (contactCopyError) {
+          console.error('Error migrating lead contacts to customer:', contactCopyError);
+          // Non-fatal: conversion continues even if contact copy fails
+        }
+      }
     }
 
     // Build update object

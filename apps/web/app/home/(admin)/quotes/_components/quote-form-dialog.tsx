@@ -49,6 +49,8 @@ export function QuoteFormDialog({
   const [currentQuote, setCurrentQuote] = useState<Quote | null>(quote || null);
   const [trm, setTrm] = useState<number>(4000);
   const [customers, setCustomers] = useState<Array<{ id: string; business_name: string }>>([]);
+  const [contacts, setContacts] = useState<Array<{ id: string; full_name: string; email: string | null; is_primary: boolean }>>([]);
+  const [loadingContacts, setLoadingContacts] = useState(false);
 
   const {
     register,
@@ -124,6 +126,21 @@ export function QuoteFormDialog({
     };
     fetchCustomers();
   }, []);
+
+  // Fetch contacts when customer changes
+  const selectedCustomerId = watch('customer_id');
+  useEffect(() => {
+    if (!selectedCustomerId) {
+      setContacts([]);
+      return;
+    }
+    setLoadingContacts(true);
+    fetch(`/api/customers/${selectedCustomerId}/contacts`)
+      .then((res) => (res.ok ? res.json() : { data: [] }))
+      .then((data) => setContacts(data.data || []))
+      .catch(() => setContacts([]))
+      .finally(() => setLoadingContacts(false));
+  }, [selectedCustomerId]);
 
   const onSubmit = async (data: QuoteFormSchema) => {
     setIsSubmitting(true);
@@ -226,7 +243,10 @@ export function QuoteFormDialog({
                     </Label>
                     <Select
                       value={watch('customer_id')}
-                      onValueChange={(value) => setValue('customer_id', value)}
+                      onValueChange={(value) => {
+                        setValue('customer_id', value);
+                        setValue('contact_id', undefined);
+                      }}
                       disabled={!!quote || isSubmitting}
                     >
                       <SelectTrigger>
@@ -245,6 +265,27 @@ export function QuoteFormDialog({
                         {errors.customer_id.message}
                       </p>
                     )}
+                  </div>
+
+                  <div>
+                    <Label htmlFor="contact_id">Contacto</Label>
+                    <Select
+                      value={watch('contact_id') || ''}
+                      onValueChange={(v) => setValue('contact_id', v === '_none' ? undefined : v)}
+                      disabled={!selectedCustomerId || isSubmitting}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder={loadingContacts ? 'Cargando...' : 'Contacto (opcional)'} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="_none">Sin contacto</SelectItem>
+                        {contacts.map((c) => (
+                          <SelectItem key={c.id} value={c.id}>
+                            {c.full_name}{c.is_primary ? ' (Principal)' : ''}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   <div>
