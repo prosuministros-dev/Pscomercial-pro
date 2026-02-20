@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -48,6 +48,7 @@ export function QuoteFormDialog({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentQuote, setCurrentQuote] = useState<Quote | null>(quote || null);
   const [trm, setTrm] = useState<number>(4000);
+  const itemsTableRef = useRef<HTMLDivElement>(null);
   const [customers, setCustomers] = useState<Array<{ id: string; business_name: string }>>([]);
   const [contacts, setContacts] = useState<Array<{ id: string; full_name: string; email: string | null; is_primary: boolean }>>([]);
   const [loadingContacts, setLoadingContacts] = useState(false);
@@ -209,8 +210,10 @@ export function QuoteFormDialog({
       onSuccess?.(savedQuote.id);
 
       if (!quote) {
-        // If new quote, keep dialog open to add items
-        // reset(); -- don't reset, let them add items
+        // New quote: scroll to items table so user can add products immediately
+        setTimeout(() => {
+          itemsTableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
       }
     } catch (error) {
       console.error('Error saving quote:', error);
@@ -245,12 +248,18 @@ export function QuoteFormDialog({
       <DialogContent className="max-w-7xl max-h-[95vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>
-            {quote ? `Editar Cotización #${quote.quote_number}` : 'Nueva Cotización'}
+            {quote
+              ? `Editar Cotización #${quote.quote_number}`
+              : currentQuote
+                ? `Cotización #${currentQuote.quote_number} creada — Agrega los productos`
+                : 'Nueva Cotización'}
           </DialogTitle>
           <DialogDescription>
             {quote
               ? 'Modifica la información de la cotización y sus items'
-              : 'Completa la información de la cotización y agrega los items'}
+              : currentQuote
+                ? 'La cotización fue creada. Ahora puedes agregar los productos usando el buscador de abajo.'
+                : 'Paso 1: Completa los datos de la cotización y haz clic en "Crear Cotización"'}
           </DialogDescription>
         </DialogHeader>
 
@@ -563,7 +572,7 @@ export function QuoteFormDialog({
 
             {/* Items Table (only show if quote exists) */}
             {currentQuote && (
-              <div className="mt-6">
+              <div className="mt-6" ref={itemsTableRef}>
                 <QuoteItemsTable
                   quoteId={currentQuote.id}
                   currency={currentQuote.currency}
