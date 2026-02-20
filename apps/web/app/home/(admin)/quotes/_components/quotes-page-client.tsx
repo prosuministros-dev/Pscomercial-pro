@@ -88,6 +88,28 @@ export function QuotesPageClient() {
     setIsRefreshing(false);
   };
 
+  const handleKanbanStatusChange = useCallback(async (quoteId: string, newStatus: string) => {
+    const toastId = toast.loading('Cambiando estado...');
+    try {
+      const response = await fetch('/api/quotes', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: quoteId, status: newStatus }),
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Error al cambiar estado');
+      }
+      toast.success('Estado actualizado', { id: toastId });
+      queryClient.invalidateQueries({ queryKey: quoteKeys.all });
+    } catch (error) {
+      toast.error('Error', {
+        id: toastId,
+        description: error instanceof Error ? error.message : 'Error al cambiar estado',
+      });
+    }
+  }, [queryClient]);
+
   // Stats computed from kanban data
   const stats = useMemo(() => {
     const active = kanbanQuotes.filter((q) => q.status !== 'lost');
@@ -363,6 +385,7 @@ export function QuotesPageClient() {
             setDetailQuote(quote);
             setIsDetailOpen(true);
           }}
+          onStatusChange={handleKanbanStatusChange}
         />
       )}
 

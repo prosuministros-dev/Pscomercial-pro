@@ -14,9 +14,8 @@ export interface Quote {
     | 'offer_created'
     | 'negotiation'
     | 'risk'
-    | 'pending_approval'
     | 'pending_oc'
-    | 'approved'
+    | 'converted'
     | 'rejected'
     | 'lost'
     | 'expired';
@@ -59,6 +58,8 @@ export interface Quote {
     business_name: string;
     nit: string;
     city?: string;
+    is_blocked?: boolean;
+    block_reason?: string | null;
   };
   advisor?: {
     id: string;

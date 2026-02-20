@@ -53,7 +53,14 @@
       "mcp__supabase__list_tables",
       "Bash(find:*)",
       "mcp__playwright__browser_take_screenshot",
-      "mcp__supabase__list_migrations"
+      "mcp__supabase__list_migrations",
+      "mcp__supabase__apply_migration",
+      "Bash(npx turbo build:*)",
+      "Bash(npx tsc:*)",
+      "mcp__supabase__get_logs",
+      "Bash(openssl rand:*)",
+      "Bash(node:*)",
+      "Bash(curl:*)"
     ]
   }
 }

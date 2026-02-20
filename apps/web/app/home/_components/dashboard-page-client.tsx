@@ -7,8 +7,19 @@ import { CommercialDashboard } from './commercial-dashboard';
 import { OperationalDashboard } from './operational-dashboard';
 import type { DashboardFilters as Filters } from '../_lib/types';
 
+// Default to current month range so dashboard loads with data
+function getDefaultFilters(): Filters {
+  const now = new Date();
+  const from = new Date(now.getFullYear(), now.getMonth(), 1);
+  const to = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  return {
+    from: from.toISOString().slice(0, 10),
+    to: to.toISOString().slice(0, 10),
+  };
+}
+
 export function DashboardPageClient() {
-  const [filters, setFilters] = useState<Filters>({});
+  const [filters, setFilters] = useState<Filters>(getDefaultFilters);
   const [activeTab, setActiveTab] = useState('commercial');
 
   return (

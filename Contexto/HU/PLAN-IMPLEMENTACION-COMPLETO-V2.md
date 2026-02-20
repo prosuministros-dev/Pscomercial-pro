@@ -20,9 +20,10 @@
 8. [Sprint 4: Dashboards y Tableros](#8-sprint-4-dashboards-y-tableros-operativos-2-semanas)
 9. [Sprint 5: Integraciones](#9-sprint-5-integraciones-whatsapp-sendgrid-2-semanas)
 10. [Sprint 6: QA y Deployment](#10-sprint-6-qa-performance-y-deployment-1-semana)
-11. [Validación de Arquitectura](#11-validacion-completa-de-arquitectura)
-12. [Validación Template Figma](#12-validacion-completa-template-figma)
-13. [Métricas del Proyecto](#13-metricas-del-proyecto)
+11. [Sprint 7: Correcciones y Mejoras Post-Pruebas](#11-sprint-7-correcciones-y-mejoras-post-pruebas-3-semanas)
+12. [Validación de Arquitectura](#12-validacion-completa-de-arquitectura)
+13. [Validación Template Figma](#13-validacion-completa-template-figma)
+14. [Métricas del Proyecto](#14-metricas-del-proyecto)
 
 ---
 
@@ -32,8 +33,8 @@
 
 ### 📊 Progreso Global
 
-**Total Tareas:** 270
-**Completadas:** 270/270 (100%) ✅
+**Total Tareas:** 337
+**Completadas:** 270/337 (80%)
 
 ```
 Sprint 0: [██████████] 51/51 (100%) ✅
@@ -43,6 +44,7 @@ Sprint 3: [██████████] 57/57 (100%) ✅ (emails via Sprint 5
 Sprint 4: [██████████] 42/42 (100%) ✅
 Sprint 5: [██████████] 31/31 (100%) ✅
 Sprint 6: [██████████] 10/10 (100%) ✅
+Sprint 7: [░░░░░░░░░░]  0/67 (0%)  ⏳ Correcciones Post-Pruebas
 ```
 
 ---
@@ -547,6 +549,127 @@ Sprint 6: [██████████] 10/10 (100%) ✅
 
 ---
 
+### 🔧 SPRINT 7: CORRECCIONES Y MEJORAS POST-PRUEBAS (3 semanas) - 67 tareas
+
+**Objetivo:** Corregir bugs identificados en sesión de pruebas (20 Feb 2026), implementar funcionalidades faltantes validadas en transcripciones con el cliente, y alinear estados/validaciones del pipeline con las decisiones definitivas de Daniel Valbuena.
+
+**Fuentes:** CONSOLIDADO-VALIDACION-TRANSCRIPCIONES.md + EXTRACCION-PRUEBAS-PS-20260220.md
+
+---
+
+#### TAREA 7.1: Corrección de Bugs Críticos (10 subtareas)
+
+- [ ] 7.1.1 - Fix: Aprobación de margen da error al hacer clic (margin-approval-dialog.tsx + API approve-margin)
+- [ ] 7.1.2 - Fix: Kanban drag-and-drop no funciona en cotizaciones (quotes-kanban.tsx)
+- [ ] 7.1.3 - Fix: Seleccionar ítems en modal de nuevo despacho da error (shipment-form-dialog.tsx)
+- [ ] 7.1.4 - Fix: PDF OC no permite seleccionar OC específica cuando hay múltiples (componente PDF + API)
+- [ ] 7.1.5 - Fix: Dashboard requiere rango de fechas para cargar - agregar default mes actual
+- [ ] 7.1.6 - Fix: Etiqueta "ganadas y ganadas" duplicada en gráfico Dashboard - cambiar a "perdidas"
+- [ ] 7.1.7 - Fix: Estados en trazabilidad aparecen en inglés (order-timeline.tsx - agregar mapeo español)
+- [ ] 7.1.8 - Fix: Permisos reportan "no tiene ningún tipo de permisos" en Admin (verificar RPC get_user_permissions)
+- [ ] 7.1.9 - Fix: Módulo de auditoría no funciona (verificar trigger audit_trail_fn en 17 tablas)
+- [ ] 7.1.10 - Fix: Validar que error de NIT duplicado en leads se muestra correctamente al usuario
+
+#### TAREA 7.2: Estados de Cotización y Pipeline Kanban (8 subtareas)
+
+- [ ] 7.2.1 - Migración BD: Agregar estado 'converted' al CHECK constraint de quotes, eliminar 'approved'
+- [ ] 7.2.2 - Actualizar QUOTE_STATUSES en packages/shared/src/lib/constants.ts
+- [ ] 7.2.3 - Corregir types.ts: eliminar 'pending_approval', agregar 'converted', eliminar campos credit_blocked fantasma
+- [ ] 7.2.4 - Corregir schema.ts: actualizar z.enum(), STATUS_LABELS (eliminar pending_approval/approved, agregar converted)
+- [ ] 7.2.5 - Corregir KANBAN_COLUMNS a exactamente 4 columnas: Creación Oferta, Negociación, Riesgo, Pendiente OC
+- [ ] 7.2.6 - Implementar sección separada para estados terminales (converted, rejected, lost, expired) fuera del Kanban
+- [ ] 7.2.7 - Validar que aprobaciones NO cambian estado del pipeline (solo registran en quote_approvals + notificaciones)
+- [ ] 7.2.8 - Actualizar validaciones de transición en API /api/quotes/ (PUT) y create_order_from_quote RPC
+
+#### TAREA 7.3: Módulo Financiero - Crear desde cero (12 subtareas)
+
+- [ ] 7.3.1 - Migración BD: Agregar permisos finance:read, finance:manage_credit, finance:block_customer, finance:approve_payment, finance:generate_proforma
+- [ ] 7.3.2 - Migración BD: Asignar permisos a rol finanzas, gerente_general, super_admin
+- [ ] 7.3.3 - Crear apps/web/app/home/(admin)/finance/page.tsx (Server Component)
+- [ ] 7.3.4 - Crear finance-page-client.tsx con tabs: Cartera, Verificaciones de Pago, Solicitudes de Proforma
+- [ ] 7.3.5 - Crear cartera-tab.tsx: tabla de clientes con cupo, saldo, estado bloqueado, días mora
+- [ ] 7.3.6 - Crear customer-credit-dialog.tsx: bloquear/desbloquear cliente con razón obligatoria
+- [ ] 7.3.7 - Crear payment-verification-tab.tsx: solicitudes pendientes de verificación de pago (anticipado)
+- [ ] 7.3.8 - Crear proforma-requests-tab.tsx: solicitudes de generación de proforma pendientes
+- [ ] 7.3.9 - Crear finance-summary-cards.tsx: tarjetas resumen (total cartera, clientes bloqueados, solicitudes pendientes)
+- [ ] 7.3.10 - Integrar alerta visual "Cliente bloqueado por cartera" en cotizaciones (quote-form-dialog.tsx, quote-detail-modal.tsx)
+- [ ] 7.3.11 - Bloquear botón "Convertir a Pedido" cuando cliente está bloqueado (pero permitir cotizar y exportar PDF)
+- [ ] 7.3.12 - Implementar flujo de solicitud de desbloqueo: comercial solicita → financiera/gerencia aprueba → desbloqueo solo para esa cotización
+
+#### TAREA 7.4: Flujo Lead → Cotización y Conversión (4 subtareas)
+
+- [ ] 7.4.1 - Corregir flujo de conversión: al convertir lead → crear/vincular cliente → redirigir a detalle del cliente
+- [ ] 7.4.2 - Agregar botón "Crear Cotización" en confirmación de conversión (pre-selecciona cliente)
+- [ ] 7.4.3 - Verificar que RPC create_quote_from_lead sigue funcionando como ruta alternativa
+- [ ] 7.4.4 - Agregar link "Ver Cotizaciones" en leads convertidos para trazabilidad
+
+#### TAREA 7.5: PDF Remisión - Crear desde cero (4 subtareas)
+
+- [ ] 7.5.1 - Crear apps/web/lib/pdf/shipment-pdf-template.tsx (datos despacho, productos, transportadora, guía)
+- [ ] 7.5.2 - Crear apps/web/app/api/pdf/shipment/[id]/route.ts (render + upload Storage + signed URL)
+- [ ] 7.5.3 - Agregar consecutivo 'shipment' en consecutive_counters
+- [ ] 7.5.4 - Agregar botón "Descargar Remisión" en componente de despachos (shipments-tab.tsx)
+
+#### TAREA 7.6: Gestión de Documentos Adjuntos por Pedido (5 subtareas)
+
+- [ ] 7.6.1 - Verificar/agregar campo document_type en order_documents para distinguir 'client_document' vs 'supplier_document'
+- [ ] 7.6.2 - Crear documents-tab.tsx: tab "Documentos" en detalle del pedido con 2 secciones (Cliente/Proveedor)
+- [ ] 7.6.3 - Crear document-folder.tsx: componente reutilizable que muestra archivos con nombre, fecha, subido_por, descargar
+- [ ] 7.6.4 - Crear document-upload-dialog.tsx: dialog de subida con selector de carpeta destino (cliente/proveedor)
+- [ ] 7.6.5 - Configurar permisos: comercial sube a "Cliente", compras/logística sube a "Proveedor", gerencia ve ambos
+
+#### TAREA 7.7: Visitas Comerciales - Alertas Automáticas (3 subtareas)
+
+- [ ] 7.7.1 - Verificar/agregar campo customer_category en tabla customers (AAA, AA, B, C)
+- [ ] 7.7.2 - Crear cron job /api/cron/visit-alerts: buscar clientes AAA sin visita en 30 días, notificar asesor
+- [ ] 7.7.3 - Agregar indicador visual en lista de clientes para clientes AAA sin visita reciente
+
+#### TAREA 7.8: Notificaciones Faltantes (8 subtareas)
+
+- [ ] 7.8.1 - Notificación: Proforma generada → al comercial dueño de la cotización (integrar con Bloque 3)
+- [ ] 7.8.2 - Notificación: Solicitud financiera (extra cupo, cartera, pago) → a Laura/financiera
+- [ ] 7.8.3 - Alerta visual: Cliente bloqueado por cartera en cotización y pedido
+- [ ] 7.8.4 - Alerta visual: Correo de facturación faltante al intentar crear pedido (bloquear generación)
+- [ ] 7.8.5 - Alerta visual: Número de factura duplicado en módulo facturación
+- [ ] 7.8.6 - Indicador visual: Margen aprobado visible en producto de cotización (para que Compras lo vea)
+- [ ] 7.8.7 - Verificar que @menciones (comment-thread.tsx) está integrado en TODOS los módulos: leads, cotizaciones, pedidos, clientes
+- [ ] 7.8.8 - Verificar que notificación de aprobación/rechazo de margen se genera correctamente
+
+#### TAREA 7.9: Validaciones del Pipeline (9 subtareas)
+
+- [ ] 7.9.1 - Validar en cotización: IVA solo acepta 0%, 5%, 19% (rechazar otros) - Zod frontend + API backend
+- [ ] 7.9.2 - Validar en cotización: proveedor sugerido obligatorio por producto
+- [ ] 7.9.3 - Validar en cotización: tiempo de entrega obligatorio por producto
+- [ ] 7.9.4 - Validar en cotización: garantía de producto obligatoria
+- [ ] 7.9.5 - Validar en pedido: correo de facturación obligatorio (bloqueante)
+- [ ] 7.9.6 - Validar en pedido: información de despacho completa (nombre, tel, dirección, ciudad, horario, correo)
+- [ ] 7.9.7 - Validar en pedido: datos de despacho INMUTABLES después de guardar (cambios solo vía chat interno)
+- [ ] 7.9.8 - Migración: Cambiar default de validity_days de 30 a 5 en tabla quotes
+- [ ] 7.9.9 - Verificar que cron quote-expiry notifica 3 días ANTES del vencimiento (no al vencer)
+
+#### TAREA 7.10: Verificación de Proforma y PDFs (4 subtareas)
+
+- [ ] 7.10.1 - Verificar que PDF proforma funciona end-to-end (/api/pdf/proforma/[id])
+- [ ] 7.10.2 - Verificar que proforma tiene formato diferente al de cotización (CONSOLIDADO §4.1.2)
+- [ ] 7.10.3 - Verificar que transporte interno NO es visible al cliente en PDF cotización y proforma
+- [ ] 7.10.4 - Verificar que productos se ordenan por sort_order (campo "orden" del comercial) en todos los PDFs
+
+---
+
+**✅ Entregables Sprint 7:**
+- [ ] 10 bugs corregidos de sesión de pruebas
+- [ ] Pipeline Kanban con 4 estados correctos + estados terminales
+- [ ] Módulo Financiero operativo (cartera, bloqueos, verificación pagos, proformas)
+- [ ] Flujo Lead → Cliente → Cotización funcional
+- [ ] PDF Remisión creado y funcional
+- [ ] Gestión documentos adjuntos con 2 carpetas (Cliente/Proveedor)
+- [ ] Alertas automáticas de visitas para clientes AAA
+- [ ] 8 notificaciones/alertas implementadas
+- [ ] 9 validaciones del pipeline verificadas/implementadas
+- [ ] PDFs verificados (proforma, orden cotización, remisión)
+
+---
+
 ### 📈 Resumen Progreso por Sprint
 
 | Sprint | Tareas | Completadas | Progreso | Status |
@@ -558,7 +681,8 @@ Sprint 6: [██████████] 10/10 (100%) ✅
 | Sprint 4 | 42 | 42 | 100% | ✅ Completado |
 | Sprint 5 | 31 | 31 | 100% | ✅ Completado (WhatsApp + SendGrid + Realtime) |
 | Sprint 6 | 10 | 0 | 0% | ⏳ Pendiente |
-| **TOTAL** | **270** | **210** | **78%** | 🚀 **Sprint 4 completado** |
+| Sprint 7 | 67 | 0 | 0% | ⏳ Correcciones Post-Pruebas |
+| **TOTAL** | **337** | **270** | **80%** | 🔧 **Sprint 7 planificado** |
 
 ---
 
@@ -2075,7 +2199,372 @@ Optimización performance, load testing, security review, UAT, deployment produc
 
 ---
 
-## 11. VALIDACIÓN COMPLETA DE ARQUITECTURA
+## 11. SPRINT 7: CORRECCIONES Y MEJORAS POST-PRUEBAS (3 semanas)
+
+### 11.1 Objetivo
+
+Corregir TODOS los bugs identificados en la sesión interna de pruebas del 20 de febrero de 2026, implementar funcionalidades faltantes validadas en 8 transcripciones con el cliente, y alinear completamente la aplicación con las decisiones definitivas de Daniel Valbuena (Gerente Comercial/Dueño de PROSUMINISTROS).
+
+### 11.2 Fuentes
+
+- **CONSOLIDADO-VALIDACION-TRANSCRIPCIONES.md** — 7 temas validados en 8 transcripciones con el cliente
+- **EXTRACCION-PRUEBAS-PS-20260220.md** — 11 bugs, 13 funcionalidades faltantes, 11 decisiones confirmadas
+
+### 11.3 Participantes Sesión de Pruebas
+
+| Persona | Rol |
+|---------|-----|
+| Freddy Rincones | Tech Lead - presenta estado actual de la app |
+| Laura Martinez | QA / Business Analyst - valida lógicas y funcionalidades |
+| Emma Castillo | QA / PM - identifica gaps y faltantes |
+
+### 11.4 Tareas Detalladas
+
+---
+
+#### TAREA 7.1: Corrección de Bugs Críticos (10 subtareas)
+
+**Agentes:** @fullstack-dev + @db-integration
+**Prioridad:** 🔴 MÁXIMA — Bloquean pruebas con el cliente
+**Fuente:** EXTRACCION-PRUEBAS-PS líneas 74, 86, 116, 120, 12, 14, 184, 218
+
+| # | Subtarea | Detalle | Archivos | Severidad |
+|---|----------|---------|----------|-----------|
+| 7.1.1 | Fix aprobación de margen | 3 puntitos de cotización → "Aprobación de margen" da error. Verificar margin-approval-dialog.tsx, POST /api/quotes/[id]/approve-margin, RPC request_margin_approval | `quotes/_components/margin-approval-dialog.tsx`, `api/quotes/[id]/approve-margin/route.ts` | 🔴 Alta |
+| 7.1.2 | Fix Kanban drag-and-drop | No se pueden arrastrar tarjetas entre columnas en vista Kanban de cotizaciones. Implementar/corregir handler onDragEnd que llame PUT /api/quotes con nuevo status | `quotes/_components/quotes-kanban.tsx` | 🟡 Media |
+| 7.1.3 | Fix selección ítems despacho | Modal de nuevo despacho da error al seleccionar ítems. Verificar query de order_items disponibles (quantity_dispatched < quantity) | `orders/_components/shipment-form-dialog.tsx`, `api/shipments/route.ts` | 🔴 Alta |
+| 7.1.4 | Fix PDF OC selección múltiple | Con múltiples OC, no se puede seleccionar cuál descargar. Agregar selector/dropdown cuando hay >1 OC | Componente PDF en orders, `api/pdf/order/[id]/route.ts` | 🟡 Media |
+| 7.1.5 | Fix Dashboard sin fechas | Dashboard requiere rango de fechas para cargar. Establecer default: mes actual | Componente principal del dashboard | 🟡 Media |
+| 7.1.6 | Fix label "ganadas" duplicado | En gráfico "Cotizaciones por asesor", hover muestra "ganadas 6 y ganadas 3". Cambiar segundo a "perdidas" | Componente de gráfico dashboard | 🟢 Baja |
+| 7.1.7 | Fix trazabilidad en inglés | Estados en timeline de pedidos aparecen en inglés. Crear mapeo STATUS_MAP español | `orders/_components/order-timeline.tsx` | 🟢 Baja |
+| 7.1.8 | Fix permisos en Admin | Muestra "no tiene ningún tipo de permisos". Verificar RPC get_user_permissions + user_roles sin IDs huérfanos | RPC `get_user_permissions`, componente admin | 🔴 Alta |
+| 7.1.9 | Fix auditoría | Módulo no funciona. Verificar trigger audit_trail_fn está asociado a 17 tablas de negocio. Verificar logs Postgres | Trigger `audit_trail_fn` en BD, componente auditoría | 🟡 Media |
+| 7.1.10 | Fix error NIT duplicado visible | Verificar que cuando API retorna error por NIT duplicado en leads, frontend muestra toast/mensaje claro | `leads/_components/lead-form-dialog.tsx` | 🟢 Baja |
+
+**Deliverables:**
+- [ ] 10 bugs corregidos y verificados
+- [ ] Cada fix probado en el módulo afectado
+
+---
+
+#### TAREA 7.2: Estados de Cotización y Pipeline Kanban (8 subtareas)
+
+**Agentes:** @db-integration + @fullstack-dev + @business-analyst
+**Prioridad:** 🔴 MÁXIMA — Los estados actuales NO coinciden con lo que Daniel definió
+**Fuente:** CONSOLIDADO §1.1-1.4, EXTRACCION líneas 192, 207-211
+
+**Contexto crítico:** Daniel fue ENFÁTICO: solo 4 estados en el pipeline Kanban. Las aprobaciones internas (margen, cartera, cupo) NO deben crear estados adicionales. Se manejan vía bitácora/log de movimientos.
+
+**Estados correctos del Pipeline Kanban (4 columnas):**
+
+| # | Estado | Status BD | % Probabilidad |
+|---|--------|-----------|---------------|
+| 1 | Envío Cotización / Creación de Oferta | `offer_created` | 40% |
+| 2 | En Negociación | `negotiation` | 60% |
+| 3 | Riesgo | `risk` | 70% |
+| 4 | Pendiente Orden de Compra | `pending_oc` | 80% |
+
+**Estados terminales (NO son columnas Kanban):**
+- `converted` — Convertida a Pedido (nueva)
+- `lost` — Perdida (con motivo obligatorio)
+- `rejected` — Rechazada (con motivo obligatorio)
+- `expired` — Vencida (automática por cron)
+
+**Estados a ELIMINAR:** `approved`, `pending_approval` (no existen en BD, son fantasma en frontend)
+
+| # | Subtarea | Detalle | Archivos |
+|---|----------|---------|----------|
+| 7.2.1 | Migración BD | ALTER CHECK constraint: eliminar 'approved', agregar 'converted'. Mover cotizaciones existentes con status='approved' a 'pending_oc' o 'converted' | Nueva migración SQL |
+| 7.2.2 | Actualizar constantes | QUOTE_STATUSES en shared constants: eliminar 'approved', agregar 'converted' | `packages/shared/src/lib/constants.ts` |
+| 7.2.3 | Corregir types.ts | Eliminar 'pending_approval' del type union. Agregar 'converted'. Eliminar campos credit_blocked* que NO existen en BD | `quotes/_lib/types.ts` |
+| 7.2.4 | Corregir schema.ts | Actualizar z.enum() con estados correctos. Actualizar STATUS_LABELS: eliminar pending_approval/approved, agregar converted | `quotes/_lib/schema.ts` |
+| 7.2.5 | Corregir Kanban a 4 columnas | KANBAN_COLUMNS = solo: Creación Oferta, Negociación, Riesgo, Pendiente OC. Estados terminales se muestran en sección separada | `quotes/_lib/schema.ts`, `quotes/_components/quotes-kanban.tsx` |
+| 7.2.6 | Sección estados terminales | Crear sección/tabla debajo del Kanban para mostrar cotizaciones en estados terminales (converted, rejected, lost, expired) | `quotes/_components/quotes-kanban.tsx` o nuevo componente |
+| 7.2.7 | Validar aprobaciones sin cambio de estado | Asegurar que request_margin_approval y solicitudes financieras solo registran en quote_approvals + notificaciones, SIN cambiar el status del quote en el pipeline | RPC `request_margin_approval`, `api/quotes/[id]/approve-margin/route.ts` |
+| 7.2.8 | Validar transiciones | Actualizar API PUT /api/quotes para validar transiciones permitidas. Actualizar create_order_from_quote para usar 'converted' como estado destino | `api/quotes/route.ts`, RPC `create_order_from_quote` |
+
+**Deliverables:**
+- [ ] BD migrada con estados correctos
+- [ ] Kanban con exactamente 4 columnas
+- [ ] Estados terminales visibles en sección separada
+- [ ] Aprobaciones no alteran estado del pipeline
+
+---
+
+#### TAREA 7.3: Módulo Financiero (12 subtareas)
+
+**Agentes:** @db-integration + @fullstack-dev
+**Prioridad:** 🔴 CRÍTICA — Este módulo NO EXISTE pero Laura Burgos (Financiera) lo necesita
+**Fuente:** CONSOLIDADO §2.3, EXTRACCION §2.5 líneas 177-181, 239-246
+
+**Estado actual:** La entrada de navegación existe en top-navigation.tsx (→ /home/finance) pero la página NO existe. El permiso finance:read NO está definido. Los campos is_blocked y block_reason EXISTEN en tabla customers pero sin UI.
+
+**Funcionalidad requerida para Laura Burgos (Financiera):**
+1. Ver cartera de clientes con saldos y estados
+2. Bloquear/desbloquear clientes por cartera en mora (manualmente)
+3. Gestionar solicitudes de verificación de pago (anticipado)
+4. Gestionar solicitudes de proforma
+5. Ver resumen financiero
+
+| # | Subtarea | Detalle | Archivos |
+|---|----------|---------|----------|
+| 7.3.1 | Migración: permisos financieros | INSERT permissions: finance:read, finance:manage_credit, finance:block_customer, finance:approve_payment, finance:generate_proforma | Nueva migración SQL |
+| 7.3.2 | Migración: asignar permisos | Asignar finance:* a rol finanzas. finance:read a gerente_general y super_admin | Nueva migración SQL |
+| 7.3.3 | Crear page.tsx | Server Component para /home/(admin)/finance/ | `finance/page.tsx` (NUEVO) |
+| 7.3.4 | Crear finance-page-client.tsx | Client wrapper con 3 tabs: Cartera, Verificaciones de Pago, Solicitudes de Proforma | `finance/_components/finance-page-client.tsx` (NUEVO) |
+| 7.3.5 | Crear cartera-tab.tsx | Tabla: Cliente, NIT, Cupo Total, Cupo Disponible, Saldo Pendiente, Estado (Activo/Bloqueado), Días Mora. Acciones: Bloquear/Desbloquear | `finance/_components/cartera-tab.tsx` (NUEVO) |
+| 7.3.6 | Crear customer-credit-dialog.tsx | Dialog para bloquear: razón obligatoria. Para desbloquear: confirmación. Solo visible a finanzas y gerente_general | `finance/_components/customer-credit-dialog.tsx` (NUEVO) |
+| 7.3.7 | Crear payment-verification-tab.tsx | Lista solicitudes pendientes de verificación de pago (clientes anticipado). Laura revisa en banco, aprueba o rechaza | `finance/_components/payment-verification-tab.tsx` (NUEVO) |
+| 7.3.8 | Crear proforma-requests-tab.tsx | Lista solicitudes de proforma pendientes. Financiera revisa cotización, valida márgenes, aprueba → sistema genera PDF | `finance/_components/proforma-requests-tab.tsx` (NUEVO) |
+| 7.3.9 | Crear finance-summary-cards.tsx | Tarjetas: Total cartera, Clientes bloqueados, Solicitudes pendientes, Proformas generadas este mes | `finance/_components/finance-summary-cards.tsx` (NUEVO) |
+| 7.3.10 | Alerta de bloqueo en cotizaciones | Cuando comercial abre cotización de cliente bloqueado: alerta visual permanente "⚠️ Cliente bloqueado por cartera en mora". Permitir cotizar, exportar PDF. NO permitir convertir a pedido | `quotes/_components/quote-form-dialog.tsx`, `quote-detail-modal.tsx` |
+| 7.3.11 | Bloquear "Convertir a Pedido" | Si cliente.is_blocked = true → botón deshabilitado con tooltip "Cliente bloqueado por cartera. Solicite autorización a Financiera" | Componente que maneja conversión a pedido |
+| 7.3.12 | Flujo desbloqueo por cotización | Comercial solicita autorización → notificación a Laura/Daniel → si aprueban, se permite generar pedido SOLO para esa cotización (bloqueo general sigue activo) | API endpoint nuevo + notificaciones |
+
+**Deliverables:**
+- [ ] Módulo financiero accesible en /home/finance
+- [ ] Laura puede ver cartera y bloquear/desbloquear clientes
+- [ ] Solicitudes de pago y proforma gestionables
+- [ ] Alerta visible en cotizaciones de clientes bloqueados
+- [ ] Conversión a pedido bloqueada para clientes en mora
+
+---
+
+#### TAREA 7.4: Flujo Lead → Cotización y Conversión (4 subtareas)
+
+**Agentes:** @fullstack-dev
+**Prioridad:** 🔴 ALTA — Flujo core del pipeline comercial
+**Fuente:** EXTRACCION líneas 26-31, 192
+
+**Decisión:** Daniel (19 Feb 2026) quiere: Lead → Clientes → desde ahí crear cotización (NO directo Lead → Cotización)
+
+| # | Subtarea | Detalle | Archivos |
+|---|----------|---------|----------|
+| 7.4.1 | Corregir flujo conversión | Al convertir lead: crear/vincular cliente → redirigir a detalle del cliente (customer/[id]) | `leads/_components/leads-kanban.tsx`, `lead-form-dialog.tsx` |
+| 7.4.2 | Botón "Crear Cotización" post-conversión | En la confirmación de conversión, agregar botón que lleva al formulario de cotización con cliente pre-seleccionado | `leads/_components/lead-form-dialog.tsx` |
+| 7.4.3 | Mantener RPC alternativa | Verificar que create_quote_from_lead sigue funcionando como ruta secundaria | RPC `create_quote_from_lead` en BD |
+| 7.4.4 | Trazabilidad Lead → Cotización | En leads convertidos, agregar link "Ver Cotizaciones del Cliente" | `leads/_components/lead-form-dialog.tsx` o kanban |
+
+**Deliverables:**
+- [ ] Conversión de lead redirige a módulo Clientes
+- [ ] Botón rápido para crear cotización desde conversión
+- [ ] Trazabilidad completa lead → cliente → cotización
+
+---
+
+#### TAREA 7.5: PDF Remisión (4 subtareas)
+
+**Agentes:** @fullstack-dev
+**Prioridad:** 🟡 ALTA — 4to PDF requerido, NO existe actualmente
+**Fuente:** CONSOLIDADO §4.1.4, EXTRACCION línea 218
+
+**Contenido del PDF:** Datos de despacho (dirección, ciudad, contacto, teléfono), productos enviados con cantidades, transportadora, número de guía, número de remisión (consecutivo propio).
+
+| # | Subtarea | Detalle | Archivos |
+|---|----------|---------|----------|
+| 7.5.1 | Crear template | @react-pdf/renderer: header con logo + org, datos pedido/cliente, tabla productos (sku, descripción, cantidad), datos transporte, datos recepción | `lib/pdf/shipment-pdf-template.tsx` (NUEVO) |
+| 7.5.2 | Crear API route | Fetch shipment con items/order/customer/org → render → upload Storage generated-pdfs/{org_id}/shipments/ → signed URL | `api/pdf/shipment/[id]/route.ts` (NUEVO) |
+| 7.5.3 | Agregar consecutivo | INSERT en consecutive_counters para entity_type='shipment' | Nueva migración SQL |
+| 7.5.4 | Botón descargar | Agregar botón "Descargar Remisión" en el componente de despachos | `orders/_components/shipments-tab.tsx` |
+
+**Deliverables:**
+- [ ] PDF Remisión generándose correctamente
+- [ ] Descargable desde módulo de despachos
+
+---
+
+#### TAREA 7.6: Gestión de Documentos Adjuntos por Pedido (5 subtareas)
+
+**Agentes:** @fullstack-dev + @db-integration
+**Prioridad:** 🟡 ALTA — Requerimiento fuerte del cliente, reemplaza SharePoint
+**Fuente:** CONSOLIDADO §5.1-5.3, EXTRACCION líneas 259-276
+
+**Estructura requerida:** 2 carpetas por pedido:
+- **Documentos Cliente:** OC del cliente, Contratos, Pólizas
+- **Documentos Proveedor:** Cotizaciones proveedor, Facturas de compra, RUT
+
+| # | Subtarea | Detalle | Archivos |
+|---|----------|---------|----------|
+| 7.6.1 | Migración document_type | Verificar/agregar enum en order_documents: 'client_document', 'supplier_document'. Agregar si no existe | Nueva migración SQL si necesario |
+| 7.6.2 | Crear documents-tab.tsx | Tab "Documentos" en detalle pedido con 2 secciones visuales: "Documentos Cliente" y "Documentos Proveedor" | `orders/_components/documents-tab.tsx` (NUEVO) |
+| 7.6.3 | Crear document-folder.tsx | Componente reutilizable: lista archivos con nombre, fecha subida, subido por, botones descargar/previsualizar | `orders/_components/document-folder.tsx` (NUEVO) |
+| 7.6.4 | Crear document-upload-dialog.tsx | Dialog de subida: selector de carpeta destino (cliente/proveedor), drag & drop, progress | `orders/_components/document-upload-dialog.tsx` (NUEVO) |
+| 7.6.5 | Permisos por rol | Comercial sube a "Cliente", Compras/Logística sube a "Proveedor", Gerencia y Financiera ven ambos. Usar PermissionGate | `documents-tab.tsx` lógica de permisos |
+
+**Deliverables:**
+- [ ] Tab "Documentos" funcional en detalle de pedido
+- [ ] 2 carpetas visuales separadas
+- [ ] Subida, descarga y previsualización funcional
+- [ ] Permisos por rol respetados
+
+---
+
+#### TAREA 7.7: Visitas Comerciales - Alertas Automáticas (3 subtareas)
+
+**Agentes:** @db-integration + @fullstack-dev
+**Prioridad:** 🟡 MEDIA — Parte del MVP según transcripciones
+**Fuente:** CONSOLIDADO §6, EXTRACCION líneas 144-163
+
+**Reglas de visitas por categoría de cliente:**
+- AAA en Bogotá → visita presencial obligatoria mínimo 1/mes
+- AAA fuera de Bogotá → llamada de seguimiento mínimo 1/mes
+- AA → seguimiento periódico (frecuencia menor)
+- B, C → según necesidad
+
+| # | Subtarea | Detalle | Archivos |
+|---|----------|---------|----------|
+| 7.7.1 | Campo customer_category | Verificar si existe en tabla customers. Si no: migración para agregar VARCHAR con CHECK (AAA, AA, B, C). Agregar al formulario de clientes | Migración SQL + `customer-form-dialog.tsx` |
+| 7.7.2 | Cron visit-alerts | Crear /api/cron/visit-alerts: buscar clientes con category='AAA' sin registro en customer_visits en últimos 30 días → notificar asesor asignado | `api/cron/visit-alerts/route.ts` (NUEVO) |
+| 7.7.3 | Indicador visual | En lista de clientes, mostrar badge/indicador rojo para clientes AAA sin visita reciente | `customers/_components/customers-page-client.tsx` |
+
+**Deliverables:**
+- [ ] Categoría de cliente editable (AAA, AA, B, C)
+- [ ] Cron semanal notifica asesores de clientes AAA sin visita
+- [ ] Indicador visual en lista de clientes
+
+---
+
+#### TAREA 7.8: Notificaciones y @Menciones Faltantes (8 subtareas)
+
+**Agentes:** @fullstack-dev
+**Prioridad:** 🟡 ALTA
+**Fuente:** CONSOLIDADO §3.2-3.3, EXTRACCION líneas 188-191, 254
+
+**Regla clave:** Notificaciones son SOLO internas (in-app campanita). NO hay notificaciones por email a usuarios (confirmado por Laura, EXTRACCION línea 254).
+
+| # | Subtarea | Detalle | Archivos |
+|---|----------|---------|----------|
+| 7.8.1 | Notif: Proforma generada | Cuando financiera genera proforma → notificar comercial dueño: "Proforma generada y almacenada exitosamente" | Integrar con TAREA 7.3.8 |
+| 7.8.2 | Notif: Solicitud financiera | Cuando comercial solicita explícitamente aprobación financiera (extra cupo, cartera, pago) → notificar financiera | Integrar con TAREA 7.3 |
+| 7.8.3 | Alerta: Cliente bloqueado | Alerta visual permanente en cotización/pedido cuando cliente.is_blocked = true | Integrar con TAREA 7.3.10 |
+| 7.8.4 | Alerta: Correo facturación | Bloquear generación de pedido si no hay correo de facturación. Modal de alerta | `api/orders/route.ts` POST, componente de creación pedido |
+| 7.8.5 | Alerta: Factura duplicada | Si número de factura ya existe en otro registro → alerta de duplicidad | `orders/_components/invoice-register-dialog.tsx` |
+| 7.8.6 | Indicador: Margen aprobado | En producto de cotización, mostrar badge con % de margen aprobado (para que Compras lo vea) | `quotes/_components/quote-detail-modal.tsx` |
+| 7.8.7 | @Menciones en todos los módulos | Verificar que comment-thread.tsx está integrado en: leads, cotizaciones, pedidos, clientes. Agregar donde falte | Verificar integración en cada módulo |
+| 7.8.8 | Verificar notif aprobación margen | Verificar que approve-margin genera notificación correcta al comercial con el % aprobado | `api/quotes/[id]/approve-margin/route.ts` |
+
+**Deliverables:**
+- [ ] 6 notificaciones/alertas nuevas implementadas
+- [ ] @Menciones funcionales en todos los módulos
+- [ ] Notificación de aprobación de margen verificada
+
+---
+
+#### TAREA 7.9: Validaciones del Pipeline Comercial (9 subtareas)
+
+**Agentes:** @fullstack-dev + @db-integration + @business-analyst
+**Prioridad:** 🟡 MEDIA — Asegura integridad de datos y reglas de negocio
+**Fuente:** CONSOLIDADO §2.2-2.7, EXTRACCION §6
+
+**~30 validaciones identificadas en transcripciones.** Las más críticas que requieren verificación/implementación:
+
+| # | Subtarea | Detalle | Tipo | Archivos |
+|---|----------|---------|------|----------|
+| 7.9.1 | IVA solo 0%, 5%, 19% | Rechazar cualquier otro porcentaje en quote_items | Zod frontend + API | `quotes/_lib/schema.ts`, `api/quotes/[id]/items/route.ts` |
+| 7.9.2 | Proveedor sugerido obligatorio | Cada producto en cotización debe tener proveedor sugerido | Zod frontend | `quotes/_lib/schema.ts` |
+| 7.9.3 | Tiempo entrega obligatorio | Cada producto en cotización debe tener tiempo de entrega | Zod frontend | `quotes/_lib/schema.ts` |
+| 7.9.4 | Garantía obligatoria | Cada producto en cotización debe tener garantía | Zod frontend | `quotes/_lib/schema.ts` |
+| 7.9.5 | Correo facturación obligatorio | Bloquear creación de pedido sin correo de facturación del cliente | Bloqueante | `api/orders/route.ts` POST |
+| 7.9.6 | Info despacho completa | Obligatorios: nombre receptor, teléfono, dirección, ciudad, horario, correo | Bloqueante | `api/orders/route.ts` POST |
+| 7.9.7 | Despacho inmutable | Datos de despacho NO modificables después de guardar. Cambios solo vía chat interno | API + Frontend | `api/orders/route.ts` PUT, formulario pedido |
+| 7.9.8 | Vigencia default 5 días | Cambiar default validity_days de 30 a 5 en tabla quotes | Migración BD | Nueva migración SQL |
+| 7.9.9 | Notif 3 días antes vencimiento | Verificar que cron quote-expiry notifica 3 días ANTES del vencimiento, no al vencer | Cron | `api/cron/quote-expiry/route.ts` |
+
+**Deliverables:**
+- [ ] Todas las validaciones de cotización implementadas (IVA, proveedor, entrega, garantía)
+- [ ] Validaciones de pedido implementadas (correo, despacho, inmutabilidad)
+- [ ] Vigencia default corregida a 5 días
+- [ ] Cron de vencimiento verificado
+
+---
+
+#### TAREA 7.10: Verificación de PDFs Existentes (4 subtareas)
+
+**Agentes:** @fullstack-dev + @business-analyst
+**Prioridad:** 🟡 MEDIA — Asegurar que los 4 PDFs cumplen reglas de negocio
+**Fuente:** CONSOLIDADO §4.2
+
+| # | Subtarea | Detalle | Archivos |
+|---|----------|---------|----------|
+| 7.10.1 | Verificar proforma E2E | Probar endpoint /api/pdf/proforma/[id] end-to-end. Verificar que genera correctamente | `api/pdf/proforma/[id]/route.ts`, `lib/pdf/proforma-pdf-template.tsx` |
+| 7.10.2 | Formato proforma ≠ cotización | Verificar que proforma tiene formato diferente al de cotización (Daniel lo requirió) | `lib/pdf/proforma-pdf-template.tsx` |
+| 7.10.3 | Transporte no visible | Verificar que costo de transporte interno NO aparece al cliente en PDF cotización y proforma | `lib/pdf/quote-pdf-template.tsx`, `lib/pdf/proforma-pdf-template.tsx` |
+| 7.10.4 | Orden por sort_order | Verificar que productos se ordenan por campo sort_order (orden definido por comercial) en TODOS los PDFs | Todos los templates PDF |
+
+**Deliverables:**
+- [ ] Proforma funcional end-to-end
+- [ ] Formato proforma diferente de cotización
+- [ ] Transporte interno oculto en PDFs al cliente
+- [ ] Orden de productos correcto en todos los PDFs
+
+---
+
+### 11.5 Orden de Ejecución Recomendado
+
+```
+SEMANA 1 (Prioridad Máxima):
+├── TAREA 7.1: Bugs Críticos (7.1.1, 7.1.3, 7.1.8 primero)
+├── TAREA 7.2: Estados de Cotización (completo)
+└── TAREA 7.1: Bugs Medios/Bajos (7.1.2, 7.1.4-7.1.7, 7.1.9-7.1.10)
+
+SEMANA 2 (Funcionalidades Faltantes):
+├── TAREA 7.3: Módulo Financiero (completo)
+├── TAREA 7.5: PDF Remisión
+├── TAREA 7.6: Gestión Documentos
+└── TAREA 7.4: Flujo Lead → Cotización
+
+SEMANA 3 (Refinamiento):
+├── TAREA 7.8: Notificaciones y @Menciones
+├── TAREA 7.9: Validaciones del Pipeline
+├── TAREA 7.7: Alertas Visitas
+├── TAREA 7.10: Verificación PDFs
+└── Retesting general
+```
+
+### 11.6 Puntos Abiertos (Requieren decisión del cliente)
+
+| # | Punto | Contexto | Decisión Necesaria |
+|---|-------|----------|-------------------|
+| 1 | ¿'draft' (Borrador) se muestra como columna en Kanban? | Daniel dijo 4 estados. Borrador es pre-envío | ¿Incluir como columna 0 o solo en tabla? |
+| 2 | ¿'expired' (Vencida) es estado terminal válido? | No mencionado explícitamente por Daniel | ¿Mantener o eliminar? |
+| 3 | Flujo de conversión de Lead | Daniel dijo "pasar a Clientes" (19 Feb) vs HU original "crear cotización" | Confirmar flujo final |
+| 4 | Contenido Dashboard operativo | Laura: "hay que confirmar con Daniel qué información necesita ver" | Agendar revisión |
+| 5 | Notificación "otro motivo" chatbot a financiera | No quedó definido en transcripciones | Definir mecanismo |
+| 6 | Migración datos desde Bemeo/Odoo | Emma debe descargar clientes, proveedores, productos | Pendiente por Emma |
+| 7 | Brandbook/logo Prosuministros | Laura debe buscar en carpeta PM | Pendiente por Laura |
+
+### 11.7 Reglas Arquitectónicas (@arquitecto)
+
+Todas las implementaciones del Sprint 7 DEBEN respetar:
+
+1. **Multi-tenant**: TODO filtro incluye `organization_id`
+2. **RLS = Solo aislamiento**: NO verificar permisos en RLS
+3. **Permisos en API Routes**: `checkPermission('module:action')`
+4. **Auth por cookies**: `@supabase/ssr` — NUNCA JWT en localStorage
+5. **3 clientes Supabase**: Browser, Server (API), Service (cron/webhooks)
+6. **Anti-timeout**: <9s en API routes
+7. **PDF con @react-pdf/renderer**: NUNCA Puppeteer/Chromium
+8. **No duplicar funciones**: Verificar FASE-06 antes de crear RPCs
+9. **Migraciones**: `YYYYMMDDHHMMSS_nombre_snake_case.sql`
+10. **Branding**: Primary #2C3E2B, Secondary #E7FF8C, Accent #FF931E
+
+### 11.8 Entregables Sprint 7
+
+- [ ] **10 bugs** corregidos de sesión de pruebas del 20 Feb
+- [ ] **Pipeline Kanban** con 4 estados correctos + estados terminales separados
+- [ ] **Módulo Financiero** operativo (cartera, bloqueos, verificación pagos, proformas)
+- [ ] **Flujo Lead → Cliente → Cotización** funcional según decisión de Daniel
+- [ ] **PDF Remisión** creado y funcional (4to y último PDF)
+- [ ] **Gestión documentos** adjuntos con 2 carpetas por pedido (Cliente/Proveedor)
+- [ ] **Alertas automáticas** de visitas para clientes AAA
+- [ ] **8 notificaciones/alertas** implementadas
+- [ ] **9 validaciones** del pipeline verificadas/implementadas
+- [ ] **4 PDFs** verificados contra reglas de negocio
+- [ ] **Retesting general** exitoso
+
+---
+
+## 12. VALIDACIÓN COMPLETA DE ARQUITECTURA
 
 ### 11.1 FASE-01: Modelo de Datos (45 tablas)
 

@@ -54,9 +54,9 @@ async function AdminLayout({ children }: React.PropsWithChildren) {
       <PageBody>
         <div className="space-y-6">
           <div>
-            <h1 className="text-3xl font-bold">Admin Panel</h1>
+            <h1 className="text-3xl font-bold">Panel de Administración</h1>
             <p className="text-muted-foreground mt-2">
-              Manage roles, users, and view audit logs
+              Gestiona roles, usuarios y consulta registros de auditoría
             </p>
           </div>
 
@@ -66,10 +66,10 @@ async function AdminLayout({ children }: React.PropsWithChildren) {
                 <Link href="/home/admin/roles">Roles</Link>
               </TabsTrigger>
               <TabsTrigger value="users" asChild>
-                <Link href="/home/admin/users">Users</Link>
+                <Link href="/home/admin/users">Usuarios</Link>
               </TabsTrigger>
               <TabsTrigger value="audit" asChild>
-                <Link href="/home/admin/audit">Audit Log</Link>
+                <Link href="/home/admin/audit">Auditoría</Link>
               </TabsTrigger>
             </TabsList>
           </Tabs>

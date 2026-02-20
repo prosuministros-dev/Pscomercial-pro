@@ -11,7 +11,8 @@ import {
   TableHeader,
   TableRow,
 } from '@kit/ui/table';
-import { Loader2, Plus, Package, ChevronDown, ChevronUp } from 'lucide-react';
+import { Loader2, Plus, Package, ChevronDown, ChevronUp, FileText } from 'lucide-react';
+import { toast } from 'sonner';
 import { useOrderPurchaseOrders } from '../_lib/order-queries';
 import { PO_STATUS_LABELS } from '../_lib/schemas';
 import { PurchaseOrderFormDialog } from './purchase-order-form-dialog';
@@ -32,6 +33,34 @@ export function PurchaseOrdersTab({ orderId, orderItems, currency }: PurchaseOrd
 
   const fmt = (n: number, cur?: string) =>
     new Intl.NumberFormat('es-CO', { style: 'currency', currency: cur || currency, minimumFractionDigits: 0 }).format(n);
+
+  const handleDownloadPdf = async (poId: string, poNumber: number) => {
+    const toastId = toast.loading('Generando PDF...');
+    try {
+      const response = await fetch(`/api/pdf/purchase-order/${poId}`);
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Error al generar PDF');
+      }
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType.includes('application/pdf')) {
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        window.open(blobUrl, '_blank');
+      } else {
+        const data = await response.json();
+        if (data.url) {
+          window.open(data.url, '_blank');
+        }
+      }
+      toast.success('PDF generado', { id: toastId, description: `OC-${poNumber}` });
+    } catch (error) {
+      toast.error('Error', {
+        id: toastId,
+        description: error instanceof Error ? error.message : 'Error al generar PDF',
+      });
+    }
+  };
 
   const statusColor = (status: string) => {
     switch (status) {
@@ -97,15 +126,25 @@ export function PurchaseOrdersTab({ orderId, orderItems, currency }: PurchaseOrd
                       {po.expected_delivery_date ? new Date(po.expected_delivery_date).toLocaleDateString('es-CO') : '—'}
                     </TableCell>
                     <TableCell>
-                      {['draft', 'sent', 'confirmed', 'partial_received'].includes(po.status) && po.items && (
+                      <div className="flex gap-1">
                         <Button
                           size="sm"
-                          variant="outline"
-                          onClick={() => setReceiveDialogPO(po)}
+                          variant="ghost"
+                          onClick={() => handleDownloadPdf(po.id, po.po_number)}
+                          title="Descargar PDF"
                         >
-                          Recibir
+                          <FileText className="w-4 h-4" />
                         </Button>
-                      )}
+                        {['draft', 'sent', 'confirmed', 'partial_received'].includes(po.status) && po.items && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => setReceiveDialogPO(po)}
+                          >
+                            Recibir
+                          </Button>
+                        )}
+                      </div>
                     </TableCell>
                   </TableRow>
                   {expandedPO === po.id && po.items && (

@@ -30,6 +30,32 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { ChevronDown, ChevronUp, Filter, X } from 'lucide-react';
 
+const ENTITY_TYPE_LABELS: Record<string, string> = {
+  quotes: 'Cotizaciones',
+  orders: 'Pedidos',
+  customers: 'Clientes',
+  leads: 'Leads',
+  products: 'Productos',
+  suppliers: 'Proveedores',
+  shipments: 'Despachos',
+  purchase_orders: 'Órdenes de Compra',
+  payments: 'Pagos',
+  profiles: 'Perfiles',
+};
+
+const ACTION_LABELS: Record<string, string> = {
+  create: 'Crear',
+  created: 'Creado',
+  update: 'Actualizar',
+  updated: 'Actualizado',
+  delete: 'Eliminar',
+  deleted: 'Eliminado',
+  insert: 'Insertar',
+  INSERT: 'Insertar',
+  UPDATE: 'Actualizar',
+  DELETE: 'Eliminar',
+};
+
 interface AuditLog {
   id: string;
   organization_id: string;
@@ -156,7 +182,7 @@ export default function AuditLogPage() {
     dateToFilter;
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleString('en-US', {
+    return new Date(dateString).toLocaleString('es-CO', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -170,6 +196,7 @@ export default function AuditLogPage() {
     switch (action.toLowerCase()) {
       case 'create':
       case 'created':
+      case 'insert':
         return 'default';
       case 'update':
       case 'updated':
@@ -183,17 +210,17 @@ export default function AuditLogPage() {
   };
 
   if (isLoading) {
-    return <div className="py-8 text-center">Loading audit logs...</div>;
+    return <div className="py-8 text-center">Cargando registros de auditoría...</div>;
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Audit Log</h2>
+        <h2 className="text-xl font-semibold">Registro de Auditoría</h2>
         {hasActiveFilters && (
           <Button variant="ghost" size="sm" onClick={clearFilters}>
             <X className="mr-2 h-4 w-4" />
-            Clear Filters
+            Limpiar Filtros
           </Button>
         )}
       </div>
@@ -201,22 +228,22 @@ export default function AuditLogPage() {
       <div className="rounded-lg border bg-card p-4">
         <div className="mb-3 flex items-center gap-2">
           <Filter className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm font-medium">Filters</span>
+          <span className="text-sm font-medium">Filtros</span>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <div className="grid gap-2">
             <Label htmlFor="entity-type" className="text-sm">
-              Entity Type
+              Tipo de Entidad
             </Label>
             <Select value={entityTypeFilter} onValueChange={setEntityTypeFilter}>
               <SelectTrigger id="entity-type">
-                <SelectValue placeholder="All types" />
+                <SelectValue placeholder="Todos los tipos" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
+                <SelectItem value="all">Todos los tipos</SelectItem>
                 {entityTypes.map((type) => (
                   <SelectItem key={type} value={type}>
-                    {type}
+                    {ENTITY_TYPE_LABELS[type] || type}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -225,17 +252,17 @@ export default function AuditLogPage() {
 
           <div className="grid gap-2">
             <Label htmlFor="action" className="text-sm">
-              Action
+              Acción
             </Label>
             <Select value={actionFilter} onValueChange={setActionFilter}>
               <SelectTrigger id="action">
-                <SelectValue placeholder="All actions" />
+                <SelectValue placeholder="Todas las acciones" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All Actions</SelectItem>
+                <SelectItem value="all">Todas las acciones</SelectItem>
                 {actions.map((action) => (
                   <SelectItem key={action} value={action}>
-                    {action}
+                    {ACTION_LABELS[action] || action}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -244,7 +271,7 @@ export default function AuditLogPage() {
 
           <div className="grid gap-2">
             <Label htmlFor="date-from" className="text-sm">
-              Date From
+              Desde
             </Label>
             <Input
               id="date-from"
@@ -256,7 +283,7 @@ export default function AuditLogPage() {
 
           <div className="grid gap-2">
             <Label htmlFor="date-to" className="text-sm">
-              Date To
+              Hasta
             </Label>
             <Input
               id="date-to"
@@ -273,11 +300,11 @@ export default function AuditLogPage() {
           <TableHeader>
             <TableRow>
               <TableHead className="w-[50px]"></TableHead>
-              <TableHead>Timestamp</TableHead>
-              <TableHead>User</TableHead>
-              <TableHead>Action</TableHead>
-              <TableHead>Entity</TableHead>
-              <TableHead>IP Address</TableHead>
+              <TableHead>Fecha y Hora</TableHead>
+              <TableHead>Usuario</TableHead>
+              <TableHead>Acción</TableHead>
+              <TableHead>Entidad</TableHead>
+              <TableHead>IP</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -308,7 +335,7 @@ export default function AuditLogPage() {
                       <TableCell>
                         <div className="flex flex-col">
                           <span className="font-medium">
-                            {log.profile?.full_name || 'Unknown User'}
+                            {log.profile?.full_name || 'Usuario desconocido'}
                           </span>
                           {log.profile?.email && (
                             <span className="text-xs text-muted-foreground">
@@ -319,12 +346,12 @@ export default function AuditLogPage() {
                       </TableCell>
                       <TableCell>
                         <Badge variant={getActionBadgeVariant(log.action)}>
-                          {log.action}
+                          {ACTION_LABELS[log.action] || log.action}
                         </Badge>
                       </TableCell>
                       <TableCell>
                         <div className="flex flex-col">
-                          <span className="font-medium">{log.entity_type}</span>
+                          <span className="font-medium">{ENTITY_TYPE_LABELS[log.entity_type] || log.entity_type}</span>
                           {log.entity_id && (
                             <code className="text-xs text-muted-foreground">
                               {log.entity_id.substring(0, 8)}...
@@ -343,7 +370,7 @@ export default function AuditLogPage() {
                             <div className="space-y-3">
                               <div>
                                 <h4 className="mb-2 text-sm font-semibold">
-                                  Details
+                                  Detalles del cambio
                                 </h4>
                                 <pre className="overflow-x-auto rounded bg-background p-3 text-xs">
                                   {JSON.stringify(log.changes, null, 2)}
@@ -352,7 +379,7 @@ export default function AuditLogPage() {
                               {log.user_agent && (
                                 <div>
                                   <h4 className="mb-1 text-sm font-semibold">
-                                    User Agent
+                                    Navegador
                                   </h4>
                                   <p className="text-xs text-muted-foreground">
                                     {log.user_agent}
@@ -360,7 +387,7 @@ export default function AuditLogPage() {
                                 </div>
                               )}
                               <div className="text-xs text-muted-foreground">
-                                Log ID: {log.id}
+                                ID Registro: {log.id}
                               </div>
                             </div>
                           </div>
@@ -377,8 +404,8 @@ export default function AuditLogPage() {
                   className="text-center text-muted-foreground"
                 >
                   {hasActiveFilters
-                    ? 'No audit logs found matching the filters.'
-                    : 'No audit logs available.'}
+                    ? 'No se encontraron registros con los filtros aplicados.'
+                    : 'No hay registros de auditoría disponibles.'}
                 </TableCell>
               </TableRow>
             )}
@@ -388,8 +415,8 @@ export default function AuditLogPage() {
 
       {auditLogs && auditLogs.length >= 100 && (
         <div className="text-center text-sm text-muted-foreground">
-          Showing the most recent 100 entries. Use filters to narrow down the
-          results.
+          Mostrando los 100 registros más recientes. Usa los filtros para
+          refinar los resultados.
         </div>
       )}
     </div>

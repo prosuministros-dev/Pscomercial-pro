@@ -22,6 +22,7 @@ import {
   Calendar,
   Loader2,
   Package,
+  ShieldAlert,
 } from 'lucide-react';
 import { useQuoteItems } from '../_lib/quote-queries';
 import { STATUS_LABELS, MARGIN_HEALTH } from '../_lib/schema';
@@ -108,6 +109,18 @@ function GeneralTab({ quote }: { quote: Quote }) {
     <div className="space-y-6">
       {/* Alerts */}
       <div className="space-y-2">
+        {quote.customer?.is_blocked && (
+          <div className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-3 dark:border-red-800 dark:bg-red-900/20">
+            <ShieldAlert className="h-4 w-4 shrink-0 text-red-600 dark:text-red-400" />
+            <div className="text-sm text-red-800 dark:text-red-200">
+              <span className="font-semibold">Cliente bloqueado por Finanzas</span>
+              {quote.customer.block_reason && (
+                <span> &mdash; {quote.customer.block_reason}</span>
+              )}
+            </div>
+          </div>
+        )}
+
         {quote.credit_blocked && (
           <div className="flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 p-3 dark:border-red-800 dark:bg-red-900/20">
             <CreditCard className="h-4 w-4 shrink-0 text-red-600 dark:text-red-400" />

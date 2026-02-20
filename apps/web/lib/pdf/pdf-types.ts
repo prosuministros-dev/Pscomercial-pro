@@ -107,3 +107,35 @@ export interface OrderForPdf {
     phone: string | null;
   };
 }
+
+// --- Purchase Order PDF types ---
+
+export interface PurchaseOrderItemForPdf {
+  sku: string;
+  description: string;
+  quantity_ordered: number;
+  unit_cost: number;
+  subtotal: number;
+}
+
+export interface PurchaseOrderForPdf {
+  id: string;
+  po_number: number;
+  created_at: string;
+  currency: 'COP' | 'USD';
+  subtotal: number;
+  tax_amount: number;
+  total: number;
+  expected_delivery_date: string | null;
+  notes: string | null;
+  items: PurchaseOrderItemForPdf[];
+  supplier: {
+    name: string;
+    nit: string | null;
+    address: string | null;
+    city: string | null;
+    phone: string | null;
+    email: string | null;
+  };
+  order_number: number;
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -68,9 +68,11 @@ export function MarginApprovalDialog({
   };
 
   // Load when dialog opens
-  if (open && !hasLoaded && quote) {
-    loadApprovals();
-  }
+  useEffect(() => {
+    if (open && !hasLoaded && quote) {
+      loadApprovals();
+    }
+  }, [open, quote?.id]);
 
   // Reset when dialog closes
   const handleOpenChange = (newOpen: boolean) => {

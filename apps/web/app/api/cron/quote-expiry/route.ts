@@ -23,9 +23,9 @@ export async function GET(request: NextRequest) {
     const { data: expiredQuotes, error: fetchError } = await client
       .from('quotes')
       .select('id, quote_number, advisor_id, organization_id, customer_id, total, currency')
-      .in('status', ['draft', 'sent', 'pending_approval'])
-      .not('valid_until', 'is', null)
-      .lt('valid_until', today);
+      .in('status', ['draft', 'offer_created', 'negotiation', 'risk', 'pending_oc'])
+      .not('expires_at', 'is', null)
+      .lt('expires_at', today);
 
     if (fetchError) {
       console.error('Error fetching expired quotes:', fetchError);

@@ -19,6 +19,53 @@ const EVENT_ICONS: Record<string, typeof Package> = {
   task: ClipboardList,
 };
 
+// Status labels in Spanish for traceability
+const STATUS_LABELS_ES: Record<string, string> = {
+  created: 'Creado',
+  payment_pending: 'Pago Pendiente',
+  payment_confirmed: 'Pago Confirmado',
+  available_for_purchase: 'Disponible para Compra',
+  in_purchase: 'En Compra',
+  partial_delivery: 'Entrega Parcial',
+  in_logistics: 'En Logística',
+  delivered: 'Entregado',
+  invoiced: 'Facturado',
+  completed: 'Completado',
+  cancelled: 'Anulado',
+  // Purchase order statuses
+  draft: 'Borrador',
+  sent: 'Enviada',
+  confirmed: 'Confirmada',
+  partial_received: 'Recibido Parcial',
+  received: 'Recibido',
+  // Shipment statuses
+  preparing: 'Preparando',
+  dispatched: 'Despachado',
+  in_transit: 'En Tránsito',
+  returned: 'Devuelto',
+  // Generic
+  pending: 'Pendiente',
+  approved: 'Aprobado',
+  rejected: 'Rechazado',
+};
+
+// Translate English event titles to Spanish
+function translateTitle(title: string): string {
+  // Try direct match
+  if (STATUS_LABELS_ES[title]) return STATUS_LABELS_ES[title];
+  // Try replacing known English patterns
+  return title
+    .replace(/Status changed to (\w+)/i, (_, status) => `Estado cambiado a ${STATUS_LABELS_ES[status] || status}`)
+    .replace(/Order created/i, 'Pedido creado')
+    .replace(/Purchase order/i, 'Orden de compra')
+    .replace(/Shipment/i, 'Despacho')
+    .replace(/Delivery/i, 'Entrega')
+    .replace(/Invoice/i, 'Factura')
+    .replace(/License/i, 'Licencia')
+    .replace(/Reception/i, 'Recepción')
+    .replace(/Task/i, 'Tarea');
+}
+
 const EVENT_COLORS: Record<string, string> = {
   status_change: 'text-blue-500 bg-blue-50 dark:bg-blue-900/20',
   purchase_order: 'text-purple-500 bg-purple-50 dark:bg-purple-900/20',
@@ -66,7 +113,7 @@ export function OrderTimeline({ orderId }: OrderTimelineProps) {
                   <Icon className="w-4 h-4" />
                 </div>
                 <div className="flex-1 min-w-0 pt-0.5">
-                  <p className="text-sm font-medium">{event.title}</p>
+                  <p className="text-sm font-medium">{translateTitle(event.title)}</p>
                   {event.description && (
                     <p className="text-xs text-gray-500 mt-0.5">{event.description}</p>
                   )}

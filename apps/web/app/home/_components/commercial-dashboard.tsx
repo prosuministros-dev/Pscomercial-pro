@@ -133,10 +133,7 @@ export function CommercialDashboard({ filters }: CommercialDashboardProps) {
                   <XAxis type="number" />
                   <YAxis type="category" dataKey="advisor_name" width={120} tick={{ fontSize: 12 }} />
                   <Tooltip
-                    formatter={(v: number, name: string) => [
-                      v,
-                      name === 'total_quotes' ? 'Total' : 'Ganadas',
-                    ]}
+                    formatter={(v: number, name: string) => [v, name]}
                   />
                   <Bar dataKey="total_quotes" fill="#94a3b8" name="Total" radius={[0, 4, 4, 0]} />
                   <Bar dataKey="won" fill="#06b6d4" name="Ganadas" radius={[0, 4, 4, 0]} />
