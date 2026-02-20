@@ -14,7 +14,7 @@ export const quoteFormSchema = z.object({
       'negotiation',
       'risk',
       'pending_oc',
-      'approved',
+      'converted',
       'rejected',
       'lost',
       'expired',
@@ -73,25 +73,24 @@ export const STATUS_LABELS: Record<
   offer_created: { label: 'Oferta Creada', variant: 'outline' },
   negotiation: { label: 'En Negociación', variant: 'default' },
   risk: { label: 'Riesgo', variant: 'destructive' },
-  pending_approval: { label: 'Pend. Aprobación', variant: 'outline' },
   pending_oc: { label: 'Pendiente OC', variant: 'outline' },
-  approved: { label: 'Aprobada', variant: 'default' },
+  converted: { label: 'Convertida a Pedido', variant: 'default' },
   rejected: { label: 'Rechazada', variant: 'destructive' },
   lost: { label: 'Perdida', variant: 'destructive' },
   expired: { label: 'Expirada', variant: 'secondary' },
 };
 
+// Pipeline Kanban: EXACTLY 4 columns per Daniel's requirement
+// Terminal states (converted, rejected, lost, expired) shown separately, NOT in Kanban
 export const KANBAN_COLUMNS = [
-  { key: 'borrador', label: 'Borrador', statuses: ['draft'], headerColor: 'bg-gray-500', bgColor: 'bg-gray-50 dark:bg-gray-800/50' },
-  { key: 'oferta', label: 'Creación Oferta', statuses: ['offer_created'], headerColor: 'bg-blue-500', bgColor: 'bg-blue-50 dark:bg-blue-900/20' },
-  { key: 'negociacion', label: 'Negociación', statuses: ['negotiation'], headerColor: 'bg-amber-500', bgColor: 'bg-amber-50 dark:bg-amber-900/20' },
-  { key: 'riesgo', label: 'Riesgo', statuses: ['risk'], headerColor: 'bg-red-500', bgColor: 'bg-red-50 dark:bg-red-900/20' },
-  { key: 'aprobacion', label: 'Aprobación', statuses: ['pending_approval'], headerColor: 'bg-purple-500', bgColor: 'bg-purple-50 dark:bg-purple-900/20' },
-  { key: 'pendiente_oc', label: 'Pendiente OC', statuses: ['pending_oc'], headerColor: 'bg-orange-500', bgColor: 'bg-orange-50 dark:bg-orange-900/20' },
-  { key: 'aprobada', label: 'Aprobada', statuses: ['approved'], headerColor: 'bg-green-600', bgColor: 'bg-green-50 dark:bg-green-900/20' },
-  { key: 'rechazada', label: 'Rechazada', statuses: ['rejected'], headerColor: 'bg-red-700', bgColor: 'bg-red-100 dark:bg-red-900/30' },
-  { key: 'vencida', label: 'Vencida', statuses: ['expired'], headerColor: 'bg-gray-600', bgColor: 'bg-gray-100 dark:bg-gray-700/50' },
+  { key: 'oferta', label: 'Creación Oferta (40%)', statuses: ['offer_created'], headerColor: 'bg-blue-500', bgColor: 'bg-blue-50 dark:bg-blue-900/20' },
+  { key: 'negociacion', label: 'Negociación (60%)', statuses: ['negotiation'], headerColor: 'bg-amber-500', bgColor: 'bg-amber-50 dark:bg-amber-900/20' },
+  { key: 'riesgo', label: 'Riesgo (70%)', statuses: ['risk'], headerColor: 'bg-red-500', bgColor: 'bg-red-50 dark:bg-red-900/20' },
+  { key: 'pendiente_oc', label: 'Pendiente OC (80%)', statuses: ['pending_oc'], headerColor: 'bg-orange-500', bgColor: 'bg-orange-50 dark:bg-orange-900/20' },
 ] as const;
+
+// Terminal states shown in a separate section below Kanban
+export const TERMINAL_STATUSES = ['converted', 'rejected', 'lost', 'expired'] as const;
 
 export const MARGIN_HEALTH = {
   critical: { max: 7, borderColor: 'border-l-red-500', textColor: 'text-red-600' },

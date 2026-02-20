@@ -102,10 +102,10 @@ export default function RolesPage() {
       queryClient.invalidateQueries({ queryKey: ['admin', 'roles'] });
       setIsCreateDialogOpen(false);
       setFormData({ name: '', slug: '', description: '' });
-      toast.success('Role created successfully');
+      toast.success('Rol creado correctamente');
     },
     onError: (error: any) => {
-      toast.error(error.message || 'Failed to create role');
+      toast.error(error.message || 'Error al crear rol');
     },
   });
 
@@ -132,10 +132,10 @@ export default function RolesPage() {
       queryClient.invalidateQueries({ queryKey: ['admin', 'roles'] });
       setEditingRole(null);
       setFormData({ name: '', slug: '', description: '' });
-      toast.success('Role updated successfully');
+      toast.success('Rol actualizado correctamente');
     },
     onError: (error: any) => {
-      toast.error(error.message || 'Failed to update role');
+      toast.error(error.message || 'Error al actualizar rol');
     },
   });
 
@@ -148,10 +148,10 @@ export default function RolesPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin', 'roles'] });
-      toast.success('Role deleted successfully');
+      toast.success('Rol eliminado correctamente');
     },
     onError: (error: any) => {
-      toast.error(error.message || 'Failed to delete role');
+      toast.error(error.message || 'Error al eliminar rol');
     },
   });
 
@@ -167,10 +167,10 @@ export default function RolesPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin', 'roles'] });
-      toast.success('Role status updated');
+      toast.success('Estado del rol actualizado');
     },
     onError: (error: any) => {
-      toast.error(error.message || 'Failed to update role status');
+      toast.error(error.message || 'Error al actualizar estado del rol');
     },
   });
 
@@ -193,19 +193,19 @@ export default function RolesPage() {
   };
 
   const handleDelete = (id: string) => {
-    if (confirm('Are you sure you want to delete this role?')) {
+    if (confirm('¿Estás seguro de eliminar este rol?')) {
       deleteRoleMutation.mutate(id);
     }
   };
 
   if (isLoading) {
-    return <div className="py-8 text-center">Loading roles...</div>;
+    return <div className="py-8 text-center">Cargando roles...</div>;
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Roles Management</h2>
+        <h2 className="text-xl font-semibold">Gestión de Roles</h2>
         <Dialog
           open={isCreateDialogOpen || !!editingRole}
           onOpenChange={(open) => {
@@ -219,31 +219,31 @@ export default function RolesPage() {
           <DialogTrigger asChild>
             <Button>
               <Plus className="mr-2 h-4 w-4" />
-              Create Role
+              Crear Rol
             </Button>
           </DialogTrigger>
           <DialogContent>
             <form onSubmit={handleSubmit}>
               <DialogHeader>
                 <DialogTitle>
-                  {editingRole ? 'Edit Role' : 'Create New Role'}
+                  {editingRole ? 'Editar Rol' : 'Crear Nuevo Rol'}
                 </DialogTitle>
                 <DialogDescription>
                   {editingRole
-                    ? 'Update the role details below.'
-                    : 'Add a new role to the system.'}
+                    ? 'Actualiza los detalles del rol.'
+                    : 'Agrega un nuevo rol al sistema.'}
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="grid gap-2">
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="name">Nombre</Label>
                   <Input
                     id="name"
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
                     }
-                    placeholder="Administrator"
+                    placeholder="Administrador"
                     required
                   />
                 </div>
@@ -260,14 +260,14 @@ export default function RolesPage() {
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="description">Description</Label>
+                  <Label htmlFor="description">Descripción</Label>
                   <Input
                     id="description"
                     value={formData.description}
                     onChange={(e) =>
                       setFormData({ ...formData, description: e.target.value })
                     }
-                    placeholder="Full system access"
+                    placeholder="Acceso completo al sistema"
                   />
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function RolesPage() {
                     setFormData({ name: '', slug: '', description: '' });
                   }}
                 >
-                  Cancel
+                  Cancelar
                 </Button>
                 <Button
                   type="submit"
@@ -289,7 +289,7 @@ export default function RolesPage() {
                     createRoleMutation.isPending || updateRoleMutation.isPending
                   }
                 >
-                  {editingRole ? 'Update' : 'Create'}
+                  {editingRole ? 'Actualizar' : 'Crear'}
                 </Button>
               </DialogFooter>
             </form>
@@ -301,12 +301,12 @@ export default function RolesPage() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Name</TableHead>
+              <TableHead>Nombre</TableHead>
               <TableHead>Slug</TableHead>
-              <TableHead>Description</TableHead>
-              <TableHead>Permissions</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+              <TableHead>Descripción</TableHead>
+              <TableHead>Permisos</TableHead>
+              <TableHead>Estado</TableHead>
+              <TableHead className="text-right">Acciones</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -322,7 +322,7 @@ export default function RolesPage() {
                   <TableCell>{role.description || '-'}</TableCell>
                   <TableCell>
                     <Badge variant="secondary">
-                      {role.role_permissions?.[0]?.count || 0} permissions
+                      {role.role_permissions?.[0]?.count || 0} permisos
                     </Badge>
                   </TableCell>
                   <TableCell>
@@ -337,7 +337,7 @@ export default function RolesPage() {
                       }
                     >
                       <Badge variant={role.is_active ? 'default' : 'secondary'}>
-                        {role.is_active ? 'Active' : 'Inactive'}
+                        {role.is_active ? 'Activo' : 'Inactivo'}
                       </Badge>
                     </Button>
                   </TableCell>
@@ -364,7 +364,7 @@ export default function RolesPage() {
             ) : (
               <TableRow>
                 <TableCell colSpan={6} className="text-center text-muted-foreground">
-                  No roles found. Create your first role to get started.
+                  No se encontraron roles. Crea tu primer rol para comenzar.
                 </TableCell>
               </TableRow>
             )}

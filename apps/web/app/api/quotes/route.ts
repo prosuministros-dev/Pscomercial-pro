@@ -5,6 +5,18 @@ import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
 import { handleApiError } from '~/lib/api-error-handler';
 
+// Valid state transitions for quote pipeline
+// Pipeline: draft → offer_created → negotiation → risk → pending_oc
+// Terminal exits: any pipeline state → converted, rejected, lost
+// Auto: any → expired (via cron)
+const VALID_TRANSITIONS: Record<string, string[]> = {
+  draft: ['offer_created', 'rejected', 'lost'],
+  offer_created: ['negotiation', 'risk', 'pending_oc', 'rejected', 'lost'],
+  negotiation: ['offer_created', 'risk', 'pending_oc', 'rejected', 'lost'],
+  risk: ['offer_created', 'negotiation', 'pending_oc', 'rejected', 'lost'],
+  pending_oc: ['offer_created', 'negotiation', 'risk', 'converted', 'rejected', 'lost'],
+};
+
 // --- Zod Schemas ---
 const createQuoteSchema = z.object({
   lead_id: z.string().uuid().optional(),
@@ -12,7 +24,7 @@ const createQuoteSchema = z.object({
   contact_id: z.string().uuid().nullish(),
   advisor_id: z.string().uuid().optional(),
   quote_date: z.string().optional(),
-  validity_days: z.number().int().min(1).optional().default(30),
+  validity_days: z.number().int().min(1).optional().default(5),
   status: z.string().optional().default('draft'),
   currency: z.string().optional().default('COP'),
   payment_terms: z.string().optional().default('ANTICIPADO'),
@@ -81,7 +93,7 @@ export async function GET(request: Request) {
       .select(
         `
         *,
-        customer:customers(id, business_name, nit, city),
+        customer:customers(id, business_name, nit, city, is_blocked, block_reason),
         advisor:profiles!quotes_advisor_id_fkey(id, full_name, email),
         lead:leads(id, lead_number, business_name)
       `,
@@ -268,6 +280,31 @@ export async function PUT(request: Request) {
 
     if (fetchError || !existingQuote) {
       return NextResponse.json({ error: 'Cotización no encontrada' }, { status: 404 });
+    }
+
+    // Validate state transition if status is being changed
+    if (fields.status && fields.status !== existingQuote.status) {
+      const allowedTransitions = VALID_TRANSITIONS[existingQuote.status];
+      if (!allowedTransitions || !allowedTransitions.includes(fields.status)) {
+        return NextResponse.json(
+          { error: `Transición de estado no permitida: ${existingQuote.status} → ${fields.status}` },
+          { status: 400 },
+        );
+      }
+
+      // Terminal states require reason
+      if (fields.status === 'rejected' && !fields.rejection_reason) {
+        return NextResponse.json(
+          { error: 'Motivo de rechazo es obligatorio' },
+          { status: 400 },
+        );
+      }
+      if (fields.status === 'lost' && !fields.loss_reason) {
+        return NextResponse.json(
+          { error: 'Motivo de pérdida es obligatorio' },
+          { status: 400 },
+        );
+      }
     }
 
     // Prepare update data

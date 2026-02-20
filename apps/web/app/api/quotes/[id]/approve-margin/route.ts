@@ -166,15 +166,10 @@ export async function PATCH(
       quoteUpdate.margin_approved = true;
       quoteUpdate.margin_approved_by = user.id;
       quoteUpdate.margin_approved_at = new Date().toISOString();
-      // Move quote back to a workable status
-      if (quote.status === 'pending_approval') {
-        quoteUpdate.status = 'offer_created';
-      }
+      // Approvals do NOT change the pipeline state - quote stays in its current column
     } else {
       quoteUpdate.margin_approved = false;
-      if (quote.status === 'pending_approval') {
-        quoteUpdate.status = 'draft';
-      }
+      // Rejection does NOT change pipeline state either - only records the rejection in quote_approvals
     }
 
     const { data: updatedQuote, error: updateQuoteError } = await client

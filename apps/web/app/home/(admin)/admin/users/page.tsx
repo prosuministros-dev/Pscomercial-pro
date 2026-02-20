@@ -125,10 +125,10 @@ export default function UsersPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin', 'users'] });
-      toast.success('User status updated');
+      toast.success('Estado del usuario actualizado');
     },
     onError: (error: any) => {
-      toast.error(error.message || 'Failed to update user status');
+      toast.error(error.message || 'Error al actualizar estado del usuario');
     },
   });
 
@@ -150,7 +150,7 @@ export default function UsersPage() {
         .single();
 
       if (existingRole) {
-        throw new Error('User already has this role');
+        throw new Error('El usuario ya tiene este rol asignado');
       }
 
       const { error } = await supabase.from('user_roles').insert([
@@ -167,10 +167,10 @@ export default function UsersPage() {
       setIsAssignRoleDialogOpen(false);
       setSelectedUser(null);
       setSelectedRoleId('');
-      toast.success('Role assigned successfully');
+      toast.success('Rol asignado correctamente');
     },
     onError: (error: any) => {
-      toast.error(error.message || 'Failed to assign role');
+      toast.error(error.message || 'Error al asignar rol');
     },
   });
 
@@ -193,10 +193,10 @@ export default function UsersPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['admin', 'users'] });
-      toast.success('Role removed successfully');
+      toast.success('Rol removido correctamente');
     },
     onError: (error: any) => {
-      toast.error(error.message || 'Failed to remove role');
+      toast.error(error.message || 'Error al remover rol');
     },
   });
 
@@ -206,7 +206,7 @@ export default function UsersPage() {
   };
 
   const handleRemoveRole = (userId: string, roleId: string) => {
-    if (confirm('Are you sure you want to remove this role from the user?')) {
+    if (confirm('¿Estás seguro de remover este rol del usuario?')) {
       removeRoleMutation.mutate({ userId, roleId });
     }
   };
@@ -222,8 +222,8 @@ export default function UsersPage() {
   };
 
   const formatDate = (dateString: string | null) => {
-    if (!dateString) return 'Never';
-    return new Date(dateString).toLocaleDateString('en-US', {
+    if (!dateString) return 'Nunca';
+    return new Date(dateString).toLocaleDateString('es-CO', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -233,25 +233,25 @@ export default function UsersPage() {
   };
 
   if (isLoadingUsers) {
-    return <div className="py-8 text-center">Loading users...</div>;
+    return <div className="py-8 text-center">Cargando usuarios...</div>;
   }
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Users Management</h2>
+        <h2 className="text-xl font-semibold">Gestión de Usuarios</h2>
       </div>
 
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Name</TableHead>
-              <TableHead>Email</TableHead>
+              <TableHead>Nombre</TableHead>
+              <TableHead>Correo</TableHead>
               <TableHead>Roles</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Last Login</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+              <TableHead>Estado</TableHead>
+              <TableHead>Último Acceso</TableHead>
+              <TableHead className="text-right">Acciones</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -279,7 +279,7 @@ export default function UsersPage() {
                                   handleRemoveRole(user.id, ur.role!.id)
                                 }
                                 className="ml-1 hidden rounded-full hover:bg-destructive hover:text-destructive-foreground group-hover:inline-flex"
-                                title="Remove role"
+                                title="Remover rol"
                               >
                                 ×
                               </button>
@@ -288,7 +288,7 @@ export default function UsersPage() {
                         )
                       ) : (
                         <span className="text-muted-foreground text-sm">
-                          No roles
+                          Sin roles asignados
                         </span>
                       )}
                     </div>
@@ -305,7 +305,7 @@ export default function UsersPage() {
                       }
                     >
                       <Badge variant={user.is_active ? 'default' : 'secondary'}>
-                        {user.is_active ? 'Active' : 'Inactive'}
+                        {user.is_active ? 'Activo' : 'Inactivo'}
                       </Badge>
                     </Button>
                   </TableCell>
@@ -319,7 +319,7 @@ export default function UsersPage() {
                       onClick={() => handleAssignRole(user)}
                     >
                       <UserCog className="mr-2 h-4 w-4" />
-                      Assign Role
+                      Asignar Rol
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -330,7 +330,7 @@ export default function UsersPage() {
                   colSpan={6}
                   className="text-center text-muted-foreground"
                 >
-                  No users found.
+                  No se encontraron usuarios.
                 </TableCell>
               </TableRow>
             )}
@@ -351,21 +351,21 @@ export default function UsersPage() {
         <DialogContent>
           <form onSubmit={handleSubmitAssignRole}>
             <DialogHeader>
-              <DialogTitle>Assign Role</DialogTitle>
+              <DialogTitle>Asignar Rol</DialogTitle>
               <DialogDescription>
-                Assign a role to {selectedUser?.full_name || 'this user'}
+                Asignar un rol a {selectedUser?.full_name || 'este usuario'}
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <div className="grid gap-2">
-                <Label htmlFor="role">Select Role</Label>
+                <Label htmlFor="role">Seleccionar Rol</Label>
                 <Select
                   value={selectedRoleId}
                   onValueChange={setSelectedRoleId}
                   required
                 >
                   <SelectTrigger id="role">
-                    <SelectValue placeholder="Choose a role" />
+                    <SelectValue placeholder="Elige un rol" />
                   </SelectTrigger>
                   <SelectContent>
                     {roles &&
@@ -388,10 +388,10 @@ export default function UsersPage() {
                   setSelectedRoleId('');
                 }}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button type="submit" disabled={assignRoleMutation.isPending}>
-                Assign Role
+                Asignar Rol
               </Button>
             </DialogFooter>
           </form>

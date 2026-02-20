@@ -18,13 +18,16 @@ export const LEAD_STATUSES = [
 export const LEAD_CHANNELS = ['whatsapp', 'web', 'manual'] as const;
 
 // Quote statuses (chk_quote_status)
+// Pipeline (4 Kanban columns): offer_created → negotiation → risk → pending_oc
+// Terminal: converted, rejected, lost, expired
+// Initial: draft
 export const QUOTE_STATUSES = [
   'draft',
   'offer_created',
   'negotiation',
   'risk',
   'pending_oc',
-  'approved',
+  'converted',
   'rejected',
   'lost',
   'expired',

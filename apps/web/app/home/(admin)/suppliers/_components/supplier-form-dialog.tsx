@@ -23,9 +23,23 @@ import {
   SelectValue,
 } from '@kit/ui/select';
 import { Textarea } from '@kit/ui/textarea';
-import { createSupplierSchema, type CreateSupplierFormData } from '../_lib/schemas';
+import { createSupplierSchema } from '../_lib/schemas';
 import { useCreateSupplier, useUpdateSupplier } from '../_lib/supplier-queries';
 import type { Supplier } from '../_lib/types';
+
+type SupplierFormInput = {
+  name: string;
+  nit?: string;
+  contact_name?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  country?: string;
+  payment_terms?: string;
+  lead_time_days?: number;
+  notes?: string;
+};
 
 interface SupplierFormDialogProps {
   open: boolean;
@@ -59,7 +73,7 @@ export function SupplierFormDialog({
     reset,
     setValue,
     watch,
-  } = useForm<CreateSupplierFormData>({
+  } = useForm<SupplierFormInput>({
     resolver: zodResolver(createSupplierSchema),
     defaultValues: {
       name: '',
@@ -108,12 +122,13 @@ export function SupplierFormDialog({
     }
   }, [open, supplier, mode, reset]);
 
-  const onSubmit = async (data: CreateSupplierFormData) => {
+  const onSubmit = async (data: SupplierFormInput) => {
     try {
+      const payload = { ...data, country: data.country || 'Colombia' };
       if (mode === 'create') {
-        await createMutation.mutateAsync(data);
+        await createMutation.mutateAsync(payload as Parameters<typeof createMutation.mutateAsync>[0]);
       } else if (supplier) {
-        await updateMutation.mutateAsync({ id: supplier.id, data });
+        await updateMutation.mutateAsync({ id: supplier.id, data: payload });
       }
       onOpenChange(false);
     } catch {

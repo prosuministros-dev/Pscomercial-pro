@@ -59,7 +59,18 @@ export function ShipmentFormDialog({ orderId, order, orderItems, open, onOpenCha
   );
 
   const handleItemChange = (idx: number, field: string, value: number | boolean) => {
-    setItems(prev => prev.map((item, i) => i === idx ? { ...item, [field]: value } : item));
+    setItems(prev => prev.map((item, i) => {
+      if (i !== idx) return item;
+      if (field === 'selected') {
+        // Auto-set quantity when selecting, auto-clear when deselecting
+        return {
+          ...item,
+          selected: value as boolean,
+          quantity_shipped: value ? item.available : 0,
+        };
+      }
+      return { ...item, [field]: value };
+    }));
   };
 
   const handleSubmit = async () => {
