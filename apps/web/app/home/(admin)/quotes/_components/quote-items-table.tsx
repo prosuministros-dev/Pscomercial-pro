@@ -222,20 +222,16 @@ export function QuoteItemsTable({
   };
 
   const searchProducts = useCallback(async (index: number, query: string) => {
-    if (query.length < 2) {
-      setProductResults((prev) => ({ ...prev, [index]: [] }));
-      setOpenPopovers((prev) => ({ ...prev, [index]: false }));
-      return;
-    }
     try {
-      const res = await fetch(
-        `/api/products?search=${encodeURIComponent(query)}&minimal=true&limit=10`
-      );
+      const url = query.length >= 2
+        ? `/api/products?search=${encodeURIComponent(query)}&minimal=true&limit=20`
+        : `/api/products?minimal=true&limit=20`;
+      const res = await fetch(url);
       if (res.ok) {
         const data = await res.json();
         const results: ProductOption[] = data.data || [];
         setProductResults((prev) => ({ ...prev, [index]: results }));
-        setOpenPopovers((prev) => ({ ...prev, [index]: results.length > 0 }));
+        setOpenPopovers((prev) => ({ ...prev, [index]: true }));
       }
     } catch {
       // Silencioso – no interrumpir el flujo de edición
@@ -359,6 +355,13 @@ export function QuoteItemsTable({
                               handleFieldChange(index, 'sku', e.target.value);
                               debouncedSearch(index, e.target.value);
                             }}
+                            onFocus={() => {
+                              if (!productResults[index]?.length) {
+                                searchProducts(index, item.sku || '');
+                              } else {
+                                setOpenPopovers((prev) => ({ ...prev, [index]: true }));
+                              }
+                            }}
                             onBlur={() => {
                               setTimeout(() => {
                                 setOpenPopovers((prev) => ({ ...prev, [index]: false }));
@@ -371,30 +374,34 @@ export function QuoteItemsTable({
                             placeholder="SKU..."
                           />
                         </PopoverTrigger>
-                        {(productResults[index] || []).length > 0 && (
+                        {!!openPopovers[index] && !readOnly && (
                           <PopoverContent
                             className="w-80 p-1"
                             align="start"
                             onOpenAutoFocus={(e) => e.preventDefault()}
                           >
-                            <div className="max-h-48 overflow-y-auto">
-                              {(productResults[index] || []).map((product) => (
-                                <button
-                                  key={product.id}
-                                  type="button"
-                                  className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-muted rounded cursor-pointer text-left"
-                                  onMouseDown={(e) => {
-                                    e.preventDefault();
-                                    handleProductSelect(index, product);
-                                  }}
-                                >
-                                  <span className="font-mono text-xs text-muted-foreground w-20 shrink-0 truncate">
-                                    {product.sku}
-                                  </span>
-                                  <span className="truncate">{product.name}</span>
-                                </button>
-                              ))}
-                            </div>
+                            {(productResults[index] || []).length === 0 ? (
+                              <p className="p-3 text-sm text-gray-400">Cargando productos...</p>
+                            ) : (
+                              <div className="max-h-48 overflow-y-auto">
+                                {(productResults[index] || []).map((product) => (
+                                  <button
+                                    key={product.id}
+                                    type="button"
+                                    className="w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-muted rounded cursor-pointer text-left"
+                                    onMouseDown={(e) => {
+                                      e.preventDefault();
+                                      handleProductSelect(index, product);
+                                    }}
+                                  >
+                                    <span className="font-mono text-xs text-muted-foreground w-20 shrink-0 truncate">
+                                      {product.sku}
+                                    </span>
+                                    <span className="truncate">{product.name}</span>
+                                  </button>
+                                ))}
+                              </div>
+                            )}
                           </PopoverContent>
                         )}
                       </Popover>

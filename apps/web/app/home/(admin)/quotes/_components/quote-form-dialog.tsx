@@ -205,9 +205,11 @@ export function QuoteFormDialog({
   }, [selectedCustomerId]);
 
   const searchProducts = async (term: string) => {
-    if (!term || term.length < 2) { setProductSearchResults([]); return; }
     try {
-      const res = await fetch(`/api/products?minimal=true&search=${encodeURIComponent(term)}&limit=15`);
+      const url = term.length >= 2
+        ? `/api/products?minimal=true&search=${encodeURIComponent(term)}&limit=20`
+        : `/api/products?minimal=true&limit=20`;
+      const res = await fetch(url);
       if (res.ok) {
         const data = await res.json();
         setProductSearchResults(data.data || []);
@@ -648,7 +650,8 @@ export function QuoteFormDialog({
                             setAddProductOpen(true);
                           }}
                           onFocus={() => {
-                            if (productSearchTerm.length >= 2) setAddProductOpen(true);
+                            setAddProductOpen(true);
+                            if (productSearchResults.length === 0) searchProducts(productSearchTerm);
                           }}
                         />
                       </div>
@@ -656,9 +659,9 @@ export function QuoteFormDialog({
                     <PopoverContent className="w-[480px] p-0" align="start">
                       {productSearchResults.length === 0 ? (
                         <p className="p-3 text-sm text-gray-500">
-                          {productSearchTerm.length < 2
-                            ? 'Escribe al menos 2 caracteres...'
-                            : 'Sin resultados'}
+                          {productSearchTerm.length === 0
+                            ? 'Cargando productos...'
+                            : 'Sin resultados para "' + productSearchTerm + '"'}
                         </p>
                       ) : (
                         <div className="max-h-60 overflow-y-auto">
