@@ -22,13 +22,39 @@ import {
   SelectValue,
 } from '@kit/ui/select';
 import { Checkbox } from '@kit/ui/checkbox';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@kit/ui/popover';
 import { toast } from 'sonner';
-import { Loader2, AlertTriangle, Copy } from 'lucide-react';
+import { Loader2, AlertTriangle, Copy, Trash2, Search } from 'lucide-react';
 import { quoteFormSchema, type QuoteFormSchema } from '../_lib/schema';
 import type { Quote } from '../_lib/types';
 import { QuoteItemsTable } from './quote-items-table';
 import { QuoteTotalsPanel } from './quote-totals-panel';
 import { FileUploader } from './file-uploader';
+
+interface ProductOption {
+  id: string;
+  sku: string;
+  name: string;
+  unit_cost_usd: number;
+  unit_cost_cop: number;
+  suggested_price_cop: number | null;
+  currency: string;
+}
+
+interface PendingItem {
+  product_id?: string;
+  sku: string;
+  description: string;
+  quantity: number;
+  unit_price: number;
+  cost_price: number;
+  discount_pct: number;
+  tax_pct: number;
+}
 
 interface QuoteFormDialogProps {
   quote?: Quote;
@@ -49,6 +75,13 @@ export function QuoteFormDialog({
   const [currentQuote, setCurrentQuote] = useState<Quote | null>(quote || null);
   const [trm, setTrm] = useState<number>(4000);
   const itemsTableRef = useRef<HTMLDivElement>(null);
+
+  // Pending items state (used only during new quote creation)
+  const [pendingItems, setPendingItems] = useState<PendingItem[]>([]);
+  const [productSearchTerm, setProductSearchTerm] = useState('');
+  const [productSearchResults, setProductSearchResults] = useState<ProductOption[]>([]);
+  const [addProductOpen, setAddProductOpen] = useState(false);
+  const productSearchTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [customers, setCustomers] = useState<Array<{ id: string; business_name: string }>>([]);
   const [contacts, setContacts] = useState<Array<{ id: string; full_name: string; email: string | null; is_primary: boolean }>>([]);
   const [loadingContacts, setLoadingContacts] = useState(false);
@@ -171,6 +204,49 @@ export function QuoteFormDialog({
       .finally(() => setLoadingContacts(false));
   }, [selectedCustomerId]);
 
+  const searchProducts = async (term: string) => {
+    if (!term || term.length < 2) { setProductSearchResults([]); return; }
+    try {
+      const res = await fetch(`/api/products?minimal=true&search=${encodeURIComponent(term)}&limit=15`);
+      if (res.ok) {
+        const data = await res.json();
+        setProductSearchResults(data.data || []);
+      }
+    } catch { setProductSearchResults([]); }
+  };
+
+  const handleAddProduct = (product: ProductOption) => {
+    const costPrice = currencyValue === 'USD' ? product.unit_cost_usd : product.unit_cost_cop;
+    const unitPrice = product.suggested_price_cop
+      ? (currencyValue === 'USD' ? Math.round(product.suggested_price_cop / trm) : product.suggested_price_cop)
+      : Math.round(costPrice * 1.3);
+    setPendingItems(prev => [...prev, {
+      product_id: product.id,
+      sku: product.sku,
+      description: product.name,
+      quantity: 1,
+      unit_price: unitPrice,
+      cost_price: costPrice,
+      discount_pct: 0,
+      tax_pct: 19,
+    }]);
+    setProductSearchTerm('');
+    setProductSearchResults([]);
+    setAddProductOpen(false);
+  };
+
+  const updatePendingItem = (index: number, field: keyof PendingItem, value: number | string) => {
+    setPendingItems(prev => {
+      const updated = [...prev];
+      updated[index] = { ...updated[index]!, [field]: value };
+      return updated;
+    });
+  };
+
+  const removePendingItem = (index: number) => {
+    setPendingItems(prev => prev.filter((_, i) => i !== index));
+  };
+
   const onSubmit = async (data: QuoteFormSchema) => {
     setIsSubmitting(true);
 
@@ -206,15 +282,22 @@ export function QuoteFormDialog({
         }
       );
 
+      // If new quote, save any pending items added during creation
+      if (!quote && pendingItems.length > 0) {
+        await Promise.all(
+          pendingItems.map((item, idx) =>
+            fetch(`/api/quotes/${savedQuote.id}/items`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ ...item, sort_order: idx }),
+            })
+          )
+        );
+        setPendingItems([]);
+      }
+
       setCurrentQuote(savedQuote);
       onSuccess?.(savedQuote.id);
-
-      if (!quote) {
-        // New quote: scroll to items table so user can add products immediately
-        setTimeout(() => {
-          itemsTableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 150);
-      }
     } catch (error) {
       console.error('Error saving quote:', error);
       toast.error('Error', {
@@ -538,6 +621,141 @@ export function QuoteFormDialog({
                   placeholder="Notas adicionales sobre la cotización..."
                 />
               </div>
+
+              {/* Productos — visible en creación nueva, antes de guardar */}
+              {!currentQuote && !quote && (
+                <div className="space-y-3">
+                  <h3 className="text-sm font-semibold text-navy-600 dark:text-cyan-400">
+                    Productos
+                  </h3>
+
+                  {/* Buscador de producto */}
+                  <Popover open={addProductOpen} onOpenChange={setAddProductOpen}>
+                    <PopoverTrigger asChild>
+                      <div className="relative">
+                        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400 pointer-events-none" />
+                        <Input
+                          placeholder="Buscar producto por nombre o SKU..."
+                          value={productSearchTerm}
+                          className="pl-8"
+                          onChange={(e) => {
+                            setProductSearchTerm(e.target.value);
+                            clearTimeout(productSearchTimer.current);
+                            productSearchTimer.current = setTimeout(
+                              () => searchProducts(e.target.value),
+                              300,
+                            );
+                            setAddProductOpen(true);
+                          }}
+                          onFocus={() => {
+                            if (productSearchTerm.length >= 2) setAddProductOpen(true);
+                          }}
+                        />
+                      </div>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[480px] p-0" align="start">
+                      {productSearchResults.length === 0 ? (
+                        <p className="p-3 text-sm text-gray-500">
+                          {productSearchTerm.length < 2
+                            ? 'Escribe al menos 2 caracteres...'
+                            : 'Sin resultados'}
+                        </p>
+                      ) : (
+                        <div className="max-h-60 overflow-y-auto">
+                          {productSearchResults.map((p) => (
+                            <div
+                              key={p.id}
+                              className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer border-b last:border-0"
+                              onMouseDown={(e) => {
+                                e.preventDefault();
+                                handleAddProduct(p);
+                              }}
+                            >
+                              <span className="shrink-0 rounded bg-gray-100 px-1.5 py-0.5 font-mono text-xs text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+                                {p.sku}
+                              </span>
+                              <span className="text-sm flex-1 truncate">{p.name}</span>
+                              <span className="text-xs text-gray-400 shrink-0">
+                                {p.currency === 'USD' ? 'USD' : 'COP'}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </PopoverContent>
+                  </Popover>
+
+                  {/* Tabla de items pendientes */}
+                  {pendingItems.length > 0 ? (
+                    <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+                      <table className="w-full text-sm">
+                        <thead className="bg-gray-50 dark:bg-gray-800/60">
+                          <tr>
+                            <th className="text-left px-3 py-2 text-xs font-medium text-gray-500">Producto</th>
+                            <th className="text-right px-2 py-2 text-xs font-medium text-gray-500 w-20">Cant.</th>
+                            <th className="text-right px-2 py-2 text-xs font-medium text-gray-500 w-32">Precio unit.</th>
+                            <th className="text-right px-2 py-2 text-xs font-medium text-gray-500 w-16">IVA%</th>
+                            <th className="w-8"></th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                          {pendingItems.map((item, i) => (
+                            <tr key={i} className="hover:bg-gray-50/50 dark:hover:bg-gray-800/30">
+                              <td className="px-3 py-2">
+                                <div className="font-mono text-xs text-gray-400">{item.sku}</div>
+                                <div className="text-sm text-gray-800 dark:text-gray-200 truncate max-w-[200px]">{item.description}</div>
+                              </td>
+                              <td className="px-2 py-2">
+                                <Input
+                                  type="number"
+                                  min="0.01"
+                                  step="any"
+                                  className="h-7 text-right text-xs w-20 ml-auto"
+                                  value={item.quantity}
+                                  onChange={(e) => updatePendingItem(i, 'quantity', Number(e.target.value))}
+                                />
+                              </td>
+                              <td className="px-2 py-2">
+                                <Input
+                                  type="number"
+                                  min="0"
+                                  step="any"
+                                  className="h-7 text-right text-xs w-32 ml-auto"
+                                  value={item.unit_price}
+                                  onChange={(e) => updatePendingItem(i, 'unit_price', Number(e.target.value))}
+                                />
+                              </td>
+                              <td className="px-2 py-2">
+                                <Input
+                                  type="number"
+                                  min="0"
+                                  max="100"
+                                  className="h-7 text-right text-xs w-16 ml-auto"
+                                  value={item.tax_pct}
+                                  onChange={(e) => updatePendingItem(i, 'tax_pct', Number(e.target.value))}
+                                />
+                              </td>
+                              <td className="px-1 py-2 text-center">
+                                <button
+                                  type="button"
+                                  onClick={() => removePendingItem(i)}
+                                  className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                                >
+                                  <Trash2 className="h-3.5 w-3.5" />
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-gray-400 italic">
+                      Busca y agrega productos. Se guardarán al crear la cotización.
+                    </p>
+                  )}
+                </div>
+              )}
 
               {/* Save Button */}
               <div className="flex justify-end gap-3 pt-4 border-t">
