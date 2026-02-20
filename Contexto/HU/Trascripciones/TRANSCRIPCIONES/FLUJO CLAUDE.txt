@@ -1,0 +1,280 @@
+Flujo Completo: Desde la Creación del Lead hasta el Despacho Logístico
+Basado en la transcripción, aquí está el flujo detallado del proceso comercial de PROSUMINISTROS:
+1. GENERACIÓN Y GESTIÓN DE LEADS
+Captura del Lead
+Los leads llegan a través de la página web o WhatsApp
+Un chatbot en WhatsApp pregunta: 
+Nombre del contacto
+Empresa
+Teléfono
+Correo electrónico
+Requerimiento específico
+Asignación Automática
+El sistema asigna los leads de manera aleatoria entre los comerciales (Jaime, Ángela, Camilo, etc.)
+Los comerciales reciben notificaciones de leads pendientes por atender
+Pueden ver cuántos leads tienen asignados
+Conversión o Descarte
+El comercial revisa el lead y decide: 
+Convertir a cotización: Si es un cliente potencial válido
+Descartar: Si es spam o no cumple criterios (el lead queda marcado como "atendido")
+
+2. CREACIÓN DE COTIZACIÓN
+Información del Cliente
+Datos Obligatorios:
+Nombre del cliente/empresa
+NIT (Cédula, NIT, Cédula de Extranjería)
+Razón social
+Contacto principal (nombre, cargo, teléfono celular, correo electrónico)
+Actividad económica (vertical de negocio)
+Dirección y ciudad
+Información Comercial:
+Asunto de la cotización (campo obligatorio, editable)
+Comercial asignado (automático según cliente)
+Vía de contacto (solo se captura en creación, no se modifica después)
+Categoría del cliente (Triple A, Doble A, B, C - asignada por Daniel según análisis Pareto)
+Información Financiera (gestionada por Laura Burgos):
+Moneda predeterminada (Pesos/Dólares)
+Condiciones de crédito: 
+Pago anticipado
+30 días
+45 días
+60 días
+90 días
+Leasing
+Cupo de crédito asignado
+Cupo de crédito disponible (consulta automática vía API a World Office)
+Bloqueo de cartera (solo Laura puede activarlo, motivo: cartera en mora)
+Información de Tesorería:
+Contactos específicos para cobro de cartera
+Correo principal para facturas (diligenciado por el comercial, pero validado al generar pedido)
+Creación de Productos en la Cotización
+Información del Producto:
+Número de parte
+Vertical (Hardware, Software, Servicios, Accesorios, Otros)
+Subcategoría
+Marca
+Descripción y título
+Cantidad
+Costo del producto
+Moneda (USD o Pesos)
+TRM del día (actualizada diariamente por Laura)
+Cálculo de Precio:
+Si el producto está en USD, se multiplica por la TRM
+Se aplica el margen según la fórmula: Costo / (1 - Margen%)
+Aproximación: En pesos, se elimina decimales
+IVA configurable: 0%, 5%, 19%
+Validación de Márgenes Mínimos: Los márgenes mínimos varían según:
+Por categoría de producto: 
+Hardware: 6-7%
+Software: 4%
+Servicios: 6%
+Accesorios: 6%
+Por días de crédito: 
+30 días: 7% mínimo
+45 días: 10% mínimo
+60 días: 12% mínimo
+Si el comercial intenta marginar por debajo del mínimo:
+Se solicita autorización a Daniel Valbuena
+Daniel aprueba o rechaza el margen propuesto
+Una vez aprobado, el comercial puede guardar la cotización
+Información Adicional por Producto:
+Proveedor cotizado
+Tiempo de entrega (editable)
+Garantía del producto
+Orden de aparición en el PDF
+Observaciones (ej: vencimiento de licencias)
+Seguimiento Automático de Cotizaciones
+Sistema de Recordatorios:
+Cada X días (configurable, ej: cada 8 días) se envía mensaje automático por WhatsApp
+Mensaje personalizado: "Hola [Nombre], quería validar cómo vas con esta cotización"
+Se adjunta la cotización en el mensaje
+Retroalimentación con IA:
+El sistema analiza las respuestas del cliente
+Genera alertas al comercial según el contenido: 
+"Cliente dice que está en validación"
+"Cliente solicita modificación"
+"Cliente indica fecha tentativa"
+Actualiza el porcentaje de avance de la cotización
+Notifica al comercial para que tome acciones
+Etapas de la Cotización (Porcentaje de Interés)
+Creación de oferta
+Negociación
+Riesgo
+Pendiente de orden de compra
+Información de Cierre
+Mes y semana de cierre proyectado
+Año de cierre
+Mes de facturación proyectado
+Año de facturación
+
+3. APROBACIONES ESPECIALES
+Bloqueo por Cartera en Mora
+Cuando el cliente tiene cartera vencida:
+Laura Burgos bloquea el cliente en el sistema (motivo: cartera en mora)
+Al comercial le aparece un aviso visible: "Cliente bloqueado por cartera en mora"
+Si el comercial quiere generar pedido: 
+Solicita autorización a Laura Burgos o Daniel Valbuena
+Debe justificar (ej: "hay compromiso de pago")
+Laura/Daniel revisan con Juan la situación
+Si aprueban, el comercial puede generar el pedido
+El bloqueo sigue activo hasta que Laura lo quite
+Solicitud de Extra Cupo
+Cuando la cotización supera el cupo disponible:
+Sistema detecta que el valor de la cotización > cupo disponible
+Se solicita autorización automáticamente a Laura o Daniel
+Se indica: "Cliente tiene cupo asignado de $X, disponible $Y, pero cotización es por $Z"
+Laura/Daniel aprueban extra cupo
+El comercial puede proceder a generar pedido
+
+4. GENERACIÓN DE PEDIDO
+Conversión de Cotización a Pedido
+El comercial selecciona los productos aprobados por el cliente
+Da clic en "Generar Pedido"
+La cotización desaparece del módulo de cotizaciones
+Se crea el pedido con número único
+Validaciones al Generar Pedido
+Correo de facturación:
+Si no está diligenciado, el sistema alerta
+El comercial debe ingresarlo antes de continuar
+Información de Despacho (Obligatoria y No Modificable):
+Nombre de quien recibe
+Teléfono
+Dirección de entrega
+Ciudad
+Horario de entrega
+Correo de contacto
+Importante: Una vez guardada, esta información NO se puede modificar. Cualquier cambio debe notificarse por el chat interno.
+Configuración del Pedido
+Opciones de Despacho y Facturación:
+Permitir despacho parcial: Checkbox (Sí/No)
+Permitir facturación parcial: Checkbox (Sí/No)
+Permitir facturación sin confirmación de entrega: Checkbox (Sí/No) 
+Aplica para clientes nacionales
+Si está activo: Se puede facturar apenas se despacha
+Si está inactivo: Solo se factura cuando se confirma la entrega
+
+5. MÓDULO DE COMPRAS
+Visualización para Compras
+Andrés (Encargado de Compras) ve:
+Todos los pedidos con productos pendientes por comprar
+Columna que muestra: Cantidad pendiente por comprar (no cantidad ya comprada)
+Información del proveedor cotizado por el comercial
+Costo estimado
+Generación de Orden de Compra
+Andrés selecciona el producto(s) del pedido
+Escoge el proveedor (puede ser el mismo cotizado o uno diferente)
+Ingresa información: 
+Nombre del ejecutivo del proveedor
+Cantidad a comprar (limitada a la cantidad del pedido)
+Costo unitario negociado
+Moneda (Pesos/Dólares)
+Garantía del producto
+Fecha estimada de entrega
+El sistema genera la Orden de Compra con: 
+Número de parte
+Cantidad
+Costo unitario
+IVA (en porcentaje)
+Subtotal por ítem
+Total general
+Gestión de Documentos
+Organización propuesta:
+Carpeta "Documentos Cliente": 
+Orden de compra del cliente
+Contratos
+Pólizas
+Cualquier documento del cliente
+Carpeta "Documentos Proveedor": 
+Cotizaciones del proveedor
+Facturas de compra
+RUT
+Otros documentos del proveedor
+Ingreso de Mercancía
+Cuando llega la mercancía, Andrés ingresa: 
+Número de factura del proveedor
+Cantidad recibida
+Fecha de recepción
+Guarda la información
+Puede cerrar la orden de compra cuando esté completa
+
+6. MÓDULO DE LOGÍSTICA
+Estados de Despacho Propuestos
+Flujo de Estados:
+Pendiente de despacho
+Despachado parcial / Despachado total
+Entregado parcial / Entregado total
+Lógica del Flujo:
+Si permite despacho parcial → Puede marcar "Despachado parcial"
+Cuando se despacha, aún no significa que se entregó
+Una vez confirmada la entrega → Cambia a "Entregado"
+Comunicación Interna
+Chat interno del pedido:
+Logística notifica: "Buen día, confirmo envío por transportadora TCC, productos: [lista], guía: [número]"
+Se puede enviar copia por correo a otros miembros del equipo
+Todo queda registrado en el historial del pedido
+Información de Transporte
+Transportadora utilizada
+Número de guía
+Fecha de despacho
+Productos despachados
+Confirmación de entrega
+
+7. MÓDULO DE FACTURACIÓN
+Filtro "Pendientes por Facturar"
+El sistema muestra automáticamente pedidos que cumplan TODAS estas condiciones:
+Si permite facturación parcial Y despacho parcial: 
+Fue despachado parcial
+Fue entregado parcial (si NO permite facturación sin confirmación)
+O simplemente fue despachado parcial (si SÍ permite facturación sin confirmación)
+Si permite facturación parcial pero NO despacho parcial: 
+Debe estar despachado totalmente
+Entregado totalmente (según configuración)
+Si NO permite facturación parcial: 
+Debe estar despachado totalmente
+Entregado totalmente
+Recién ahí aparece para facturar
+Proceso de Facturación
+Estefanía o Laura revisan pedidos pendientes por facturar
+Generan la factura en el sistema contable (World Office)
+Registran: 
+Número de factura
+Fecha de facturación
+Valor facturado
+Productos facturados
+Facturación Parcial
+Cuando hay facturación parcial:
+Se registra qué productos/cantidades se facturaron
+El pedido sigue apareciendo en "Pendientes por facturar" con el saldo restante
+Una vez entregado el resto (si permite facturación parcial), vuelve a aparecer para completar facturación
+
+8. CIERRE DEL PEDIDO
+Filtro "Pendientes por Cerrar"
+Criterios para que aparezca en este filtro:
+Está facturado totalmente
+Está entregado totalmente
+Toda la documentación está adjunta
+Proceso de Cierre
+Andrés es responsable de cerrar pedidos:
+Revisa que todo esté completo: 
+Productos entregados 100%
+Facturas generadas 100%
+Documentación adjunta (certificados, licencias, etc.)
+Si es una licencia/software: 
+Verifica que esté el certificado adjunto
+Revisa que tenga toda la información (serial, vencimiento, etc.)
+Ejecuta el cierre del pedido
+El pedido cambia a estado "Cerrado"
+Anulación de Pedidos
+Los pedidos NO se marcan como "perdidos" (eso es para cotizaciones)
+Se anulan indicando el motivo
+No se pueden cerrar pedidos incompletos
+
+FLUJO RESUMIDO EN ETAPAS
+LEAD → COTIZACIÓN → APROBACIONES → PEDIDO → COMPRAS → DESPACHO → FACTURACIÓN → CIERRE
+
+1. Lead capturado (WhatsApp/Web)
+   ↓
+2. Asignación automática a comercial
+   ↓
+3. Comercial convierte a Cotización
+   ↓

@@ -1,0 +1,1417 @@
+Transcripción
+10 de octubre de 2025, 3:01p.m.
+
+Laura Martinez inició la transcripción
+
+Daniel Valbuena   0:03
+Claro, o sea, vamos a enviar la idea de esto, es que antes de empezar la parte comercial, que es como la más extensa, la ellos van a decir como que es lo que requieren ellos en la parte financiera y ya después pasaremos otro día se lo pasamos al tema de compras, no se nos alcanza el tiempo si no lo pongo ahorita.
+Para ir por fases y que si me entiendes y después ya nos extendemos a a la parte de de lo que requiero yo desde la parte comercial es como la parte más larga. ¿Les parece bien así el orden o cómo lo quieren manejar?
+
+Laura Martinez   0:37
+O K, o sea, lo que entiendo es que ellos vamos a empezar, o sea, que es como empezar una sesión de levantamiento de una vez, sí.
+
+Daniel Valbuena   0:46
+¿Y o cómo lo planteas tú? Cuéntame.
+
+Laura Martinez   0:49
+O sea, lo que pasa es que este espacio lo habíamos reservado para presentarte como oficialmente el tick off de del proyecto, que es como el alcance como la partida. Entonces, si quieres, nos damos un barrito super rápido para estar alineados en eso y pues aprovechamos laurita para para hacer ese levantamiento.
+
+Daniel Valbuena   0:56
+Uh huh.
+Bueno.
+
+Laura Martinez   1:10
+¿Sí o o cómo quieres que lo maneje?
+
+Daniel Valbuena   1:12
+Sí, está bien así no hay lío.
+
+Laura Martinez   1:14
+¿Qué te parece bien?
+
+Daniel Valbuena   1:15
+Ajá.
+
+Laura Martinez   1:16
+Yo necesito mucho tiempo, lo que tengo, el tipo, que es súper Cortito, solo es como mostrarle las reglas del juego y ya con eso podemos dar como los que ambas partes estemos alineadas.
+
+Daniel Valbuena   1:27
+Listo, igual igual Laura para que no te vas a enterrar ya el equipo está súper enterado de esta nueva, de este nuevo cambio que vas a tener al interno, o sea, de lo que tú vamos a tener como como como nueva herramienta operativa dentro de la organización y la idea es como bueno que ya tú nos expliques como este tema del kickoff. Y también revisar cómo va a ser el plan de trabajo.
+
+Laura Martinez   1:28
+Me confirmamos por.
+Mhm.
+
+Daniel Valbuena   1:47
+Importante que esté alineado con cada una de las áreas porque pues o sea, yo me conozco mis dolores de la parte comercial, pero ellos saben también que es lo que requieren de que también lo que es lo que tenemos actualmente, pero que nos está funcionando super mal, que es lo que le explica yo a Freddy la vez pasada en la sesión desde la parte financiera de la parte de compras, reportes y demás.
+
+Laura Martinez   2:03
+Uhm Uhm.
+Listo de una, es lo que le digo, no les quito más de 10 minutos de mesa. La idea es alinear los en varios puntos, entonces como los que pide el proyecto es de implementar la Plataforma comercial para que los Ministros que permita como primero automatizar el tiempo comercial desde la creación de.
+
+Daniel Valbuena   2:13
+¿Listo?
+
+Laura Martinez   2:27
+Tú sales en pantalla, sí.
+
+Daniel Valbuena   2:30
+Sí.
+
+Laura Martinez   2:32
+Pues automatizar el flujo aumenta el de la creación del tiempo está en la generación de pedido y orden de compra. Segundo, optimizar la trazabilidad contra visibilidad de las cotizaciones, cual el tercero, integrar procesos de seguimiento automático, cumplir en vía WhatsApp en cuarto, garantiza la seguridad de la información mediante roles, trazabilidad y con quinto reducido en el proceso humano en que tenemos actualmente. Y para la Pis. De gracias.
+
+Daniel Valbuena   2:57
+Lau, te estoy escuchando entrecortado, no sé si sea solamente yo, pero yo te estoy escuchando entrecortado.
+
+Laura Martinez   2:57
+Esa gran de rangos es.
+Dame 1 minuto me me cambio los audífonos.
+Ay, me escucha mejor.
+
+Daniel Valbuena   3:34
+Súper bien.
+
+Laura Martinez   3:36
+Y otra vez.
+¿Sí, estoy viendo en pantalla, cierto?
+
+Daniel Valbuena   3:50
+Sí.
+
+Laura Martinez   3:52
+Listo, me alcanzaste a escuchar en la parte del objetivo.
+
+Daniel Valbuena   3:57
+Sí, señora.
+
+Laura Martinez   3:59
+Listo entonces estamos alineados en esa parte, como alcance dan y tenemos 7 alcances, el primero es el levantamiento y documentación de requerimientos técnicos y funcionales, que es esta parte inicial, como que tu trajiste a tu equipo, pues así como la nuestra, nuestro go, para poder empezar en en segundo.
+Y tu desarrollo de desarrollo de los módulos principales de cotización, pedidos y órdenes de compra. El tercero configuración de gestión de moneda en pesos y dólares con tasa diaria de PRM que tenemos actualmente cuarto implementación del modo de logística de control, despachos y estado de facturación parcial y total.
+Lo quinto, integración, pongo o sea para seguimiento de cotizaciones, texto, integración con correo electrónico para notificaciones automáticas y séptimo entrenamiento de documental técnica y entrega final de la aplicación. Como lo sabes, nosotros no nos quedamos con ninguna documentación de ustedes, todos los entregamos, solo la información que levantemos.
+Absolutamente todo, quedará en dominio de ustedes.
+
+Daniel Valbuena   5:04
+O K.
+
+Laura Martinez   5:06
+¿Qué equipo tenemos entonces? Pues como Product owner del producto, son ustedes los suministros y ya te dedique y nos encargaremos, pues, del tema todo el del equipo de desarrollo y de gerenciar el proyecto que me esté ro los voy a estar acompañando, yo te voy a hacer como esa cara.
+¿Qué metodología trabajamos en el proyecto? Dani, pues la metodología scrum, entonces vamos a tener una sesiones de de levantamiento, con eso vamos a construir un backlog en el cual pues va a ser como.
+
+Daniel Valbuena   5:49
+Hola.
+
+Emma Castillo   5:55
+Yo pensé que me había quedado sin señal.
+
+Daniel Valbuena   5:57
+Sí, sí, sí, pero entiendo que es Laura.
+
+Laura Martinez   5:59
+Hola, hola.
+
+Emma Castillo   6:00
+Sí, sí, sí, te escuchamos.
+
+Laura Martinez   6:02
+Ay, perdón, dime qué qué parte en la de la metodología sí.
+
+Daniel Valbuena   6:08
+Ajá.
+
+Emma Castillo   6:08
+Estabas hablando del backlog ajá.
+
+Laura Martinez   6:11
+Sí les está cambiando mi mi presentación es que yo me estoy viendo desde la pantalla, pero en la pantalla se me queda.
+
+Daniel Valbuena   6:17
+Yo estoy en la yo estoy en la en la página de metodología scrum.
+
+Laura Martinez   6:21
+Listo, bien feliz.
+Entonces, como te mencionaba, vamos a construir un backlog y que es como todos los entregables que tú vas a tener con este desarrollo de este proyecto, nosotros lo hacemos bajo la metodología scram, que es como una división en screens para hacerte entregas. Es, por decirlo de alguna manera, parciales y podrá hacer validaciones durante el proceso. Un proyecto muy cortico.
+¿Eh?
+¿Pues la idea es hacerlo de esta manera, de esta método de los días creo que es el escodit en presentación, verdad?
+
+Daniel Valbuena   6:57
+Sí, así es.
+
+Emma Castillo   6:57
+Sí.
+
+Laura Martinez   6:59
+¿Por qué hacer así discúlpeme?
+Y estaba en el momento que Maria me va a ayudar a compartir que tengo un problema con mucho en la conexión. Entonces se me está perdiendo el momento de compartir.
+Listo entonces, como les decía, Esa es la metodología que vamos a manejar. Dani, yo creo que pues reconocimiento como lo hemos venido trabajando, entonces no sé si tienen dudas. De pronto es bajo, cómo trabajamos en esta parte listo.
+
+Daniel Valbuena   8:42
+Sí.
+No.
+No, no, no.
+
+Laura Martinez   8:49
+Listo en la parte de premisas, Danny, para eso es como mis reglas de juego, que necesito que estemos super alineados los 2 en esta parte, porque para mí es crucial y que la como sabes el proyecto pues empieza el desarrollo a partir de que pues nosotros tengamos todas las historias como aprobadas.
+Entonces, se debe garantizar, pues disponibilidad de las personas de de prosuministros para poder hacer, como todos, el levantamiento y refinamiento de las historias de usuario en temas de pruebas. Al final de nosotros, al generar el desarrollo, pues tendremos que disponer de un personal de pro suministros que tu la idea es que en esta sesión definamos quiénes van a ser las personas que me van a acompañar en este proceso.
+
+Daniel Valbuena   9:08
+Ajá.
+
+Laura Martinez   9:30
+Pues para garantizar que podamos tener esta sesión y que ustedes puedan garantizar la funcionalidad correcta de la aplicación desarrollada en recursos, los roles asignados al proyecto podrán tener una asignación 100%, como también si él cada caso lo requiera al proyecto, pues habrán roles que probablemente no tendrán una una asignación al 100% con nosotros, sino van a ser requeridos solo como para procesos específicos.
+Para cumplir con el proyecto.
+¿Listo?
+Dudas hasta aquí que no son superimportantes que estamos alineas en estas 3 listo, entonces en el timeline.
+
+Daniel Valbuena   10:00
+No.
+
+Laura Martinez   10:07
+Lo va a cambiar.
+La anterior está, cómo lo tenemos desglosado, entonces yo acá lo tengo desplazado en la primera semana vamos a hacer un levantamiento de información, acá puede que sea una semana como puede que sea menos, porque o sea dispongo del, digamos si tú me puedes decir nos vemos todos los días para el levantamiento de la información y nos va a tomar 3 días, pues ya realmente no es una semana.
+Y nuestro nuestra línea de tiempo para fábrica empieza a correr. Como te dije anteriormente, a partir del momento que nosotros empecemos ya tengamos la documentación aprobada y empieza a desarrollar después de que esa documentación está aprobada, el tiempo que tenemos, pues acordado, es un mes de desarrollo. Después de ese mes.
+¿Pues ya, ya estamos listos para el GO LIFE, entonces que son las violaciones por ustedes y la preparación? Pues para que la aplicación salga de a de desarrollo.
+
+Daniel Valbuena   11:06
+Uh.
+
+Laura Martinez   11:07
+¿Listo en riesgos?
+Entonces, esos son los riesgos que pues tiene todo proyecto prácticamente, pero pues quiero hacerlo visible, entonces en como en un resumen de lo que hemos hablado. Disponibilidad de clientes uno de los riesgos, pues si tenemos una disponibilidad limitada para las validaciones, pues no podremos avanzar, entonces, como mitigación queremos agendar en esta sesión que acordemos.
+¿Espacios fijos organales en los que nos podamos reunir para hacer el levantamiento ya, pues hoy después de esto empezamos la la sesión de levantamiento y según hasta donde avancemos, pues acordamos la siguiente, y si necesitamos otra te parece?
+
+Daniel Valbuena   11:48
+O K.
+
+Laura Martinez   11:50
+¿Listo en temas técnicos como sabes, pues tenemos dependencias en integraciones, entonces, como mitigación? Nosotros tenemos una gestión temprana y soporte técnico dedicado para estos puntos como para que no nos afecte este riesgo en alcance en cambios en requerimientos durante el desarrollo. ¿Entonces, como mitigación? Nosotros tenemos que congelar el alcance. Tras aprobaciones de levantamiento como pues te lo decía anteriormente.
+La idea es ser esos requerimientos aprobados y ya cuando estén en con tu aprobación, pues semana para fábrica con tal de cómo limitar el alcance inicial que habíamos contemplado en el proyecto y que no se nos salga de ahí.
+
+Daniel Valbuena   12:26
+O K.
+
+Laura Martinez   12:27
+En cronograma si tenemos retrasos en aprobaciones entregables, pues vamos a tener una afectación en toda la parte de del tiempo que habíamos acordado inicialmente, entonces como mitigación siempre vas a tener actas de las sesiones y pues si se necesita una refinificación conjunta, que pues estemos alineadas a ambas partes y en calidad.
+Lo que les decía, pues para nosotros es superimportante que pues tanto pro suministros como tdx trabajemos en equipo. Entonces es definir una persona encargada ya al final para que haga las pruebas de de lo que nosotros desarrollemos y poder estar alineados en esa parte.
+
+Daniel Valbuena   13:04
+Perfecto.
+
+Laura Martinez   13:06
+Listo. Dale entonces, ya en próximos pasos ya es como empieza todo el tema de notar la infraestructura del proyecto en parque en FNE bases de datos, WhatsApp y demás, definir super importantes los requerimientos, acordar un cronograma de reuniones y ya pues iniciar el levantamiento de información, que es lo que vamos a hacer a continuación de esta presentación.
+
+Daniel Valbuena   13:28
+O K.
+
+Laura Martinez   13:30
+Listo es eso. ¿Tienes alguna duda del?
+
+Daniel Valbuena   13:33
+No, no sé si ustedes tengan alguna duda, muchas gracias.
+
+Juan Angel   13:40
+No, por ahora Daniel, queda claro.
+
+Laura Martinez   13:44
+¿Listo entonces? Para resumen, Dani, tú eres la persona que me va a probar. 100% los requerimientos y para las pruebas, no sé si de pronto sea Laura, Juan o tú.
+
+Daniel Valbuena   13:56
+Es que depende. Mira, entonces, la idea es que cada cada uno, o sea yo igualmente voy a estar acompañándolos a todos. Yo voy a estar liderando la parte del módulo comercial. ¿Cierto? Laura y Juan van a estar revisando el tema financiero, Andrés, que no está en esa reunión, va a estar liderando el tema de compras y logísticas ciertos, o sea, ellos tienen.
+¿O sea, yo, yo sé, yo sé lo que tenemos actualmente, nuestro belneo cómo funciona? ¿Qué es lo que necesitamos hacer? Como toda la decisión desde la parte comercial, Laura explicará qué es lo que te con Juan, explicará lo que necesitamos desde la parte financiera, financiera y cartera desde la y Andrés, desde la parte de compra, porque la verdad del programa que tenemos actualmente no tengo ni idea de cómo funciona el tema.
+
+Laura Martinez   14:28
+Ajá.
+
+Daniel Valbuena   14:43
+Compras que ingresan una factura que no sé qué, la verdad, lo desconozco, entonces ellos, EH, lo pondrán ahí y ya sí me entendés porque si te digo yo pues ni idea, o sea, eso lo hará cada uno.
+
+Laura Martinez   14:55
+O K, perfecto, listo. Entonces empezamos con la parte financiera.
+
+Daniel Valbuena   15:02
+¿Pero, o sea, para el levantamiento de la información o para qué necesitas?
+
+Laura Martinez   15:06
+Sí, sí, sí, para o sea, ya sé cuáles son las áreas encargadas de lo que me dices. Entonces ya quedó claro con los roles que me van a acompañar en el en el proceso.
+
+Daniel Valbuena   15:13
+De.
+Bien, sí.
+
+Laura Martinez   15:16
+Entonces, ya con eso yo cierro el Quico sí. O sea, era identificar los roles que que me iban a acompañar. Como te digo sí o sí, pues tú vas a hacer el aprobador final y los que me van a acompañar como en el levantamiento de y pues las cosas que sean pertinentes en cada una de las áreas, pues estás tú con tu módulo comercial. Laura y Daniel acompañaron a la parte financiera y Andrés en compras.
+
+Daniel Valbuena   15:23
+O K.
+O K bueno, yo que le le le sugiero aquí que lo hagamos en orden, es decir, que o no sé qué opine Zema, que que que desde donde nace.
+¿Y cómo va evolucionando? En medida de de del proceso que tenemos aquí interno operativo, es decir, naces del Lite, pasa la cotización. Luego aquí ya entran algunos temas financieros que son temas de aprobaciones y demás, pasa el pedido y en el pedido ya se involucra toda la parte financiera y parte de cómo.
+¿Compras y logística, cierto? Y hay ya, se se dividen diferentes módulos, tales como órdenes de compra y demás. No sé cómo lo quieran manejar y si no pues dejo porque es que si te digo listo desde la hora final, desde la hora financiera, pero qué. ¿O sea, a partir de qué momento y qué tapa?
+
+Emma Castillo   16:31
+No si empecemos por la parte de link desde donde nace el proceso, digamos, para que conforme vaya avanzando se va anclando lo demás.
+
+Laura Martinez   16:31
+No tendríamos que.
+
+Daniel Valbuena   16:35
+Bueno.
+
+Juan Angel   16:38
+Sería hasta que se recaudara el dinero, Daniel para tener como todo el ciclo de la venta.
+
+Daniel Valbuena   16:42
+Exacto, sí. La idea exacto. La idea es tener como todo el ciclo del proceso para que, en efecto, no nos embolatemos. ¿Entonces, EH? Si les parece bien, es que tengo que atender una llamadita acá, pero hagamos lo siguiente, les voy a compartir la pantalla.
+A ver, permítame 1, segundo, listo entonces, partamos de acá, esto es lo esto es lo esto es el verneo, el CDM que tenemos actualmente, que funciona parte CDMY algunas cosas, poquitas de RP, que son para generar un de compra y de más.
+Todo es todo, empieza desde el lead este este esta este tema que tenemos de lead. Como saben, no funciona, no, no está en funcionamiento, que fue lo que le expliqué a Freddy. Estos leads son los que llegan a través de la página. No está negociado, pero la idea es que de una vez quede listo para para para poder integrarlo.
+En la una construcción que me gana aparte, no sé cómo se pueda hacer lo que sea, que todo lo que nos llegue a través de los chats de WhatsApp en el chat de WhatsApp escriben, hola, sí, ta, ta. Ta hacer unas preguntas. Nombre, empresa, requerimiento, ta, TA. Eso se carga la plataforma elite.
+Cierto aquí a la plataforma de Lid, si te das cuenta, todo está, todo está en progreso, en proceso no hay nada cerrado cuando en en cuando esto ya de por si ya fue atendido, cierto, entonces eso no está cotizado, eso no no entra en la cotización, pero la idea es que de lo de podamos dejar listo la plataforma o como como como el proceso ya listo para cuando se defina, sencillamente es integrarlo, sí.
+¿Una vez yo por ejemplo, tengo este lit, cierto, entonces, en este lit, el chatbox preguntó en el WhatsApp Kio Cómo es el nombre, como es tu el el, el teléfono, el nombre del contacto, el teléfono, el correo y cuál es el y cuál es el requerimiento? Aquí, sencillamente de manera aleatoria.
+El el, el sistema va dirigiendo esos lips a cada uno, venga estos. Para Jaime, esto es para Angela, esto es para Camilo, cierto, entonces les va, y si van ingresando más comerciales, pues que los vaya generando de manera de manera, de manera que de manera aleatoria.
+Y que a ellos el módulo que se dirigencia, no sé la idea si esta plataforma, o sea la idea es cambiar como toda la estructura, como la la imagen de la plataforma, entonces en lo que a ellos les aparezca, no sé en donde les diga. Usted tiene tantos lips pendientes por atender, tiene lits pendientes que les de como una una que les aparece como un letrero o que les aparece una notificación o pendientes, tanto cierto, entonces ellos dicen.
+Me llegó un lead porque aparece aparece que tengo pendiente tantos listo, ellos llegan, dicen. Ah, perfecto es con dayanan urbanes perfecto. ¿No sé qué ta ta, ta y es de este lead de yo llego y lo convierto en cotización, entonces el lead ya queda como atendido, cierto? O tú puedes decir, por ejemplo, aquí puede llegar basura, puedes llegar.
+
+Laura Martinez   20:18
+No.
+
+Daniel Valbuena   20:18
+¿O por razones que nosotros determinemos o listo, vamos atenderlo, perfecto y ahora este elite pasa hacer cotización, vale? ¿Ahora entramos a hacer la cotización, EH? Desde me gustaría que para bueno el cuando inicia hacer la cotización puede que nazca de Élite o puede que sea un.
+Un cliente nuevo nosotros tenemos en cotización nombre el cliente aquí. Por ejemplo, el teléfono de la empresa. ¿A mí realmente no me interesa la dirección, sí, pero lo que más me interesa son estos datos, el nombre, el contacto, el teléfono YY el correo electrónico de la persona, cierto?
+El asunto es de vital importancia para nosotros porque cuando el área comercial en este caso tenemos aquí, eso que aquí no muestra todo, nosotros hacemos más o menos al mes 120 cotizaciones, entonces yo voy a llegar y filtro aquí por cliente, por ejemplo, Concepción savanna, que es de Camilo.
+Tengo 3 cotizaciones dirigidas a liviana Prieto. ¿Pero de qué son? ¿Pues aquí yo pongo esos editable panel solar a como que me le da una idea el comercial de qué es la cotización que está manejando? ¿Porque pues, en efecto, puede tener un poco de productos en en la en la cotización, cierto?
+Entonces, aquí es donde inicia. También se involucra el tema del área financiera en la cotización. Yo dirigencio el nit, si es Cédula Unit, Cédula, extranjería, aquí lo tenemos Cédula, Ciudadanía, Cédula, Extranjería, Unit.
+Razón social esto no me interesa. Contacto principal, no me interesa la actividad económica, si me interesa porque es de, en qué vertical está, son verticales que nosotros actualmente tenemos predeterminadas en la empresa, la dirección, la ciudad, el país. No me interesa porque pues, en efecto, atendemos solo Colombia.
+¿Pero bueno, podemos colocar Colombia en dado caso que pase algo diferente? ¿Si lo proyectamos quién maneja la qué comercial maneja la cuenta?
+Tenemos en qué moneda predeterminada tenemos la cotización, osea en qué momento este cliente solamente me acepta cotizaciones en pesos y acá este ático no lo debe, porque diligenciar el area comercial esto es netamente del área financiera.
+Tiene crédito a 30 días o es pago anticipado a 45 días a 60 días de es un tema por leasing, sí. O sea, este tema lo maneja puntualmente Laura, nadie más aparte de Laura, tiene la potestad de dar ese tipo de crédito, vale importantísimo.
+¿La vía de contacto cómo llegó ese cliente? ¿Si fue por Google? Si fue eso un tema de referenciado, si eso bueno, estrategiazos. Bueno, esto lo lo tenemos nosotros acá, pero de esto lo tengo acá, pero de esto no tengo reporte. ¿A mí me interesaría saber, por ejemplo, cuántos de mis clientes son existentes, cuántos de mis clientes han llegado por Google? ¿Si me entendés para saber qué tan efectivas han sido las campañas que tenemos con cada uno de ellos?
+¿La categoría del cliente ya les mostraré ese tema, es importante esto, lo hago solamente yo, cierto, yo debo parametrizar cada una de las cuentas de de los comerciales que me gustaría que por default salga a cierto, por qué? Porque aquí yo cojo clientes triple a, ahora en 10 doble a ahora en 56, por mucho de cada uno.
+Y de aquí se de se se se se genera el tema de las visitas, pero ya lo ya lo ya lo charlaremos en esta parte, el tema de la categoría es un tema que solamente yo puedo hacer, ahora el tema del cupo de crédito también está metido aquí el área financiera.
+
+Laura Martinez   24:28
+Temoriza.
+
+Daniel Valbuena   24:30
+Dime.
+
+Laura Martinez   24:32
+¿Las categorías bajo qué lógica?
+
+Daniel Valbuena   24:36
+¿No, no es un tema ya un análisis que nosotros hacemos a través de Pareto con este pareto, lo que nosotros terminamos pues básicamente cuál es el pareto de cada comercial y ese pareto? Los los pongo yo como triple a, pero eso lo hago yo. Sí, dependiendo del ajuste de todo el tema. Ahora bien, el cupo, el crédito.
+
+Laura Martinez   24:39
+Ok, OK ya.
+Ajá.
+Sí.
+
+Daniel Valbuena   24:56
+Esto también es un requerimiento del área financiera que se conecte con a través de API con el Word Office. Cierto, entonces por ejemplo a westing, según Juan Juan dijo, Venga, según los papeles que le nos pasó el el, el cliente westing le vamos a dar un crédito de un cupo de crédito de 100000000 de pesos. ¿A perfecto tienes?
+100 entonces, este cupo de crédito debería ser aquí, deberían haber 2 cupo de crédito asignado y cupo de crédito disponible. Cierto, entonces cupo de crédito asignado es el que va a tener en Europees 100000000 de pesos. Cupo de crédito disponible. Es que a través del API llegue, consulte ese cliente en la cuenta y diga.
+¿Cuánto es el cuánto es el cupo si me entendés, o sea, de esos 100 tiene ocupado 50, pues el cupo son 50000000 de pesos, esto qué me sirve? ¿Que en la cotización que yo tengo acá cierto me aparezca a mí algo que me diga? Cupo disponible, sí 60000000 de pesos.
+¿Qué, qué? ¿Qué qué infiere? Esto que el comercial, si está haciendo una cotización por 200000000 de pesos cuando el cupo que tiene disponible son 60, pues va a tener que solicitar un extra cupo que va a tener un tema de aprobación, si entonces esto importante estamos acá.
+Entonces cupo de por acá. ¿Cupo de cupo de crédito asignado y cupo de crédito disponible y ahora también el tema de bloqueo de cartera, esto lo hace únicamente Laura Burgos? ¿Cierto, entonces el cliente westing le voy a hacer un bloqueo de cartera?
+¿Cuando yo bloqueo cartera entonces al comercial le va a salir un aviso, el el motivo? Usualmente es cartera en mora, cierto, cuando uno bloquea cartera es porque es cartera en Mora, cuando el comercial creo que todavía está funcionando veniramos si todavía está funcionando, cuando el comercial va.
+¿Y llama a la cotización westing Laura mira que ya no está, ah, no? Sí, ya mira. ¿Desaparece este aviso bloqueado por cartera y el porque cartera en MORA, qué pasa? Eso no le va a salir al al cliente en la cotización, cierto, pero le le le va informando al comercial.
+Pilas que ese cliente tiene una cartera en mora por ende no le puede. O sea, usted le puede cotizar, pero no le puede despachar a no ser que requiera una aprobación cuando hay un cliente en cartera en mora y la cotización ya está hecha, miramos si tenemos algo por acá.
+De ellos.
+Pues Sting, por ejemplo, este tema listo que es este de acá, entonces mira, aparece cliente en cartera y yo voy a decir, Venga Mónteme, por favor este pedido y dice que está bloqueado por cartera, solicita autorización para generar pedido. ¿Entonces a quién se le va a solicitar la aprobación? ¿Entonces le doy doble Clic solicitar autorización de cartera a quién?
+¿A Laura o a Daniel? ¿Por qué a Laura Daniel? Porque a veces Laura tiene días de vacaciones y no puede que se puede que o sea, no pueden dar 2. Si me entiendes, usualmente es a Laura por y por emergencia estoy yo en dado caso cierto. Entonces a Laura le dicen, Venga Quiubo, que es que hay un compromiso de pago que bla, bla, bla, bla, bla, bla, bla, bla. Se hace la revisión.
+Con Juan y dicen, perfecto, démosle la aprobación de para que se le venda esto, pero igual sigue bloqueado por cartera. ¿Vale? ¿Una vez le da bloqueado? Pues digamos aquí a Daniel Valbuena, digo tú, listo a Daniel Valbuena, en este caso, que es mi usuario, si te das cuenta, este filtro está sin funcionar. ¿Por qué? Porque es que a mí me debería.
+Aparece solamente lo pendiente si me entendés qué es lo que tengo pendiente para probar entonces aquí si te das cuenta tengo un montón de vainas, mira que aparece aquí, mira que aparece que está pendiente por autorización y que supuestamente está a ver, dice dice que no, que no está leído.
+Y que está pendiente para aprobación. Pero fíjate, esto de aquí abajo yo ya lo aprobé y aparece igual. Si entonces esto es un tema que nunca nos pudieron arreglar, a mí me van a enviar la solicitud, me dicen solicitud autorización de cartera, aquí debería aparecer. ¿Para qué cliente para westing? No sé qué, yo puedo aquí. ¿Ver la cotización, qué es lo que yo voy a probar? Venga, voy a probar un negocio, 1000195.
+Código perfecto. Llegó, le autorizó ya cuando le doy autorizar el comercial va a generar el pedido y ya puede montarlo sin problemas, no lo voy aquí porque si no me daña. Aquí en un tema de esa cotización vale, eso es desde la parte de acá, desde la parte financiera que nosotros funcionamos acá, importante que esto en efecto funcione.
+Si me entendés que ojalá aquí tenemos un tema que es el tema. La visual general de la de la pantalla, entonces aquí porque estoy en el monitor, pero en el portátil esto es, o sea, es tenaz. Verlo. La visual es tenaz. ¿Entonces está está, estas pestañas aparecen apachurradas la información de, o sea, ponle que esto en el portátil, de cómo que?
+Arranca acá y medio. Se alcanza a ver aquí, es, es detrás. Bueno, entonces sigamos desde la creación del cliente, vamos a darle editar. Ah, bueno, Fíjate que aquí ya me apareció autorización de cartel aprobada vale, o sea, esta condición ya está aprobada para montarla ahora.
+Ya una vez creado yo aquí, Laura diga, sabe qué quite el bloqueo de cartera, esta gente está bien, el el cliente ya se puede montar pedido sin problemas, siempre y cuando tenga cupo de crédito disponible. Esto mismo va a pasar, por ejemplo, cuando lo que el ejemplo que yo les daba, si tienes 100000000 de pesos.
+De cupo de crédito asignado y tiene disponible 40. Pero va a montar 70. Debe hacer una solicitud de extra cupo, solicitud de crédito de de de extra cupo para montar esa cotización. A quién le va a mandar la la solicitud en este caso igual a Laura o en este caso igual, o a mí en dado caso, venga que este cliente le estamos dando 200000000 de pesos, tiene disponible 60, 40000000 de.
+Que dije, pero a montar algo por por 100000000 de pesos, entonces entra una validación, miramos si se aprueba, no se aprueba y pasa lo mismo que hicimos ahorita en el ejercicio vale, aquí tenemos algo que se llama gestión que la gestión es.
+¿Cuáles son las cotizaciones en general que se le han hecho a ese cliente? ¿Cuáles son los pedidos? Tareas aquí tareas son las visitas que se le han hecho, cierto ventas totales. Esto no, no, nunca ha funcionado, entonces no, ni idea. Ahora ya una vez este, no sé si me haga falta algo más. Juan Laura desde desde esa parte de la creación.
+Que está omitiendo.
+
+Laura Burgos   32:27
+A mí me parece que no.
+
+Daniel Valbuena   32:31
+¿Ok?
+
+Laura Burgos   32:31
+Ay, con lo de los cupos YY el tema de retención y eso estaría dime.
+
+Juan Angel   32:34
+Y lo de los cupos es.
+
+Daniel Valbuena   32:37
+Estaremos bien.
+
+Laura Burgos   32:41
+Sí.
+
+Daniel Valbuena   32:41
+Listo, sabes que me hace que me haría falta acá, que es una información, o sea, está la información comercial del cliente, pero hay algo que es importante que es la información de tesorería, que esta información la debe licenciar el área de tesorería y que solamente la permita editar el área de tesorería más.
+
+Juan Angel   32:52
+La de tesorería.
+
+Daniel Valbuena   33:05
+¿De comercial, es decir, cuando Laura va a ir a westing, llega, busca westing que en el módulo tenemos aquí un módulo que se llama maestros clientes y va a buscar a westing y dice, Ah, yo quiero saber a quién? A quién le envió un correo para cobro de cartera, entonces se va a meter aquí a contactos, es un ejemplo. Ver aquí me parece esto le dice perfecto para el área comercial, aquí tengo el contacto que es este, el contacto.
+Estoy de compras, pero debe aparecer algo que diligencia en ellos. A quién deben dirigirle los correos electrónicos para tema de tesorería y que quede mucho más fácil.
+¿Cómo la ven ustedes? Se me acaba de ocurrir esa, no sé si esté bien.
+
+Emma Castillo   33:47
+¿Y esa información quién la diligenciaría? Digamos que la información que ajá.
+
+Daniel Valbuena   33:49
+Laura, en este caso el área financiera.
+
+Emma Castillo   33:53
+Ah o K o K sí, porque, digamos nosotros podemos a a la entidad de cliente agregarle como diferentes tipos de información y que cada una de sus áreas como financiera, va a recabar ahí la información que necesita el cliente y pues bueno tenerla así estructurada también podríamos.
+
+Daniel Valbuena   33:55
+Ajá.
+
+Juan Angel   33:55
+Sí.
+
+Daniel Valbuena   34:11
+Exacto. Exacto. Tal cual. ¿Entonces, si te das cuenta, aquí hay un poco de información que realmente nunca es diligenciada porque pues no, no es funcional para nosotros, vale? Bueno, desde acá entonces creo que estaría todo por la parte de la creación del cliente. No sé si me escape algo más.
+Juan Laura.
+
+Juan Angel   34:35
+No, yo creo que con la información de tesorería o sea, tesorería y facturacion, pero ahí estaría incluido.
+
+Daniel Valbuena   34:40
+Ajá. Exacto, ahora desde la o sea, me aparece aquí. ¿Entonces el nombre del cliente, a mí a mí realmente bueno que aparezca el teléfono fijo estaría bien, cierto número que aparece el teléfono que dice la empresa check correo electrónico, no me interesa, ya les cuento por qué, o sea, si le doy aquí a editar la información que me pone aquí, que me dice qué hubo, cuál es el contacto principal? No me interesa la zona.
+Que esto ni siquiera mira, te das cuenta que vainas que móvil teléfono toda esta toda esta información no me interesa, no me genera valor porque a mí lo que me genera valor es esto. Acá a la empresa westing. ¿Ahora a quién va a ir dirigida la cotización? Eso sí, es muy importante entonces a nombre de Carlos Villalba, el teléfono celular.
+Vale o sea teléfono y extensión, eso ya casi no se usa, pero pues dejémoslo, porque una que otra que no dan en el teléfono, pero que estos sean campos obligatorios de Diligenciamiento, va a Carlos Villalba con teléfono y con correo electrónico. ¿Cómo hacemos esta este tema? Esta creación mira.
+¿Carlos Villalba, que cargo ocupa compras? Qué ciudad, qué, en qué ciudad está el teléfono y el correo electrónico es la información que me genera a mí como de valor cierto. Aquí se pueden crear varios. Por ejemplo, si vamos a buscar, dime.
+
+Laura Burgos   36:01
+¿Sabes?
+Según en donde colocar una información, también que entre los los correos. Desde ahí colocaran el correo principal de las facturas, no así ya cuando esté el pedido no hay que preguntarle, sino que no puede ver la creación. ¿Cuál tienen como principal?
+Desde ahí y pasarlo a así, se va a con él para que le llegue desde ahí la factura al que es.
+
+Daniel Valbuena   36:31
+Me perdí, me perdí, me perdí.
+
+Laura Burgos   36:33
+Los, ahí piden los correos y eso para la información comercial en el que está, pues el correo de del encargado, como en la cotización, sí, lo que se de Carlos Villalba ya, aunque también apareciera, no sé si como digamos en dentro de la creación, aunque era como correo principal, facturas o algo así.
+
+Daniel Valbuena   36:44
+Ajá.
+
+Laura Burgos   36:52
+Y como usted es el momento de tener contacto con el cliente, ellos le pueden confirmar a dónde es que llegan de una vez que se campo lo diligencien así, cuando yo llegue el pedido se vaya a emitir la factura. Nosotros tengamos como acceso a esa información y copiamos ese.
+Por lo que te digo que muchas veces el del room no es.
+
+Daniel Valbuena   37:11
+Perfecto.
+Listo. Mira entonces este email de facturación que sea un campo, es que sabes que no puede ser obligatorio porque.
+¿Podríamos nosotros para mí es que, qué pasa cuando yo hago una cotización?
+A un cliente que que es nuevo y que no tengo ni idea si me va a comprar o no me va a comprar el cliente, no me va a dar a mí un email de facturación, porque pues para qué, si no sé si su cotización va a salir, si sería bueno que este campo quede ahí pendiente, está ahí por diligenciar, pero que si al momento de subir el pedido.
+No está diligenciado que le aparezca un aviso.
+Si me entendés ahí, en ese momento yo ya sabría y yo ya podría pedir el correo de facturación, es decir, le voy a hacer una cotización a TDX, pero te dediques un cliente que recién llego y te dice no, pues que me va a pedir un correo, facturación o sea cotizame y ya después vemos entonces la idea es que no quede como campo obligatorio desde el desde el momento de generar la cotización, sino que.
+
+Laura Burgos   38:03
+¿Ah sí?
+
+Daniel Valbuena   38:25
+Cuando yo vaya a montar el pedido, si este campo está pendiente por diligenciar, que dice y me diga, mi hijo le hace falta ponerle el correo de de facturación del cliente y ahí ya queda predeterminado.
+Yo lo veo por ese lado, no sé si pues esté bien Laura, con lo que tú me dices.
+
+Laura Burgos   38:43
+Sí, sí sería mejor entonces.
+
+Daniel Valbuena   38:45
+Listo entonces este este tema del contacto, la idea es que permita crear varios. ¿Por qué? Porque, por ejemplo este cliente.
+¿Maneja muchos compradores si se dan cuenta maneja demasiados compradores? Entonces que uno sepa ya después en un informe que no, que no pueda bajar. A mí no me interesa bajar en el informe que tenemos actualmente. ¿Me me me me descargas esta información de contacto? Eso a mí no me interesa eso porque como.
+Me aparece un solo cliente, un solo contacto. A mi me interesa que yo quiero descargar, quiero mandar un correo masivo. Una campaña que vamos a hacer a todo, a todas las personas que tengo en a todos los contactos que te digo de mis clientes, que aparezca siempre. Por ejemplo en este caso fundación Save the Children, repetido, repetido, repetido, fundación Save the Children, que al lado aparecía cada uno de los contactos con su correo electrónico.
+Y su número celular cierto, entonces bueno, esto por esta parte el asunto ya les expliqué. Este asunto debe ser editable, la idea es que este asunto sea un campo obligatorio también el asesor, pues aquí ya no debe aparecer predeterminado porque pues, en efecto yo aquí puse que este cliente le corresponde a Daniel Valbuena.
+Vía de contacto esta vía de contacto. La idea es que solamente aparezca al momento de la creación del cliente. ¿Sí que me aparezca en la cotización, realmente no me genera valor eso me a eso, básicamente me interesa a mí, pero cuando yo voy a descargar informes, aquí no me interesa que vía de contacto referenciado pues o K pero pues como para qué? ¿Y aquí? Yo puedo modificarlo muchas veces.
+Es que eso no tiene sentido, entonces es una vez que se modifica y es el momento de la creación. Si te x llegó a mí por una campaña Google lo creo, una campaña Google y parece de contar si me entendés, pero es de la creación del cliente, aquí no me debería porque aparece esto. Porcentajes de interés son las etapas que tenemos de la cotización aquí es importante lo que yo le decía Freddy, como hay unos ser emes como.
+Se me olvidaron. Espérame, yo los busco, que tienen, lo tienen, lo tienen segmentado diferente. Por ejemplo, soho se ven famosos. Hay otro que también miramos que era era soho, era salesforce también. Ellos manejaban un tema que lo manejaban por columnas como por etapas aparece una condición, una tapa, luego pasaba a otra tapa, luego pasaba a otra tapa.
+Tapa y luego pasa a otra. Tapa, sí. O sea, que la visual no era así como la generalidad, sino aquí se podía ver básicamente que lo que estaba en una tapa se podía ver el que están otra tapa, otra tapa, otra tapa que así funcionan todos esos. Sí, como que hay un flujo mucho más chévere por parte de ellos y existen como Estados entonces aquí en en, en porcentaje de interés.
+Tenemos creación de oferta, negociación, riesgo y pendiente de orden de compra. Entonces, si yo por ejemplo, la idea es que aparece acá, yo llamé a Carlos Villalba, entonces llamo y le hago seguimiento, cierto, entonces aquí hace parte de una de las cosas que se mandó integrar.
+¿Yo tengo esta cotización del 10, la idea es que cada determinado periodo de tiempo que nosotros determinemos sea por ejemplo cada 8 días le llega un mensaje a Carlos por parte del sistema? Hola, hola Carlos, Hola a nombre de quien vaya dirigida la la condición, Hola Carlos, cierto por el nombre, porque pues si le digo, si si alguien conocido y le digo Hola, Carlos Villalba pues suena feo.
+Hola Carlos, quería validar cómo vas con esta cotización y que se le adjunte la cotización que la inteligencia artificial retroalimente, le diga, mire está en validación o está en no sé que o sea que que que como que llegue, como que analice esa vuelta y que y que cuando uno vaya a buscar la cotización venga, es que el cliente dijo que que está.
+Bien que por favor te voy a cambiar algo. Es que que de alguna manera le notifique a uno que el cliente solicitó algo sobre esa cotización. Le queda a uno mucho más práctico, mucho más fácil. O mira está, entra comité, o sea, alguna más, o sea, que esa retroalimentación la haga de seguimiento y que de alguna manera que lo que lo que ese, ese Bot no sé como se llama esa vaina que esa vaina indague.
+Sobre la cotización genere, como las alertas correspondientes a los a los comerciales, para saber cuál es el va a ser el plan de acción, sí, eso por ese lado permíteme 1 segundo.
+Entonces esta parte es como de la más importante para para mí. Desde el área comercial, el tema del seguimiento automático. ¿Hola, hola Emma, Cómo estás? ¿Quería quería validar, cómo vas con esta cotización te adjunto la cotización? Emma me dice, Hola Daniel está en validación todavía o por ejemplo, hace poquito, por ejemplo, ven, yo te muestro acá este chat.
+A ver, lo pongo por acá, permíteme 1 segundo. Mire, entonces, yo le estaba haciendo validación, quería validar si has tenido algún avance con esta cuestión de los equipo de cómputo, la vieja me dice, aún no tengo respuesta por parte de gerencia. ¿Entonces que esto de tal manera se retroalimenta en el sistema, cierto?
+¿Y que diga está todavía al 60% en negociación, cierto? Entonces, como que esas notificaciones que hagan de o la que que den los clientes le lleguen al comercial y el comercial sepa que hacer cierto. Entonces se hizo seguimiento de ta, ta, ta, ta, ta, ta, ta, ta. El cliente respondió que todavía no sé qué, entonces.
+A un, a una en gerencia que le responda automáticamente como Ah, bueno, perfecto, si requieres algo más por nuestra parte estamos super atentos. Ya. Ya dio la respuesta y le llegó la notificación al comercial, que esa esa cotización está pendiente por temas de gerencia, esa es la parte más crucial de seguimiento que nosotros tenemos y aquí donde nos tenemos que sentar y revisar.
+Cómo va a ser ese tema de seguimiento para que en efecto pues funcione y sea sea, genere valor y no que sea un tema como que de porque sí, sino que si emma me dijo Oye sí, Daniel, pero ven, necesito que me modifiques algo, le llegue la notificación al comercial que el cliente requiere que modifique algo, pero internamente el chat le dijo.
+Perfecto ya en un momento te hago la te hago la o te hago una modificación o qué o qué requieres que te modifique si me entiendes como que esa partecita la examine muy bien le le le conecte al al, en este caso, al comercial. El comercial le llegue una notificación y diga, Camilo, Ángela, no sé qué. El cliente solicitó este cambio.
+Ya uno sabe, llega a hacer cambio. Uno se conecta nuevamente listo, pasó la actualiza, no sé qué ta ta Confirmame. Sí, estamos bien listo. Cheque entonces en esta parte nos toca echarle bastante cabeza para para que lo como como quede como que enmarque toda la generalidad, lo que pueda llegar a pasar.
+La vigencia de la cotización es un tema que nosotros ponemos 5 días calendario, puede ser más dependiente de negociación, es un campo editable.
+Aquí también es un tema importante, entonces en qué mes, en qué semana y en qué mes y semana y año de cierre, por ejemplo, esta cotización, yo la voy. Digo que cierro en octubre del año 2025, en la semana 2.
+¿Con y que yo facturo en octubre del 2025, por qué imponemos aquí años? Porque básicamente yo puedo montar hoy un pedido que está a 60 días o a 90 días y ya voy a facturarlo hasta el año siguiente. Aplica únicamente en esas fechas.
+¿Sí, en qué mes, en qué, en qué semana del mes y en qué año? ¿Yo voy a facturar esto en qué mes y en qué año? Yo voy a facturar, esto vale ahora esto desde acá creo que no se me escapa nada igual, si se me escapa, lo validamos.
+El detalle entonces, aquí está el tema de la cotización donde debe de aparecer este uno 2 ya les muestro qué significa, básicamente es el orden en que van los productos al momento de imprimirlos en el PDF. Para nosotros es crucial, porque usualmente si un cliente nos manda una cotización de un listado de 15 productos, nosotros lo que hacemos es organizarlo.
+¿En el mismo orden en que lo mandan, pero pues yo al momento de cotizar yo no, o sea, a mí me llegó primero la información de producto 5 le de producto 7 le de producto 8, entonces yo voy aquí organizándolo, que al momento de exportarlo al PDF me aparezca esto en orden y que aparte el sistema también me lo organice, vale? Aquí aparece el número de parte, el nombre cantidad, precio unitario, sub total.
+¿Ivai, total venta vale la creación del producto? ¿Cómo funciona acá? ¿Entonces, si se dan cuenta?
+Yo digo que a Westing le quiero pasar una cotización con moneda pesos. Laura me actualiza esta tere M todos los días, si se puede hacer que se que la indague en la página en no sé qué vaina. Pero es que corremos el riesgo, que la página no funcione.
+Y me puede fallar el sistema grave, pero Laura me actualiza la fecha, todas las mañanas. ¿Esta información, la TRM el día con qué fin? Con el fin de que si yo tengo un producto que me cuesta 179.50 USD lo que va a hacer es multiplicarlo por esta TDM, esa TDM me la debe de mostrar aquí para saber por cuál está liquidando.
+No me la pase a pesos y sobre el valor en pesos, yo le doy mi margen el margen, recuerden, espéreme, yo pongo aquí un bloc de nota, es que no tengo como un bueno el margen básicamente es el costo.
+Del producto dividido en 100 menos. ¿Ah, cómo es que era la fórmula? Juan era 100 menos.
+
+Juan Angel   49:33
+El el margen.
+
+Daniel Valbuena   49:34
+Sí eras.
+
+Juan Angel   49:36
+Sí es menos, el margen, menos el margen bruto que tengas ahí 8 * 106%.
+
+Daniel Valbuena   49:40
+¿Dividido en algo cierto? Sí, claro, porque me tiene.
+
+Juan Angel   49:43
+No, no. Allá lo cierras, allá. Lo cierras, o sea, el costo dividido es te da el precio.
+
+Daniel Valbuena   49:46
+No, porque si yo pongo 8%, pues no me va a dar.
+
+Juan Angel   49:49
+Te va a dar ahí 92 y el costo de 92 te da el precio.
+
+Daniel Valbuena   49:53
+Ajá, exacto, o sea, por es que por ejemplo, si yo le pongo 8 ah, sí, exacto menos. Ah perfecto. Si entonces el costo dividido en 100 menos el porcentaje que yo pongo acá 8, cierto, entonces sí es exacto. ¿O cuál es que usa mejor?
+
+Juan Angel   50:07
+8 sí o uno menos el porcentaje.
+O el porcentaje, o sea, si es menos el número o uno menos el porcentaje.
+
+Daniel Valbuena   50:17
+Exacto. También entonces 100 menos el margen, en este caso, 100. − 8 me da 92, pero es que es dividido en cero punto en en 0,92, bueno, por eso te digo que es que esta vaina debe debe, debe dividirse.
+
+Juan Angel   50:32
+Ah, sí, divido 100, la si quieres, déjalo uno 1. − 1 menos el margen que está en porcentaje.
+
+Daniel Valbuena   50:41
+Uno menos el margen.
+
+Juan Angel   50:41
+Uno menos el margen y ponle porcentaje el margen porcentual el margen por ciento y ya.
+Con eso ya te queda ahí, más sencillo para no tener que dividir luego entre 100 otra vez.
+En.
+
+Daniel Valbuena   50:53
+¿O K eso con que fin? O sea, la fórmula del margen me va a decir, listo uno, uno. 79,50 dividido en 0,92, básicamente está la fórmula que me va a dar esto al aplicar esta fórmula, me va a dar este valor en pesos.
+Cero. La idea es que cuando sea valor en pesos no tenga decimales, si si alguna cosa si se complica mucho el tema, no hay lío, lo podemos dejar con decimales, pero que yo pueda de borrarlos pueda editarlos. Por ejemplo, mira que yo tengo 8% y Fíjate que me da que un decimal, lo que yo hago aquí es eliminar los decimales.
+Porque si la pasó con decimales se me complica el momento que me den un orden de compra y de más, yo lo puedo evitar. ¿La idea es que cuando sean pesos la liquidación en pesos me aproxime por encima la cifra y ya paré de contar y ahí ahí empieza todo el tema, vale, es importante que el tema la del del de la formulita Qué qué IVA? Esto maneja IVA del 19, la idea es que esto nos o sea.
+Está editado, o sea, hacía una una casilla en lista para escoger en lista, entonces esto maneja IVA del 19% del cero, del 5. Pero es que aquí, por ejemplo, me permite colocar 77. No existe. ¿Si entonces la idea es que me me me permita, yo digo, Ah, bueno, esto maneja, o sea que yo lo pueda escribir cero, pero si pongo 7 me parezca error porque hey 7 no existe, cierto?
+Entonces sería cero 5 y 19% pare de contar. Sí la cantidad. ¿Cuántas unidades son en este caso? Es una unidad. ¿Con qué proveedor? Yo lo estoy cotizando, en este caso yo coticé a 179.50 con el proveedor impresystem.
+Yo puedo buscar aquí en en el listado de proveedores creados a MPS lo puedo escoger el que sea cierto, en este caso siempre. Entonces yo lo que hago es aquí localizar. Le pongo impre system.
+El tiempo de entrega es totalmente editable total, o sea porque puede ser, puede ser un proyecto. Puede ser demasiadas vainas, por eso lo dejamos aquí en Editable y la garantía del producto igual es tiempo de entrega, garantía y aquí está la casilla del orden que era la que yo le decía a ustedes que la que me permite a mí identificar en qué orden va a estar esto en la secuencia de la cotización.
+Aparte de esto, tenemos una casilla que se llama observaciones esa casilla, observaciones en la que, por ejemplo, si es una renovación de un producto, entonces yo debo colocar aquí la información, porque es el mismo número de parte que es aplicado para muchos temas, entonces aquí yo puedo colocar información del vencimiento de la licencia.
+¿Entonces, puedo colocar que la fecha de vencimiento sea, por ejemplo, estamos a el 11/10/2025, cierto? Un ejemplo, que su información, pero esta no, ya no es información de la creación del producto, que ya que me la Salté Espéreme 1 segundo la vemos en la creación del producto tenemos.
+¿Número de parte, en qué vertical está ya? Ya hablamos del tema, las verticales, aquí tenemos las, las grandes son, hardware, software, servicios, accesorios y otros, y de cada una se va desprendiendo la subcategoría, cierto la marca.
+¿Extrema de unidad no sirve para absolutamente nada, entonces esto quitarlo el costo, aunque fíjate que el costo realmente tampoco me interesa porque o bueno si lo requieren, colocarlo por un tema de por un tema de configuración, pues se puede puede revisar, pero es que este costo a mí no me interesa, por qué? Porque es que yo puedo tener este costo hoy en 100.
+139. ¿0 y mañana subió, bajó entonces este costo? No me dice nada, este costo básicamente me lo va a traer al momento de cuando yo busque el producto me va a traer el costo con el cual fue creado, pero pues no me sirve de nada porque pues en efecto yo puedo tener una negociación diferente, más barata, más económica o más costosa de ese producto.
+Este costo realmente si se puede eliminar, estaría perfecto, pero sí que se parametrice que IVA maneja 19%. Vale esto de aquí si lo pueden omitir estaría fabuloso porque no nos sirve para nada, y esto sería chévere que le pusiéramos como venga. Este producto maneja un IVA del 19%.
+Que quede ya creado con ese IVA porque hay muchos proyectos que nosotros manejamos, excluidos exentos de IVA, que me toca colocar la IVA cero, pero ese producto está a 19%. Pues sencillamente ya como que esté parametrizando en el sistema y me permite avanzar aquí. El tema de la descripción porque lo tienen así.
+Este es haz de cuenta que es el título al momento de imprimir la cotización y esta es la información adicional, aquí me refiero a que cuando van a se va a exportar a PDF la cotización.
+Aparece.
+Miércoles 1 segundo, ya aparece el título.
+Y aparece la descripción. Sí, ellos lo tienen así, si ustedes se pueden generar algo diferente, fabuloso, a mí. Este formato de cotización cero que me gusta me aparece exageradamente clásico, sería algo ya, usted sabe más o menos cómo me gustan a mí las vainas, esto a mí esto a mí no me gusta para nada.
+¿Se pueden?
+
+Freddy Rincones   56:35
+¿Hola Daniel, buen día, cómo estás? ¿Te habla Freddy bien bien, y tú?
+
+Daniel Valbuena   56:38
+¿Uy, hola, cómo vas?
+Bien, bien, todo bien.
+
+Freddy Rincones   56:43
+Ah, bueno, súper acá tengo una pregunta sobre es.
+Sobre ese PDF. ¿O sea, veo que quieres uno nuevo, pero tendrás a la mano alguna referencia de cómo te gustaría verlo?
+
+Daniel Valbuena   56:56
+No, pues si tienen modelos es que estos.
+
+Freddy Rincones   56:58
+Vale, entonces llegamos con unas propuestas, ya entiendo.
+
+Daniel Valbuena   57:00
+Sí, es que es que esto se esto, se me hace como muy que eso lo tiene todo el mundo. ¿Sí, me entendés?
+
+Freddy Rincones   57:05
+Clásico.
+
+Daniel Valbuena   57:06
+Sí, muy clásico, muy si tenemos algo diferente, estaría fabuloso. Estaría muy chévere. Este formato de coti.
+
+Freddy Rincones   57:13
+Entonces nosotros consideramos algunos templates listos.
+
+Daniel Valbuena   57:15
+Si es para modelos y con eso check vale.
+
+Freddy Rincones   57:18
+¿Listo?
+
+Daniel Valbuena   57:20
+Entonces, aquí también está el tema de la de cómo está distribuido el IVA y es bastante, cómo te explico yo, o sea, no estaría bien en cómo está distribuido porque esto ha confundido mucho los clientes. ¿A qué me refiero?
+Por ejemplo, esto me miramos si esta me sirve, sí.
+A ver, mira entonces, calculadora.
+Son 3 unidades, el valor unitario es 1000000 ciento 1000000 161542 por el 0,19.
+¿220000 del unitario y aquí me aparece el subtotal de 3000000, o sea, te das cuenta que esta liquidación de aquí de Líbano?
+No, no aplica, o sea, esto es lo que confunde a los clientes. Son 3 unidades, pero me salen 3000004 4484 y pues nada. O sea, como que no, no hace sentido aquí, sería bueno que el el IVA que IVA maneja el 19%.
+
+Freddy Rincones   58:19
+En.
+O K.
+
+Daniel Valbuena   58:36
+O el 0% y pare de contar aquí en el subtotal, que es el valor unitario por la cantidad. Y aquí que ya me liquido obviamente el IVA, el IVA general de la cotización, sí.
+
+Freddy Rincones   58:45
+Exacto, que en la columna IVA no haya ningún ningún valor, sino más bien el porcentaje.
+
+Daniel Valbuena   58:48
+Ningún valor, sino el porcentaje. Sí, porque si tú me preguntas, yo nunca me había puesto a analizar esta cotización, miramos 3000004 84626 +, 1000500 801 4000985. O sea, este valor que está acá no está tomando este IVA de acá.
+Es, y eso es lo que confunde a los clientes.
+Dale esta nosotros en la cotización. Tenemos esta información que es una información predeterminada de la cotización. Esa misma copiamos y pegamos aquí aparece los datos del comercial del momento de Imprimirla. Condiciones comerciales, ya vamos para allá, aquí en condiciones comerciales, básicamente yo puedo colocar una condición de.
+
+Freddy Rincones   59:21
+Claro.
+
+Daniel Valbuena   59:36
+Llámese entrega, llámese financiera, llámese de producto, por ejemplo, de producto. ¿Yo puedo decir si es un tema de equipos más memoria RAM, más disco duro, se entrega potenciado, potenciado el equipo sin costo, cierto?
+Pero finalmente, este tipo de condición comercial a mí tampoco me interesa el título, sino bueno. ¿Cuál es su condición comercial? Que va, que va a dar. Me interesa, es lo que está aquí para abajo. Eso hay para arriba, no me interesa, entonces yo aquí le voy a dar guardar. Espérame 1. Segundo, cierro esta cotización para que ella me permita cerrar todas las pestañas.
+PDF.
+Y aquí aparece la. La condición comercial aparece de producto, pero ese título realmente no. ¿Cuáles son las condiciones comerciales? Mire, le doy tal cosa sin costo. ¿Le doy tal vaina, le doy tal vaina, le doy tal vaina, vale? Otro tema que tenemos actualmente, que lo pueden validar en esta cotización es que cada producto, como les mostraba, tiene su tiempo de entrega en la cotización.
+Es decir, yo entrego esto en 2 días hábiles y tiene una garantía por producto, no hay una garantía general de cotización, sino por producto. Entonces al momento de imprimirla, fíjense qué pasa con esto de acá se baja.
+Ves se baja esto y queda como esta parte, es más, más, más alta, por llamarlo así más larga. ¿Entonces se baja ese título y daña totalmente la el formato de la cotización, listo por acá entonces? Bueno, aquí básicamente ya les explique el tema, la fórmula una vez se ha gastado liquidación, bla, bla, bla, bla, bla y.
+Guardo y envío, paré de contar. Sí, aquí lo otro son esto de pedido generados es una vaina que no funciona para nada. Condiciones comerciales es un esta. Esta información podría salir acá el inicio cierto o que en alguna parte, pero que no quede como pestaña parte porque pues forma de pago. Esto debería aparecer acá en la descripción de cliente cuando el momento de.
+¿Traerlo, otros costos, nada que ver datos adjuntos este tema? Nada que ver, porque esto no me lo no, me lo que no me lo arrastra aquí sería bueno validar que si yo tengo la cotiza en la cotización no sé de una impresora y de ejemplo data examen pasar la cotición en PDF.
+Que yo pueda y la pueda guardar aquí de una vez y que al momento de pasarla a pedido, pues lo arrastre. No sé si se pueda, no funcionamos actualmente, pero se supone que esto debería funcionar así, pero no funciona así. O sea, no, no, no sirve mejor dicho el el el, como lo configuraron ahora, por ejemplo, yo ya vendí esta solución, dije perfecto eso ya el cliente me montó la orden de compra.
+Permítame a ver si yo tengo una orden de compra que aquí pendiente por subir a ver si de pura casualidad, pero creo que no, no. ¿Entonces yo lo que hago es sencillamente, qué productos de la cotización fueron elegidos en la en la en orden de compra? Digamos que fueron estos 2, le doy opciones y le voy a dar general pedido.
+Cierto, cuando le voy a dar generar pedido.
+Se pasa el módulo de pedidos y aquí ya entran todas las áreas convenientes para esto, por ejemplo, esto es del 10, te lo monto Ahorita Ángela, entonces a Andrés le aparecen los productos que están, se supone que esto aquí debería aparecer, los productos que están pendientes por comprar.
+Pero aquí lo hicieron al revés, nunca lo corrigieron y fue y aquí está la cantidad de productos comprados, pero pues a mí no me interesa que me muestre cuántos productos compré, me interesa saber cuántos productos están pendientes por comprar, si aparecen ceros es porque ya en efecto compro todo, si aparece 15 es porque le hace falta comprar 15 items.
+15 ítems no, sino 15 cantidades de los productos. Vale, aquí le voy a arrastrar toda la información actualmente como yo les decía, estamos funcionando por por sharepoint. La idea es que esto ya no funciona así, sino que nosotros podemos aquí colocar todos los adjuntos, todos los adjuntos de qué, todos los adjuntos de orden de compra nos no.
+Ojalá se pueda hacer esto, que son temas que nosotros estamos manejando como de manera muy organizada. Ah esperenme 1, segundo, que esto preciso, se me se me está bloqueando. Segundo, a ver.
+Pedidos.
+Nosotros lo estamos dejando aquí en sherpa, por lo que les contaba a ustedes que el proveedor anterior nos borró toda la información, a ver, miramos si yo tengo algo por acá.
+Bueno, por ejemplo, si yo tengo cotizaciones de proveedores, lo que yo hago aquí es crear una carpeta que se llame documentos proveedor.
+Cierto y en esa carpeta documentos proveedor yo lo que hago es agregar toda la documentación de proveedor sea cotización, sea root, sea lo que sea, lo voy agregando a cada proveedor, para que cuando la persona en este caso de compras vaya a entrar, pues sepa diferenciar qué es la negociación, o sea, eso se llamaría como documentos de cliente, por llamarlo así. Orden de compra, si hay contratos, si hay póliza, si hay lo que sea.
+Y documentos proveedor en efecto de que listo, porque si no le va a parecer un chorrero de PDFY, tiene que entrar a revisar qué es de proveedor y qué es de cliente. En este caso Andrés le interesa documentos proveedor perfecto. Entonces él llega, mira la cotización en dado caso del proveedor o lo que lo que tenga el proveedor rud y demás, vale ellos actualmente aquí lo que yo puedo hacer acá es.
+Es que yo nunca he utilizado esto, ahora miramos n.
+Y voy a subir un archivo que, digamos sea descargas, me imagino que funciona de igual, ni siquiera funciona entonces, pero ojalá se pueda organizar esto, no sé si se pueda, pero pues ojalá para que quede como documentos proveedor y documentos cliente y ya con eso lo manejamos de una manera exageradamente organizada aquí.
+Vale, estamos acá, entonces este es el link del del Sharepoint, pero esto ya no iría. Este es el chat interno que que hablábamos, por ejemplo, vamos a hacerlo con un pedido mío para que no cause conflicto, es este de acá, entonces yo voy a enviarle una comunicación, digamos llamémoslo prueba, pero digamos que es comunicación que manda ejemplo.
+O aquí a un pedido que ella ya haya tenido. Entonces, por ejemplo, aquí se mete logística y dice logística. Buen día, confirmo el envío a la transportadora por impre system transportadora TCC productos bla bla bla, pitos y flautas, cierto, y esto se lo voy a enviar por correo electrónico, en este caso a Andrés. ¿Cómo hacen eso entonces?
+Digamos que va a ser el mismo mensaje llámoslo aquí prueba y yo le voy a decir que voy a enviarle este correo electrónico a Daniel Valbuena y le voy a dar enviar y aquí debo darle guardar para que me quede guardado acá al correo electrónico mío. Ya les muestro cómo me llega.
+Segundo.
+Me llega esto.
+Requerimiento, prueba y me sale como todo el histórico que tenía. Sí, entonces ahí aparece notificaciones de Quio, venga, que estamos pendientes de de esta información, de lo que tenga que ver con todo lo que tiene que ver con el pedido, va a aparecer acá. Si otros datos esta la información del despacho, este módulo de acá lo podemos eliminar porque realmente.
+Esto no nos interesa o sea estatus de despacho transportador aquí a son, finalmente es mucho más práctico para nosotros que logística lo haga por este lado, por las observaciones por el por el chat, pues interno que tenemos nosotros internamente acá y este es el flujo que manejamos acá, que como les cuento ese flujo no funciona.
+Aquí ponemos tu hombre. ¿Quién recibe teléfono? Dirección, ciudad, horario de entrega y correo. Esto, lo dirigencia uno al momento de montar el pedido y una vez a uno le de guardar, no se puede modificar, sí si hay algún cambio venga, ese cliente me dijo que ya no despacha en esta dirección o lo que sea, debo notificarlo por acá.
+Por favor, Sebastian, por favor. El cliente me informó que no lo despachó en esa dirección, sino que le despaché hasta otra. Son los datos de despacho, bla bla bla, porque si se permite modificar lo que pasaba antes es que llegaban, eliminaban, cambiaban y nunca notificaban. Y llegaban. Llegaban donde inicialmente era la mercancía.
+Y decía Ah, no, pero lo escucharon mal si me entendés, entonces esto debe ser que nadie lo pueda modificar. ¿Nadie es ningún usuario, vale? Ahora entremos al tema del flujo para el tema del flujo. Es tenemos nosotros yo como comercial esto yo yo lo mandé a crear de manera diferente, esto nosotros lo mandamos.
+Vamos a hacer a esa gente, pero lo creo diferente, no sé por qué, porque a mí la palabra no. No me gusta. Entonces sería como permitir despacho parcial, listo check que me permita el despacho parcial, permitir facturación parcial me que me permita el despacho parcial permitir facturación porque este no. A la gente le confunde y todavía le ha confundido esa vaina sí me entendés.
+Entonces, la idea es que yo le digo acá, venga hermano despacheme parcial logística va a ver esto y me dice perfecto, yo puedo despachar parcial de estos, digamos. Aquí hay 5 productos, tengo cuatro, el el, el, el, el que me falta llegan 15 días, lo despacho mientras tanto porque me permite despacho parcial.
+Ahora me permite facturación parcial si está chuleado, en este caso omitamos obviamente la palabra no permítame facturación parcial, si está chuleado es porque si le permite la facturación parcial, si yo ya entregué cuatro productos, esos cuatro productos, yo ya los puedo facturar.
+Sí permitan permitir facturación sin confirmación de entrega. Esto aplica únicamente a a temas de nivel nacional. ¿A qué me refiero? Yo tengo un cliente en Medellín y Despachamos hoy hay clientes que dicen no, no todo bien. Váyame, facturando, no tengo un problema.
+Cierto, pues ya envié la mercancía. O hay clientes que me dicen hasta que no me llegue la mercancía, no me facture. Sí entonces, permitir facturación sin confirmación de entrega, entonces perfecto, cierto, ahora bien, logística aquí donde entra el el, el tema del flujo, esto como les digo.
+Lo pusieron ahí, no nos sirve, no nos generó valor, pero que sí nos genera valor que logística diga. Si ya fue despachado parcial o total logística, dice, fue despachado parcial y ya fue despachado total.
+Cierto, pero entonces aquí nos tocaría pensar bien cómo vamos a armar el flujo, porque el hecho de que haya sido despachado no significa que haya sido entregado.
+Sí, entonces deberíamos colocar acá, despachado y aquí, aparte, entregado, se me ocurre igualmente eso lo tenemos que validar con Andrés en el cuando estemos en la en esa parte del flujo listo yo ya despaché parcial, pero pues he estado entregado, dice no entregado.
+Cierto, ahora si yo digo despacho despachado parcial y esto que diga, entregado, listo, ya fue entregado de manera parcial. Se me ocurre, no sé si estemos confundiendo más el el el flujo que queremos buscar. La idea es que encontremos la solución ahí vale y en la parte financiera este mismo de logística debe aparecer así, algo muy parecido en la parte financiera.
+¿Facturado parcial o total? ¿Para qué es este flujo? Nosotros tenemos aquí pedidos filtrados que filtro abierto. Esto nunca funcionó. ¿Cierto? ¿Por qué? Porque entonces, aquí en pendientes por facturar, que en este caso es a estefani.
+Le debe aparecer todo pedido, el cual cumpla con esto, es decir, que si el comercial me dice que no me des, que no me permite una factura una facturación parcial, cierto, pero permítame un despacho, o sea, usted puede despachar parcialmente, pero hasta que no entreguemos la mercancía con incompleto.
+¿No me puede facturar, cierto? Si no me permite la facturación parcial y ha sido despachado parcial a stefany en el módulo de pendientes por facturar. No le tiene por que aparecer porque no está cumpliendo la regla. Actualmente le aparece todos los pedidos, sí.
+Aquí solamente debería aparecer aquello que cumpla con con con qué, con con la con la con lo que nosotros tenemos parametrizado y que esté listo para facturar, llámese en este caso de usted. Puede despachar parcial y puede facturar parcial y fue despachado parcial. Fue entregado parcial en este caso.
+Hermano, vaya YY facture de una vez, le debe aparecer a ella y que está pendiente por facturar. Cierto, ahora hay otro, hay otro temita aquí adicional que se le haga a la a la regla, que es el tema de la facturación sin confirmación de entrega. ¿Qué quiere decir? ¿Que si ya fue despachado parcial?
+Le permite la facturación parcial, pero.
+No ha sido entregado por eso le decía el tema de aquí una columna adicional, pero no ha sido entregado porque aquí dice no permitir facturación sin confirmación de que hasta que no se entregue no se factura si o no, pero, o sea, fue, o sea, permiten la facturación parcial. Fue despachado parcial, pero no ha sido entregado.
+A ella no debería, por qué aparecerle para en el módulo para facturar.
+Sí, entonces, eso, por ese lado que que cumpla a decirlo y ahora también deberíamos pensar cuando ya se entregue. Total que logística va a decir, listo ya fue entregado total financiera, en este caso lo puso, como ya facture parcial entonces. A ella debería parecerle, no sé cómo, tocaría que nos ingeniéramos eso.
+En la forma en cuál pasó del del despacho parcial a total ella ya lo facturó allá, pero ya aquí cambió. A total YYY de lo tiene parcial entonces le hace falta por facturar y debe aparecer en el módulo.
+Sí, es eso importantísimo, me me acabo de dar cuenta que me salté, me salté el tema de los permisos de los márgenes, permítame 1 segundo, le muestro aquí un tema que se llama verticales, nosotros tenemos verticales que esas verticales, o sea, hemos hablado con la era financiera porque se nos está complicando un poco.
+El tema de unos márgenes porque nosotros tenemos unos márgenes mínimos por tiempo, es que te sí, básicamente por por categoría, que es lo que tenemos acá, y aparte lo tenemos por tiempo de entrega por por fecha, por la, por por el tiempo de crédito.
+¿A qué me refiero? ¿Yo? Ya les muestro gerencia.
+******, sharepoint.
+Márgenes. Listo acá está que si yo creo un cliente.
+A 30 días mi margen mínimo.
+Es del 7%.
+Si creo un cliente con crédito a 45 días, mi margen mínimo es del 10% y si creo un cliente a 60 días, mi margen mínimo es al 12%.
+Sí, pero a eso hay que agregarle el tema de las categorías.
+Aquí es nosotros, no lo tenemos así en este momento por por qué, por por tiempo de días es ese es el, ese, es el un hueco que tenemos actualmente porque lo tenemos aquí, es por categorías, entonces cada vez que hace un comercial llega y monta, y como yo aquí tengo parametrizado, por ejemplo, hardware que margina, mínimo del 6% le margina a un cliente de 60 días al 6%.
+Sí.
+Sí, entonces aquí es donde se nos está complicando el tema de que este tema de categorías de hardware y, o sea aquí te manejamos, que la categoría hardware actualmente la tenemos en 6%, pero es un tema muy puntual de una promoción que tenemos, es un tema ahí, pero va a subir al 7%.
+En software como el software, es poco rentable margen mínimo, el 4%. Servicios, margen mínimo, el 6%.
+Y accesorios margen mínimo del 6%.
+Sí lo tenemos actualmente por línea de negocios, pero aquí no está. Permíteme si ahorro aquí en la ventana que está pasando en un carro.
+Aquí no tenemos que aquí no tenemos en cuenta el tiempo de crédito que tiene el cliente y financieramente. Para nosotros es importantísimo que en efecto, eso se tenga en cuenta, pero no sé cómo sería, o sea, la verdad. Desconozco cómo cómo se podría cuadrar, porque sería muy bueno que yo diga, listo, si yo le estoy facturando, un cliente de 30 días.
+Mi margen mínimo es el 7%, pero si nos damos cuenta pilas, porque aquí en tengo una categoría que también dice que el margen mínimo, el software es el 4%, sí tiene como su su tema IP no sabría o o no sé si lo podamos manejar. Como ejemplo categoría se me ocurre, no sé, categoría hardware.
+Software servicios tan a tan entonces todo va a ser márgenes mínimos, no. Aquí arribita márgenes mínimos. Se me ocurre 30 días, 45 días 60 días 90 días, margen mínimo de hardware tanto para esta categoría tanto para para sus 3 que se han creado tanto para tan y tanto para tan se me ocurre que podría ser así, no lo sé, pero pues importante, vale.
+¿Esto con qué fin? Con el fin de que, por ejemplo, si yo estoy cotizando, digamos que digamos que una cosa que no me que no me afecte. 1 segundo esta vaina vemos que esta vaina yo voy a marginar el 2 * 150000 pesos.
+Me dice que no puedo, que debo solicitar autorización, en este caso a Daniel Valbuena. Solamente yo autorizo el tema de los márgenes, me va a aparecer a mí un tema pendiente y me dice Quiubo que esté mal. ¿Necesita una aprobación del 2% en el ítem transporte nacional? Cierto, entonces yo le digo perfecto, le doy aprobación del 2%.
+Pues cuando va aprobación al 2%, yo puedo montar esto al 2% y me deja montarlo. Sí, si yo le voy a dar al 1% no me va a dejar porque no puede ser menor al aprobado, sí, en este caso teníamos 50000 para dejarlo como ejercicio.
+Entonces, por ese lado creo que estaríamos bien, estamos aquí en el módulo pedidos, mira cuando se me fue, miramos, lo ponemos acá, entonces ya hablamos de este chat interno, ya hablamos que este tema no tiene, pues que ir acá este porcentaje de aquí tampoco, porque pues ya es ganado, ya no me interesa el porcentaje, ya obviamente es bueno internamente es bueno ya para de contar.
+Ya hablamos de esta parte. Ah, bueno, aquí está muchacho, señor.
+
+Juan Angel   1:20:17
+Daniel Daniel una pregunta en el tema de los costos de transportes, o sea, lo del pero no sé si vale la pena.
+Un campo que diga como valor de transporte o algo y que siempre lo dirigen 100, que sea cero o un valor como para que siempre tengan en cuenta ese costo.
+En los pedidos.
+
+Daniel Valbuena   1:20:40
+Pero no me puede salir en la cotización, lo que pasa es que, por ejemplo, yo a veces.
+
+Juan Angel   1:20:42
+¿Ah o K Te vas a hacer la cotización o k?
+
+Daniel Valbuena   1:20:45
+¿Eh? No, en el pedido. O sea, lo que pasa es que desde la cotización me arrastra el pedido.
+
+Juan Angel   1:20:49
+¿Ok?
+
+Daniel Valbuena   1:20:50
+Sí, entonces, ahí ya ya entrén ustedes, entonces, permítanme 1 segundo, entonces aquí aparece bueno, como toda la información, esto es información para temas de compras, pero si les parece antes de entrar con compras, que, eso sí, yo voy a dejar a Andrés si les parece ya en otra sesión para que no esté como tan extenso los dejo a ustedes para que revisen aquí en esta parte qué es lo que buscan.
+¿Qué, qué?
+
+Laura Martinez   1:21:19
+¿Listo de ningún?
+
+Daniel Valbuena   1:21:23
+Juan, te dejo.
+
+Laura Martinez   1:21:23
+Los si le hacemos.
+
+Juan Angel   1:21:26
+¿Listo, pues?
+
+Laura Martinez   1:21:26
+Sí.
+
+Juan Angel   1:21:30
+¿Listo? Pues continuando con lo que menciona Daniel, la idea es que hay que aprovechar la información de.
+Del CRMY todo lo que produce la información del CRM para relacionar, como todos los procesos que que están asociados al mismo, no entonces, como el CRM captura tanta información, también la idea es aprovechar lo que captura el CRM para enlazarlo con la información financiera.
+Y con el proceso de de cartera, porque a la final la venta en realidad se termina cerrando cuando realmente se recauda el dinero, ese es el el, el el cierre del proceso de de de venta y en este proceso nosotros desde la parte financiera hay 2 procesos que nos gustaría incorporar al CRM.
+Que están relacionados con el área comercial y uno de ellos es el informe de ventas y el otro es el informe de de de cartera, que la idea es integrarlo también al al CRM.
+El informe de ventas depende mucho de la información que se captura, uno de los pedidos y 2 de la información, ya transaccional, que se que va llegando de las facturas, o sea, cuando se factura, pues ya se va conociendo cuánto fue la venta cuando llega la factura de compra, ya se va sabiendo cuánto costó realmente el producto.
+Y en el CRM está la la, la información de los pedidos que ya se han ganado pero todavía no se han facturado. Entonces ese informe de venta se compone realmente ya de lo que ha pasado en los pedidos, o sea, de lo que ya se facturó y de los costos asociados a esa factura que salen de los pedidos.
+Y de una parte que son pedidos que son, que están ganados, pero que todavía no se han facturado pero que están los valores en el CRM.
+Y la otra parte, dale.
+
+Daniel Valbuena   1:23:37
+¿Juan, si quieres, permíteme, permíteme, yo les muestro algo? El informe para que ellos entiendan un poco, que es lo que pasa. Ay. ¿Dónde está Laura? Tú me enviaste informe ayer sí no, sí, el corregido.
+
+Juan Angel   1:23:41
+¿Vale?
+Dale, dale, dale.
+
+Laura Burgos   1:23:49
+Sí.
+
+Daniel Valbuena   1:23:50
+A ver, Laura. No sé. Actualmente estamos manejando un informe que se maneja de manera manual, pero permíteme 1 segundo, yo ya muestro acá esto a ver vista previa. Entonces por ejemplo, Laura, a ver espérame 1, segundo, que cargue esta cosa.
+¿Seremos mejor descarguemos más fácil?
+Descargas, aceptar, guardar, reemplazar y metámoslo acá en descargas y acá listo. ¿Entonces Laura? Todos los días me genera a mí este informe es este de acá.
+En este informe básicamente coge comercial pro comercial y va indicando fecha de factura cliente. Fecha, el número del documento es exenta, no es exenta orden de pedido, venta, costo, transporte asociados.
+Costo asociado de lo que es costo. Transporte, radicación de factura, poliza, ESTAMPILLAS Zika. 4 *, 1000, otros utilidad, cierto, eso en la generalidad de todo lo que entró en factura. Esto en lo facturado.
+¿Ahora ella tiene aparte una pestañita que dice que está pendiente por facturar, es decir, esos pedidos también fueron montados, ya fueron entregados sí o no fueron facturados en este caso no, cierto, entonces, en la generalidad que me va a mostrar la meta?
+¿De la cuota mensual, que en este caso, por ejemplo, tenemos 1500 1500 1500 50000000 de pesos mensual, cuánto está pendiente por facturar? Me lo arrastra de acá, pedido montado y que ella puso que esa factura o que ese pedido como tal, llamemos pedido a esto de acá.
+Número de pedido tan que este pedido entra en facturación para el mes de, en este caso octubre, cierto tiene pendiente por facturar tanto en venta.
+Cierto, ya hablamos de otra utilidad, es decir, la venta facturada, más la venta pendiente por facturar me da una venta proyectada con una diferencia de cumplimiento, en este caso de 130000000 de pesos de 291 y 388.1 cumplimiento en venta de tanto ahora en la utilidad en la utilidad, sencillamente decimos perfecto, mire entonces aquí su meta utilidad es tanto.
+La utilidad facturada es tanto que es lo que tienen ellos en esos informes que lo facturado, si hablamos ahorita lo pendiente por facturar, que son todo pedido que dice no ha sido facturado y está en el mes de octubre. Cierto que entra para el mes de octubre, me da una utilidad proyectada de tanto con una diferencia de tanto tanto, tanto.
+Básicamente es eso y entiendo, Juan es no me equivoco, que sería muy bueno que por ejemplo, si en un pedido se me ocurre no sé qué les parece a usted la propuesta en vez Ay, o sea que esta información de aquí aparezca en otra pestaña que se llame que se llame informe o que se llame como se llame.
+Que sencillamente le demos doble Clic al producto. Y aquí, sencillamente me de yo diligencie de manera manual la información de cuánto me llegó la factura, es decir, exacto, este micrófono final. ¿Yo lo tenía, el comercial lo tenía cotizado en 494990, cierto?
+
+Juan Angel   1:27:30
+La y las facturas, sí.
+
+Daniel Valbuena   1:27:37
+Pero al momento de comprar y de generarme la factura, a mí me llega un 500000. Fueron 3 unidades con este IVA y paré de contar el transporte. Yo tenía un transporte de 25000, digamos que la factura del transporte costo 30000 en algunos casos el transporte está inmerso dentro del costo del producto que muchas veces no lo ponemos por estrategia comercial.
+Entonces Laura debería colocar agregar otros otros costos, llámese transporte y eso tuvo un transporte de tanto tuvo un tema de ica de tanto tema de impuestos y ojalá lo pueda calcular de manera aleatoria el impuesto, que es básicamente el ICA, que es lo que tenemos por acá.
+A ver.
+Que es acá el ICA y el 4 * 1000. Esto va atendiendo directamente el valor de la venta.
+Sí, 4 * 1000.
+Ya Juan, tú pones en la fórmula del 4 * 1000 cierto que es la sumatoria de los supongo que es la sumatoria de los costos, y eso le sacas el 4 * 1000 y paré de contar, cierto sería muy bueno, pero me genera duda el tema cuando es una facturación parcial.
+
+Juan Angel   1:28:59
+Sí, lo lo, lo que yo pensaba Daniel era que se vayan agregando las facturas.
+Saca, como cada pedido de realmente, si si si como cada la llave que une las facturas de venta, como las facturas de compra, el pedido que en cada pedido se vayan ingresando los valores de la factura y los valores correspondientes de esa factura, si es de transporte, pues se va añadiendo todas esas facturas para que.
+Lo lo vaya tomando, inclusive no, no sé si es posible que salga la factura y se sube o el XML o o el digital de la factura para que automáticamente extraiga la la información a través de un botón si es posible y lo vaya añadiendo el pedido. Así, tú puedes ver a la final el reporte por de distintas dimensiones, desde las facturas o desde la perspectiva de los.
+De los pedidos y los costos asociados también cuando vayan llegando.
+
+Daniel Valbuena   1:29:57
+¿Okey? Bueno, ahí se los dejo a ustedes en esa parte, ahí se los dejo a ustedes para que lo lo validen.
+
+Juan Angel   1:30:01
+Sí.
+Entonces no sé si ya con esto revisando primero, pues aprovecharía para que Laura, como que explique todo lo que hace para diligenciar el reporte, ya para luego ya centralizar lo que se podría hacer desde el CRM, porque es que la idea de del CRM es que recoja toda la información.
+Y produzca a la gerencia para que se puedan tomar decisiones.
+
+Daniel Valbuena   1:30:30
+Exacto.
+
+Juan Angel   1:30:34
+Entonces Laura, si quieres adelante, pues cuéntanos cómo diligencias todo y de dónde sale la información, porque como ya la información o está en el sistema contable, ya está en el CDM, la idea es que se pueda como generar un mecanismo para que toda esa información se enlace y se puedan producir.
+
+Daniel Valbuena   1:30:34
+Burgos.
+
+Juan Angel   1:30:53
+Los los, los reportes.
+
+Laura Burgos   1:30:56
+Buenos días.
+En el informe de ventas o son de la mayor parte de información sobre lo que está facturado, tanto los costos asociados a esas facturas sale el sistema de Word Office, entonces en Web Office hay como una parte de informes en el cual diariamente yo descargo las facturas.
+Que se realiza ya sea porque es.
+
+Juan Angel   1:31:26
+Si si quieres puedes proyectar Laura, Podrías por favor proyectar y de pronto mostrarles un poco World Office es el sistema contable de la.
+De la compañía.
+
+Emma Castillo   1:31:38
+Ya.
+
+Laura Burgos   1:31:40
+Ellos se ve, sí.
+
+Juan Angel   1:31:41
+Listo, dale adelante Laura. Gracias.
+
+Laura Burgos   1:31:49
+Es en el tema de las ventas.
+Digamos, yo descargo siempre.
+Bueno, hoy todavía no hay facturas 9.
+Descargo tanto las notas créditos que se hacen como las facturas de venta que realizamos, sí.
+Esa información es la que yo paso.
+Al informe que les mostraba ahorita en Excel.
+Digamos, a mí me va a salir esta parte en donde esta columna digamos que es como la más principal, en el que informa que pedido está asociado cada factura. Ese pedido es el mismo que está en Bermeo.
+Acá lo que hago es apartarlo por comercial una vez, digamos este que está acá no aparece el comercial.
+¿Entonces?
+Como usualmente digamos de mi parte, pues ya conozco lo parto, porque el otro informe saca el comercial, más no saca el pedido y el pedido es donde se extraen los costos.
+
+Juan Angel   1:32:58
+Igual del número de pedido.
+Igual del número de pedido se puede sacar el comercial que está asociado.
+En el CDM.
+
+Laura Burgos   1:33:05
+Entonces lo acabo de coger acá. Las facturas por comercial e irlas colocando en las que les mostraba Daniel. ¿Ahí queda licenciado, como cuánta venta han facturado? Un.
+Cada uno.
+Acá en las pestañitas que están cada uno yo les voy colocando a cada uno la información para que les traiga acá esta parte. ¿Cuánto llevan al día el tema con los costos, si no hay como un un informe que descargue acá, sino que me toca buscar ese pedido?
+Y revisar acá las facturas de compra que se han ingresado.
+¿Cuáles están asociadas?
+Es, por ejemplo, digamos este me sale, digamos estas facturas.
+Yo lo que hago es ir colocándole el valor que.
+Que nos colocó el proveedor.
+A esta columna de costo.
+Y las demás que tuvieron acá si hubo algún transporte, pues acá me va a aparecer como el para el transporte.
+¿Con eso de cuál es la utilidad que le está dejando, digamos, ese pedido?
+
+Emma Castillo   1:34:49
+¿El valor del transporte viene en la fractura o?
+
+Laura Burgos   1:34:55
+Pasa, digamos dime.
+
+Emma Castillo   1:34:56
+¿El valor del el valor del transporte y si el valor del transporte viene en la factura o de dónde lo capturan?
+
+Juan Angel   1:34:57
+Pues, preguntabas algo bema.
+
+Laura Burgos   1:35:04
+El valor de transporte también acá en el sistema contable al buscar el documento debería aparecer un transporte asociado. ¿No sé, yo lo paso acá que me dice que usted tiene unos monitores, me indica como que qué producto tiene? Sí.
+¿Debería aparecer alguno que dijera de flete para saber que tiene acá un costo de transporte?
+
+Emma Castillo   1:35:31
+Ah, ya, pero viene en la factura, digamos.
+
+Laura Burgos   1:35:31
+En la mesa, sí.
+
+Juan Angel   1:35:33
+Laura, tú tienes alguna factura ahí como las que miramos ayer, de pronto te las de enviar.
+Porfa.
+
+Laura Burgos   1:35:42
+Sería como un pedido con flete.
+
+Juan Angel   1:35:45
+Sí.
+
+Laura Burgos   1:35:46
+No sé este.
+En 75.
+Por ejemplo, este me va a aparecer acá, digamos con el producto, y este otro ítem que va a aparecer con un flete.
+
+Emma Castillo   1:36:05
+¿Ya la idea es que la idea es que ustedes en el CRM le carguen su factura a cada pedido para que diligencie automáticamente el costo y el flete, verdad?
+
+Laura Burgos   1:36:05
+Es la que nos emitió ya la.
+
+Juan Angel   1:36:16
+Por ejemplo, esa de colbanes tiene muchos, muchos pedidos y en la factura no sé si puedes. Tienes esa factura a la mano. Laura, si de pronto se puede buscar alguna carpeta. Esa factura de Colbanes trae la relación de cada uno de los pedidos a los que está asociado de la orden de pedido. Ahí en ese caso sí se podría hacer lo que.
+
+Laura Burgos   1:36:17
+¿Ajá, OK?
+
+Emma Castillo   1:36:43
+Ah.
+
+Juan Angel   1:36:43
+Esa factura a cada uno de sus pedidos y que quede el transporte de asignado.
+Espera.
+
+Laura Burgos   1:37:15
+Te debo contar, Adrián.
+
+Emma Castillo   1:37:16
+Esta trae costo de flete de una vez.
+
+Laura Burgos   1:37:19
+Tuve años trasunciados.
+
+Emma Castillo   1:37:30
+Sí.
+
+Laura Burgos   1:37:34
+Pero siempre.
+La transportada no se emite una.
+Bueno, digamos.
+Nos emite una con varios varios pedidos, ellos nos unifican casi al final.
+
+Emma Castillo   1:37:56
+Mm.
+Ya.
+
+Laura Burgos   1:38:06
+Entonces, pregunto, para hacer el informe yo tomo la lo que ya he ingresado, logística y demás al sistema contable.
+
+Emma Castillo   1:38:09
+Ajá.
+
+Laura Burgos   1:38:19
+Y en la parte que quedan los pendientes por facturar, ese sí lo tome, digamos de Internet. Yo tengo acá una pestaña en donde están todos los pedidos que en este momento digamos, estarían abiertos acá.
+Y también desde acá se descarga como toda la información de los pedidos abiertos entonces, a medida que todos los días voy descargando eso y voy alimentando con el nuevo pedido acá.
+Entonces yo valido cuáles de los que ya están acá, pues digamos teoría, por ejemplo, no sé el día de hoy facturamos este pedido.
+Entonces, acá, o sea, que está como que me traiga si.
+Este pedido ya está dentro de algunos los comerciales para que me traiga como un valor y pues está como formulado para que busque prácticamente si ya se facturó o no, entonces yo lo voy diligenciando acá que ya se facturó.
+Con esos, pues solamente filtro los que dicen que no, y hago la sumatoria de esos y les colocó a ellos en el tema de pendientes por facturar. Cuántos que le suma los pedos que tienen abiertos, que no se capturaron hasta la fecha.
+Deseamos que en el venegamos en el filtro en donde uno coloca los botones de factura de un total y de más.
+¿Se podría? ¿Cómo descargar cuáles siguen sin facturar para saber cuánto es el valor que suman?
+Desde esa parte.
+
+Emma Castillo   1:40:25
+Está bien.
+
+Laura Burgos   1:40:27
+Únicamente ese día salimos con los parciales, facturamos varios pedidos parciales y van quedando ahí como desde donde se podría colocar. ¿Cuánto fue el valor de que se facturó para que se lo reste al valor que tenía el pedido inicial?
+
+Juan Angel   1:40:40
+De esa factura.
+
+Laura Burgos   1:40:50
+Y que pues los costos correspondan a los productos que se facturaron en su momento.
+
+Emma Castillo   1:40:56
+Sí, digamos es atrás, así se tiene que sí es atrás. Así se tiene que llevar.
+
+Laura Burgos   1:40:56
+Sobre ese.
+
+Emma Castillo   1:41:01
+Y tendría que haber un respaldo de.
+¿De por pedido factura pago cómo registran los pagos? ¿Bueno sí registran pagos, verdad? ¿Aquí o sí van a registrar pagos en el CRM, verdad?
+
+Juan Angel   1:41:12
+Igual sí.
+Esa es la idea.
+
+Emma Castillo   1:41:19
+No podré hacer el cruce.
+
+Juan Angel   1:41:20
+Sí. O sea, aquí, aquí le oficie Laura técnicamente por lo menos, o sea al nivel de ventas, es un pedido. O voy a tener facturación parcial, esa facturación parcial va a estar asociada a distintas facturas y entonces va a haber un pedazo que va a decir ese pedido tiene una factura parcial con un valor que ya en cierta manera es una venta facturada. Pero hay un pedazo que está pendiente por facturar y.
+
+Emma Castillo   1:41:26
+Mhm.
+
+Juan Angel   1:41:43
+¿Eso dependiente por facturar también hay que asociarle, no sé, pero Laura, tú me DAS? Si si si si sucede eso. Y es que hay unos que se facturan como hasta el mes siguiente y hay y hay un pedazo que se queda en ese mismo mes.
+
+Laura Burgos   1:42:01
+Sí habría que o sea el pedido, habría que asociarle de pronto alguna casilla en el que uno les puede colocar como mes de facturación.
+
+Juan Angel   1:42:11
+Es de facturacion.
+
+Laura Burgos   1:42:13
+Para cuando quede en el otro, pues no se lo tenga. Encuentra dentro del informe del mes.
+
+Emma Castillo   1:42:20
+Ya.
+
+Juan Angel   1:42:22
+Y como ese pedido va a tener un Estado.
+El Estado también va a influir en.
+
+Emma Castillo   1:42:28
+Sí, es cierto.
+
+Juan Angel   1:42:29
+En en donde aparece.
+
+Emma Castillo   1:42:31
+Puede tomarlo en cuenta o no en el en el reporte.
+¿Nosotros necesitaríamos las plantillas o, pues qué información necesitan en los reportes, verdad? Si quieren la plantilla vacía, con un par de ejemplos, así inventados, si ustedes quieren, pero para que el reporte que les demos sea parecido a lo que ustedes ya están viendo.
+
+Daniel Valbuena   1:43:02
+O K nosotros te enviamos eso si quieres laurito enviarle en enviarle uno como un borrador o algo así.
+
+Emma Castillo   1:43:08
+Sí, ajá. Como borrador, está bien.
+
+Daniel Valbuena   1:43:12
+Listo desde la parte financiera que más necesitan.
+
+Juan Angel   1:43:18
+¿Si quieres, ahora hablemos del informe de de cartera o no sé, Laura, ya terminaste? ¿Este este reporte o?
+
+Laura Burgos   1:43:19
+O K.
+
+Juan Angel   1:43:27
+Eso entonces, ahora hablemos del informe de de de cartera, como ya también tenemos la información de las.
+De las facturas en cada uno de los pedidos.
+Hay un reporte de cartera que igual la obra descarga un informe de la contabilidad donde están todas las las facturas pendientes por recaudar. ¿Entonces, cuál sería mirar un mecanismo para incorporar ese ese reporte o ese informe en el CRM para que se gestionen uno?
+¿Unas notificaciones a los clientes de forma semanal donde se establece, oiga, usted todavía no me ha pagado? Le recomendamos el pago, salga por correo o por WhatsApp. Dependiendo de la información que se capture en el CLM que les pueda escribir un correo o una notificación por.
+
+Emma Castillo   1:44:07
+Ajá.
+
+Juan Angel   1:44:23
+Por por por WhatsApp.
+Y que se pueda como ir alimentando cada vez que hay un recaudo, que eso pues llega al Banco, y Laura lo cruza. Se puede decir como esta factura o este pedido ya se recaudó un botón, también donde se pudiese ir alimentando y así eso pueda decirle también al área comercial, de cierta manera que ese pedido ya surtió todo el proceso hasta que se recaudó.
+¿El el dinero entonces no sé, Laura, si puedes compartir ese algún reporte de cualquiera de las semanas de de cartera?
+Para comentarles cómo con mayor detalle.
+
+Emma Castillo   1:45:04
+Eso lo ingresan, me imagino que en su sistema de contabilidad, verdad, ahí lo cargan como manualmente.
+
+Laura Burgos   1:45:10
+Desde ahí hay una parte en donde puedo descargar todo lo que está pendiente por pagar, digamos, de los clientes.
+
+Juan Angel   1:45:11
+Se se descarga.
+
+Emma Castillo   1:45:21
+Lo de los pagos, digamos lo que lo que les pagan, ustedes lo cargan a este sistema manualmente.
+
+Laura Burgos   1:45:28
+Ah, no, no. Nosotros lo que nos pagan, lo que hay es en la en Google Office.
+
+Juan Angel   1:45:36
+Tú, tú nos estás hablando de más de los pagos que hacemos a los proveedores o de los recaudos que hacemos de los clientes.
+
+Emma Castillo   1:45:42
+¿De los recaudos que hacen de los clientes, ustedes los ingresan a su sistema de Word Office?
+
+Laura Burgos   1:45:46
+Por aquí sí.
+
+Juan Angel   1:45:48
+Sí, mira ahí, ahí queda la factura apenas se emite la factura, la factura, o sea, cuando se emite una factura, la factura automáticamente lo manda como a a una cuenta por cobrar. Y esa cuenta por cobrar está pendiente por recaudar hasta que Laura lo vuelve a cruzar y decir ya nos entró el dinero. Sí. Y entonces Word Office lo que hace es generar un reporte donde dice todo lo que está pendiente por.
+
+Emma Castillo   1:46:04
+Gracias.
+
+Juan Angel   1:46:10
+Por recaudar.
+Y a ese reporte, pues la idea sería que desde la contabilidad se pudiera como subir esa información al CNM para que en vez de que apareciera en Excel apareciera como la bandeja de como los correos de los mensajes de cada una de las líneas que estamos viendo en pantalla, que son las facturas.
+
+Emma Castillo   1:46:32
+Sí.
+
+Juan Angel   1:46:33
+Como ya en el pedido, tenemos asociada la las facturas asociadas a cada pedido, también eso se pudiera relacionar con el pedido y que a medida que aquí ya Laura lo que hace es a medida que van pagando la lo va seleccionando en un color, pero entonces ahí la idea sería que a medida que van pagando uno pueda seleccionar con un botón.
+
+Laura Burgos   1:46:40
+Nada más.
+
+Juan Angel   1:46:57
+Ya fue recaudado en tal fecha.
+
+Laura Burgos   1:46:59
+¿Pero, pero quién sufriera decir?
+
+Juan Angel   1:47:01
+Y ya quedará en la bandeja.
+
+Laura Burgos   1:47:04
+De pie de.
+
+Juan Angel   1:47:04
+¿De de de ya de cara, como a lo que recaudamos del dinero, este archivo tiene unas columnas adicionales que le añadimos que revisa el riesgo de la cartera, es decir, si la cartera no sé, tiene 5 días de vencido, es de riesgo bajo? Entonces entonces le manda una notificación como un poco amiga, más amigable, como al al cliente, recordándole oigas.
+¿Su obligación está vencida?
+Le recomendamos que nos haga el pago hasta este viernes.
+Si la cartera está vencida del día 5 hasta el día 15, es una cartera de riesgo medio, donde nuevamente le enviamos la notificación nuevamente su cartera. ¿Está esta, esta factura está vencida? ¿Por favor? Le recomendamos el pago antes de hasta antes de este viernes.
+Y ya si es mayor a 15 días se empieza a a convertir en una cartera de riesgo alto, donde le le decimos como por o sea, ya han pasado 15 días. ¿Su cartera sigue vencida? Recuerde que el pago no oportuno de esta de de de su obligación, puede derivar en intereses moratorios.
+
+Laura Burgos   1:47:58
+Que me voy a almorzar.
+Ya está.
+
+Juan Angel   1:48:15
+Como para mandarle como una notificación por niveles a al al al cliente. Entonces la idea es eso, lo hacemos por correo, lo que pasa es que lo hacemos a través de una macro de de Excel para hacerlo más rápido, pues la idea ya es que uno seleccione como. O sea, calcule el riesgo de la cartera.
+Y la auxiliar administrativa seleccione las las facturas a las cuales tiene que salir el correo.
+Ahora bien, también me falta un pedazo antes de las de riesgo bajo y es la de recordatorio. Hay una cartera que se vence en el transcurso de esa semana, entonces también si enviamos una notificación recordándoles que su, su, su cartera o su factura está próxima a vencer, que le recordamos el el el pago oportuno de la misma. Entonces no sé. Laura, si puedes mostrar el.
+
+Laura Burgos   1:48:47
+¿Que no es que?
+
+Juan Angel   1:49:05
+El otra vez, el archivo, por favor y en la parte derecha.
+
+Laura Burgos   1:49:13
+¿Ok?
+
+Juan Angel   1:49:13
+Te puedes pasar en en cartera, en la hojita de cartera, por favor, gracias entonces, si ustedes pueden ver en la en la este archivo.
+Pues márquese a la derecha, por favor. Sí, entonces ahí, ahí tiene el riesgo la notificación y las observaciones de lo que le pues le están contestando actualmente a la auxiliar de administración o lo que de pronto le llega también a la auxiliar financiera que Laura sobre qué está pasando con la respuesta del.
+
+Laura Burgos   1:49:25
+No sé, el fin un final.
+
+Juan Angel   1:49:44
+Del cliente entonces, la idea también es incorporar este archivo dentro de este dentro del CRM.
+Después de devolver la hora por FA. Y si ustedes ven al final cuando van pagando, ella lo va coloreando en color azul y en pagado le vamos poniendo sí o no. Y también tenemos un un mini reporte en la hoja de resumen.
+
+Laura Burgos   1:50:03
+Para.
+¿Para que me vea?
+
+Juan Angel   1:50:10
+¿Y esto hacer la hoja de resumen, dónde podemos saber qué cliente, o sea, según la cartera, si es alto, medio o bajo? ¿Ya sabemos de esa cartera que se pretende recuperar esa semana, cuánto cuánto, qué? Cuánto dinero se ha recaudado y cuánto está pendiente por recaudar y se puede filtrar también por vendedor.
+
+Laura Burgos   1:50:12
+Los de temporal temporal.
+
+Juan Angel   1:50:34
+Entonces no sé, ahora sí le puedes dar a actualizar.
+Entonces, allá se puede ver quién ha pagado y qué cliente ha pagado y cuál no ha pagado.
+
+Laura Burgos   1:50:48
+¿Pero me está pasando?
+
+Juan Angel   1:50:50
+Esto no.
+No sé ahora si me faltó algo adicional de este reporte.
+
+Emma Castillo   1:50:57
+En Word Office ustedes pueden descargar un reporte de los pagos que se hicieron esta semana del recaudo que tuvieron esta semana, por ejemplo.
+
+Laura Burgos   1:51:10
+Nosotros sacamos es el reporte de lo que está pendiente, que salíamos todo, todas las facturas que hay por cada cliente hasta digamos la fecha, sí lo digamos, los pagos que se recibieron esta semana, diariamente hacemos la conciliación.
+
+Juan Angel   1:51:15
+De lo que está pendiente.
+
+Laura Burgos   1:51:29
+Bancaria y eso sí sabes, como ya una, una más manual de que dependiendo el movimiento que que ingresó o el pago que ingresó entonces ya buscamos acá sí era unos los que estaban pendientes en cartera vencida y los vamos resaltando esa parte. Digamos que si ya es manual.
+El cruce.
+
+Emma Castillo   1:51:51
+Es que como recuérdense este recuérdense que en el CRM ya vamos a tener esas facturas cargadas, entonces, en lo que ajá.
+
+Juan Angel   1:51:51
+Mira, Emma, sucede esto.
+
+Laura Burgos   1:51:52
+Contra el informe.
+
+Juan Angel   1:51:58
+Sí, lo que
+lo que sucede es que mira está este reporte, cierto, un cliente hace el pago, entonces el pago se ve en el movimiento bancario. Laura tiene un archivo con todos los movimientos del banco y a medida que ella va revisando que que dinero entró de ese movimiento, empieza a mirar de estas facturas. Hay veces que los clientes le envían, como la información del del comprobante de pago, hay veces que no, entonces ella empieza a mirar.
+
+Emma Castillo   1:52:04
+Ajá.
+Sí.
+
+Juan Angel   1:52:25
+¿Qué cliente es y a qué factura puede corresponder ese valor? Y aquí es ya cuando ya ella lo confirma, lo pinta en azulito y ahí vamos a ver lo que nos pagó ese cliente. Luego ella en la contabilidad, simplemente cancela esa cuenta por por cobrar del del cliente. Entonces la idea es que en el CRM también se refleje eso que cuando pague un cliente en vez de pintarlo en azul.
+Se le puede decir como este cliente ya recaudó el dinero y ya sepamos que ese pedido ya quedó recaudado, o sea, pedido factura recaudo y se cierra el ciclo.
+
+Emma Castillo   1:52:57
+Sí.
+Sí, solo para saber lo que pasa es que para nosotros era como más sencillo en el sistema que ustedes subieran los pagos y que se hicieron cruce con las facturas que ya tenemos, pero si lo que van a subir es un reporte de las cuentas que ya cerraron, habría que ir a buscar la factura para anularla y dejar la otra pendiente. O sea, digamos que esa lógica es la que.
+¿Tendríamos que ver cómo empalmarla para que no tengan que hacer el marcado manual, verdad? Sino que fuera algo más por lote que ustedes puedan subir un Excel y el sistema, interpretarlo YY marcar, verdad automáticamente.
+
+Juan Angel   1:53:34
+Tocaría subir el archivo de la conciliación bancaria, pero no sé si pueda como si sea algún error que subas como ese archivo, o sea, los movimientos de la de la factura, y eso luego lo cruce.
+
+Emma Castillo   1:53:46
+Sí, esa parte.
+
+Juan Angel   1:53:46
+Pero igual, pero igual también sería.
+Sería que se alimentara como de de la conciliación bancaria para ir cruzando.
+
+Emma Castillo   1:53:50
+Abrir aquí.
+Podría ser igual. Necesitamos una copia de este también por si nos pueden compartir un demo de este archivo para que nosotros podamos hacer pruebas y también tener el formato listo para que ustedes lo puedan descargar.
+
+Juan Angel   1:54:02
+Ya.
+
+Laura Burgos   1:54:11
+O K.
+
+Juan Angel   1:54:12
+Sí, no.
+O sea, en el sí. O sea, enviamos también como uno de los reportes de cartera, si no lo autorizas listo.
+
+Daniel Valbuena   1:54:17
+Sí, sí, sí, por favor, por favor. Envíelo sí.
+Ven con un borradorcito, por favor.
+
+Juan Angel   1:54:23
+Está.
+
+Daniel Valbuena   1:54:25
+Pues no sé si les parezca, es que llevamos 2 horas de sesión Emma para, o sea hasta acá es lo que tenemos hasta pedidos de ahí te voy a compartir pantalla, te voy a dar como una abrebocas porque es que Andrés precio yo no lo agendé para esta reunión, pero te hará una abrebocas de cómo es el tema de la de la generación de la orden de compra.
+
+Emma Castillo   1:54:41
+¿Eso?
+
+Daniel Valbuena   1:54:46
+¿Entonces, ehm, Ah, perdón, hay algo más por parte de ustedes? Justo me que pega con ustedes, Juan y Laura.
+
+Juan Angel   1:54:57
+Perfecto.
+
+Laura Burgos   1:54:57
+En el momento creo que no.
+
+Daniel Valbuena   1:55:00
+¿Juan, quieres decir?
+
+Juan Angel   1:55:01
+No, o sea, este sería como el inicio de muchas más cosas, pero, pero creo que hasta aquí sería el alcance de Daniel. ¿No sé, tú lo ves? Como solo el informe de ventas y el informe de cartera y las notificaciones del informe cartera.
+
+Emma Castillo   1:55:05
+Ajá.
+
+Daniel Valbuena   1:55:10
+¿Sí, está bien, sí, la idea es que qué pasa? ¿Estaba hablando yo con ellos? La idea es que no está incluyendo la propuesta, pero la idea es que después de que termino este desarrollo podamos nosotros incluir dentro de esta misma plataforma que nos llegue la factura incluir un módulo, llámese por acá o en donde ustedes crean, vean en el diseño.
+Un módulo de llegó la factura del correo electrónico de de facturación, llegó Escaner PSTY, empieza un flujo de facturación de facturas por pago. Sí. O sea, a esta plataforma. La idea es meterle y meterle y meterle para que todo quede acá y que esto sea muy práctico si me entendés, pero pues eso no está. Entro del negociado entonces no, pues lo charlaremos después, vale.
+
+Emma Castillo   1:55:46
+Sí.
+Sí, sí, sí.
+
+Daniel Valbuena   1:55:59
+Ahora, fíjate que aquí dice, por ejemplo, cantidad 10, y esos 10. Es eso lo que te cuento que está mal. Son 10 monitores, o sea, fueron comprado 10. Aquí la idea es que aparezca los productos pendientes por comprar. ¿Vale? ¿Entonces, si ya compro aquí debe aparecer cero ahora qué pasa, entonces? ¿Andrés, qué hace Andrés? Llega, entra acá y dice, perfecto yo.
+
+Emma Castillo   1:56:13
+Ajá.
+
+Daniel Valbuena   1:56:24
+Veo que usted tiene cotizado con impressystem en este costo, Andrés entra a negociar, dice Ta ta, TA. Lo consiguió en este caso, sus monitores con impressistem. ¿Entonces, Andrés, qué hace la aquí? Selecciona el producto al cual va a generar la orden de compra, le da opciones y generar orden de compra.
+
+Emma Castillo   1:57:11
+Sí.
+
+Daniel Valbuena   1:57:12
+Cuando él genera bien, permíteme, yo hago aquí una cosa de prueba, para que ustedes vean a ver.
+Los suministros para que de la cotiza, un rapidito periodo de prueba.
+¿La vigencia de 5 días del calendario, nos vamos por acá, digamos que un producto cualquiera, digamos qué es esto? Digamos que es esto margen 8 Chan, Chan Chan bla, bla, bla. Tiempo de entrega. Fíjate que si yo no pongo esto no me deja porque debo especificar, o sea, son datos obligatorios.
+Digamos que esto es acá sí, ta, ta, ta, el proveedor. La idea es no, no es obligatorio porque el proveedor es que que no están creados. Vemos que esto es con impresisten listo le doy guardar cuando le doy guardar, le va a seleccionar. Escojo le digo, generar pedido, generar pedido se fue el pedido.
+Aquí ya me pasa, aquí la condición desaparece el otro módulo y aquí me dice Este pedido corresponde a esa cotización, esta y esa cotización ya desaparece el módulo cotizaciones aquí voy a Diligenciar la información de prueba, si te das cuenta que sí me deja ahí Diligenciarla, te voy a colocar aquí, prueba, prueba, prueba, prueba, prueba.
+
+Emma Castillo   1:58:27
+Sí.
+
+Daniel Valbuena   1:58:32
+¿Datos bloqueados le va a dar guardar? ¿Listo, le va a dar aceptar, aquí ya me va a aparecer el pedido, vamos aquí a pedido pedido de prueba, aquí le va a dar a seleccionar y va a decir listo, entonces ahora sí yo lo tengo cotizado con impressistem listo, entonces voy a generar orden de compra y va a decir yo lo conseguí, sabes? ¿Según quién con MPS?
+Listo, le voy a generar la orden de compra. El mayorista MPS se ha generado la orden de compra número tan y aquí aparece perfecto mayorista el nombre que del ejecutivo, en este caso a quien va dirigida la cuestión, que es el nombre del ejecutivo, nely Zambrano. Vamos a meternos a doble Clic y aquí yo digo, bueno, voy a comprar una unidad, si es si el pedido.
+¿Como tal de donde venimos es una unidad, no puede permitir comprar 100 unidades, que eso me lo está permitiendo en este momento sí es una unidad y pared de contar en cuánto lo voy a comprar, lo voy a comprar en millones 800 porque consiguió un descuento, vale en qué moneda? Porque puede que yo lo compre en dólares.
+
+Emma Castillo   1:59:27
+Ya.
+
+Daniel Valbuena   1:59:38
+¿Pesos o?
+
+Emma Castillo   1:59:38
+Ah, ya.
+
+Daniel Valbuena   1:59:41
+Te cuento debe ser en modo de lista, no que yo pueda hacer esto no, sino que me permite seleccionar más, no diligenciar la garantía del producto. Cuando me van a entregar, yo que este producto se lo van a entregar, por ejemplo, ya el martes que el lunes es festivo y pare de comprar aquí básicamente hasta ahí llega la orden de compra ya de ahí para allá es el proceso que yo desconozco.
+Que, eso sí, lo tiene ahí ya entra Andrés a decir, pedí uno, ingresó una unidad con el número de factura FEP 1250, ta, ta, ta, ta, ta, que es el número de la factura del proveedor. ¿Sí, cuántas me ingresaron? Me ingresaron una por y esa factura le digo perfecto, le doy guardar.
+
+Emma Castillo   2:00:20
+Sí.
+
+Daniel Valbuena   2:00:28
+Y aquí le da a imprimir y es el formato de la orden de compra se la manda, ta, ta, ta y pare de contar. Usted me tiene que.
+Esta es la garantía del producto, se nombre de parte la cantidad de costo unitario aquí igual, costo unitario el IVA en porcentaje subtotal.
+De por cada ítem. ¿Aquí, como tenemos solamente una nuevamente subtotal, el IVA y el total y pare contar sí, aquí ya entra el módulo de Andrés, que la verdad, cómo lo agendé? Entonces no, no te podía decir mucho, pero Andrés, yo entiendo que descarga un informe de los productos pendientes por generar orden de compra.
+Todo producto, aquel que está que está pendiente por generar de compra. Él llega y descarga ese informe. Ay, es que la verdad, ahí sí me tocaría con Andrés, pero más, o sea, en el nivel de informes lo podemos revisar ya con él. A nivel operativo podríamos llegar como hasta acá y aquí él llega a tratar y entiendo que es que la verdad desconozco o sea aquí, si yo yo no me meto mucho en esa en esa vuelta, pero.
+Hasta aquí llegaría como el tema de orden de compra y ya cuando por ejemplo, la orden de compra ya fue cargada, la aquí en la orden de compra se le carga, el se le carga el que se le carga, la la la factura por parte del cliente ya todo el proceso que o K Andrés lo que le da es cerrar.
+Entonces voy a cerrar esta orden de compra y la cierro listo, no la no la cierro ya cerro el proceso ya el pedido quedó check y aparece cerrado. Ves y cuando y este proceso lo hace Andrés y está en tema de los filtros, Andrés es la persona encargada de cerrar los pedidos en el momento en que ya fueron.
+
+Emma Castillo   2:02:06
+Sí.
+
+Daniel Valbuena   2:02:16
+Entregados en su totalidad, facturados en su actualidad. Revisar que toda la documentación esté adjunta de manera correcta respecto al pedido. Por ejemplo, si es una licencia que yo le vendí a tdx de un licenciamiento. Autocad de Adobe que esté el certificado adjunto de Adobe donde aparezca el VIPY tan, tan, tan bueno. Él llega y revisa cuando ingresa.
+¿Y dice, perfecto ya todo el tema está o K le va a dar cerrar, no anular sino cerrar? Vale aquí casillas, que en efecto mira que son son bolas que no realmente no funcionan para nada, que es el tema de dar por perdido, o sea, un pedido no se da por perdido, se anula o se cierra porque ya por perdido es una cotización.
+
+Emma Castillo   2:03:01
+¿Ah o K?
+
+Daniel Valbuena   2:03:02
+Entonces en este caso lo voy a, digamos, a anular.
+Y el por qué y voy a colocar que esto lo anulo porque es una prueba.
+¿Ok?
+¿Ves?
+Eso es del módulo de orden de compra y de ahí va el tema de los filtros. Mira entonces lo el filtro de pendientes por facturar, lo mira Estefani y Laura, que es todo aquel pedido que cumple con la norma, con los parámetros para poder facturar pendientes por cerrar, es va Andrés todo pedido, aquel aquel que que esté facturado totalmente.
+Y entregado totalmente, que cumpla con esas 2, con esos 2 cositos de en pedido le van a aparecer a él para que él, porque es que, por ejemplo, si hay un pedido entrega parcial, pues a él no le tiene que aparecer porque él es quien cierra cuando ya el proceso terminó. Entonces sí está facturado totalmente y entregado totalmente.
+En ese filtro, ahí le deben aparecer los pedidos en este filtro, que cumplan con eso.
+¿Ves? Actualmente Fíjate esa vaina no está funcionando, o sea, parecen, por eso todo mundo está con filtro abierto acá y mirando a ver cómo cómo hace, porque pues si te das cuenta la el flujo que nosotros mandamos a hacer, no, pues no funciona, no está funcionando y nos toques, les toca entrar a adivinar, a ver, que sí, que no.
+
+Emma Castillo   2:04:24
+Sí.
+Sí, es cierto.
+¿Está bien entonces lo que vamos a hacer ahorita es que vamos a retomar toda la información que recabamos ahorita del proceso comercial de lo que es lead, cómo avanza el lead? Bueno, lo de las, el contacto con el lead para darle seguimiento de las cotizaciones, vamos a ver un poco lo del tema financiero de las compras.
+Y probablemente la otra. La otra semana agendamos la sesión para terminar de ver el tema de las de esta parte de allá de los pedidos para ver digamos los reportes y lo que haga falta. Y para terminar de engranar los procesos.
+
+Daniel Valbuena   2:05:02
+Sí.
+¿De una si la idea la idea cuál es? La idea es que, o sea lo que te digo ya. Terminemos esta fase de de lo que tenemos contratado y después de esto, ojalá. Ojalá tengamos el flujo para para seguir avanzando y es meter lo que decíamos. Listo. Me interesa mucho digitalizar todo el tema del flujo de pago de la factura de flujo de aprobación hasta el pago, eso, la idea es que esté.
+
+Emma Castillo   2:05:12
+Ajá.
+
+Daniel Valbuena   2:05:28
+¿La plataforma y ahí le vamos metiendo vainas si me entiende, sino que la plataforma en general que pues que soporte todo ese tipo de de de adiciones que le vamos a meter si me entiendes, o de aquí desde ya ustedes planifiquen como una plataforma, como que soporte a nivel técnico todo esto?
+
+Emma Castillo   2:05:30
+Bien.
+
+Freddy Rincones   2:05:40
+Sí.
+Sí, lo importante es tener claro el los procesos los pasitos que tiene cada cada flujo, cada cada tema de cada módulo, todo muy bien documentado y eso ya nos permite cambiarlo, mejorarlo, automatizarlo. O sea, primero tengamos la base y con esa base de ahí para arriba el producto lo vas controlando tú. O sea llamo producto la la plataforma y en adelante el incremento.
+
+Emma Castillo   2:05:59
+Ajá.
+
+Daniel Valbuena   2:06:02
+Claro.
+
+Freddy Rincones   2:06:09
+En todas las funcionalidades la vas mapeando, de acuerdo a la necesidad que tengas en en tu operación, en tu día a día, y así es que va evolucionando, porque primero hay que primero que nazca ya cuando sea algo vivo que está andando, de ahí en adelante la evolución es la que tú requieras y es mucho más flexible porque vas a poder sea con nosotros o no, Dani, vas a poder hacerlo de una forma.
+
+Daniel Valbuena   2:06:16
+Total.
+
+Freddy Rincones   2:06:34
+Mucho más automática y rápida, obviamente necesitas a alguien que te desarrolle, pero tu arquitectura va a quedar de una manera que tú lo administras y tú vas a poder hacer despliegues automáticos y cosas siempre y cuando tengas el equipo correcto, pero igual la idea pues es estar de la mano con nosotros en todo el flujo, porque también algo importante es esto que acaban de hablar acá va a generar documentación de hecho.
+
+Daniel Valbuena   2:06:35
+Total.
+Súper bien.
+Sí, sí, total.
+
+Freddy Rincones   2:06:58
+¿Va a generar algo que para nosotros y para ti se va a llamar backlog si ese backlog son unas historias de usuario, cada historia de usuario va por módulo, va por proceso, eso depende de de como documenté Laura, pero entonces se va a hacer la lista de trabajo? Esas historias de usuarios van a tener un criterio de aceptación. Ese criterio de aceptación, yo te lo voy a pasar a ti el documento.
+O a la persona dueña del proceso y ese criterio de aceptación, dice Bueno, la expectativa es que esto muestre peras verdes y en el desarrollo, cuando nosotros ya le demos el la aplicación para que ustedes la prueben. Eso tiene que mostrar peras verdes. ¿Listo? Ese es el objetivo, entonces, de esa manera va a ser la dinámica aquí en adelante.
+
+Daniel Valbuena   2:07:37
+Claro, claro.
+
+Freddy Rincones   2:07:41
+Y así va a ser siempre. En realidad, nosotros trabajamos de esa manera para todo listo, entonces falta.
+
+Daniel Valbuena   2:07:47
+¿De una es que sabes qué me gustaría, por ejemplo? También, por ejemplo, Ana, que yo tengo una data a la mano y es por ejemplo, compré un inventario de hp de Dell. Entonces venga, yo necesito descargar un informe de a quién yo le he cotizado Computadores Dell.
+¿Pues le mando una campaña de sus clientes y como tengo el informe de los contactos, sencillamente llego, le digo, le digo mandar esta campaña de sus clientes, porque yo sé que ellos porque pues para qué le voy a mandar algo de Lenovo o de HP, alguien que es una marca totalmente diferente? ¿Sí me entiendes?
+
+Freddy Rincones   2:08:25
+O K, o sea, ya te estás considerando bueno, pero eso sí, hay una funcionalidad que te puedo.
+Como te digo, que te puedo desarrollar, claro, porque el envío de campañas a ver el análisis de hecho hasta lo podemos hacer con con inteligencia artificial, tú puedes tener en tu plataforma un chatbot. Él analiza, tú le preguntas exactamente textualmente lo que me acabas de decir. Él man analiza toda la base de datos y te arroja un reporte de quiénes son los clientes entonces.
+Este reporte habría que esos números de esos clientes incorporarlos en alguna funcionalidad de campaña que se desarrolle. Sí de WhatsApp o algo así y se mandan cuando se mandan campañas por WhatsApp para la integración que tú tienes es que es por meta. Api se mandan por mediante plantillas que tienen que ser aprobadas por WhatsApp por meta y 6.
+¿Se desarrollan las plantillas y se ejecutan los el tema masivo, pero inicialmente lo que yo tengo entendido es el la atención, pero puedes llegar a eso sí o sea eso la base primero y ahí wow, en serio? De ahí el. La plataforma se ajusta mucho más a los requerimientos de ustedes. A diferencia, cuando compras un SAS.
+Que te tienes que ajustar es a cómo funciona la SAS. Entonces esa es la diferencia y el valor agregado que generan estas plataformas a la medida, pero sí, la respuesta es sí, sí se puede. Y ya cuando le metas más y a esto evoluciona porque seguramente hay un chico en tu operación.
+
+Daniel Valbuena   2:09:47
+Claro, tal.
+
+Freddy Rincones   2:10:05
+Por ejemplo, el de logística, el de logística hace un proceso repetitivo por cada 50 equipos que le lleguen, por ejemplo, nosotros hay que analizar cómo es el proceso repetitivo dentro de la plataforma, que tal vez lo podamos automatizar y así se va evolucionando. ¿Pero digamos que el día a día te va a ir dando esa cantidad de producto que tú vas a poder incrementar, entonces tú lo vas anotando?
+Y te vas planificando esto sí esto no. Esto lo para el tercer trimestre o o lo que sea, de ahí en adelante es es tiempo YY pues necesidades que vayan saliendo para que lo vayas ajustando y todo con el objetivo de mejorar tu operación de que sea más eficiente, de atender más clientes de.
+De que tengan la capacidad y la fluidez con el mismo recurso humano que tienen hoy en día.
+
+Daniel Valbuena   2:10:54
+Listo, súper bien.
+¿Entonces, cómo quedamos entonces?
+
+Freddy Rincones   2:10:57
+No, bueno, gracias, gracias.
+Quedamos en Ay, llegó Laura, Hola Laura.
+
+Laura Martinez   2:11:01
+Dani.
+Estoy aquí, estoy aquí estoy Danny. Entonces, nada. Yo creo pendiente que me Confirmes, Porfa, como tienes la agenda el miércoles para yo poder cuadrarla también con el equipo y lo que te decía, pues Freddy. En resumen y la idea es que pues ahí yo te pueda presentar y lo que hemos construido hasta el momento en flujo para nosotros es de flujo, es súper importante para darnos como una visual más detallada de cómo se comportan.
+
+Daniel Valbuena   2:11:07
+Dime.
+
+Laura Martinez   2:11:30
+El proceso de identificar roles, identificar fases que de pronto no vimos mientras lo hacían y ya con eso nosotros posteriormente eso se construye el listado el backlog que era lo que te comentaba Freddy, entonces esa es la siguiente fase que vamos a ir desarrollando, la idea es que vayamos construyendo, pero en primera instancia pues que me confirmes la agenda.
+
+Daniel Valbuena   2:11:49
+Listo perfect.
+
+Laura Martinez   2:11:50
+¿Listo?
+
+Freddy Rincones   2:11:52
+Súper, no. Lo que se nos llega es documentación. Mientras más rápido tengan el tiempo para para asignarnos, sí para levantar toda la información que se tiene que levantar más rápido. Empezamos con el desarrollo, recuerda. Como te dije, a partir de que ustedes tengan el la documentación aprobada.
+Nosotros empezamos fábrica YY estoy seguro que que podemos llegar a a la meta de tenerlo esto en un mes o menos listo, pero tenemos que movernos. Con la aprobación de los documentos y estar seguro de lo que apruebas. Dani, eso también es muy importante. O sea, lean bien los documentos y se aseguran de que.
+
+Daniel Valbuena   2:12:21
+¿Listo?
+
+Freddy Rincones   2:12:32
+¿Ustedes leyeron y vieron y dice que van a eso? La expectativa de los criterios de aceptación es que vamos a tener peras verdes porque eso es lo que vamos a probar. Cuando nosotros finalicemos el desarrollo listo.
+
+Daniel Valbuena   2:12:44
+Bien, bien, perfecto, listo.
+
+Freddy Rincones   2:12:48
+No, bueno no, no más.
+
+Daniel Valbuena   2:12:48
+Yo creo que guap guape con todo, muchas gracias.
+
+Laura Martinez   2:12:49
+Gracias.
+Gracias.
+
+Freddy Rincones   2:12:52
+Bueno, feliz día chao. Gracias que estén bien.
+
+Emma Castillo   2:12:53
+Gracias, feliz tarde.
+
+Daniel Valbuena   2:12:54
+Vale, bye bye.
+
+Juan Angel   2:12:57
+Hola, feliz día.
+
+Laura Martinez detuvo la transcripción

@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--browser", "chromium",
+        "--headless",
+        "--isolated",
+        "--viewport-size", "1920x1080"
+      ]
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--project-ref",
+        "jmevnusslcdaldtzymax"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "sbp_d01c4f7f58e0cf420318b4614f59872aa6267323"
+      }
+    }
+  }
+}

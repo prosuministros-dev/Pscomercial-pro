@@ -1,0 +1,621 @@
+Transcript
+October 1, 2025, 7:04PM
+
+Daniel Valbuena   0:03
+Si quieren les muestro cómo funcionamos actualmente, o sea que es lo como los requisitos que nosotros tenemos aquí, que son fundamentales, y ustedes me dicen si en efecto se puede hacer el otro lado.
+
+Freddy Rincones   0:17
+Dale.
+
+Daniel Valbuena   0:18
+Dale listo entonces.
+Pueden ver la pantalla.
+
+Freddy Rincones   0:24
+Sí.
+
+Laura Martinez   0:24
+Nani.
+
+Daniel Valbuena   0:25
+Listo, perfecto. Esto de acá es el tema de permisos, ya les mostraré para que funciona actualmente aquí me debería aparecer todas las solicitudes pendientes según el filtro, todo lo que está pendiente, pero el filtro está mal porque me aparece todo.
+Si no lo han arreglado, me toca a mí adivinar qué es lo que está pendiente y qué es lo que no. Ahora todo lo que me llega a mí por la página, los los que todo lo que era los, todo lo que llegaba al WhatsApp había anteriormente el chatbox y el chat box hacia unas preguntas, cierto, en el de la empresa todo el tema y automáticamente se me conectaba la herramienta.
+Me me aparecía dentro de un pendiente para asignar anteriormente, antes de que ellos dejarán de espérame. 1 segundo dejarán de que dejarán de prestar el servicio de Chatbox porque ahorita en este momento este módulo no funciona para nada, pero la idea es esa, la idea es que Ay Juepucha Deme un Deme 1 segundo.
+Ana.
+
+Freddy Rincones   1:31
+Jajaja.
+
+Daniel Valbuena   1:32
+La idea es que cuando esté en la página el chatbox pida una información y esto me lo cargue acá a la herramienta. ¿Yo lo que hago es filtrar el contenido, sabe qué? Qué en efecto, es una una solución para atender la la para asignar, porque hay veces llegan requerimientos que realmente nosotros no hacemos.
+¿O un lead basura? Sí, donde escriben información basura que realmente no, no llega nada. ¿Sí, entonces desde acá yo llego y asigno, a quién le pongo? ¿El lead, en su momento funcionaba así? Mira, entonces yo decía listo perfecto, a quién se lo va a asignar a tal persona listo, se le asigna a tal persona check.
+Y a esa persona le aparecía lead pendiente todo lo que estaban pendientes por atender. Actualmente, como te como les digo, esto, este este panel está totalmente mal porque no es no tiene función. Una vez el lead llegue, pasa a ser cotización cierto o si no cotización desde cero.
+¿Ahora bien, todas estas son las cotizaciones que nosotros hacemos, EH? Por ejemplo, miremos miremos esta.
+Entonces, eso es información básica, que es la creación de un cliente cuando nosotros creamos un cliente, pues se le asigna, obviamente su NIP. El código verificación se pone de manera automática el el, la red social, la actividad económica que está entre las verticales que nosotros tenemos aquí, creadas en como verticales. ¿Dirección, ta, ta, ta teléfono, cierto?
+Es responsable aquí la moneda, el que el cliente lo voy a crear en pesos o en dólares, ya les cuento el tema de multi moneda que manejamos acá, la forma de pago esto lo dirigencia únicamente Laura Burgos, que es quien tiene permiso para modificar esto, yo también lo tengo, lo que pasa que no lo modifico pero los comerciales les aparece bloqueada esta celda y la vía de contacto.
+
+Laura Martinez   3:23
+Sí.
+
+Daniel Valbuena   3:35
+Entonces, si es por estrategia Asus del existente gestión comercial Google Telemercadeo si por dónde llego el cliente y la categoría que es me encargo yo de Diligenciarlos es un cliente triple a o doble a de ellos. Ahora bien, una vez creado esta información de este campo, que son obligatorios para el diligenciamiento que yo le digo a ellos, venga para mí es obligatorio que pongan el Net. Para mí es obligatorio.
+Que ponen redes sociales, o sea, no pueden crear un cliente sin que haya esa información. ¿Ahora a quién va dirigida la cotización? ¿En este caso? Yo puse Vicente Chamorro. ¿Cierto, entonces, para yo crear el contacto debo colocar esta información? Nombre, cargo, ciudad, teléfono y correo electrónico.
+Esta es la información obligatoria, si yo no pongo estos datos que están diligenciados no va a dejarte crear el contacto. Espérame 1 segundo, por favor, andison, una red que le mago.
+¿Bueno, entonces, a aceptar ahora el asunto, este asunto, para qué se crea? Como aquí, en el panel de cotizaciones yo tengo por ejemplo, fincomercio cierto, entonces tengo la información básica, pero yo no sé de qué se trata esa. Cada cotización. El asunto es el que me ayuda a mi a identificar.
+De qué es la oportunidad, 25 monitores, licenciado, diadema, genios. Esto no les sale al cliente en la cotización. Es básicamente para que nosotros podamos identificar de qué es la oportunidad.
+¿Sí, asesor vía de contactos existente es esta información realmente no debería aparecer acá porque eso ya es para informe interno, cierto? El porcentaje de interés está en creación de oferta de 40 en negociación, 60, riesgo de 70 y peinter de compra 80. Listo la vigencia de la cotización.
+Mes de cierre, semana de cierre y mes de facturación. Es decir, yo cierro esta cotización la primera semana de octubre y facturó en octubre. ¿Vale? Ahora aquí es como lo complejo. Yo manejo temas multi moneda.
+Sí entonces, la cotización yo la voy a presentar en pesos, pero puede que mis costos sean en dólares, para eso se parametriza aquí la TM del día de hoy, cierto, entonces mira aquí nosotros tenemos un tema donde esté Laura Burgos dirigencia la TM del día.
+¿Ves? ¿Y sobre esa TDM lo que hace es, permítame yo, busco algo que sea? Sí, manualmente. Espérame 1 segundo. Mira, por ejemplo, es que esto esto si no estoy mal, lo tengo yo en pesos, espérame 1 segundo, por favor, siento el licenciamiento CSP, esto no porque esto también estaba.
+
+Freddy Rincones   6:21
+Ella, ella, la agrega manualmente.
+
+Daniel Valbuena   6:40
+En ven. Yo miro si esto está en pesos o en dólares.
+Ay, yo miro, mira, por ejemplo, esta.
+Entonces mi costo son 1170 punto veintiseis dolares, lo que hace es coger del día la cotización, que fue el 22 de septiembre, lo multiplica por la TDM Dirigenciada ese día me arroja el costo en pesos, yo a esto o le pongo mi margen.
+¿Y me sale el valor, por ejemplo, 6000000 de pesos, yo copio que estaba en acá 6000800, entonces si yo le pongo aquí el 8% me va a dar el margen con el 8%, cierto? O si en efecto yo le digo, venga, yo quiero vender esto en 6000800 me sale. ¿Cuál es el margen?
+Sí.
+El IVA de esa cotización es editable porque aquí manejamos proyectos exentos de IVA, entonces si un producto está creado con IVA, pero es un producto exento, debo quitarle el IVA, por eso tenemos aquí nosotros editable, aquí mira, te pongo cero.
+
+Freddy Rincones   7:44
+¿Quién se lo quita?
+¿Ah, lo haces tú mismo?
+
+Daniel Valbuena   7:49
+¿Ajá y ya para de contar, no tiene tanto lío entonces? Básicamente ese tema de la multi moneda es lo más importante para nosotros, que ha sido como los temas más más complejos que hemos tenido al momento de encontrar un CRM o RP que tenga esto sí.
+En este caso yo estoy presentando la condición en pesos, pero muchas veces también la presento en dolares, donde tengo 10 productos, un ejemplo y algunos productos mi costo es pesos y ahí lo que hace es dividirlo con la TDMY saca el margen y me da la presión en dolares, sí, el tiempo de entrega, la garantía, son elementos que están en este momento, pues que no los dirigencia manualmente.
+El orden eso que está acá el orden es en qué orden quiero que salga en la cotización de primeras de segundas de terceras, acorde a lo que me envía el cliente me envía un listado. Yo siempre envió las cotizaciones en el mismo orden que el cliente, me lo envió.
+Y con quién lo coticé entonces, yo aquí puedo buscar los diferentes mayoristas, impre, los diferentes proveedores, en este caso fue ingram, le doy doble Clic y listo. Sí, aquí lo único que yo hago es exportar la cotización a PDFY se la envío al cliente.
+
+Freddy Rincones   9:07
+Manualmente.
+
+Daniel Valbuena   9:08
+Manualmente, mhm. Qué quería yo que son de las cosas que quería implementar, como nosotros hacemos, ponle tú. Es que estuve por fuera más o menos unas 1012 cotizaciones diarias, hacer seguimientos muy harto y es muy complejo hacerlo si me entiendes como yo tengo acá.
+¿A el contacto yo quería que el seguimiento se le hiciera vía WhatsApp para determinado periodo de tiempo, que yo dijera cada 4 días, cada 5 días puede ser cada 8 días, sí me entiendes? ¿Qué hago yo? ¿Que por favor le escriban a María Fernanda, Adriana, que se le adjunte la cotización y le diga Hola María Fernanda, cómo se espero estés muy bien, me puedes por favor confirmar el Estado está?
+
+Freddy Rincones   9:40
+Y.
+
+Daniel Valbuena   9:53
+Cotización que lo haga la herramienta si me entendés aquí supuestamente ellos hicieron esto, mira ellos, esto se lo pedí yo a ellos y ellos lo que hicieron fue habilitar un botón de WhatsApp para que yo le le escriba directamente al contacto.
+
+Freddy Rincones   9:59
+Solo puede ser un un boss, claro.
+
+Daniel Valbuena   10:12
+Pero, o sea, es totalmente diferente a lo que yo le solicité. Va así. Lo que quiero es que automáticamente los seguimientos los haga la herramienta. Sí no, se evite ese trabajo porque muchas veces.
+
+Freddy Rincones   10:22
+¿Seguimiento de de cuál o sea, seguimiento como espa? ¿Qué pasó? ¿Qué opinas de la cotización? Cosas así.
+
+Daniel Valbuena   10:30
+Sí. O sea, como nosotros la enviamos una vez la enviamos. Quibo la recibió. ¿No sé qué tan, tan listo y cada 8 días lo que pasa es que como son tantas cotizaciones, pues a mí se me olvida hacer seguimiento y sería muy bueno que se conecte a la de de alguna manera un WhatsApp y decir bueno, quibo por favor, en este caso María Fernanda, cómo te fue con esta cotización? No sé qué, qué avance tienes.
+
+Freddy Rincones   10:41
+Claro.
+
+Daniel Valbuena   10:52
+¿Y de algún, y que ojalá, que de esas preguntas que hagamos podamos nosotros retroalimentar esto de acá no sé si sea un poquito más fuerte el desarrollo, pero sería ideal que te diga cómo vas con esta cotización? Bien, bien, bien. ¿Ah, bueno, y yo le pregunte, oye, me puedes confirmar para qué mes tienes pensado tomar la decisión?
+¿Mira para noviembre, listo para qué? ¿Semana para tal semana y cuándo piensas facturarlo y aquí me actualicé esto?
+
+Freddy Rincones   11:18
+Y que la cotización y que el cliente, porque ese es seguimiento literal de puros CDM, eso no tiene nada que ver con la cotización, o sea, es el cliente, le hace, obviamente tiene que ver con la cotización que le pasaste, pero le vas haciendo un seguimiento. Es al cliente como tal de al lado, ese es como una funcionalidad más de CDMY. La idea es que en el CDM aparezca todo el historial del chat que tienen con.
+
+Daniel Valbuena   11:33
+Exacto.
+
+Freddy Rincones   11:42
+Con el cliente donde se le vaya haciendo el seguimiento y ustedes tengan esa información YY que se haga un boot bueno se puede hacer como una automatización o un chatbot o alguna cosa, pero algo un poco más estructurado si tienen.
+
+Daniel Valbuena   11:47
+Claro, claro, total.
+
+Freddy Rincones   12:01
+Bueno, algo se puede hacer, pero sí, o sea, de que se puede hacer, se puede hacer, pero te cuento algo a ver.
+Esto que mencionas para mí es considerado como un desarrollo.
+
+Daniel Valbuena   12:15
+A la medida.
+
+Freddy Rincones   12:16
+A la medida es en nombre es el desarrollo es a la medida porque realmente si nosotros usamos odoo que ya tú tienes el acceso y puedes ingresar.
+Va a ser más complejo adaptarlo a lo que tú nos estás mostrando que hacerlo desde cero, la verdad.
+
+Daniel Valbuena   12:35
+O K o K.
+
+Freddy Rincones   12:36
+Entonces, lo que yo puedo hacer, o sea, ya lo que ya lo que me pasaste está bien, genial que nosotros, en caso de querer avanzar con con la implementación de esto.
+Nosotros tuviéramos acceso a esa plataforma y también hay una fase de levantamiento de información que por eso Laura también está acá, que es superclave, porque todo esto que nos acaba de decir. De hecho iríamos vaciando módulo por módulo, sí para ver qué información trae. ¿Qué necesitas? ¿Tal vez hay módulos de ahí que nunca usaste qué sí, qué no, y qué otras funcionalidades nuevas?
+
+Daniel Valbuena   13:09
+Claro.
+
+Freddy Rincones   13:11
+Quisieras para dejarlo documentado y tú lo apruebas y siempre cuando eso esté aprobado esa documentación, nosotros empezamos fábrica. Esto es una aplicación que yo estimo pudiéramos estar entregando entre un mes, luego de que tengas toda la documentación aprobada.
+Okey en Documentación te puedes estar tardando.
+
+Daniel Valbuena   13:32
+O K.
+
+Freddy Rincones   13:36
+Con tu tiempo, que es bien complicado, y yo sé que es bastante complicado. Ya te puedes estar tardando una semana, un mes o no sé, todo depende del del del tiempo.
+
+Daniel Valbuena   13:45
+Dale. O sea, es es, pero falta falta hartísimo de lo que nosotros manejamos acá. O sea, esto es una partecita, si quieres, déjame, te termino de demostrar lo que manejamos, ya les ya les muestro este tema de observaciones aquí este tema de observaciones nosotros lo utilizamos.
+
+Freddy Rincones   13:55
+A ver.
+
+Daniel Valbuena   14:04
+Para como, como un casillero cuando, por ejemplo nosotros ahorita, por ejemplo, me pasó que estamos haciendo esta cotización. Ay espera que preciso, no lo he puesto a ver, a ver, a ver. Espera 1 segundo, Vicente no, pilar no, monitores no parlante no, embajada de Francia era porque ahora me va a hacer quedar mal esta vaina del pro impresora.
+
+Freddy Rincones   14:13
+Ajá.
+
+Daniel Valbuena   14:29
+Affle creo que es este, mira aquí qué, yo qué hago, yo me pidieron un bafle. Yo copio aquí el link en donde lo encontré.
+Sí, porque eso es con no es son los mayoristas que usualmente son sino yo, esa es mi, mi, mi, mi, mi guía. Deben. ¿Y usted con quién cotizó Daniel?
+¿Sí me entendés, y eso? Ah, sí, eso es manual. Mira, yo llego y le pongo aquí en observaciones y agrego, Li Agrego Link.
+
+Freddy Rincones   14:52
+¿Pero solo pusiste manual?
+
+Emma Castillo   14:59
+Y una traza de quién lo puso verdad y a qué hora y todo.
+
+Daniel Valbuena   14:59
+Sí.
+
+Freddy Rincones   15:00
+Sí.
+
+Daniel Valbuena   15:02
+Ajá que sale como quién lo puso no sé qué tal. ¿Igualmente, ah, bueno, ya hablamos de los permisos, entonces eso a nivel de cotización, yo creo que estamos bien, no era tanto tanto tanto chicharrón, ahora cuando la cotización es exitosa, por ejemplo, que me me sale a mí esta cotización, yo qué hago? Escojo los ítems que salieron.
+
+Emma Castillo   15:09
+Mmm.
+
+Daniel Valbuena   15:28
+Digamos que serían solamente estos, cierto, le doy opciones y le doy generar pedido, yo igualmente les voy a pasar a ustedes. El usuario apenas me respondan del de de este para instalarlo. O digamos que todos listo, genero pedido y aquí es donde se involucra en este momento, aquí están involucrados solamente el área comercial.
+Cada comercial tiene acceso a su propia base de datos, no puede ver la base de datos de los demás. Yo tengo acceso a la base de datos de todos. Sí. Ahora cuando pasa a pedido a ver. Mira, por ejemplo este de acá.
+Que es de consorcio.
+Mira entonces, me arrastra el asunto, me arrastra toda la otra información. Asesor vía de contacto. Esto realmente no me interesa a mí esto a mí no me interesa que salga acá sale, o sea, lo lo intentamos quitar, pero pues se supone que no. No permite ahora en otros datos nosotros mandamos a crear, esto está en información de despacho, como son productos.
+¿Puntos tangibles entonces esto, lo dirigencia, el comercial nombre, quién recibe teléfono, dirección, ciudad, EH? Horario de entrega el email para envío de guía, email para copia de factura. Y ya les digo que estotes apenas le en datos bloqueados le dan guardar, nadie puede modificar esa información.
+
+Freddy Rincones   16:41
+Erección.
+
+Daniel Valbuena   16:56
+¿Esto con qué fin? Con el fin de que, o sea, nos pasaba de que decían, Venga así, es que usted usted había puesto que ******. 1, segundo, porfa 1 segundo, por favor, le voy a poner aquí Ana Contacto, Ana Ana.
+Ahora escríbeme.
+Vale, estoy arriba ya de que, por ejemplo, de si inicialmente habían puesto esta y luego no se es el cliente les cambio. No notificaron y la pusieron ahí y después fue culpa logística. ¿Si me entendés, entonces, con el fin de que esto de acá?
+
+Freddy Rincones   17:38
+Sí.
+
+Daniel Valbuena   17:41
+Si la cambian no hay lío, ya les digo por donde se notifica, pero esto no se puede modificar, esto fue un flujo que yo mandé a crear que no funciona como quiero y la idea es que se desarrolle como quiero. ¿A qué me refiero?
+Esto es, venga. Si son varios productos, por ejemplo, tengo soportes, ejemplo, televisor, licencias y demás, puedo o no puedo despachar de manera parcial. Sí me dice pilas, no me despaché de manera parcial logística va a ver, es información y dice usted no usa hasta que yo no tenga toda la mercancía. Yo no puedo despachar.
+Permito en me puedo, no puedo facturar de manera parcial, no hasta que no estén entregados todos los ítems, no puede entregar de manera de manera parcial y no permitir facturación sin confirmación de entrega. Quiere decir que hasta que Freddy no me diga venga, ya recibí el producto.
+Yo no puedo facturar.
+Sí.
+
+Freddy Rincones   18:42
+¿Listo?
+
+Daniel Valbuena   18:44
+Este flujo se ve acá.
+A ver 1 segundo.
+Espérame 1 segundo, que es que esta señora lo cambió, gestión de compras dependientes. Ay miércoles, creo que es este.
+Ya te digo, esto lo va a ver, facturación, pero era porque te lo te lo te lo debo porque es que me me está bloqueando acá, entonces aquí abajo está el módulo de logística, este módulo de logística solo lo puede diligenciar el área logística. ¿Con qué fin? Aquí tengo esto acá que me diga.
+
+Freddy Rincones   19:19
+¿Es problema?
+
+Daniel Valbuena   19:31
+¿Con qué transportadora, con qué guía? ¿Cuándo se despachó, cuándo se entregó, sí me diga, venga, fue despachado de manera parcial o de manera total, cierto? Y aquí es donde hace sentido el flujo. Sí, yo digo, no me facture de manera parcial y está despachado de manera parcial.
+La persona no puede facturar, si entonces por aquí en un flujito que tengo yo, que no lo no me sale, es a la chica de facturación, le va a salir en un, en un informe, cuáles son los pedidos que permiten facturación parcial y que fueron despachados de manera parcial.
+Para que a ella le salga pendiente por factura.
+Y no tenga que revisar en todos los pedidos a ver qué observaciones tiene sí ya cuando es facturado la chica le pone facturado y pared de contar. Ahora aquí interviene el área de compras, el área de compras le da doble Clic y dice perfecto, esto se cotizó con este proveedor.
+
+Freddy Rincones   20:24
+O K.
+
+Daniel Valbuena   20:38
+Coticé en tanto perfecto. Me gustó la negociación, ya hablé con el proveedor, todo está uno a, le doy Click y le doy generar orden de compra. Una vez yo genero la orden de compra, en este caso es el área de compras.
+Se me habilita aquí la orden de compra, por ejemplo acá.
+¿Entonces, a qué mayorista?
+Detalle en cuanto en cuanto compré cuando es la fecha de entrega del producto y se la envió al cliente pare de contar a.
+
+Freddy Rincones   21:15
+¿Y esa parte de mayorista tiene alguna integración con los mayoristas que tú manejas?
+
+Daniel Valbuena   21:19
+No, no, para nada, yo ajá. Exacto, al momento de crearlo aquí ellos cuando.
+
+Freddy Rincones   21:21
+¿Tiene información de tu mayorista que tú incluiste en algún momento que lo registraste?
+¿Pero YY los mayoristas, tienen acceso a esta herramienta? ¿También, no?
+
+Daniel Valbuena   21:32
+No, no, no, no, no. Aquí lo que hacemos nosotros básicamente es imprimirla. En PDFY le envió CPDF al correo electrónico. Mira.
+Sí.
+¿A Andrés qué le sale a Andrés por acá? ¿Para quién pedidos? Yo te digo, le salen cuando está en cero.
+¿Son todo lo que está en cero son cuántos productos? Él ha comprado en la orden de compra.
+¿Cierto, aquí la idea de esto era, cuántos productos están pendientes por generar orden de compra?
+Para que se de una guía de eso. Por el momento está lo que te cuento es que esa gente es un chicharrón, está al revés, todo y nos está saliendo. ¿Cuántos elementos se generaron? Orden de compra, mas no cuántos están pendientes por generar orden de compra y ya eso a nivel de tema operativo, los demás, lo demás es informes.
+Informes de temas básicos, por ejemplo, mira igualmente los informes los podemos crear de manera independiente. Cierto, sí, o sea, todo me lo permite la herramienta do.
+
+Freddy Rincones   22:48
+Mira.
+Sí.
+
+Daniel Valbuena   22:52
+Porque porque, por ejemplo, mira informes básicos que nosotros sacamos es yo quiero mirar las cotizaciones que están, que están en proceso de Camilo, de.
+Enero a la fecha.
+Que me lo exporte a Excel.
+Y lo que me trae Excel es esto. Ya te cuento convertir mira, esta es la información que yo pido en el informe.
+¿Entonces?
+¿Subtotal la venta costo utilidad que margen tiene cuando cierra? Eso es lo que habíamos visto en la cotización. En qué mes cierra, en qué semana cierra y en qué mes factura.
+
+Freddy Rincones   23:21
+Sí, eso se puede hacer.
+
+Daniel Valbuena   23:36
+¿La la probabilidad en que está está en creación, está en riesgo pendiente de compra? Asunto, esto es vital para nosotros porque aquí nosotros funcionamos como en planeación de los de los de los de los qué de los informes con ellos.
+
+Freddy Rincones   23:52
+Sí, eso se puede manejar, pues puedes exportarlo a Excel, pero digamos que yo te puedo hacer una especie de dashboard más interactivo de de esos reportes mucho mejor.
+
+Daniel Valbuena   24:06
+¿Okey? Sí, la idea es mejorarlo. ¿O sea, esto está, o sea, cómo está? Estamos mejor. Dicho terrible. Y la idea. La idea es que, o sea, así es como estamos funcionando actualmente y recibo todas las ideas para ver qué podemos mejorar para que todo sea más más automático. Si me entendés, por ejemplo el tema, lo que les cuento, el tema de los seguimientos que desde la propia herramienta se pueden enviar las cotizaciones puede ser una opción.
+
+Freddy Rincones   24:10
+Sí, sí, sí, poquito.
+
+Laura Martinez   24:10
+Sí.
+
+Daniel Valbuena   24:30
+Todo lo que ustedes consideren lo podemos revisar sin problema.
+
+Freddy Rincones   24:37
+A ver, puedes compartir otra vez pantalla, un momento que me gustaría tomarle como un screenshot a todos los módulos que tienes por favor.
+
+Daniel Valbuena   24:47
+Misa.
+
+Freddy Rincones   24:51
+A ver, déjame le tomo el no, pero ábreme a mano izquierda donde tienes todos tus módulos. Dale la flechita a todos para que se expandan todos. Si es posible, por favor.
+
+Daniel Valbuena   25:05
+¿Ah, aquí está el tema de los filtros, mira pedos filtrados ya listo, esto lo que tenemos? Ah, bueno, otro tema importante que no lo toqué es el tema de las verticales, que fue lo que te había mostrado la vez pasada, cuando creó productos, yo lo creo, en cada en un, en una vertical, en la en la vertical hardware, en la vertical software service, accesorios.
+
+Freddy Rincones   25:15
+Sí.
+¿Te he perdido?
+Sí.
+Sí.
+
+Daniel Valbuena   25:30
+Yo a ello, a esto le pongo un margen mínimo de aprobación para que coticen y un margen máximo si la cotización es inferior al 6%. Me envían la solicitud a mi para que yo pruebe el margen.
+
+Freddy Rincones   25:37
+Sí, señor, sí, señor.
+
+Daniel Valbuena   25:47
+Sí.
+Desde el master clientes, por ejemplo, vamos a buscar un cliente TDX, por ejemplo, Busquémoslo acá entonces Laura, por ejemplo, en el escenario en que TDX se quedó, le pone bloqueo de cartera.
+Cuando tienen bloqueo de cartera va a aparecer. Cuando yo voy a hacerle una cotización a TDX le sale una un anuncio acá.
+
+Freddy Rincones   26:14
+El mantel.
+
+Daniel Valbuena   26:18
+Que diga cliente bloqueado por cartera. Te puedo cotizar, pero le le le informa de esa manera al al al comercial que ese cliente está pendiente por cartera y no puede montar pedidos, sí por si en el escenario. Venga, es que yo quiero montar un pedido.
+
+Freddy Rincones   26:27
+En de.
+
+Daniel Valbuena   26:37
+Envían la solicitud al área financiera. Entonces, cuando cuando cuando yo pasé de cotización cogí los productos para pasar la pedida, ahí le sale esto que por por favor solicite la aprobación y se la pasaría en este caso a Laura Burgos. Laura Burgos evalúa si le vende o no, le vende en este caso a TDX.
+
+Laura Martinez   26:44
+Con.
+
+Freddy Rincones   26:55
+Ya lo entiendo.
+
+Daniel Valbuena   26:55
+Ah.
+
+Freddy Rincones   26:58
+Ya te entiendo, ahora te hago una pregunta de todos esos módulos que tú tienes a mano izquierda, si yo te dijera.
+
+Daniel Valbuena   27:02
+Dime.
+
+Freddy Rincones   27:08
+¿Cuáles son exactamente los que tú necesitas para operar en primera instancia como un mvp? ¿Cuáles serían?
+
+Daniel Valbuena   27:14
+Lo que pasa es que todo esto, o sea, esto es para o sea no cotizaciones, pedidos y ordenes de compra, eso es lo que bueno y ese tema de visitas, que es cuando el cliente el comercial va y visita tdx dice perfecto, yo fui a tdx de manera presencial.
+
+Freddy Rincones   27:19
+El cliente, sí.
+Herido y órdenes de control.
+O K son como tareas o k hice tal cosa es como un complemento de ser el.
+
+Daniel Valbuena   27:33
+YY fue tanto de aquí para acá, son reportes que no usamos casi ninguno exacto, realmente esto nada que ver ahora en maestros, aquí están para la creación de clientes la los comerciales aquí, yo puedo administrar los permisos de la gente que está actualmente acá.
+
+Freddy Rincones   27:41
+Solo el que me mostraste.
+¿Qué permiso abren, porfa?
+
+Daniel Valbuena   27:58
+Por ejemplo, miremos uno de Jaime Méndez.
+Detalle, Fíjate, ellos lo tienen actualmente así.
+
+Freddy Rincones   28:09
+Puedes pasar por todos, por por cada uno.
+
+Daniel Valbuena   28:13
+¿No, de aquí para allá no hay nada de permisos, son los clientes que él tiene que el tiene, que cotizaciones tiene pedidos? ¿Ordenes de compra bla bla, bla a nivel de pedidos es esto, entonces? Ellos entiendo que internamente en la herramienta le ponen un perfil a comercial y a su tema comercial le ponen unos parámetros.
+
+Freddy Rincones   28:15
+Ah, es el detalle nada más. O K.
+En detalle o K.
+
+Daniel Valbuena   28:33
+Que son que puedan ver solamente sus cotizaciones que no puedan, que no puedan ver temas de crédito. ¿Toda esa vaina es cierto?
+
+Freddy Rincones   28:37
+Sí.
+Y tenemos que dar una repasada por ahí, pero te entiendo ya el alcance de eso.
+
+Daniel Valbuena   28:43
+Ahora, Fíjate, puede ver los listados de estos asesores entonces mira, aquí no puede ver de nadie. Fíjate, por ejemplo, lo que pasa con el mío.
+Yo puedo ver.
+Las cotizaciones de todos ellos, los pedidos de todos ellos ves, ellos no pueden ver mis pedidos de esta manera. Yo lo configuran, no sé internamente cómo sea el tema y aquí es donde te decía, ellos crearon el tema de los módulos para autorizar la menor utilidad o la mayor utilidad.
+
+Freddy Rincones   28:57
+Claro.
+Sí.
+
+Daniel Valbuena   29:14
+A autorizar temas de cartera y a utilizar temas de financiera. Vale, entonces esto es lo que me permite a mí en este caso, hacer ese tipo de movimientos.
+
+Freddy Rincones   29:26
+¿Alineado y de qué otro? ¿Qué otro módulo? Entonces ya tenemos clientes comerciales. ¿Cuál otro de los que están ahí? Te interesa el administrativo que tiene ah, tiene el del TDM también es importante.
+
+Daniel Valbuena   29:37
+Administrativo. ¿Esto no sé, no tengo ni idea qué es? No tengo ni idea qué esos maestros, ah, bueno, aquí están cargadas las ciudades, los cargos, es que esto las marcas, monedas países, o sea su más un tema de herramienta que lo puedo que yo, eso lo tengo visual yo, pero que yo lo use no, o sea, yo creo por yo creo, obviamente las marcas.
+
+Freddy Rincones   30:02
+Ajá.
+
+Daniel Valbuena   30:02
+Estados de los pedidos esto no, eso es más tema de administración, que no tengo ni idea. ¿Yo por qué tengo acceso a eso, la verdad?
+
+Freddy Rincones   30:11
+No, lo exacto no lo manejas tanto. Di el TDM cierto que dice 3 M que tiene que llenar Laura.
+
+Daniel Valbuena   30:15
+¿Y el tema de la TDM, sí, señor?
+
+Freddy Rincones   30:19
+No me queda claro, entonces te te doy un poco más de de contexto. Sí, si nosotros hacemos esta aplicación a la medida nos va a pasar exactamente lo que tenemos hoy con tu página web de inicio de Presuministro es que tenemos el control para poder integrarnos con lo que nos de la gana.
+Y no solamente el control, sino que vamos a tener la facilidad de de tener un stack tecnológico, o sea, como un lenguaje de programación versátil que se va a poder integrar muy fácilmente con las últimas tendencias de tecnología. Sí, entonces eso es un plus. Ahora odoo, por ejemplo, Odoo tiene.
+Una herramienta de ERP sí tiene módulos de cotización, tiene módulos de casi, casi mucho de los módulos que mencionaste y significa que yo tengo que entrar a desarrollar, listo. Hay que desplegarlo en un servidor, hay que entrar a desarrollar sobre ese stack tecnológico, pero hay que customizarlo.
+Y customizarlo mucho para ajustar todos los módulos, pero sin salirme del stack tecnológico que él tiene. Entonces yo tengo ahí ciertas limitantes porque te digo que el desarrollo de la medida es muy bueno porque nos permite hacer cualquier tipo de integración cualquiera, o sea, Freddy, necesito.
+
+Daniel Valbuena   31:39
+Claro.
+
+Freddy Rincones   31:41
+WhatsApp play necesito un agente de inteligencia artificial frey, necesito wherever, lo que tú quieras lo vas a poder hacer. Otra cosa que nosotros te vamos a entregar va a ser todo la documentación técnica, los requerimientos que te levantamos, los documentos de arquitectura, accesos, lo vamos a hacer tal cual como lo hicimos con profuministro, con la página.
+De hecho, ajá. ¿Emma, él está en verse o en render?
+
+Emma Castillo   32:09
+Extenderse.
+
+Freddy Rincones   32:11
+Ah, entonces nosotros desplegaríamos esta aplicación dentro de la misma infraestructura de cloud que ya tienes la página web. ¿Él tiene, él USA supaveis, no, él es estático, bueno, pero te haríamos un acceso a la base de datos tal cual con tu nombre y tú accedes entonces tú tendrías el control?
+
+Daniel Valbuena   32:19
+¿Ok?
+
+Emma Castillo   32:24
+No es estático, sí.
+
+Daniel Valbuena   32:32
+De todo.
+
+Freddy Rincones   32:32
+De todo a diferencia de lo que es hoy, o sea, y vas a tener toda la documentación y todo lo técnico y todos los vídeos de entrenamiento, absolutamente todo, para el momento que tú decidas que te de x ya no voy con otro proveedor, tú vas a tener absolutamente, o sea no, no vas a tener ese problema que tienes hoy listo.
+
+Daniel Valbuena   32:40
+¿Sabes? Sabes que olvidé.
+Luis, sí, no es lo que estoy buscando, sabes que el video importante, el tema de los adjuntos mira por ejemplo, Ah, bueno, y este tema también son 2 temas importantes que olvidé mencionarles, el primero aquí es donde nosotros adjuntamos las órdenes de compra. Sí, entonces, órdenes de compra o demás documentos importantes de la negociación.
+Sea cotización de proveedores y demás, esto queda almacenado en la nube, en la nube de ellos o en donde actualmente en la nube. Pero como ellos han sido tan malos proveedores, se nos borró toda la información de 5 años. ¿Todos los adjuntos?
+
+Freddy Rincones   33:22
+Sí.
+¿Ajá, no es demandable eso qué? Qué horrible.
+
+Daniel Valbuena   33:34
+O sea, qué y qué hacemos nosotros tenemos un grupito en sharepoint donde sencillamente ponemos el pedido y ahí llegamos y adjuntamos que es el problema que cualquier comercial puede acceder, por ejemplo, a mi pedido y puede revisar toda la información de todo el tema. Actualmente eso estamos en confianza, pero pues no falta que.
+
+Freddy Rincones   33:49
+Tarde tarde.
+Ah, claro, claro.
+
+Daniel Valbuena   33:58
+Pase si me entendés, o sea, cada.
+
+Freddy Rincones   34:00
+Y nos falta que esa información que está ahí también la compartan externamente, eso también puede pasar.
+
+Daniel Valbuena   34:06
+Exactamente, entonces, por eso no utilizamos este módulo, pero debería este módulo existir para que sencillamente yo ingreso el pedido y reviso toda la documentación y demás. Ahora Fíjate, por ejemplo, esto a ver espérame 1, segundo, please, Ay. Miremos por ejemplo, de de Zurich Mira Zurich.
+Y mira entonces cómo funcionamos acá, estos son notificaciones que llegan a través de correo electrónico, cierto, entonces logística, auxiliar, bodega dice, buen día de proveer impresista y me indica que la orden de compra está procesada y queda para atar. ¿A quién le envía el correo electrónico? Se lo envía a Andrés, que es en este caso la persona de compras, para que él esté pendiente en la ruta.
+Luego dice, buenos días, recibo por 15, no sé qué. Entonces, por ejemplo, Freddy me dice, Quiubo, qué pasa con mis teclados yo ingreso y veo el histórico de lo que está pasando. Mire, ya ingresó, ya se remisionó y me dicen que se va a entregar en horas de la mañana. ¿Esto se, estas notificaciones llegan por correo electrónico, entonces, cuando yo voy a crear la solicitud?
+El mensaje ya le muestro. Cómo funciona. Coloquemos aquí, mira, voy a escribir un mensaje, buenos días, bla, bla, bla, voy a llamarlo prueba, le voy a dar el mensaje y le voy a decir a quién quiero enviarle ese para que le llegue ese correo electrónico, en este caso a Daniel Valbuena, y le doy a enviar.
+¿Le doy guardar ahora aquí me va a quedar guardado, eso no se puede eliminar, cierto? ¿Y a Daniel Valbuena o a la persona que yo notifiqué le va a llegar este correo electrónico?
+
+Freddy Rincones   35:46
+Un correo de un buzón interno entre.
+
+Daniel Valbuena   35:50
+Mira, si ves, llego acá, prueba.
+
+Emma Castillo   35:53
+Si es de arroba a su dominio.
+
+Daniel Valbuena   35:55
+Ellos lo manejan a través en este momento de Gmail sí que es como la plataforma que ellos utilizaron para hacer esa integración, pero con Gmail tenemos también inconvenientes, porque unos correos llegan y otros correos no llegan. No sé si sea temas de configuración.
+Ellos nos pasaron a nosotros como unos un un tema para anclar a nuestro en en en en godaddy, el tema del dominio para que pues tuviera como ahí el tema, pero pues igual tenemos inconvenientes de comunicación. Este es como nuestro chat interno, de qué hubo, qué pasó sí me entendés. De por ejemplo, está pendiente la aprobación por del pago al proveedor tan Laura, por favor, su colaboración.
+Entonces todo lo manejamos por acá para que en efecto no diga, diga, yo nunca le dije si me entiendes, todo queda aquí por escrito. Eran, eran los 2 temas que me habían quedado pendientes por ahí.
+
+Freddy Rincones   36:48
+No perfecto.
+Como una bitácora de todo lo que pasa con las con la cotización, con el pedido, con el cliente, todo eso está.
+
+Daniel Valbuena   36:57
+Y que le y que le llegues al correo electrónico de la persona.
+
+Freddy Rincones   37:01
+Sí, eso se puede hacer. Eso es integrable realmente todo lo que nos mencionas. Te puedo dar la seguridad de que la aplicación la podemos construir, usaríamos un template que usamos mucho con nuestros clientes. Le adaptaríamos al branding tuyo. Haríamos el tema de accesos. Agregamos los módulos que nos mencionas.
+Las integraciones dejaríamos el back en listo para integrarnos con lo que sea, lo desplegaríamos en la suscripción de Excel que ya tienes el desarrollo, honestamente, veo que puede durar un mes o menos desde que tengamos aprobadas las las documentaciones.
+Te entregaríamos un entrenamiento, pues el trabajo es primero reuniones, listo de levantamiento de información en estas reuniones de levantamiento de Información, Laura se sentaría contigo, levantaríamos cada una de las necesidades, muy mucho, muy similar de lo que acabamos de hablar de hoy, de los módulos documentamos cuáles son los criterios de de aceptar.
+Acción tu los apruebas. Entramos en fábrica. Nosotros empezamos a desarrollar, hacer las integraciones, hacer el backend, el Front end, luego te lo mandamos para que pruebes según la documentación Apruebas, mandamos a producción y hacemos el entrenamiento con tu equipo de trabajo. Documentamos el entrenamiento, vídeos, todos los documentos de la arquitectura.
+Todo, absolutamente todo, te lo damos. Te damos acceso también a todo lo de la infraestructura.
+
+Daniel Valbuena   38:35
+Toda la vuelta.
+
+Freddy Rincones   38:41
+Y de ahí en adelante ya quedamos con un soporte. ¿Ese soporte puede ser soporte de cara a temas de infraestructura? Sí, un fee mensual de cara a temas de infraestructura y a la aplicación, obviamente, y también quedas con una garantía por un tiempo de la aplicación. Si algo falló de lo que ya estaba aprobado y documentado, eso es garantía. Nosotros tenemos que entrar como a.
+A responder, YY también te daríamos unas tarifas adicionales, listo por si tú quieres ir agregando más funcionalidades, entonces yo tengo hoy con clientes listo, ya hice un paquete, ese paquete valió tanto y empezamos ya cuando pase a producción.
+Si él quiere hacer desarrollos adicionales, él se va a la tabla, él tiene una un tarifario ya que bueno dependiendo la complejidad de la solicitud vale tanto YY si lo quieres hacer mucho más rápido, vale más, más dinero y todo eso te lo daríamos.
+
+Daniel Valbuena   39:35
+¿Sabes?
+
+Freddy Rincones   39:39
+Para que tú ya ahí ya tengas control, no solamente de lo que te entregamos inicialmente, sino también vas a tener control de si tú dices te voy a dar un ejemplo muy claro.
+Y tú te enteras que tu aplicación necesita, por ejemplo, una funcionalidad, inteligencia artificial, la que sea una funcionalidad, ya, tú vas a saber qué costo te da, vas a saber en qué tiempo te la vamos a entregar y de esa manera tú te planificas a nivel de tu negocio para saber con qué sales o qué producto, sales o todo eso, o sea.
+Digamos que no dependes ya de una tecnología, ni ni un equipo de trabajo entre comillas, porque ya vas a tener el conocimiento de qué tan rápido desarrollamos. Vas a estar seguro que lo hacemos, vas a saber qué precio cuesta lo que nuevo que quieres hacer y internamente en tu estrategia de negocio. Ya sabes que. Ah, bueno, yo voy a tener disponible esto en 2 semanas.
+¿Entonces lanzo en marketing, lanzo en lo que sea y tienes ese control?
+
+Daniel Valbuena   40:35
+De una.
+De una.
+Me parece, oye, y también para que no se nos vaya a pasar, lo que pasa es que tiene, o sea, es lo que tengo, es demasiado básico y lo que siempre he querido son temas bastante, o sea que que se automaticen, por ejemplo cuando yo hago la la calificación de clientes triple a y está la tarea cierto, entonces yo digo a un cliente triple a sí o sí lo visitas.
+
+Freddy Rincones   40:56
+Nada.
+
+Daniel Valbuena   41:04
+O si si es Bogotá, lo dices una vez al mes, si es si es un tema, Cartagena, lo que sea fuera de Bogotá le tienes que hacer una. Una llamada por tips de seguimiento, le tienes que agendar todo aquello que no esté agendado hacia ese cliente mínimo una vez al mes te tiene que hacer una alerta. Está pendiente esta cita, ta, ta, ta, TA si me entendés, o sea, hay hartísimas vainas por hacer, es por un lado y la idea es que a futuro, una vez.
+Que finalicemos esta herramienta tú y yo habíamos hablado la vez pasada de otra, pero me gustaría que quedara inmersa en esta. Es decir, todo el módulo de facturación de facturación de que no, no que de aquí no se yo no quiero facturar desde aquí porque para eso tengo work Office y es a mí me llega la factura electrónica, mi buzón de facturación, el software que en su momento me propusieron.
+
+Freddy Rincones   41:35
+¿De cuál?
+Facturación electrónica.
+Sí.
+
+Daniel Valbuena   41:54
+¿Era que cogía y escaneabas, no sé de alguna manera toda la información y la arrastrabas software cierto, entonces aparecían ni toda la fuerte valor toda la vaina valor a pagar no sé qué llegaba ahí, cierto? Y ahí empezaba el módulo de aprobaciones, entonces iniciaba logística.
+
+Freddy Rincones   41:58
+Sí.
+
+Daniel Valbuena   42:13
+Listo, tan, tan en este caso sería Andrés esta. Esto corresponde a la orden de compra, si perfecto pu, listo le aparece en este caso. Logística logística llega listo, llega la ingresa, no sé qué ingresada pu y le pasa a la siguiente, hasta que al final a mí me salga lo que está pendiente por pagar, me suban los pagos y me digan le subi estos pagos me aparece en La Plata.
+
+Freddy Rincones   42:24
+Sí.
+Sí.
+
+Daniel Valbuena   42:37
+La forma, yo comparo la plataforma con esta vaina que todo esté integrado ahí sí me entendés.
+
+Freddy Rincones   42:42
+¿La respuesta firme y con mucho argumento es sí se puede y porque te digo con mucho argumento porque tengo un cliente que tiene una integración similar con su correo electrónico, entonces la Ah?
+
+Daniel Valbuena   42:54
+Pedro Ángel cierto.
+Con Pedro Ángel, sí.
+
+Freddy Rincones   42:58
+Sí, bueno, entonces él tiene una necesidad similar de integración con consumo del XML del correo.
+
+Daniel Valbuena   43:10
+Sí, exacto, sí. Pedro me comentó que le estaba desarrollando con él.
+
+Freddy Rincones   43:10
+¿Entonces?
+Exacto. Entonces esa ya la ya la tenemos. Ya sabemos. O sea, digamos que el coco de obtener esa información, ya tenemos muy claro cómo es la el flujo y qué integraciones y qué servicios consumimos para poder obtener del correo los XML. En realidad, se tienes un zip.
+Solo que con el desarrollo de nosotros va a permitir descomprimir tomar el XML, que realmente es el que nos importa en términos de datos y ya con eso poderlo cruzar con tu con tu cliente o con tu cartera o con tu pedido con tu cotización, con lo que tú quieras. Eso lo podemos cruzar.
+Y no solamente para hacer lo que tú dices, sino también por términos contables, también podemos hacer más cosas, o sea, o sea, es una funcionalidad que es es viable YY no necesito decirte que te voy a hacer un demo. Para serte honesto de de toda esta aplicación, porque estoy 100% seguro que lo podemos lograr y lo podemos lograr en los tiempos que te estoy diciendo.
+
+Daniel Valbuena   43:56
+¿Listo?
+De una si te parece bien, no sé cuándo me puedas pasar, la coti, porque es que yo creo que para o sea va a haber mucho tema en módulo de más que todo de más que más allá del pedido, que es un tema logístico, pero a nivel de CRM que es todo el tema, lo que necesito yo controlar desde la parte comercial van a salir bastantes vainas.
+
+Freddy Rincones   44:24
+Sí.
+
+Daniel Valbuena   44:30
+Pues tú me digas, mira que actualmente no tengo, no tengo control de eso, si me entendés es que tú me digas, mira, te cuesta tanto, no sé qué bueno, ya llegamos a un acuerdo y empecemos, o sea, lo que te dije, quiero tener el placer de mandar a comer mierdas a gente entonces y ojalá sea pronto.
+
+Freddy Rincones   44:31
+No, claro.
+Ajá.
+No, no, con calma, con calma, porque hay algo importante que con ellos tú tienes que gestionar. A ver, yo no te lo voy a incluir dentro de la implementación, pero me parece crítico de cara a tu negocio que tú tengas el total control de la base de datos de esa aplicación.
+Entonces, sea lo que sea en los términos que tú estés hoy con ellos, es superimportante que tengas y solicites el control de la base de datos de la manera más amigable posible. ¿Antes de que los mandes, como tú dices, palabras textuales a comer bien, por qué? Porque tú ahí tienes un histórico.
+
+Daniel Valbuena   45:23
+Visa.
+
+Freddy Rincones   45:26
+Que es relevante, no hacemos migración listo, no que yo te voy a habilitar esta data en en la aplicación nueva, porque primero eso tiene el esquema de esa data no va a aparecerse en nada del esquema de la aplicación que yo voy a hacer, entonces no me sirve de cierta manera, tal vez la lista de clientes con ciertos datos lo exportamos.
+Y lo incluimos, pero cotizaciones y todo eso no creo. No creo que pueda hacerte una migración, pero tú tienes que tener acceso a eso. En el histórico sí.
+
+Daniel Valbuena   45:51
+Ah, no, no, no, eso, eso nada que ver, pero fácilmente el tema de clientes.
+Sí, total. O sea, clientes me gustaría, o sea, que hagamos la migración de los que son clientes y proveedores que se, que se exporte, se encargue y pare de contar.
+
+Freddy Rincones   45:59
+¿Entonces?
+Sí.
+Tenemos que ver o k dale yo te es más, yo creo que igual se nos acabó el tiempo. ¿Tú tienes Daniel 5 Minuticos más para conversar? Entonces si quieren Emma YY Laura las libero, que están llevadas con otro tema de otro proyecto.
+
+Daniel Valbuena   46:15
+Sí, sí, sí, sin problema.
+
+Freddy Rincones   46:26
+Y yo me quedo con Daniel listo para conversar acá, un temito más chicas. Muchas gracias ya, prepárense porque Daniel quiere este proyecto ya.
+
+Laura Martinez   46:31
+Listo y gracias, chao chao.
+
+Emma Castillo   46:31
+Está bien.
+
+Laura Martinez   46:37
+Sí, ya me di cuenta.
+
+Emma Castillo   46:37
+Ahí tenemos a la líder técnica.
+
+Laura Martinez   46:40
+Me voy, adiós, chao Chao.
+
+Freddy Rincones stopped transcription

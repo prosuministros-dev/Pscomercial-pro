@@ -1,0 +1,11 @@
+# Formas de pago
+
+| TIPO DE FORMAS DE PAGO |
+| --- |
+| ANTICIPADO |
+| CONTRA ENTREGA |
+| CRÉDITO 8 DÍAS |
+| CRÉDITO 15 DÍAS |
+| CRÉDITO 30 DÍAS |
+| CRÉDITO 45 DÍAS |
+| CRÉDITO 60 DÍAS |

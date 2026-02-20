@@ -1,0 +1,46 @@
+# Margenes minimos por vertical
+
+| VERTICALES | MARGEN MINIMO |
+| --- | --- |
+| ANTICIPADO |  |
+| ACCESORIOS | 0.07 |
+| HARDWARE | 0.07 |
+| OTROS | 0.07 |
+| SERVICIOS | 0.07 |
+| SOFTWARE | 0.05 |
+| CONTRA ENTREGA |  |
+| ACCESORIOS | 0.07 |
+| HARDWARE | 0.07 |
+| OTROS | 0.07 |
+| SERVICIOS | 0.07 |
+| SOFTWARE | 0.05 |
+| CRÉDITO 8 DÍAS |  |
+| ACCESORIOS | 0.07 |
+| HARDWARE | 0.07 |
+| OTROS | 0.07 |
+| SERVICIOS | 0.07 |
+| SOFTWARE | 0.05 |
+| CRÉDITO 15 DÍAS |  |
+| ACCESORIOS | 0.07 |
+| HARDWARE | 0.07 |
+| OTROS | 0.07 |
+| SERVICIOS | 0.07 |
+| SOFTWARE | 0.05 |
+| CRÉDITO 30 DÍAS |  |
+| ACCESORIOS | 0.07 |
+| HARDWARE | 0.07 |
+| OTROS | 0.07 |
+| SERVICIOS | 0.07 |
+| SOFTWARE | 0.05 |
+| CRÉDITO 45 DÍAS |  |
+| ACCESORIOS | 0.09 |
+| HARDWARE | 0.09 |
+| OTROS | 0.09 |
+| SERVICIOS | 0.09 |
+| SOFTWARE | 0.07 |
+| CRÉDITO 60 DÍAS |  |
+| ACCESORIOS | 0.11 |
+| HARDWARE | 0.11 |
+| OTROS | 0.11 |
+| SERVICIOS | 0.11 |
+| SOFTWARE | 0.09 |

@@ -1,0 +1,2883 @@
+Validación PS-20251204_103201-Grabación de la reunión
+4 de diciembre de 2025, 3:32p.m.
+2h 35m 19s
+
+Laura Martinez inició la transcripción
+
+Laura Martinez   0:04
+Y.
+
+Daniel Valbuena   0:04
+¿Y ya te cuenta de qué onda con eso?
+
+Laura Martinez   0:07
+Dale, igual yo le doy con Freddy y podemos avanzar con lo que hemos construido y como que tener ahí más o menos pendiente lo de Andy, pero la idea es que podamos avanzar entonces.
+
+Daniel Valbuena   0:18
+Listo, perfecto.
+
+Laura Martinez   0:21
+Espérame porque como que se me descargó el mouse ahora preciso.
+Yeah.
+Entonces, déjame acá, es a las respuestas.
+Eso me hizo todo.
+Next.
+Tú me contestaste el requerimiento o en el documento 14569 y 10. Entiendo que si los otros no me los contestaste es porque estás de acuerdo.
+
+Daniel Valbuena   0:58
+No todo te lo contesté a excepción del despedido.
+
+Laura Martinez   1:03
+Porque es que yo tengo, mira el requerimiento.
+Ya te digo cuántos requerimientos tengo contigo que te envié.
+
+Daniel Valbuena   1:10
+El único que no te contesté fue el del pedido, de resto todo te lo dejé por escrito.
+
+Laura Martinez   1:14
+Awesome.
+Son 11 requerimientos. Entonces ya revisamos el en el correo solo me llegaron uno que otro. Entonces déjame, ya vamos haciendo el barrido.
+
+Daniel Valbuena   1:19
+Ajá, exacto, sí.
+
+Laura Martinez   1:27
+Sí, esto voy a compartir mi pantalla.
+Ya la ves, Dani.
+
+Daniel Valbuena   1:36
+Espera que está buscando sí, está aquí buscando precisamente tu correo, Laura Martinez, dame 1 segundo, please.
+
+Laura Martinez   1:38
+Eat.
+Dale.
+
+Daniel Valbuena   1:44
+Hola.
+Tengo o k el 10, el 9, el 6, el 5, el cuatro, el o k uno, 2 hace. Entiendo que hace falta el 3, espérame 1 segundo, yo valido, pero cuál es el 3, dame 1 segundo.
+Por acá, por acá.
+
+Laura Martinez   2:17
+Pequeña.
+
+Daniel Valbuena   2:18
+no solo tengo un punto en dos tdx Sí a ver ya mira qué pasa con esto esta tres no tiene validación de validación
+
+Laura Martinez   2:29
+And.
+
+Daniel Valbuena   2:31
+Okay.
+Okay, no sé qué pasó con el 3, no sé por qué no bien y en efecto no tiene ningún comentario mío.
+Dame 1 segundo.
+Te asignado a confirmación de la cotización.
+Bueno, dame chance, yo te te pongo el 3, que el 3 no lo he leído y los otros. ¿Cuáles? ¿Cuáles eran? A ver, yo miro, entonces un, 2, 3, 56.
+
+Laura Martinez   3:02
+Yes.
+Vamos a validar 1:1 de los que me compartiste.
+
+Daniel Valbuena   3:11
+El 7 y el 7 y el 8 el la U tampoco te lo se mandé. El 7 tengo.
+Ay, yo miro si tengo novedad, generación orden de pedido orden de compra.
+De ese no tenían, de ese no tenía novedad.
+porque se trataba de pedidos. La U era básicamente por eso era el módulo pedidos. Entonces la idea es que pues lo hablemos apenas este el documento.
+
+Laura Martinez   3:34
+Vale, entonces espérate yo.
+
+Daniel Valbuena   3:35
+El 3 te lo dejo, ya te lo paso.
+
+Laura Martinez   3:38
+Igual vamos revisando 1 1.
+¿Entonces tú me compartiste el primero?
+Y.
+Porque no me gordo, espérame, quiero ver que me mandaste un comentario.
+No, ya es que la orían de no ir.
+List.
+Las horas, sí.
+¿Ya ves mi pantalla, verdad?
+
+Daniel Valbuena   4:31
+Bien, vamos a abrir primero da 1 segundito también lo abro acá.
+
+Laura Martinez   4:35
+Dale.
+
+Daniel Valbuena   4:48
+Okay.
+
+Laura Martinez   4:51
+Listo, entonces yo estaba revisando tus comentarios, Dani. Entonces en el primero me dices, por favor, incluir formulario, página web, ya lo incluimos en cada parte donde me lo pediste.
+Este.es el canal de entrada que me escribes. Por favor, aclárame este.no lo entiendo. Entonces el sistema solicitará almacenar los datos básicos del cliente, que son todos estos datos y el canal por el cual te llegó ese lead, ya sea por el WhatsApp, por el chatbot del WhatsApp, por el chatbot del formulario o que ustedes lo registraron al sistema de manera manual.
+
+Daniel Valbuena   5:27
+Okay.
+
+Laura Martinez   5:29
+Entonces te voy a ir chuleando los que los que ya tenemos.
+By this.
+Por favor.
+Listo, esto ya quedamos alineados en esta parte.
+Cuando nosotros te ponemos así, Dani ver HU 02 asignación de Elite, o sea, hace referencia a la siguiente historia de usuario.
+
+Daniel Valbuena   6:00
+Okay.
+Ah, okay, perfecto. Okay.
+
+Laura Martinez   6:06
+Listo, bueno, acá yo agregué el director comercial que me faltó en varias partes, entonces por eso te lo puse en rojito como para que lo vieras el cambio. Esto ya estamos formulario de página web también te lo agregué acá.
+Y.
+Formulario.
+Entonces, usted formularía, formularía.
+This.
+Registro en estos casos de uso son los casos que hacemos, Dani, en temas de pruebas de QA, que le hacemos como la prueba al requerimiento que se cumplió con el desarrollo. Sí, entonces si no tienes acá es un registro incompleto, entonces si el sistema el sistema almacena el lead con estado pendiente de información cuando falta algún campo del formulario.
+Entonces eso va a pasar en cualquiera de los escenarios de cualquiera de las entradas que te puse, que si viene por el chatbot, por el formulario o por de manera manual, pero va a ser un común guardado temporal y tú vas a poder seguir registrando la información, pero pues es un registro incompleto.
+Entonces por eso sale como pendiente de información.
+
+Daniel Valbuena   7:17
+Okay.
+
+Laura Martinez   7:20
+Is our key check?
+Y.
+No seas, tú me dices acá el sistema lo asignará de manera automática. Entonces el lead queda de estado pendiente de asignación y dispone para el módulo de distribución. Entonces aquí netamente estamos hablando del registro del lead, él queda como en ese estado, pero pues se va a hacer la asignación bajo la bolsa que habíamos hablado.
+
+Daniel Valbuena   7:30
+Call.
+Okay.
+
+Laura Martinez   7:51
+Chun Chun, acá le cambié el mensaje, Dani, como tú lo pediste.
+Y.
+Y sí, o sea, aquí nosotros, según el que tú me dices, debemos separar, solicitar cotización, consultar el estado impedido quitar factura, eso ya lo quité. El 3 es recibir asesoría comercial, que entiendo que ahí no lo quité porque no sabías estaba segura si lo querías o no lo querías, porque solo me pusiste estos 3 que sea solicitar cotización, consultar pedido y otro motivo. Entiendo que asesoría comercial no iría.
+
+Daniel Valbuena   8:29
+No porque, o sea, o monta la cotización o consultar un pedido porque recibe asesoría comercial, es lo mismo que una cotización.
+
+Laura Martinez   8:39
+Okey, se me borró el comentario si lo borro listo. Entonces esto lo voy a poner aquí como tachado para saber para que no se me borra el comentario.
+Entonces sí, las acciones es que cuando solicita la cotización se inicia todo el tema por el chat, o sea, todo se todo esto da y otro motivo era, pues nosotros lo teníamos por si querían como interactuar con el con el lead, pero pues entiendo que tampoco iría.
+
+Daniel Valbuena   9:08
+Espérame 1 segundo lado porque es que no sé por qué no me guardo los comentarios.
+
+Laura Martinez   9:14
+Okay.
+
+Daniel Valbuena   9:14
+Mhm.
+Vengo paso acá, espérame 1 segundo lado porfa para hacerlo.
+
+Laura Martinez   9:19
+Tranqui, tranqui.
+
+Daniel Valbuena   9:20
+We gonna exit least.
+Perfecto, vamos en la parte de a ver, dormido perfecto, listo. Entonces vas en estoy aquí para apoyarte. Espérame 1 segundo, yo valido.
+A ver.
+Uh-huh.
+Listo, perfecto, entonces ahí que me dices, excusa a mí.
+
+Laura Martinez   9:48
+Aquí ya dijimos que la de asesoría comercial no iría y tú me preguntas en otro motivo qué iría, o sea, nosotros le pusimos para que pudieran como tener otro canal diferente a la cotización o al pedido, como si querían poner no sé un comentario o algo, pero y pues ahí definimos como el camino, pero pues no sé si lo requieren.
+
+Daniel Valbuena   10:07
+Yo te Yo te puse abajito de eso porque es como ya has dejado el comentario, pero fíjate, te puse ahí como solicitar una cotización, consultar al estado de su pedido, quitar el tema de la factura. Sí, 3 otro motivo. Entonces yo te te preguntaba ahí que está perfecto, pero.
+
+Laura Martinez   10:19
+Ya se lo quitamos.
+
+Daniel Valbuena   10:26
+¿Qué pasa en en otro motivo? O sea, o sea, cuál va a ser el plan, si me entendés. Por ejemplo, si consultar el estado del pedido debe asignarse a un tema de a un tema de qué es que, bueno, aunque sabes, estoy pensando que si.
+Podríamos revisar, solicitar cotización que se comunique con el área financiera para algún motivo, con el área logística para consultar un pedido y otro motivo. Sí, entonces ahí yo te decía cómo y cómo se va a cuadrar, o sea, cómo va a ser el tema cuando digan venga, si necesito consultar el estado un pedido, el estado un pedido es que.
+Le digan a un comercial o que se dirija al área de una vez logística. Bueno, quiubo, ¿qué pasó con eso? ¿Qué en qué estado se encuentra? Sí, o venga, si va para factura, que lo que lo dirija de una vez a la chica de facturación. Pero mi pregunta es cómo se cómo se va a manejar eso para o cómo se va a integrar, porque no lo sé.
+
+Laura Martinez   11:29
+Déjame ya voy a pedirle a Freddy que se una, porque es que esa parte es de integración, si ya es tema técnico.
+Ya te lo.
+En lo claro.
+No.
+I said boy.
+Listo, mientras alguno de ellos se une, ya llegó Emma. Hola, Emma.
+
+Emma Castillo   12:01
+Hola, ¿cómo están? Buenos días.
+
+Laura Martinez   12:05
+Hola Freddy.
+
+Freddy Rincones   12:07
+Buenas y que buenas tardes, buenos, buenos días.
+
+Laura Martinez   12:09
+Okay.
+
+Daniel Valbuena   12:09
+Hola a todos, ¿cómo están?
+
+Emma Castillo   12:12
+Hola bien, gracias, buenos días.
+
+Laura Martinez   12:12
+Ajá.
+
+Daniel Valbuena   12:12
+Días todavía.
+
+Laura Martinez   12:14
+¿Cómo están?
+
+Freddy Rincones   12:14
+Sí, que buenas tardes, ya yo me quiero, ya yo me quiero ir ya suficientes por hoy.
+
+Daniel Valbuena   12:17
+Ajá.
+
+Emma Castillo   12:18
+sí.
+
+Laura Martinez   12:20
+Ya en diciembre.
+
+Freddy Rincones   12:22
+A ver, disparen cómo podemos ayudar. Vamos a terminar de aprobar estos documentos en esta reunión porque estoy que me desarrollo.
+
+Laura Martinez   12:23
+Bueno, mira.
+Estoy hablando con Dani, entonces vamos en el mensaje inicial de WhatsApp del chatbot. Entonces él tiene una pregunta, lo que pasa es que digamos aquí él dice que el revista asesoría comercial no va, entonces por eso está tachado, pero no lo no lo quito porque es que si no se me pierde el comentario de Dani.
+
+Freddy Rincones   12:36
+Sí.
+
+Laura Martinez   12:49
+Entonces, en otro motivo, él nos dice como qué pasa ahí si se requiere otra otra acción como financiera. Pero hay varios caminos en los que él quiere indagar en cómo es como ya la implementación del chatbot que me gustaría que ustedes me ayudaran a aclararla. Entonces, Dani, si quieres me ayudas con la duda para que Freddy te la pueda aclarar bien.
+
+Freddy Rincones   12:50
+Yeah.
+A ver.
+
+Daniel Valbuena   13:10
+Listo, o sea, sería bueno que dependiendo de porque no sé, no sé cómo se vaya a manejar, que digan como este finalmente este chatbox finalmente va a suplir nuestro PBX, cierto, o sea, a la empresa llaman, ya ni llaman. Básicamente es por temas comerciales y ya el todo lo que es.
+Para temas financieros es por correo electrónico, todo lo otro lo manejan con la parte comercial. Sí, ya el tema del PBX en la empresa ya no está generando mucho valor. Entonces, la idea es que perfecto que solicitar una cotización, cierto, consultar el estado de un pedido está perfecto o consultar el un pedido, no, sino el estado.
+y otro motivo Entonces si es otro motivo venga es ahí no sé cómo se va a hacer venga es para temas no sé de con el área financiera a listo área financiera Boom lo remite a la persona que sea si es para temas de facturación si es para no sé si es para cara de cartera para la financiera para no sé qué
+¿Cómo va a ser esa comunicación de ese chat y cómo le va a llegar a la persona? Pues el mensajito de oye, ven, te están, te están solicitando esta cosa.
+
+Freddy Rincones   14:22
+Esto le tengo la respuesta, pero voy a usar.
+Una implementación que hicimos recientemente para otro cliente, listo.
+Déjame un momentico, cualquier cosa, usted no ha visto esto.
+Vale.
+
+Daniel Valbuena   14:39
+De una.
+
+Freddy Rincones   14:41
+Nosotros tenemos un.
+A ver, primero quiero aclarar términos importantísimos.
+
+Daniel Valbuena   14:49
+Dame, dame 1 segundo que me está marcando un cliente que estás con llamadita. ¿Qué pena contigo?
+
+Freddy Rincones   14:53
+Dale.
+¿Volví, todavía estaban por teléfono, no? ¿Qué llamada más larga?
+
+Laura Martinez   18:27
+Y.
+Call.
+
+Daniel Valbuena   18:46
+Cerrando una venta, tú dices eso, por Dios.
+
+Freddy Rincones   18:51
+Es.
+
+Laura Martinez   18:52
+Okay.
+
+Daniel Valbuena   18:52
+Yeah.
+¿Listo, en qué vamos?
+
+Laura Martinez   18:55
+Es.
+
+Freddy Rincones   18:56
+A que yo te iba a mostrar cómo funciona a verte, pero no sabes que primero. Bueno, sí, primero te voy a mostrar cómo funciona en un cliente, cómo lo tenemos. Ellos tienen su módulo de WhatsApp, se llama así, ellos tienen múltiples usuarios. ¿Qué te quiero decir? Ellos pueden, ellos ingresan, tienen n cantidad de usuarios, todos los usuarios.
+Agentes comerciales, administradores de pedidos, todos a tener algo muy similar y todos ellos tienen un acceso al módulo de WhatsApp. Ese módulo de WhatsApp va a estar linkeado a un número. Okay, eso es lo primero. Y acá la ventana igualita a la de WhatsApp compartes textos, imágenes, audios.
+idéntico, es el mismo cuento, pero quiero aclararte algo extremadamente importante, técnicamente importante, y voy a dibujar para esto. Listo, normal que tenemos tiempo.
+Ya me están viendo mi pantalla de lienzo.
+
+Daniel Valbuena   19:54
+Sí.
+
+Freddy Rincones   19:55
+Listo, entonces nosotros vamos a poner acá un cuadrito y le vamos a poner el número uno, que es el que tenemos en la página web. Cierto, vamos a poner otro cuadrito acá y lo vamos a llamar número 2, que es el de asco que se llama esto.
+Gimme.
+
+Daniel Valbuena   20:12
+Okay.
+
+Freddy Rincones   20:14
+Tenemos, estamos hablando números personales, listos, exacto, números de teléfonos, y este es el de Andy.
+Y tenemos otro que es el número cuatro, que es el de la chica comercial. No sé, vamos a ponerle un nombre, María.
+¿Qué pasa? Este es el de tu web, este es el que está en el botoncito de tu web.
+Nosotros o meta, vamos a llamarlo meta API.
+Sí.
+Nosotros tenemos que configurar.
+Este número, por ejemplo, es el que vamos a configurar el número de web para poder consumir toda la API, el servicio de API con sus limitaciones, con sus ventajas, con lo que sea. Y este número va a estar linkeado a, vamos a ponerle acá al señor bot, cierto.
+Y el número va a entrar.
+Y este bot va a mandar y va a habilitarle el mensaje en la modal de WhatsApp que te acabo de mostrar, cierto, o le llamamos chat o como quieras, pero vamos a tener acá todas las conversaciones. ¿Qué pasa? El bot va a tener una distribución, un flujo.
+Que lo acabamos de ver, ese flujo va a tener varias opciones y yo esas opciones lo que voy a hacer, minimicen mi lienzo para que lo puedan ver mejor en esas opciones. Yo lo que hago es a bueno, listo, opción 3, cuatro, 5, la que sea, eso lo va a atender el comercial, el rol comercial.
+Y se le asigna la conversación en el modelo de WhatsApp, sí que.
+No funciona, que no es técnicamente permitido. ¿O sea, qué es lo que no permite hacer WhatsApp Api? Es que esta conversación que está acá se la direccionemos al número de Jimmy y esta conversación 3 se la direccionemos al número personal.
+O el WhatsApp personal de Andy, que es la opción cuatro.
+
+Daniel Valbuena   22:15
+O sea, todo lo que si lo que te entiendo, todo lo que llegue a través de chats lo van únicamente ellos a poder visualizar en la plataforma mandar su WhatsApp personal.
+
+Freddy Rincones   22:25
+Exacto.
+
+Daniel Valbuena   22:27
+Está bien, súper claro.
+
+Freddy Rincones   22:30
+Es así, es técnica, pero no es porque Freddy no quiera, es que técnicamente Meta no permite transferir conversaciones entre números telefónicos y menos, o sea, entre números Meta API, Cloud, número personal, WhatsApp, no, eso no lo permite, lo que podemos llegar a hacer.
+
+Daniel Valbuena   22:44
+Mhm.
+Okay.
+
+Freddy Rincones   22:49
+Es que si en un caso muy específico en tu flujo quieres que sí o sí le llegue la conversación a uno de tus números personales de alguno de los chicos, lo más que hacemos es un hiperlink. ¿Qué es eso que le ponemos un texto? La persona escribió, es que necesito hablar con Jimmy exactamente.
+Nosotros da, le decimos, bueno, presiona la opción, no sé, comercial Jimmy y lo que le mandamos es una respuesta con la URL del link personal de del WhatsApp personal de Jimmy. ¿Qué va a pasar? Que la persona presiona ahí y se va, pero dígale adiós a la trazabilidad, a la trazabilidad de esa conversación. Cierto, no lo vuelves a ver.
+Porque el man se va para el número personal de él y él tal maneja su conversación. Entonces, ¿qué va a pasar?
+
+Daniel Valbuena   23:34
+Tengo una Tengo una pregunta, escúchame 1 segundo, entonces lo que entiendo es que va a quedar un número único.
+El cual se va a desplegar a diferentes usuarios. Cierto, el número único, exacto, número único es el que tenemos en la página web. Exacto, si el cliente llega, interactúa con Jimmy, tatata, o con Ángela, o con Camilo, o con el comercial que sea, llega, interactúa, manda la cotización, listo, ya la mandé la cotización, listo, total.
+
+Freddy Rincones   23:41
+Okay.
+Dentro de tu plataforma.
+El de tu página web no me acuerdo cuál es, dime el número.
+
+Daniel Valbuena   24:01
+Se fue.
+¿A los 2 días el cliente vuelve y escribe a ese número, cómo hace para decir a usted lo atendió tal persona?
+
+Freddy Rincones   24:12
+Claro, listo, la conversación, como esto va a ser una plataforma multitenant, todo lo que tú vas a manejar, ¿cierto? Esta plataforma multitenant va a manejar algo que se llama Launer ID. ¿Qué significa? Que la conversación va a quedar bajo el usuario que se que se lo dio. Entonces él va a manejar las conversaciones directamente. El administrador va a poder ver todas las conversaciones.
+O sea, el que tenga el rol de administrador, en este caso tú y la persona que consideres, o podemos segregarlo mucho más, pero el chatbot va a tener la inteligencia de decir, ya yo hablé contigo, no te mando un flujo nuevamente, sino respóndele a mi cliente o pues le llega la notificación a la persona y la persona le va respondiendo y van hablando, interactúa con quien.
+Le fue asignada la conversación, si tienes.
+
+Daniel Valbuena   24:58
+Perfect.
+
+Freddy Rincones   25:00
+5 vendedores.
+¿Y quieres que en tu flujo le llegue a un rol vendedor? Tenemos que hacer algo que se llama asignación automática, que está dentro de lo que habíamos hablado, cierto, y la asignación automática, el man lo va rotando, es como un que va disparando a lo que vaya teniendo espacio y la conversación va quedando ahí. Sí, entonces.
+El administrador lo ve todo y cada quien va a ver la conversación que le va llegando y lo va gestionando o hablando. Hay algo importante.
+
+Laura Martinez   25:23
+I.
+
+Freddy Rincones   25:32
+¿Cómo funciona Meta API? Y es clave. Lo voy a colocar acá. Hay una cosa que se llama el OP. Pareme bola porque esto es importante y seguro que todos vamos a aprender acá el OPIN o K.
+Y hay otras cosas que se llaman los templates, perdón, templates.
+Optim es cuando una persona escribe a tu número. ¿Cómo finaliza el número de que tenemos en la página que se me olvidó el número? ¿Cómo finaliza cuatro 8 era con un número, algo así?
+
+Daniel Valbuena   26:01
+Sí.
+Yo te digo.
+2161.
+
+Freddy Rincones   26:11
+Igualito, 2161, listo. Entonces, este es tu número de WhatsApp. Las personas que escriban por primera vez, eso es un up in. El up in abre una ventana de 24 horas. ¿Qué significa eso? Que dentro de las 24 horas, pues hablar directamente con la persona, todo bien sin problema.
+
+Laura Martinez   26:16
+It's.
+
+Freddy Rincones   26:31
+Pasan, ellos cierran eso y pasan las 24 horas, pero pues tu vendedor se le ocurrió hacerle un seguimiento directamente a él, cierto, como que se metió acá en el módulo de WhatsApp. Voy a hablar con este a ver qué pasó.
+No le le puede escribir, pero no le va, no sé si es que no los cobran o no, pero lo que estamos haciendo con nuestros clientes es que le habilitamos un template de seguimiento. ¿Hola, cómo estás? ¿Qué ha pasado con la cotización? Tal si lo quiere hacer manual, pero tú en tu flujo de tu aplicación.
+Entiendo que tienes notificaciones y seguimiento de cotizaciones por WhatsApp. Sí, entonces eso usa los templates. Lo que hacemos es que le habilitamos los mismos templates de seguimiento en el módulo de WhatsApp para que cuando ellos vayan a querer hablar otra vez, sepan que nada más pueden escribirle inicialmente con un template y ya luego.
+
+Daniel Valbuena   27:10
+Uh-huh.
+
+Freddy Rincones   27:24
+Escriben normal, es una limitación que tiene Meta API para evitar el spam. Entonces ellos nos aprueban las los templates inicialmente, si pasan las 24 horas, le tiras un un template de seguimiento. Hola, ¿cómo estás? Nuevamente por acá con la persona ya responde, empiezan a hablar listo para que sepas que ese es el funcionamiento.
+¿Que tiene WhatsApp API neta?
+No son limitantes, pero son formas de diferentes porque ellos están acostumbrados a escribirle, ¿pale, qué tal, cómo estás? Quiero hacer este seguimiento. Entonces, para que sepas que tienen como su diferencia, pequeña diferencia, pero no es un impacto operativo grande. Listo.
+Me cogieron la idea.
+
+Daniel Valbuena   28:06
+O K, en sí, entonces cuando se hace el seguimiento de la cotización, lo envía por WhatsApp. El cliente dará alguna respuesta y ahí notifica el comercial. Hey, este man respondió.
+
+Freddy Rincones   28:18
+Si vas a ser así o eso tu plataforma va a manejar porque yo vi que en los documentos están pensando. Es más, yo me acuerdo que hablamos que la expectativa es que pues si no hay una respuesta, enviar notificaciones por WhatsApp a los clientes automáticamente. Eso lo va a hacer un trigger que nosotros vamos a tener, un Chrome, lo que sea.
+Una tarea agendada, pero adicional, tu vendedor quiera hacerle seguimiento directamente al número. Por cualquier razón, él va a poder escribirle después de 24 horas mediante un template y luego que se active la conversación.
+Escribe nuevamente por lo que quiera, listo.
+
+Daniel Valbuena   28:58
+Listo, oye, te hago una pregunta, si yo quiero pasar a todo mi equipo comercial que no, o sea, que todas las conversaciones las tenga por la plataforma, que sería lo ideal, pero lo que me mata a mí es que tienen que llamar, el cliente tiene que llamarlo.
+Ahí perderíamos eso.
+
+Freddy Rincones   29:18
+El cliente tiene que llamarlo como así.
+
+Daniel Valbuena   29:21
+O sea.
+
+Freddy Rincones   29:21
+Ellos van a tener, ya te entendí. Jimmy tiene el número que termina de Claro Moviinet o lo que perdón, de Claro, vamos a llamar a Claro que termina en 55. Listo, él tiene su celular que termina en 55 y él usa ese mismo número para la aplicación de WhatsApp.
+Freddy, Jimmy, vas a usar ahora la plataforma nueva. Vas a tener tu módulo de WhatsApp, pero todo va a estar centralizado en un solo número. OK, pero el cliente, sí, el cliente tiene este número y con él se comunica. Eso funciona igual. Listo.
+
+Laura Martinez   29:55
+Yep.
+
+Freddy Rincones   29:58
+Él va a seguir usando su número, él va a poder, el cliente lo va a poder seguir llamando y él va a poder gestionar telefónicamente la llamada. De hecho, los números de WhatsApp, todos los que están acá no siguen funcionando. Si ellos quieren seguir escribiendo al cliente por ahí, cierto, ya tomas, tienes que tomar decisiones que si cierran el WhatsApp o no.
+
+Laura Martinez   30:06
+Yeah.
+
+Freddy Rincones   30:19
+Pero esos WhatsApp siguen funcionan.
+
+Daniel Valbuena   30:20
+¿Y cómo quedan? Por ejemplo, si quiero decirle hoy a estos manes, oiga, por favor, todas las conversaciones de aquí en adelante para hacer seguimiento de todo, que todo obviamente automatizado, manéjelos a través de las plataformas. Listo, perfecto, lleguemos al acuerdo, listo, todo uno va, pero ellos tienen.
+No sé, 507090 usuario contactos. ¿Cómo paso yo esos contactos que actualmente están guardados en el celular a la plataforma para que ellos puedan empezarles a escribir por ahí?
+
+Laura Martinez   30:44
+O.
+
+Freddy Rincones   30:54
+En teoría.
+¿Tú tienes?
+Exactamente los mismos números en tu plataforma actual.
+¿De los clientes en cualquier estado que se encuentre, sí o no?
+
+Daniel Valbuena   31:08
+Sí.
+
+Freddy Rincones   31:10
+Listo. Entonces, si los números de tus clientes que ellos manejan están en tu plataforma actual, nosotros hay que ver cómo están estructurados para poder insertarlos en tu plataforma nueva, la que vamos a desarrollar nosotros y a partir de ahí van a tener los contactos disponibles.
+
+Daniel Valbuena   31:26
+The most que la.
+La actual no, los informes que tenemos no va a permitir exportarlos. Eso nos va a tocar hacerlo nosotros de manera manual, sí, y más que esta gente no nos va a dar informes de absolutamente nada. Entonces la idea, la idea sería lo que te cuento, que todo eso se empieza a manejar la plataforma, pero pues ellos pueden, no sé, darle agregar cliente.
+Y no sé, se me ocurre agregar cliente y ponen el nombre del contacto, no sé.
+TDX, Freddy, Rincones, teléfono tan listo y los van a ir agregando manualmente para que ellos me pues o si no van a o sea sí va a funcionar, pero va a funcionar únicamente para leads porque todas sus otras ventas las van a manejar al otro lado.
+
+Freddy Rincones   32:02
+I'm not.
+No te preocupes, te entiendo tu preocupación, pero déjame ver algo que voy a abrir el demo que te mostramos o que te mostró Laura hace unos días.
+Para confirmar algo, quiero entender cómo es, en qué parte está la creación de el contacto de una plataforma.
+Same un moment.
+A usted lo llama.
+Listo.
+Se crea lead. Ok, estoy viendo a los que no están viendo mi pantalla, cierto, este fue el mockup que te hizo Laura o que te mostró Laura hace unos días. Cierto, tú vas a tener un módulo que se llama lead en la creación. Ustedes crean estos lead y aquí van a tener su base completa de clientes en los diferentes estados de los que ellos se encuentren.
+
+Laura Martinez   33:01
+No sé.
+
+Freddy Rincones   33:17
+Inicialmente necesitamos migrar tu base actual de clientes acá porque acá va a estar el número del cliente en alguna parte. Míralo acá, este número del cliente.
+
+Daniel Valbuena   33:26
+Lo que Lo que pasa es que muchas veces un clien, una razón social tiene en mi casa hasta 15 compradores.
+
+Freddy Rincones   33:36
+¿Y todos los contactos dónde los tienen?
+
+Daniel Valbuena   33:40
+En la plataforma actual.
+
+Freddy Rincones   33:42
+¿Dónde dime dónde está el origen de esos datos?
+
+Daniel Valbuena   33:46
+En la plata, o sea, no en la plataforma.
+
+Freddy Rincones   33:47
+Están en la plataforma, están en los WhatsApp de tus vendedores, los tienen.
+
+Daniel Valbuena   33:51
+Yo tengo actualmente la plataforma actual.
+
+Freddy Rincones   33:54
+A ver.
+
+Daniel Valbuena   33:57
+Velas, por ejemplo.
+
+Freddy Rincones   34:06
+Dime uno que sea de múltiples compradores.
+Extra.
+
+Daniel Valbuena   34:19
+Es como se ha sacado. Entonces, por ejemplo, cuando se va a buscar la cotización, dame 1 segundo y te muestro. Entonces yo llego, busco y busco el contacto creado.
+
+Freddy Rincones   34:20
+Yeah.
+Yeah.
+Claro, o sea, bajo la razón social, puedes crear múltiples contactos.
+
+Daniel Valbuena   34:35
+Exacto, esta es la razón social y ahí me arrastra. Yo aquí puedo crear más, mira, no llego, puedo buscar más, puedo crear nuevos o sencillamente puedo buscar porque aquí me pasa mucho de que mira, o sea, este es el caso más fuerte que tenemos, pero usualmente son 57 compradores por empresa.
+
+Freddy Rincones   34:40
+Mira el botoncito del WhatsApp, sí.
+And.
+¿Se hago una pregunta en algún documento funcional de los que tienen está expresada este comportamiento? Laura.
+
+Laura Martinez   35:03
+No.
+
+Freddy Rincones   35:04
+Agrégalo, porfa, agrégamelo en cualquier lugar. ¿Cuál es el comportamiento? Debe ser en la creación del lead. La creación del lead debe respetar una jerarquía dentro. Es posible que dentro de una razón social existan varios contactos o leads o K porque a la final ellos comienzan como un lead o comenzaron como un lead.
+
+Laura Martinez   35:12
+Sí.
+
+Freddy Rincones   35:25
+En tu plataforma, pero bajo la razón social, en realidad tu cuenta es la empresa Fundación Sabe.
+¿Pero tus contactos de compra?
+Son diferentes áreas, cierto, entonces ese comportamiento lo tienen exactamente, ese comportamiento lo tienen que tener la plataforma nueva. Así que por favor, déjenlo en algún documento. ¿Y qué va a pasar?
+
+Daniel Valbuena   35:39
+Exacto.
+
+Freddy Rincones   35:50
+Bueno, aquí aclaramos la funcionalidad, pero tu pregunta inicial es: ¿qué hago con todos esos contactos? ¿Cómo los puedo tener yo en la plataforma, cierto?
+¿Los podemos migrar de alguna manera hay que sacar esa información de ahí, tú dónde tienes esos contactos?
+
+Daniel Valbuena   36:05
+Actualmente esto está en plataforma, pero obviamente todos los tenemos guardados en el celular. Sí, lo que te decía con ellos está bastante complejo. Tú ya sabes más o menos el tema cómo es con ellos y la forma en cómo exporta el contacto, no. O sea, yo ya solicité hace más de 6 meses, mucho más.
+
+Freddy Rincones   36:17
+Hey.
+
+Daniel Valbuena   36:27
+Que por favor, yo necesitaba la información del cliente con cada uno de los contactos para poder yo desde ahí desplegar unas campañas. Ese informe nunca lo crearon, nunca quedó. Sí, entonces ahí es donde estamos como miércoles, ¿no?
+
+Freddy Rincones   36:39
+¿Y en reportes que hay?
+
+Daniel Valbuena   36:42
+No, quién reporte es básicamente esto, no, esos son bobadas, que nada que ver, o sea, si yo voy a si.
+
+Freddy Rincones   36:47
+Pero ninguno te trae los campos de cuenta con de cliente con contacto.
+
+Daniel Valbuena   36:52
+No, mira, eso está por clientes y, por ejemplo, cuando yo quiero descargar un informe por clientes me trae algo así, te muestro.
+
+Freddy Rincones   37:01
+Dale a la derecha, a ver.
+
+Daniel Valbuena   37:02
+Espérame 1 segundo, yo tengo por aquí el este comentico ya listo, eso en donde estaba y miramos si está por acá.
+
+Freddy Rincones   37:11
+Clientes prosuministros serán.
+
+Daniel Valbuena   37:14
+Ajá, mira, así nada más.
+No trae nada, trae un trae este contacto que trae, es el es ajá, es un es el contacto que nosotros ponemos acá, es decir, contacto principal.
+
+Freddy Rincones   37:20
+Un solo contacto de los 500.
+Sí, una pregunta, Dani, muéstrame nuevamente el dashboard que tenías de BI donde unos reportes que tenías una integración con esta plataforma.
+
+Daniel Valbuena   37:33
+Pero no me trae los contactos.
+No.
+
+Freddy Rincones   38:04
+¿Tú tienes acá clientes, qué imagina qué información tienes en clientes?
+
+Daniel Valbuena   38:12
+Bueno, lo mismo que te te muestro ahorita contacto principal.
+O sea, esta información viene de este reporte.
+
+Freddy Rincones   38:24
+Mhm.
+Te entiendo.
+
+Daniel Valbuena   38:27
+¿Ves? O sea, no habría lío. O sea, yo creo que lo podemos manejar de manera manual sin ningún inconveniente. Nos toca es hacer la tarea bien hecha, si me entendés y está súper bien que lo hagamos y de paso actualizamos porque por ejemplo de todo este mundo de contactos que te digo yo que teníamos en por ejemplo acá ya muchos no están. Sí, ya hay muchos que están vencidos. Entonces, bueno, perfecto, grabemos entonces.
+
+Freddy Rincones   38:28
+Yeah.
+Yeah.
+
+Laura Martinez   38:39
+Okay.
+
+Freddy Rincones   38:46
+Sí.
+
+Daniel Valbuena   38:49
+Listo, o sea, y ahí vamos creándolo uno a uno, pues obviamente es un trabajo un poco más manual que no debería, pero pues de cierta manera nos puede ayudar a nosotros como a actualizar la información y pues que tengamos en plataforma. Ajá, exacto.
+
+Freddy Rincones   39:01
+A limpiarla.
+Mira, te puedo proponer algo para que puedan continuar con la reunión. A mí me gustaría administrar, o sea, si tienes algún usuario administrador del BI, me gustaría verlo para entender cómo es el origen o qué o qué hay.
+En el origen de ese viaje. Yo te lo había dicho una vez me acuerdo porque ahí está interesante ver cómo es que ellos toman la data o que de alguna manera están consumiendo algún en point de.
+
+Daniel Valbuena   39:28
+Steven.
+Mira.
+El API están por el API de cogieron, o sea, esta gente les abrió un API, cierto, y a ese API nos conectamos. ¿Entonces ellos qué hacen? Cogieron el informe, por ejemplo, para sacar esto de acá lo cogen de este informe de acá. Entonces, a ver, pues acá está cotizaciones.
+
+Freddy Rincones   39:36
+De la.
+Exacto.
+State.
+Si me das el A, si me das por lo menos el acceso, la API token, cualquier información que te hayan dado de esa API, si la tienes en algún correo.
+Reenvíamelo porque si es una API tengo que entender que ellos están disponibilizando en la API porque con eso nosotros vamos a poder.
+Entender bien y tal vez podamos migrarte la data. Esa es la opción uno, la opción 2, como bien dice, lo haces manual, pero lo haces en un solo Excel, consolidas la información en un solo Excel y nosotros la cargamos en tu plataforma nueva. No es necesario 1 1, o sea, sí, pero consolidado en el Excel, lo limpian, hacen lo que vayan a hacer.
+Y nosotros es Excel. De alguna manera tenemos que planificarlo bien, lo integramos en la plataforma. Listo para que sepas. Y mientras consigues la información de la app, estaría de mucha ayuda. ¿Qué pido en ella? Ellos te van a dar un endpoint público, o sea, una URL pública.
+A donde tenemos que nosotros consumir y te tienen que dar unas credenciales de alguna manera toquen usuario. No sé cómo se autentican. Creo que la mayoría siempre usa un token para APIs. Entonces, si ellos te lo llegaban a pasar en algún momento, que estoy seguro, pero si no, no hubieras conectado el BI, esa información.
+Es clave para nosotros y que me deja acceso al BI administrador como usuario administrador para cacharrear y ver qué hay ahí. Creo que eso no lo vas a resolver ahorita listo, pero tenlo como una tarea para que me lo des. Don Daniel listo.
+
+Daniel Valbuena   41:31
+De una se la va a pedir a Bryan y te cuento a ver que porque no está buscando, pero no.
+
+Freddy Rincones   41:37
+Entonces, resolviendo la duda, ya sabemos de iniciar del chatbot cómo va a funcionar. Vamos a tener un número principal. Ese número principal va a responder con unas automatizaciones y esas automatizaciones van a asignar automáticamente un usuario.
+De que de X rol que tenga el rol que se defina en la plataforma y la y ellos van a poder ingresar a su módulo de WhatsApp y van a ver eso desde ahí y van a gestionar toda la conversación. Mejor dicho, de ahí en adelante todo queda una trazabilidad y el historial guardado.
+
+Daniel Valbuena   42:06
+Okay.
+Te hago la pregunta que me surge ahí también.
+Cuando el usuario, cuando el usuario no, sino cuando el comercial está fuera visitando.
+Ya además que esos chats deben estar en su plataforma más o en el WhatsApp, que es lo que debería funcionar a donde yo quiero llevar el WhatsApp empresarial. Como no me utiliza WhatsApp empresarial, sino todo manéjemelo por la plataforma.
+¿Si están en visitas, cómo ellos saben en qué momento les están escribiendo?
+
+Freddy Rincones   42:37
+Te hablaron.
+
+Daniel Valbuena   42:40
+Porque ese es mi tema, si me entendés. O sea, eso es lo que te decía, lo manejan los mayoristas, pero cuando el usuario está quieto, sentado en un puesto y pare de contar, sí, pero cuando no, el uso, cuando el usuario está ellos 23 días a la semana están fuera visitando, haciendo toda la gestión, como hay semanas que están más tranquilos, si me entendés.
+¿Cómo haríamos, o sea, cómo quedaría mejor?
+
+Freddy Rincones   43:11
+¿Hay una opción que se llama en BB signote y ellos colocan sus números propios, cierto?
+Pero no recuerdo.
+No recuerdo, no estoy seguro que técnicamente si vas a recibir por un número, no lo puedes.
+Um.
+
+Daniel Valbuena   43:41
+O sea, preguntas que no sé si la plataforma que estamos utilizando en este momento, cierto, como esa parte del chat, no habrá forma de agregar esa plataforma o esa integración a alguna aplicación del celular.
+
+Freddy Rincones   43:42
+Cambiará el número B.
+Está a ojo, él va a poder ingresar desde el celular sin ningún inconveniente. Ojo, eso sí, va a ser la aplicación, va a ser 100% mobile responsive. No es una aplicación mobile. ¿Qué significa? Se mete por Chrome, busca la aplicación, entra y va a ver perfectamente todas las conversaciones como si fuera una aplicación. Eso lo hacemos nosotros sin problema alguno.
+¿Qué pasa, Dani? Como te dije, la limitante inicial es.
+Entre números diferentes nos puedes compartirte la conversación. Eso es lo primero, eso lo así funciona meta, no? O sea, es un número y vas a tener todas las conversaciones de ese número. Lo que sí podemos hacer es qué podemos linkear y es cómo funcionan muchas de esas plataformas, linkear el número.
+
+Laura Martinez   44:36
+Sí.
+
+Freddy Rincones   44:43
+Y.
+Hay algo que se llama el en vez de sign up, que es que tú tienes WhatsApp business. Jimmy tiene WhatsApp business, por ejemplo, cierto, y él tiene un número X. Jimmy integra su número y se lo vea con su número en la plataforma y él puede empezar a recibir.
+Mensajes por ese número.
+Si quieres me llegó la averiguación a ver si hay algo más que podamos hacer y te doy respuesta porque si no la otra opción es es que yo creo que lo habíamos conversado y nosotros habíamos hecho un análisis full y lo que sí se puede hacer es en bebé sign up. Puedes usar el mismo número, pero los mensajes tienen que llegar a ese número.
+
+Daniel Valbuena   45:13
+De una.
+
+Freddy Rincones   45:29
+Hago entender, o sea, él las él sigue manejando la gestión de todos sus clientes con la API. Sí, y todo va quedando en su conversación, básicamente.
+Y lo que el mensaje que entra y sale sale por el número de Jimmy, no sale por el número el otro. Me hago entender, esa es como la limitante técnica. Si el mensaje entró.
+Por el número de Jimmy debe salir por el número de Jimmy, lo que van a responder y así se maneja. Pero lo que quiero es identificar que no pierdas la trazabilidad de las conversaciones de tus clientes. Entonces quiero ver que, o sea, posiblemente podamos hacer una modal.
+Y esa modal que tuviste ahí de WhatsApp nada más le va a funcionar a Jimmy con los números de Jimmy y todo lo de Jimmy.
+Eso puede ser que lo hagamos de esa manera, me hago entender.
+Acá se me ocurre lo siguiente.
+Voy a dibujar, párenme bolas o miren esto.
+
+Daniel Valbuena   46:32
+Almost.
+
+Freddy Rincones   46:40
+¿Dónde está la pija acá?
+No, este voy a escribir abajo de los garabatos que dicen antes. Nosotros vamos a tener entonces un módulo de WhatsApp que ya lo viste y todas las.
+
+Daniel Valbuena   46:57
+Ahí nos no estamos esperando nada.
+
+Freddy Rincones   46:59
+Estoy escribiendo abajo abajo de los garabatos.
+
+Laura Martinez   47:00
+Sí, yo sí lo estoy viendo.
+
+Daniel Valbuena   47:04
+O K, ya estoy bien así.
+
+Freddy Rincones   47:05
+¿Tenemos sí, tenemos meta API, cierto?
+Y tenemos el número de Jimmy.
+Nosotros lo linkeamos y lo convertimos en meta API, cierto, el número de Jimmy va a seguir funcionando desde la aplicación de WhatsApp.
+Desde la app sin problemas de la business sin problemas, no tiene que ser de la app de business de WhatsApp Business y él va a poder ver estas mismas conversaciones en el módulo de WhatsApp de tu aplicación.
+Sí.
+
+Daniel Valbuena   47:38
+Okay.
+
+Freddy Rincones   47:41
+De WhatsApp de la aplicación web, cierto.
+¿Qué no se puede hacer? es que?
+Tenemos el número que hablamos ahorita que termina en 61.
+Ese número igual se conecta a meta.
+Cierto, y ese número va a mandar las conversaciones a un usuario cierto del módulo de WhatsApp. ¿Qué es lo que no podemos hacer? No podemos hacer es que esta conversación número uno.
+
+Daniel Valbuena   48:10
+Salgo al otro lado.
+
+Freddy Rincones   48:10
+Se la se la asignemos a Jimmy. Técnicamente esto no es viable, pero Jimmy, este ambiente de Jimmy puede funcionar sin ningún problema. Me hago entender, él puede seguir trabajando. Él mira por la web.
+
+Daniel Valbuena   48:20
+O sea, y sabes, ahí no habría necesidad de emigrar ningún contacto porque como todo lo maneja un WhatsApp.
+
+Freddy Rincones   48:26
+No habría necesidad de migrar ningún contacto, no, pero él va a ir cargando las conversaciones nuevas. No es que emigro los contactos, él va a ir cargando las conversaciones.
+
+Daniel Valbuena   48:35
+Sí, no está perfecto, la parte, la parte nueva está perfecta. Tengo lío, pero me refiero a que el no va a haber, no va a haber necesidad de manualmente crear uno a uno, sino pues en la si va escribiendo y en la plataforma, pero también sería bueno revisar cómo sale. Es un contacto que tiene Jimmy guardado en su WhatsApp web que se llama TDX Freddy Rincones. Ese contacto no va a salir.
+Por ningún lado aquí en la plataforma, como aparecería en la plataforma, como el numerito o como TDX Freddy Rincones.
+
+Freddy Rincones   49:07
+No, lo que pasa es que tú tienes y es lo que se me ocurre es que tú vas a tener un módulo que se llama lit, que lo vimos ahorita, cierto.
+
+Daniel Valbuena   49:13
+Uh-huh.
+
+Freddy Rincones   49:15
+Ese módulo de lead es donde realmente ustedes están llenando su base de contactos.
+donde están todos los contactos y en el estado que se vayan encontrando. Sí, entonces tan Jimmy va a ir llenando con la información los contactos. O sea, nosotros podemos habilitar algún view acá que diga bueno, este contacto agrégalo en el módulo elite y lo agregas chiqui.
+Lo agregó y en este módulo de lit ya sigue el resto de módulos que ustedes tienen contemplados, cotizaciones, pedidos, sí.
+Entonces esto va a funcionar perfectamente solamente para Jimmy, tanto en la plataforma de WhatsApp como en el celular, y en lo que hace que desde la plataforma de WhatsApp pueda agregar el lead dentro del módulo de WhatsApp de de lead. Si me coges la idea.
+Oh, no.
+
+Daniel Valbuena   50:11
+No, la verdad no la no la no la cojo.
+
+Freddy Rincones   50:14
+All you now.
+Y miren acá.
+Ya tenemos claro cómo se link el Jimmy y va a funcionar el número de Jimmy y todo va a quedar perfecto.
+también les queda claro que ustedes tienen ya en el mockup que te mostró Laura ustedes tienen un módulo que se llama sí o no
+
+Daniel Valbuena   50:33
+Uh-huh.
+Los nuevos clientes, sí.
+
+Freddy Rincones   50:44
+Exacto nosotros podemos en ese módulo como que él pueda crear si le escribe una persona nueva o lo que sea que él ese contacto ese número lo cree dentro del módulo de lead como que se convierte en un contacto de lead me hago entender tu base completa original va a ser leads
+Ahí vas a tener todos tus contactos por cuenta. Una cuenta tiene 500 personas que son los aprobadores, lo que sea. Eso lo estamos haciendo en el módulo elite. Solo que estamos. Podemos llegar a integrar mínimamente tu canal de WhatsApp, tu módulo de WhatsApp para que tome algunos datos de ahí y los inserte dentro del módulo elite.
+Sea el contacto a Bcd, vamos a entender, y así los chicos mantienen sus números, integran sus números.
+Y ya.
+Y lo vas a poder, um y lo vas a poder ver.
+
+Daniel Valbuena   51:38
+Pero o sea, cuando usted era un cliente lo va a coger la plataforma y le va a preguntar como si fuera chatbox.
+
+Freddy Rincones   51:47
+va a ser un chat qué buena esa pregunta y creo que sí o sea nosotros metemos el Bot acá
+Ya meto el bot aquí.
+Yo meto el bot acá, este es el bot, yo lo meto acá dentro de la configuración. Jimmy va a tener su propio bot, velo así.
+Así va a funcionar.
+Jimmy va a tener su propio bot, el número de Jimmy va a tener su propio bot.
+
+Daniel Valbuena   52:18
+Okay.
+
+Freddy Rincones   52:20
+¿Qué te recomiendo yo?
+Tú quieres que tu número de la plataforma de WhatsApp de tu número que está en la página va a recibir pauta enorme, me imagino, vas a meter pauta, van a llegar nuevos contactos, el chatbot los va a recibir, el chatbot les va a hablar y el chatbot básicamente lo que va a hacer es
+que registra el contacto nuevo, cierto? Luego Jimmy entra a la plataforma, entra al lead y va a encontrar en el lead los nuevos leads y él le va a poder escribir usando su número directo.
+
+Daniel Valbuena   52:45
+Okay.
+Ajá.
+Okay.
+
+Freddy Rincones   53:00
+Eso sí lo podemos llegar a hacer.
+
+Daniel Valbuena   53:04
+Dale, sí, o sea, súper claro, pero la pregunta que te comentaba que me surge es.
+Sí, en el escenario, en el ecosistema de comercial WhatsApp web, no número principal, me escribe, por ejemplo, Laura.
+¿Cómo en la plataforma se va a ver Laura como está guardada en el celular o cómo se va a ver guardada? O solamente va a quedar como el número, el número de ella es a una, sí me entendés.
+
+Freddy Rincones   53:36
+Mira, los contactos están en los celulares localmente.
+
+Daniel Valbuena   53:41
+Sí.
+
+Freddy Rincones   53:41
+Cuando tú lo grabas con WhatsApp.
+En.
+Sí, no sé si te ha pasado que cuando haces un backup de un celular a otro, si no hiciste el backup de contactos en el nuevo celular, solamente aparecen los números en WhatsApp. ¿Te ha pasado ese error alguna vez?
+
+Daniel Valbuena   53:56
+Ajá, sí.
+
+Freddy Rincones   53:57
+Es porque los contactos están acá, están en tu celular. Listo, el linkeo o la relación del nombre del contacto con el número de WhatsApp, él lo toma del de la lista de contacto de WhatsApp de tu celular, perdón.
+Tenemos que buscar la forma de exportar esos contactos correctamente y hacer un una inserción de datos en tu plataforma, listo.
+
+Daniel Valbuena   54:15
+La plataforma.
+Mhm.
+
+Freddy Rincones   54:21
+Para que mantengan los números y la sincronización con los nombres y las cosas.
+
+Daniel Valbuena   54:26
+Ahora.
+Pasa mucho de que me toca, me dicen, venga Daniel, el link no solamente llega por la página, sino me dice, ******, venga, ya me llama a este número o escríbale a este número que está enriqueriendo tal vagina. ¿Sí me entendés? Yo lo que yo hago es copiar el número de WhatsApp y por ahí le escribo.
+¿Cómo yo haría una nueva conversación en la plataforma?
+Para, oye, ven, sé que está requiere tal cosa, no sé qué era tan cómo pensaría.
+
+Laura Martinez   54:56
+A.
+
+Freddy Rincones   54:57
+De hecho, tú lo estás haciendo desde tu celular, cierto, lo agarraste, tienes el nuevo número, te metiste en WhatsApp, le escribiste al nuevo. Pum, qué va a pasar con todo este tema del embedded sign up, que es la funcionalidad que tenemos que testear y dice que funciona.
+A Jimmy que hizo ese proceso, a Jimmy le pasaron el número, este número tal man le escribió desde el celular y funcionó y le escribió ta ta ta ta. La teoría es que exactamente lo que él tiene en el celular se le va a ver reflejado en el WhatsApp web y de ahí él va a poder crear el contacto o el cliente o el lead o vemos que se hace que.
+¿Qué acciones podemos ejecutar?
+En el módulo elite, o sea, todo lo vamos a concentrar en tu módulo de elite donde vas a tener tus contactos. Todo todo lo vamos a concentrar ahí. Lo que es el embeve si no que estamos asignando usando el número exacto de Jimmy lo que nos va a permitir es tener esa información y esa información. Ya después la insertamos en el módulo elite internamente en la plataforma.
+
+Daniel Valbuena   55:38
+Súper raro.
+
+Freddy Rincones   55:54
+O sea, eso lo vamos a poder hacer.
+O sea, de verdad que con lo que te estoy diciendo se te resuelven los problemas que me habías mencionado hace mucho tiempo sobre eso, porque los ellos no van a perder nada. La información va a estar disponible. Lo que tienes que tener claro es que no vas a poder transferir conversaciones y lo otro que no tengo claro todavía.
+
+Daniel Valbuena   56:04
+Listo.
+
+Freddy Rincones   56:16
+Es que si tú vas a poder ver las conversaciones de Jimmy.
+En la plataforma.
+List.
+Que no sé si te interesa verlas o no.
+
+Daniel Valbuena   56:29
+No, sí, me interesaría para saber qué, porque me ha pasado muchos temas de trato a ese cliente, servicio al cliente puntualmente. Entonces me llega el caso, yo entro, o sea, porque.
+
+Freddy Rincones   56:29
+Eso Halo.
+
+Daniel Valbuena   56:41
+Cogerlo de fresquito una vez entrada a revisar antes de que puedan llegar a hacer alguna modificación.
+
+Freddy Rincones   56:48
+Listo, sí, entonces eso.
+
+Daniel Valbuena   56:51
+O sea, para resumir, o sea, en el ecosistema WhatsApp web plataforma se va a sintonizar, esté en la calle, escriba esa conversación, va a quedar en la plataforma de la del celular del.
+
+Freddy Rincones   57:02
+Él sigue usando el celular.
+
+Daniel Valbuena   57:04
+Ajá, la puede seguir usando y en la ajá, perfecto. Sí, o sea, él debe tener WhatsApp Business para que funcione cierto, y esa conversación que tenga su WhatsApp Business la se va a poder visualizar en la plataforma.
+
+Freddy Rincones   57:05
+WhatsApp business.
+Mhm.
+También solo él, desde su usuario.
+
+Daniel Valbuena   57:18
+Listo, perfecto, exacto, solo ven, ajá, perfecto. Ahora lo que no se puede hacer es que cuando llega un lead a través del número 61, le va a asignar a al usuario que sea esa.
+
+Freddy Rincones   57:27
+Uh-huh.
+¿Esa conversación al módulo de WhatsApp de Jimmy Web, no?
+
+Daniel Valbuena   57:34
+Exacto, no se puede hacer. A él le va a aparecer como la conversación pendiente, pero no la va a poder visualizar en su celular o en el WhatsApp web.
+
+Freddy Rincones   57:43
+no pero que va a poder ver él desde la web va a poder ver porque el número 61 el Bot por ejemplo podemos llegar a hacer la automatización que él cree el lead me hago entender el crea el en el módulo elite Entonces desde el módulo de elite él va a tener la opción un botoncito de WhatsApp
+Escribirle desde el.
+
+Daniel Valbuena   58:05
+Lo resuelto, claro.
+
+Freddy Rincones   58:06
+Desde el WhatsApp.
+
+Daniel Valbuena   58:08
+Claro, queda resuelto, ajá, ajá.
+
+Freddy Rincones   58:08
+De él, del WhatsApp, de él, del número de él. Pero él te queda a ti concentrado y ya. O sea, tu tu pauta llega por allá, pero el se y uno, él va a llegar, alimenta, alguien debe manejar, alguien también puede llegar a revisar esta convert, porque esta vaina va a estar en la web también.
+
+Daniel Valbuena   58:15
+Súper claro, súper claro.
+
+Freddy Rincones   58:27
+Tú verás si alguien le damos, o no sé, al usuario administrador o al o al usuario comercial líder, una vaina así le damos acceso a esto.
+Porque él va a tener su módulo de WhatsApp y yo tengo que asignar y tengo que descargar toda esa. Tenemos que ver esas conversaciones que hace el bot.
+
+Daniel Valbuena   58:48
+Okay.
+
+Freddy Rincones   58:51
+Pero me gusta porque vas a tener la opción del seyuno.
+por meta y vamos a tener la en bebé resuelve el problema ese y al y a la final ponemos una capa más arriba que se llama módulo de Elite donde concentramos toda la información de los contactos y un botoncito de WhatsApp Ese botoncito de WhatsApp debe funcionar para el que esté logueado en ese momento y le dé clic
+Lo jala la o le crea una conversación en su WhatsApp. Lo que no tengo seguro es si cuando vas a crear la conversación o escribirle.
+Tengas que hacerlo por template o te funciona normal. Yo creo que el en vez de signo me tiene que dejar hacerlo por normal.
+Porque él se debe comportar igualito como se comporta en el celular.
+
+Daniel Valbuena   59:42
+Okay.
+
+Freddy Rincones   59:43
+Pero lo probamos, igual es una limitante que te pongo acá, que si consigo algún tema técnico sabes que por la web solamente lo va a poder hacer por template, pero no es un mayor impacto.
+
+Daniel Valbuena   59:52
+Listo, perfecto.
+Super.
+
+Freddy Rincones   59:57
+Alineados, uy, estuvo bueno.
+
+Laura Martinez   1:00:02
+Listo.
+
+Freddy Rincones   1:00:02
+Se va a quedar bello, bello.
+
+Laura Martinez   1:00:06
+Entonces vuelvo y te comparto, Dani.
+¿Ya la ven, verdad?
+
+Daniel Valbuena   1:00:15
+Si ya está resuelto entonces el tema de que va a pasar cuando se comuniquen la facturación o a las áreas que nosotros pongamos, déjame, yo te voy a agregar ahí en ese o si la puedes por favor agregar, dejemos solicitar una cotización.
+Hm.
+Es que tengo la duda de si con su.
+Mira, ahí se me sabes que me gustaría comunicarse con área comercial y que le pregunte con qué comercial para solicitar, porque qué pasa. O sea, no quiero que el manejo de el estatus de un pedido, lo de logística por temas de sí, el trato de ese cliente, sí me entendés, sino que el comercial sepa qué información dar. Sí.
+Entonces, si por algún motivo llegó, venga, es que no sabe en qué estado se encuentra un pedido. Sí, entonces, bueno, claro que sí, perfecto. Entonces, ¿con qué comercial lo está atendiendo? Listo, en un momento lo va a atender tal y le manda y quiubo que este man está solicitando esa vaina, si me entendés y el otro motivo entonces.
+
+Freddy Rincones   1:01:19
+Solo dejo una aclaración.
+
+Daniel Valbuena   1:01:21
+Dime.
+
+Laura Martinez   1:01:21
+Mhm.
+
+Freddy Rincones   1:01:22
+¿Recuerda el mapita que hice ahorita? Si la conversación llega por el 6 uno, lo más que podemos darle son los link del comercial para que escriba ya listo o lo que podemos hacer, que también funcionaría muy bien, es generar un una notificación en la plataforma.
+¿Para qué?
+El comercial le llegue la notificación y el man entre y le escriba directamente con la respuesta. Por ejemplo, el cliente tal está solicitando tal y tal y tal y tal información del pedido. La notificación llega a la plataforma, la podemos insertar y de alguna manera manejarla. Ustedes tienen un.
+
+Laura Martinez   1:01:43
+Good.
+
+Daniel Valbuena   1:02:01
+Uff, es una buena idea, muy buena idea, claro.
+
+Freddy Rincones   1:02:04
+Un módulo de ustedes van a tener un módulo de notificaciones, entonces que le llegue la notificación a miren acá, por ejemplo, acá ustedes van a tener una cosa de notificaciones, esto así cliente tal, el tal solicitó tal información.
+Entonces esas notificaciones las van a poder ver ellos de la plataforma, ellos van a ingresar al lead.
+Bueno, esto es como un mock, no funciona, pero va a ingresar el LIC X, mira la solicitud y le responde con el botoncito de WhatsApp, le responde desde su WhatsApp.
+
+Daniel Valbuena   1:02:39
+Y.
+no, súper bien, esa es esa es.
+
+Freddy Rincones   1:02:43
+Desde el WhatsApp de Carlos Mendoza.
+
+Daniel Valbuena   1:02:47
+Esa es sí Exacto listo quieres realizar saber el estado de un pedido listo Quién fue el pues quién quién Cuál es el comercio que te está atendiendo Camilo los que tengo a mí tal listo en un momento ya se comunican contigo para darte respuesta le llega la notificación el comercial le llega la notificación que otra y respóndale esa está perfecta
+
+Laura Martinez   1:03:05
+Sí.
+
+Freddy Rincones   1:03:06
+Sí, a él le llega la notificación acá y eso se maneja de esa manera.
+
+Laura Martinez   1:03:07
+Listo, igual Dani.
+
+Daniel Valbuena   1:03:10
+¿Y sabes? Y eso mismo aplicarlo para otro motivo. Entonces, ven, es que necesito comunicarme con el área de facturación. Listo, pum, pum, pum, notificación. Esta persona se quiere comunicar con usted para tal vaina. Bum, respondele WhatsApp siento que es una.
+
+Freddy Rincones   1:03:24
+¿O sea, el área de facturación que tú mencionas tiene su quién es?
+
+Daniel Valbuena   1:03:30
+Facturación en este caso es facturación, en este caso es auxiliar administrativa.
+
+Freddy Rincones   1:03:30
+Laura.
+Eso, ella tiene un WhatsApp propio.
+
+Daniel Valbuena   1:03:39
+Sí claro tiene WhatsApp propio también para área para el área de cartera Laura o para el área de pagos cartera y cartera y pagos sería Laura entonces digo que bueno y también mucha también habilitar también unos botoncitos que finalmente va a direccionar allá pero es que llega mucho para temas de certificados de retención
+
+Freddy Rincones   1:03:46
+¿Tiene WhatsApp propio?
+They stop it.
+
+Laura Martinez   1:03:57
+Sí.
+
+Daniel Valbuena   1:04:00
+En su momento, si me entendés, entonces para suscitar certificados tan listos para personas, si me entendés como.
+
+Freddy Rincones   1:04:05
+Me gusta, sí, o sea.
+A la final, lo que nosotros vamos a hacer que las personas que escriban por el seis uno listo va a atenderla el bot y el bot va a interpretar la necesidad y genera una notificación en la plataforma para el usuario correcto, o sea, el lead to lead.
+
+Daniel Valbuena   1:04:25
+Perfecto, esa me gusta mucho.
+
+Freddy Rincones   1:04:28
+Tal.
+Tiene una necesidad, entonces ellos se van a meter en el módulo de lead y van a encontrar los datos de las personas y en el módulo de lead va a estar el botón de WhatsApp y ellos lo van a escribir directamente desde su WhatsApp, sea celular fijo o sea página web.
+
+Daniel Valbuena   1:04:46
+Perfecto, súper bien, me parece uno a, pero entonces Laura ahí también sería importante porque entonces él en el lead estarían ya integradas las áreas de financiera, o sea, en este caso auxiliar administrativa, auxiliar financiera, administrativa financiera, los comerciales.
+Y.
+Y ya a compras no lo quiero meter ahí porque para compras no.
+no, no exacto.
+
+Laura Martinez   1:05:12
+Igual, o sea, como para darle un poco de orden a los documentos. O sea, aquí netamente estamos hablando del registro de Freddy con lo que veo que están hablando, si necesitamos hacer otra historia de usuario que cubra todo esto que están hablando al alcance de WhatsApp como para que el WhatsApp entienda el comportamiento, porque es que de pronto aquí.
+Vamos a mezclar en los documentos cosas que no corresponden a cada uno de los requerimientos, sí.
+
+Freddy Rincones   1:05:32
+Sí.
+Sí.
+Sí, genéralo con este con lo que acabamos de hablar acá, lo generas rapidito y bueno, rápido no lo generas y lo y lo aprobamos de una. Dani, o sea, la revisada y lo aprobamos de una el flujo para que para que no esperemos más. Mejor dicho, mañana mismo eso queda aprobado.
+
+Laura Martinez   1:05:41
+Exacto.
+Y lo probaron.
+Entonces, por eso quiero dar como la claridad para que salgan aprobados estos documentos que ya tenemos, pero pues nos faltaría lo que hablamos del WhatsApp, que es como otra pestañita que le sale a esta parte, sí.
+
+Freddy Rincones   1:06:08
+Sí.
+
+Daniel Valbuena   1:06:08
+So.
+
+Laura Martinez   1:06:09
+Listo, Dani, entonces como este es el registro del entonces ya nos queda claro, digamos solamente le voy a quitar este tema de recibir asesoría comercial, pero pues el inicial el mensaje inicial nos va a dirigir ya sea una cotización, un pedido u otro metido, otro motivo en la historia que te digo vamos.
+
+Daniel Valbuena   1:06:25
+Exacto, consulta al estado de tu pedido, solicitar una cotización o consulta al consulta al estado de tu pedido, sí, y el otro motivo ya que la.
+Que la Que el tema de la bueno, el la inteligencia, pues la coja y mire para que ahora lo va a lo va a revisionar. Mhm, perfecto.
+
+Laura Martinez   1:06:43
+Mhm.
+Pero esto va en otro documento, entonces listo esta parte ya quedamos check, le pongo el check.
+Otro comentario que.
+
+Daniel Valbuena   1:06:52
+¿Ay juepucha, vamos a esperar, vamos a esperar en el uno, no?
+
+Laura Martinez   1:06:55
+Por eso se me fueron ustedes.
+
+Freddy Rincones   1:06:57
+¿Qué te me extendiste?
+
+Daniel Valbuena   1:06:58
+Ajá.
+
+Laura Martinez   1:07:02
+Listo, Dani, el mensaje que me pusiste acá ya lo cambié, entonces va a quedaron iguales estos 2. Entonces en esta parte también daríamos cheque.
+
+Freddy Rincones   1:07:02
+Sí.
+
+Daniel Valbuena   1:07:11
+Mhm.
+
+Laura Martinez   1:07:12
+Y ya no hay más comentarios de este requerimiento. Igual le puse el comentario que pidió Freddy en la creación de Lite de respetar una jerarquía y es posible que bajo una misma razón social existan múltiples contactos.
+Entonces entiendo que con esta aclaración ya tendríamos aprobado este documento de Dani el primero.
+
+Daniel Valbuena   1:07:31
+Sí, está bien.
+
+Laura Martinez   1:07:33
+Listo.
+
+Freddy Rincones   1:07:36
+Vamos.
+
+Daniel Valbuena   1:07:37
+Oh.
+
+Laura Martinez   1:07:39
+En el correo, Dani, referente al segundo experto, porque mi computador se subió.
+En el segundo tú me pusiste que está o K, entonces entendería que el segundo que se llama asignación de elite también queda aprobado.
+
+Daniel Valbuena   1:07:56
+¿Bueno, asignación delite, pero entonces ajustando lo que hablamos hoy, no?
+
+Laura Martinez   1:07:57
+Yep.
+Ajustándole.
+
+Daniel Valbuena   1:08:03
+¿O sea, esta check, pues cómo se va a asignar a para mí de manera automática? Me esperamos donde ya reviso cuál es ese, dame 1 segundo, le hago el 2 documento o k sin ninguna novedad. A ver, yo miro qué es esto.
+
+Laura Martinez   1:08:11
+Dale.
+
+Daniel Valbuena   1:08:20
+Sí, perfecto, ese está bien, que en efecto, si ve que está bastante ocupado el comercial, pues no se lo va a asignar uno a sí, sin problema.
+
+Laura Martinez   1:08:27
+Listo, ahora te voy a abrir el tercero porque tú el tercero no me lo compartiste para que me digas que.
+
+Daniel Valbuena   1:08:34
+Si quieres, déjame, déjame, yo ya lo reviso, te lo paso para hacerlo con calmita y vamos avanzando en lo otro, que es que lo prefiero avanzar con todos los otros que todo queda probado y yo ya te paso lo.
+
+Laura Martinez   1:08:40
+K.
+Listo.
+Es toda ni de una.
+Bueno, el cuarto ya lo abro con los comentarios que me pusiste para que nos alineemos.
+
+Daniel Valbuena   1:08:51
+Cuarto.
+Es que aquí tengo una duda y aquí sí, yo sé que no está incluido, pero pues importante revisar qué tanto se nos puede extender.
+¿Nosotros qué queremos?
+Que quede, o sea, no está, no está.
+El tema de conectar el API del este a World Office. Sí, entonces lo que nosotros buscamos es en World Office dar un cupo de crédito asignado a un comercial a un a un cliente, cierto, al cliente TDX le vamos a asignar 400000000 de pesos de cupo de crédito.
+perfecto ahora como tiene 40000 millones de pesos en el informe de cartera que arroja en este caso W Office dice venga esta gente nos está debiendo 200 200 millones de pesos su cupo disminuble son 200 millones de pesos ahí yo te ponía bastantes observaciones porque es que ahí estaba como enredado ese tema
+porque era para las cotizaciones y la cotización no incide nada de eso es al momento de montar el pedido si me entendés hay básicamente la información que debería mostrar a manera comercial y no que restrinja la cotización es decir venga a TDX le queda un cupo de 200000000 de pesos y el comercial va a decir entonces aquí
+
+Freddy Rincones   1:09:55
+Yeah.
+
+Laura Martinez   1:10:00
+Beat.
+
+Daniel Valbuena   1:10:13
+Yo estoy dando la cotización y está por 300000000, pues me toca de una vez ir pensando en extra cupo, pero no incide en que no pueda generar la cotización, que eso abajito estaba como o tal vez yo lo interpreté mal, pero lo o sea, estaba, estaba así, sí me entendés. Entonces la idea, la idea cuál es, la idea es si tiene, o sea que diga cupo de crédito disponible, 200000000 de pesos, perfecto, su cotización es tanto.
+
+Freddy Rincones   1:10:22
+Call.
+
+Daniel Valbuena   1:10:38
+Y si la cotización está por 230 y tiene disponible 200000000 de pesos, no puede montar un pedido. Entonces ahí la solicitud puntual es, venga, solicitemos un extra cupo a quién en este caso a Laura y me puede lo puede mandar a Laura o me lo puede mandar a mí. En dado caso que Laura esté de vacaciones, siempre va a ser Laura.
+
+Laura Martinez   1:11:08
+Sí.
+
+Daniel Valbuena   1:11:09
+Cuando Laura hace bloqueo de cartera porque el cliente está bloqueado, no apagado en alguna parte, Laura en nuestro, en el en World Office no hay forma de bloquear cartera. Eso lo hacemos nosotros en el programa. Sí, entonces que entre TDX y ponga bloqueo de cartera y ahí es donde debe salir el aviso de Q o venga TDX está bloqueado de cartera.
+El aviso no incide nada en la cotización, que si va quiere montar un pedido, debe solicitar una aprobación únicamente para esa cotización de que pueda montar como pedido, más no desbloquear el cliente de cartera. ¿Sí me entendés? ¿Y ahora qué pasa? Que yo también vi un tema combinado.
+
+Freddy Rincones   1:11:45
+Esto es un módulo.
+Hmm.
+Ten.
+
+Daniel Valbuena   1:11:55
+pasa si están bloqueados en cartera y qué pasa si un tema de extra cupo hay que hacer esa solicitud venga este tema está en extra cupo y aparte eh está en cartera Entonces no sé sería manejarlo de esa manera si me entendés eso es básicamente Las observaciones que yo te puse ahí de resto estaba todo no lo que no está incluido que sé que no está incluido porque luego charlamos con Freddy en su momento que decía como que no
+Pero o sea, que yo decía como que todavía no, pero ya realmente decimos miremos cuánto nos puede costar esa integración a Wuroffice para que el programa que uno va es validar el cupo, vaya, entre a Wuroffice, valídeme cuánto es el cupo disponible y listo.
+
+Laura Martinez   1:12:34
+Listo, Dani, yo aquí quiero hacerte como una claridad porque en el documento si está igual, ya te lo explico, te voy a mostrar, o sea, te lo quiero mostrar así como en este ordencito para que entendamos la como el orden que lleva la documentación, porque obviamente hay muchas funcionalidades, sino que para desarrollo se dividen en diferentes documentos. Entonces lo que tú dices, obviamente.
+Lo es que la validación del cupo, el crédito y el bloqueo de la cartera interfieran en la generación de la cotización, porque esa es la historia 3. O sea, antes yo creo la cotización, no hay problema, sigue los pasos, la y ahí es donde él me valida la la validación del cupo y del crédito y el bloqueo en la cartera.
+Entonces por eso viene esta historia. Entonces yo por eso te lo ponía acá. Esto es como el resumen del documento y cumple lo que me acabas de decir, porque mira, el sistema validar el cupo de crédito disponible del cliente antes de permitir el envío, validación del margen o aprobación de una cotización. Si el monto cotizado excede el cupo o si el cliente presenta cartera vencida, el sistema debe requerir la aprobación de gerencia financiera.
+Antes de autorizar la generación del pedido o el despacho, o sea, él no me él genera la cotización, pero no te va a generar el pedido.
+
+Daniel Valbuena   1:13:46
+Ahí yo creo que sobra el tema del despacho, porque si no se monta pedido, no se despacha.
+
+Laura Martinez   1:13:52
+Okay.
+Pero entonces, ay, es que se me borra el comentario porque si lo pegaste a este voy a tacharlo acá, eso ya.
+
+Daniel Valbuena   1:13:57
+No le pones tachalo.
+
+Laura Martinez   1:14:01
+Entonces cumple con la función que quieres, no me va a alterar la creación de la cotización, pero obviamente no me va a permitir pasar a la otra fase, que es la generación del pedido.
+
+Daniel Valbuena   1:14:13
+Okay.
+
+Laura Martinez   1:14:15
+Entonces por eso, pues ahí te contesto como lo que acabamos, acabamos de hablar aquí, Emma, este comentario yo lo puse en el requerimiento de cómo vamos a traer toda esta información o después de cuántos días se considera la cartera en mora y Dani me contesta que financiera cuando sabe que está en mora.
+Va hacia el cliente en la herramienta y le pone opción en cartera en mora y queda habilitado, o sea, lo que entiendo.
+
+Daniel Valbuena   1:14:40
+O sea, ahí es un tema más, o sea, es no sé una política financiera, más que todo de cartera, en la cual estipulamos que todo cliente que cada factura que cumpla, si no estoy mal, es 30 días vencido o como 15, no me acuerdo bien.
+¿Va a estar en bloqueo en cartera? Sí, básicamente eso, tal vez también lo podemos nosotros automatizar con el tema de la no sé, pero pues igualmente Laura cuando descarga el informe llega y dice, este man está bloqueado por cartera, si me entendés.
+
+Laura Martinez   1:15:17
+Listo, o sea, como lo plantean ahí, o sea, y ahí necesito ayuda de ese idioma, es obviamente financiera va y lo pone y dice este cliente está bloqueado y en el sistema a nosotros nos va a aparecer bloqueado hasta que financiera levante ese bloqueo. ¿Cómo podemos hacer ese?
+
+Daniel Valbuena   1:15:32
+Actualmente está manual, si me entendés, pero si se puede automatizar, qué belleza, pero que se pueda deshabilitar manual en dado caso. ¿A qué me refiero? A que si presenta bloqueo de cartera porque fue y consultó las facturas a través del API y ve que hay una factura.
+
+Laura Martinez   1:15:36
+Ajá.
+Sí.
+
+Daniel Valbuena   1:15:53
+Con más de 35 días adicional al crédito otorgado, o sea 3045, 60 días, lleva 30 días más allá del crédito otorgado. Inmediatamente ponga el aviso de bloqueo en cartera, que si para yo creo que sería esa, estaría perfecta. O sea, ya tenemos, nosotros ya tenemos la política establecida, pero no sé si funciona así.
+
+Freddy Rincones   1:16:09
+A ver, pero yo tengo una duda y veo que lo han mencionado varias veces y yo no lo tenía. A lo mejor yo no lo tenía contemplado. ¿Se está considerando una integración de tu plataforma con Wordloques?
+
+Daniel Valbuena   1:16:22
+Sí, eso es lo que te estaba diciendo.
+
+Emma Castillo   1:16:22
+Eso es lo que él acaba de comentar.
+
+Daniel Valbuena   1:16:25
+O sea, sé que no está incluido, que será bueno revisar, sí, o sea, exacto, para hacer el tema de para consultar el tema de cupo de créditos.
+
+Freddy Rincones   1:16:28
+Pero necesitas.
+
+Daniel Valbuena   1:16:39
+Y temas de el tema de la cartera. Entonces, espérame 1 segundo que tengo, dame 1 segundo. Hola, ya te marco, estoy aquí una revisita, ¿vale?
+
+Freddy Rincones   1:16:42
+¿Cómo se llama la ¿Cómo se llama la aplicación Word Office?
+
+Laura Martinez   1:16:46
+World Office.
+
+Daniel Valbuena   1:16:49
+Ya te marco, vale, ya te marco.
+
+Freddy Rincones   1:16:52
+Por Office Colombia, software contable.
+
+Daniel Valbuena   1:16:53
+¿Se llama World office, ajá, entonces?
+
+Emma Castillo   1:16:55
+Pasa es que fíjate, Freddy, que ellos toda la parte financiera la llevan en Word Office. Entonces yo la verdad sí le veo bastante.
+
+Daniel Valbuena   1:17:00
+Mhm.
+
+Freddy Rincones   1:17:03
+Uso, valor, valor.
+
+Emma Castillo   1:17:04
+importancia, el que tenga la integración, sí, bastante valor que tenga la integración, porque cada vez lo que dice Daniel es cierto, o sea, si ellos en Google Office marcan una factura como en Mora, pues ya el sistema automáticamente lo va a detectar. Si ellos ya marcan a un cliente como bloqueado por cartera,
+El sistema automáticamente lo va a detectar. O sea, digamos que esa sincronización no serviría mucho porque nosotros a nivel sistema no vamos a tener registro de pago, registro de eso no, entonces todo eso lo podemos ir a consumir de allá.
+
+Daniel Valbuena   1:17:32
+Except.
+
+Freddy Rincones   1:17:34
+Bueno, tengo una pregunta directa para Daniel y estoy totalmente de acuerdo contigo, Emma. O sea, valor agrega, ¿qué módulos de Borofish usa tu equipo hoy en día?
+
+Daniel Valbuena   1:17:47
+No un montón, pero que nos sirva para.
+
+Freddy Rincones   1:17:49
+Ellos tienen terceros, ventas, compras, inventario, contabilidad, cartera de recaudos, cuenta por pagan.
+
+Daniel Valbuena   1:17:53
+No, no, eso no. Todo el tema de facturas de venta, pues obviamente todo el tema de documentos de ingreso, todo el tema de lo que lo de cartera y demás, toda la parte financiera se carga ahí, lo que son órdenes de compra, toda buena, eso nada que ver por ese lado.
+Manejamos inventarios, remisiones por Word Office, facturas de venta, facturas de compra, los documentos. Obviamente que despleguen eso lo manejamos en Word Office, sí, pero lo que necesitaríamos nosotros.
+
+Freddy Rincones   1:18:23
+Bueno, yo veo que ellos tienen una, te voy a mostrar, yo veo que ellos tienen una.
+Un abanico de apis maduras, diría yo, la verdad.
+And.
+Lo analizo, voy a revisar qué más necesitamos para esta integración.
+Y si esto tiene algún impacto, obviamente, pues financiero va a haber porque no está contemplado en el costo inicial, pero más que todo en tiempo. Okay, porque de integrar APIs siempre lleva su tiempo y necesito identificar también cuántas APIs son. Una API, una API.
+Es un cosito de esto listo, entonces, por ejemplo.
+Tú me dijiste ahorita inventario, mira todas las que tienen inventario, entonces tenemos que ver cuáles son los.
+
+Daniel Valbuena   1:19:17
+No, para inventado, o sea, por eso te digo, la que nos va a nosotros únicamente a generar valor en la plataforma es que vaya a nivel a nivel de financiera, vaya y consulte el cupo. ¿Cierto, cuánto es el, o sea, usted tiene asignado 200 de 400000000 de pesos de cupo? Listo, cuánto tiene disponible, es decir, cupo asignado menos la cartera. ¿Cuánto nos está debiendo? 200 listo, le quedan 200000000 de pesos.
+
+Freddy Rincones   1:19:24
+Cartera.
+
+Daniel Valbuena   1:19:39
+Esos 200 son los que nosotros debemos, como en cada cotización que de alguna manera salga como cliente disponible con 200000000 de cosas de cupo de crédito. Y ahora para el tema de bloqueo de cartera, que es lo que estamos hablando tanto en work office, yo no puedo marcar manual y que este cliente está lo vamos a bloquear por cartera.
+
+Freddy Rincones   1:19:54
+O.
+
+Daniel Valbuena   1:19:58
+Lo que tengo es una política de cartera en la cual dice que a partir si te doy 304560 días, te vamos a otorgar unos días adicionales para que pagues la factura. A partir del día, un ejemplo 20, porque me tocaría revisar la política de cartera, vas a quedar bloqueado y retenido en cartera, es decir, no te vamos a despachar nada.
+Sí, entonces que vaya, identifique, vaya, busque, busque ese API, identifique si ese cliente.
+
+Freddy Rincones   1:20:21
+Pa.
+
+Daniel Valbuena   1:20:29
+Tiene una factura de más de tantos días en mora y si la tiene, márquelo en sistema como cliente, cliente retenido en cartera.
+Sí, me entendés y que cuando que cuando el no se vaya el comercial vaya a montar un pedido, le monte la solicitud, en este caso a Laura o en últimas a mí.
+
+Freddy Rincones   1:20:43
+Dale.
+Dalia, que cuenta con eso, déjame hacer el revisarlo. Ya me queda claro que vamos a consumir los casos de uso que voy a consumir. ¿Tú tienes un usuario que me puedas prestar de esta plataforma?
+
+Daniel Valbuena   1:21:04
+The word office? Yo no tengo word office loud, tengo word office on premise.
+
+Freddy Rincones   1:21:12
+Ah.
+Okay.
+Divino, muy divino lo que me acabas de decir. ¿Dónde lo tienes? En el servidor que está en la oficina localmente.
+
+Daniel Valbuena   1:21:28
+Sí, señor.
+
+Freddy Rincones   1:21:32
+Entonces, ahí vamos a necesitar otra gestión, listo.
+¿Y ese servidor qué se te ha caído alguna vez o siempre ha estado arribita? O sea, cuéntame un poco la disponibilidad de ese servidor.
+
+Daniel Valbuena   1:21:38
+Es que lo que pasa es que Cloud, oye, sabes.
+No, bien, siempre ha estado uno sin problema, ningún inconveniente. Lo que pasa es que yo intenté hacer World Office Cloud, pero el módulo de inventarios es muy simple, no cumple con lo que nosotros estamos requiriendo. Por eso, bueno, en su momento yo no sé ahora qué esos huevones y te desarrollaron algo más robusto, pero.
+
+Freddy Rincones   1:22:04
+¿Puedes mostrarme cómo ingresas desde tu computadora?
+
+Daniel Valbuena   1:22:07
+Yo no tengo Word Office en mi compu, solo maneja compras y lo maneja financiera, pero nada hasta loguito. O sea, sí o sí debe estar conectado a la red de la empresa, así sea por que le pongan una VPN, lo que sea, debe estar conectado.
+
+Freddy Rincones   1:22:19
+Pero si está fuera, sí o sí, tienes que estar conectado a la red de la empresa, o sea, no tienen un acceso público.
+
+Daniel Valbuena   1:22:26
+No debe estar por conectado a través de una VPN.
+
+Freddy Rincones   1:22:30
+Si queremos integrar alguna API, ese endpoint, todos esos endpoint tienen que estar públicos. Necesito entrar al servidor, necesito meterme para poder, porque posiblemente necesitemos a Edwin, por ejemplo.
+
+Daniel Valbuena   1:22:41
+¿Tú tienes los accesos, no? Yo la vez pasada te los había pasado para revisar lo que estaba buscando, lo de ¿Te acuerdas? ¿Tú tienes ese acceso, no?
+
+Freddy Rincones   1:22:47
+No, Edwin Edwin me fue el que tiene los accesos. Nunca me los dio. Él entró y él verificó. Sí, ese es el servidor que administra él. O sea, está sencillo. O sea, no es por poner trabas ni nada si está local.
+
+Daniel Valbuena   1:22:55
+List.
+No para que visualices qué es lo que toca hacer, sí, total.
+
+Freddy Rincones   1:23:03
+Porque está local y toda tu aplicación va a estar en la nube y ellos se tienen que comunicar por APIs, pero entonces hay que exponer las APIs desde ese servidor. ¿Cómo? No tengo idea, tengo que revisar qué hay.
+Porque ese servidor tiene que quedar público de alguna manera, las APIs, los para poder consumirlos y ahí hay riesgo de que tu servidor se te caiga, se te cae la integración. Ten en cuenta eso, servidor se apaga, se fue la luz en la oficina, las integraciones van a empezar a fallar y estás haciéndolo la cabeza.
+
+Daniel Valbuena   1:23:22
+Listo.
+¿Y si yo le doy continuidad a negocio de servidor y lo pongo en la nube?
+
+Freddy Rincones   1:23:42
+es un golazo cierto pero hay que hablar con él o sea ahí hay un trabajo como de infraestructura middleware que hay que revisar porque mi aplicación yo voy a empezar a disparar y él va a consumir ta ta ta lo logramos exponer y él va a consumir consumir consumir Y si le pasa algo ese servidor que está en ese cuartico que tú me dijiste que está
+Se caen las integraciones, empieza a fallar.
+
+Daniel Valbuena   1:24:12
+Listo, déjame ya miramos con qué nos inventamos ahí para solucionar, pero eso toca hacerlo, o sea, hay que hacerlo y mira cómo hacemos esa vaina.
+
+Freddy Rincones   1:24:18
+No me gusta si la plataforma local, esa es otra cosa. Si la plataforma local también tiene expuesto todas sus dentro de su software, está configurado todo el tema de las APIs, es exponernos y ya es hablar con Edwin. ¿Cómo podemos exponer y dejar seguros ese servidor para que no falle? Y en caso de alguna falla, sé que lo vamos a gestionar con él.
+No hay otra manera.
+
+Daniel Valbuena   1:24:43
+Listo.
+
+Freddy Rincones   1:24:45
+Sí, es que es como estamos usando infraestructura on premise y eso también, pues es muy importante que lo supiera para poder estimar bien todo lo que vamos a hacer. Entonces queda pendiente Laurita la estimación de Word Office de la integración con Word Office y yo la hago y se la pasamos a don.
+O sea, sí o sí, para ti es un most, o sea, es algo que sí tiene que pasar la integración con Gorotis.
+O puedes manejar la plataforma en una versión inicial sin All World Office.
+
+Daniel Valbuena   1:25:16
+Pues en dado caso inicio, mientras arranca esta, o sea, la idea es saquemos esta vaina comercialmente, no sé qué, está tratando por lo que sea y vamos montando mientras van, porque es que el tema de Burofish, por lo que te entiendo, tiene su maní, entonces mientras.
+
+Freddy Rincones   1:25:31
+Sí, va, sí lo va a tener, sí lo va a tener.
+
+Daniel Valbuena   1:25:33
+Mientras lo dejamos bien implementadito a nivel de sí de seguridad, también que todo esté bien jalado. Ahí ya podríamos hacer la integración, pero pues obviamente supongo que me tocaría a mí hacer, ahí me toca, ahí me toca hacer una, disculpa, te te te interrumpo, me tocarías un espejo del servidor en la nube, ¿cierto?
+
+Freddy Rincones   1:25:44
+Mira, vámonos con el MVP sin world office.
+Te toca migrar el servidor en la nube y te toca. Hay que ver a nivel de software de Word Office cómo exponer los endpoint que supuestamente él tiene.
+Desea que sean de acceso público.
+
+Daniel Valbuena   1:26:03
+Porque yo puedo hacerle, es que no sé, déjame también valido con el.
+
+Freddy Rincones   1:26:07
+Estoy casi seguro que la versión cloud.
+Y seguro que la versión cloud ya te deja consumir las APIs. Eso siempre pasa si esas aplicaciones SAS. Cuando ya es home premise, casi siempre el software trae todas sus APIs, pero hay que exponerlas y para exponerlas hay que revisar varias cositas. Ustedes deben de tener algún firewall, deben de tener el DNS cansón ese del otro día.
+De entre varias cosas que hay que revisar.
+
+Daniel Valbuena   1:26:35
+Bueno, listo, avancemos, ya miramos ese temita que está como chicharrón.
+
+Freddy Rincones   1:26:38
+Yo te digo, lánzate el MVP para salir de una vez y para que vaya cogiendo madurez la aplicación sin Word Office y ya después vamos integrando la verdad.
+
+Daniel Valbuena   1:26:50
+RR de una.
+Laura y para allá, todo lo que te todo lo que te hablé es lo que está en el documento, entonces.
+
+Freddy Rincones   1:27:00
+Entonces dejar muy claro en el documento, Laura.
+
+Daniel Valbuena   1:27:01
+¿Tienes el micrófono silenciado?
+
+Freddy Rincones   1:27:03
+¿De que no va?
+
+Daniel Valbuena   1:27:07
+Vamos a lanzar inicialmente.
+
+Freddy Rincones   1:27:07
+D.
+
+Laura Martinez   1:27:08
+Carlos.
+
+Freddy Rincones   1:27:09
+Sin more Office, por favor.
+
+Laura Martinez   1:27:10
+Listo, listo, listo.
+
+Daniel Valbuena   1:27:10
+el Entonces si no si no si vamos a avanzar sin Word Office entonces nos toca O sea que el que no vaya que no consulte cupos que no consulte nada de eso porque pues no hay donde donde consultar cupos si me entendés entonces básicamente que si la que Laura llegue entre como lo tenemos actualmente entre el cliente y le ponga bloqueo por cartera y pare de contar
+
+Laura Martinez   1:27:35
+O K.
+
+Daniel Valbuena   1:27:35
+Inicialmente, vale.
+
+Freddy Rincones   1:27:38
+Sí, ella lo va, ella va a tener inicialmente que consultar ambas plataformas y modificar la nueva.
+
+Laura Martinez   1:27:38
+Listo.
+Listo. Entonces yo modifico esta partecita para que sea que lo haga Laura manual y a lo que me refiero el Dani con que nosotros tenemos que validar el cupo, o sea, en alguna parte de nosotros tenemos que tener una configuración de parámetros financieros donde vemos el estado del cliente.
+Porque es lo que te va a ti bloquear que el cliente pueda generar el pedido. Sí, entonces no es que se vaya a consultar en un world office, no sé, sino en el mismo sistema de las condiciones que tiene configuradas el cliente nos va a determinar si podemos continuar o no podemos continuar.
+Entonces.
+
+Daniel Valbuena   1:28:25
+Sí, pero si yo le pago, por ejemplo, con las condiciones financieras, cupo, si me entendés, estaría la chica o pondría el área financiera a hacer doble trabajo de actualizar cupo dispo, veo que vaya, actualice mi diga venga, ya va, baje todos los comprobantes, este cliente le que ocupo tanto en Europa, cierto.
+Y pero como no estamos conectados, tendría entonces que ir a la plataforma y decir tiene un cupo de tanto y tiene un cupo disponible de tanto. O sea, es como que un trabajo como engorroso, podríamos funcionar.
+
+Freddy Rincones   1:28:52
+No.
+¿O cómo lo hacen?
+
+Daniel Valbuena   1:28:59
+Mm.
+Cupo ilimitado, básicamente.
+Si me entendés.
+
+Freddy Rincones   1:29:05
+Exacto, es que tenemos que homologar el comportamiento actual, como lo tienes hoy en tu plata, porque ya no sé o Word Office se comunica con tu plataforma actual.
+
+Daniel Valbuena   1:29:10
+Exacto.
+Te Te va a mostrar, mira.
+te molestó Mira básicamente es cupo ilimitado Entonces cuando tú estás en una cotización no te arroja por ejemplo esto no te arroja cupo no te arroja absolutamente nada y cuando tú entras al detalle del cliente aquí es donde Laura aquí en otros datos le pone bloqueo de cartera si te das cuenta cupo de crédito y demás no está diligenciado porque pues no O sea
+
+Laura Martinez   1:29:34
+Mhm.
+
+Daniel Valbuena   1:29:39
+Eso tendrá sentido, siempre y cuando estemos conectados a World Office, pero si no es un una vaina que está muy alta, muy al tema manual y sobrecarga la gente. Entonces no está bien. Entonces Laura ve que este man tiene bloqueo de cartera. Bueno, perfecto, bloqueo de cartera y se fue.
+
+Freddy Rincones   1:29:39
+Hay manera de integrarlo.
+
+Daniel Valbuena   1:29:58
+Así es como estamos actualmente y hemos funcionado, podemos funcionar así y ya cuando lo desarrollemos, pues ya obviamente hacemos la integración, pero así no hemos tenido inconveniente.
+
+Freddy Rincones   1:30:07
+Sí, es que vamos a tener que funcionar así si no estamos considerando la integración es que hoy tú no tienes integración.
+
+Daniel Valbuena   1:30:13
+Exactamente, sí, señor.
+
+Freddy Rincones   1:30:19
+Got it.
+
+Laura Martinez   1:30:20
+Y.
+Es lo único que vamos a validar en esta historia de usuario es si tiene bloqueo de cartera y demás el resto.
+
+Daniel Valbuena   1:30:30
+No.
+
+Laura Martinez   1:30:34
+Solo hacemos el bloqueo, si tiene bloqueo no me va a dejar pasar a pedido y para el tema del extra cupo.
+
+Daniel Valbuena   1:30:41
+No, porque hay la única no, porque es que no, aquí no hay temas de cupos. Si me entendés, entonces tampoco se va a solicitar aquí. Lo único que se va a requerir es autorización de montar el pedido cuando tenga bloqueo por cartera. Es lo único.
+
+Laura Martinez   1:30:42
+Si tiene bloqueo es donde me solicita el extracupo.
+Yo la corrijo entonces y la segunda fase ya sí sería la integración con Word Office para todo el tema de hacer todas estas consultas que tenemos.
+
+Daniel Valbuena   1:31:10
+Así es.
+
+Laura Martinez   1:31:12
+Pues yo corrijo entonces la cuatro.
+
+Freddy Rincones   1:31:15
+Eso y ya quedó aprobado.
+
+Laura Martinez   1:31:16
+Reacciones.
+
+Freddy Rincones   1:31:20
+Ajá.
+
+Daniel Valbuena   1:31:21
+Rapidito.
+
+Laura Martinez   1:31:24
+Le hago la corrección y con eso aprobada.
+En el correo, déjame ver cuál seguía.
+
+Freddy Rincones   1:31:32
+Sí, es que y si logramos hacer esa integración con Word Office, de ahí para adelante hay 1000 millones de vainas que puedes automatizar dentro de tu parte administrativa.
+
+Daniel Valbuena   1:31:40
+Informes.
+
+Freddy Rincones   1:31:43
+Informen facturación.
+
+Daniel Valbuena   1:31:43
+Mira los es.
+
+Freddy Rincones   1:31:46
+Retenciones.
+
+Daniel Valbuena   1:31:46
+Claro.
+Es que para allá vamos, si me entendés, entonces vamos, desarrollamos esta parte y ahí para allá también lo que te decía, quiero hacer el tema de módulo de garantías, el módulo de servicios actualmente, como ya tenemos.
+Cuatro meses de ayuda activas. Hay mucha vaina que la plataforma hoy por hoy no la tengo, no tengo esa en la plataforma, pero lo vamos desarrollando a medida de y también yo estoy, pues obviamente aprendiendo lo que te decía, cómo funciona el tema de las mesas de ayuda. Entonces ahí vamos, ahí vamos como mira qué necesidades realmente.
+Necesito yo.
+
+Freddy Rincones   1:32:26
+Y tú vas priorizando de acuerdo a tu negocio.
+
+Laura Martinez   1:32:29
+Estoy regalando un pico ya.
+
+Freddy Rincones   1:32:31
+Vamos, Laura, Laura, estamos que nos aprobamos.
+
+Laura Martinez   1:32:36
+Mi computadora.
+
+Daniel Valbuena   1:32:39
+Oye, que ese concierto de J Balvin Medellín, que estuvo fue putamente buena, no que fue la locura.
+
+Freddy Rincones   1:32:44
+Sí, claro, eso es la locura. La ciudad es un colapso, no hay manera de llegar a ningún lado, pero trajo toda la plata del mundo, trajo todos los artistas.
+
+Daniel Valbuena   1:32:55
+A Fifty Cent, a Fifty Cent chiste, ******, qué locura.
+
+Freddy Rincones   1:32:57
+Sí, es el de los el man de los contactos.
+
+Laura Martinez   1:32:59
+Lanzó la casa por la ventana.
+
+Daniel Valbuena   1:33:03
+Sí, brutal, brutal.
+
+Freddy Rincones   1:33:04
+Sí, no, la ciudad fue un caos, pero estuvo muy bueno porque hasta Daddy Yankee vino.
+
+Daniel Valbuena   1:33:11
+No, estuvo espectacular.
+
+Laura Martinez   1:33:14
+Listo, entonces la siguiente es la aprobación del la cotización del margen mínimo. En esta tú me decías, podrá poner que no me abre.
+
+Daniel Valbuena   1:33:25
+Así, ven, te muestro cómo funciona. Al guardar o actualizar una cotización, el sistema debe calcular automáticamente el margen de utilidad aplicando la fórmula. La fórmula es uno menos total ven costo dividido totalmente.
+
+Laura Martinez   1:33:38
+Es la misma, la misma, pero plasmada en otra manera, pero da lo mismo. O sea, si la aplicas la otra es la misma. Por ese lado, no te angusties.
+
+Daniel Valbuena   1:33:45
+Bien, listo, listo. Dale, el costo total debe incluir los valores. Bueno, antes aquí qué pasa, te voy a mostrar cómo funciona para que tú lo plasmes ahí porque no sabía cómo explicarte. Entonces, mira, disculpa, te comparto aquí pantalla rápidamente. Entonces, cuando yo voy a hacer una cotización de un producto, llamémoslo acá.
+
+Laura Martinez   1:33:48
+Sí.
+Thank you.
+
+Daniel Valbuena   1:34:07
+Voy a llamar cualquier producto, cierto. Entonces, actualmente yo tengo parametrizado hardware al 6%, sí, al 6%. Si yo le pongo el 4%, me va a decir kibo no quiere requerir o no quiere requerir la.
+
+Freddy Rincones   1:34:22
+Oh.
+
+Daniel Valbuena   1:34:30
+la la autorización para esto Si yo le digo que no me va a mandar automáticamente al margen mínimo aprobado para para esa categoría entiendo que ahora tenemos categoría y plazo de crédito sí Entonces te va a mandar en la nueva plataforma
+
+Laura Martinez   1:34:34
+Okay.
+
+Daniel Valbuena   1:34:49
+A la nueva, al margen aprobado para esa categoría y para ese cupo de crédito, que en este caso digamos que 6% cierto, y te va a dejar avanzar. ¿Sí me entendés? Ahora, si también yo también vi en la en el documentico que si yo digo venga, yo quiero aprobar la mande por favor al 5%.
+
+Laura Martinez   1:35:00
+Mhm.
+
+Daniel Valbuena   1:35:11
+Listo, mandé la autorización a Daniel Valbuena. Listo, él se la mandé. Yo puedo ir evolucionando la cotización, claro que sí. O sea, no se no puede quedar bloqueada porque no es el único producto que iba a tener la cotización, que es lo que estaba ahí, que la cotización queda en stop hasta que se apruebe. Y eso no, eso estaría grave porque.
+
+Freddy Rincones   1:35:31
+What?
+
+Daniel Valbuena   1:35:32
+Eso hace que la.
+
+Laura Martinez   1:35:32
+No, acuérdate que queda bloqueada para pasarla al pedido. Siempre va a ser así. O sea, él puede seguir andando, pero hasta que no recibas la tu respuesta, tu aprobación o tu rechazo, él no la va a poder enviar a la otra fase.
+
+Daniel Valbuena   1:35:37
+Pero.
+Ah, ok, perfect.
+Ajá, listo, perfecto. Algo que no vi fue el tema del orden, acuérdate el orden que el orden es en que no, en que en que parte de la condición va a quedar si de primeras, de segundos, de terceras, de cuartas, de quintas. Vale, entonces aquí vamos a colocar orden uno, el proveedor sugerido que en este caso un ejemplo puede ser Z, cierto.
+
+Freddy Rincones   1:35:46
+Look.
+
+Daniel Valbuena   1:36:01
+a mí me llega la solicitud de la aprobación y me dice que apruebe el 5% yo le voy a decir sabe qué le voy a aprobar el 4% mínimo para esa negociación teniendo en cuenta el análisis que yo hice lo que charlé con el comercial apenas yo hago esto
+El como hacer que va a poder hacer, bueno, venga el 5%, sí, el 4%, sí.
+Pero venga, el 3% no, porque usted no puede establecer una utilidad menor al 4% que fue la aprobada. Sí, y aquí menor utilidad aprobada, porcentaje autorizado, aparece el 4%. ¿Ves?
+
+Laura Martinez   1:36:38
+Sure.
+
+Daniel Valbuena   1:36:45
+En este caso, y mira, y fíjate que yo le puse aquí 3%, yo le dije no, y automáticamente me manda el mínimo autorizado.
+
+Laura Martinez   1:36:45
+Sí.
+
+Daniel Valbuena   1:36:54
+Ves.
+
+Laura Martinez   1:36:55
+Two.
+
+Daniel Valbuena   1:36:56
+listo Ah bueno perfecto listo se fue y le debe aceptar y ahí ya le doy guardar y se fue Sí me entendés y recuerda mucho lo que te digo esta parte es importantísima Y eso sí es algo bueno que tiene ese sistema que tiene esta casilla de orden En qué posición va a quedar en la cotización
+
+Freddy Rincones   1:36:58
+Call.
+
+Laura Martinez   1:37:03
+Sí.
+
+Freddy Rincones   1:37:04
+A.
+
+Daniel Valbuena   1:37:16
+Porque nosotros manejamos cotizaciones larguísimas, o sea, te muestro un ejemplo, a ver de quién.
+Por ejemplo, esta no es mucho, pero bueno, el cliente en la medida que me solicita, en el orden que me solicita, yo en ese mismo orden le cotizo, pero yo puedo obtener este precio, este precio primero antes que este, si me entendés. Entonces yo primero agrego este producto, pero como le pongo orden 3, me va a quedar de tercera en la fila, si me entendés.
+
+Freddy Rincones   1:37:31
+Oh.
+
+Daniel Valbuena   1:37:47
+En cómo se va a imprimir en cómo se va a imprimir porque por ejemplo mientras yo cotizo esto yo llego y mando a cotizar toda esta vaina listo pero primero me llegó el precio de esta vaina pues yo no voy a esperar a que me llegue el primer producto si me entendés voy ingresando a medida que me van llegando los costos y aquí yo digo venga esto me tiene que quedar en la posición 3 de la cotización.
+
+Laura Martinez   1:37:48
+ya te entendí.
+
+Daniel Valbuena   1:38:10
+¿Qué es esto de acá? Luego me llegó el costo de este, luego me llegó el costo de este, luego me entendés. Eso es importante porque es que como te cuento, por ejemplo, mira esta vaina.
+Mira esa cotización que está pendiente por hacer.
+¿Ves y yo le cotizó al cliente en el mismo orden? Entonces yo puedo tener primero el precio de esto. Entonces yo digo, a qué en qué número está? 123456 digamos que es el 10, le pongo entonces orden acá le pongo, le pongo 10 y así la voy haciendo.
+En la medida que ya voy terminando la cotización, que cuando yo la imprima al cliente le va a salir tal cual este mismo orden. Con eso es mucho más práctico para los clientes al momento de entrar a revisar la cotización y ya.
+
+Freddy Rincones   1:38:56
+Eso de orden hay que hay que tenerlo muy claro Laurita.
+
+Laura Martinez   1:38:59
+Sí, eso no está, te lo voy a agregar. Es en la tercera que la chu que no has revisado, la 3, la 3 es la creación de la cotización. Entonces ese ordenamiento te lo pongo ahí, pero quiero devolverme al requerimiento para que veas que todo lo que hablamos está cubierto, o sea, en otras palabras, pero está cubierto.
+
+Daniel Valbuena   1:39:07
+Listo, perfect.
+Hi.
+
+Laura Martinez   1:39:18
+Entonces lo que te digo, la fórmula Dani, no te preocupes, es la misma, o sea, va a cumplir la misma función.
+
+Daniel Valbuena   1:39:24
+Pilas, pilas, pues no más, no más, no que no me que no quede tumbado con un cliente.
+
+Laura Martinez   1:39:30
+No, entonces toca el ejemplo que me ponías de la del margen, está, o sea, el sistema lo que hace es la validación, comprar el margen. Si el margen es un margen mínimo, la cotización se aprueba. Si el margen es inferior, se bloquea el envío o aprobación automática al o sea, a la parte de pedidos, a la parte de pedidos.
+
+Daniel Valbuena   1:39:46
+¿Pero el envío de qué? ¿El envío de qué? O sea, hay para hacerte como claro, yo puedo, por ejemplo, para yo puedo decir si yo aprobé el cuatro, si el margen mínimo es el 6%, mandó a solicitud el cuatro, está pente a aprobación, pero igual automáticamente viste que le calculo el 6.
+
+Laura Martinez   1:40:01
+Mhm.
+
+Daniel Valbuena   1:40:06
+Él puede llegar guardar con el 6% ir enviando, sí me entendés. O sea, yo puedo ir exportando, ir avanzando y le digo, vea, le tengo esos precios, estoy a punto que me prevé en el 4%. Ya lo paso, sí me entendés.
+
+Laura Martinez   1:40:07
+Sí.
+Sí, entonces.
+Mhm.
+Sí, mira, se bloquea el envío de la generación del pedido, aprobación automática y se requiere intervención de gerencia, o sea, él no la va a poder.
+
+Daniel Valbuena   1:40:24
+Ese aprobación automático que te refieres.
+
+Laura Martinez   1:40:27
+O sea, él puede enviar la cotización si tiene un margen mínimo. Entonces, si el margen está, o sea, es apto, el margen se configura. Eso es importante decírtelo. O sea, el margen mínimo es configurable, o sea, de la que tú le puedas poner no sé el 5% que es el ejemplo que estamos teniendo en este momento. Si es el margen mínimo se cumple, él puede enviar la cotización.
+
+Freddy Rincones   1:40:43
+Call.
+
+Laura Martinez   1:40:48
+Pero si no se cumple, no puede enviarlo y necesita intervención de gerencia para poderlo enviar.
+
+Daniel Valbuena   1:40:53
+Por eso lado para tener claridad, entonces déjame te hago claridad en el segundo punto y ya voy para el primero.
+
+Laura Martinez   1:40:59
+Vale.
+
+Daniel Valbuena   1:41:00
+Si el con el ejemplo que te te acabo de mostrar, si está el 6% aprobado, manda el 5% mientras es la aprobación, automáticamente le va a dar el margen del 6%. Cierto, y va a quedar guardado para que él vaya trabajando con el 6%. Llégale a guardar y puede ir enviando la cotización. Si me entendés, él no la puede enviar con el 5% porque está a la espera.
+
+Laura Martinez   1:41:12
+Mhm.
+
+Daniel Valbuena   1:41:21
+Pero él puede exportar esa cotización a PDF te va a hacer el ejemplo acá para que seamos un poco más prácticos entonces.
+Si yo tengo esta cotización, hagamos hasta aquí arriba, cojamos acá. Entonces fíjate, yo voy a coger un producto cualquiera.
+Digamos que es este, cierto, entonces yo digo, margineme por favor al, por ejemplo.
+
+Freddy Rincones   1:41:40
+A.
+
+Daniel Valbuena   1:41:46
+****** al 5%.
+Cierto, margine más 5 solicitó la aprobación. Sí, perfecto, aquí le pongo la información, bla, bla, bla, ta, ta, ta, listo, pero fíjate que automáticamente acá me debería salir el aprobado que es el 6%. ¿Ves el mínimo aprobado? Aquí automáticamente me voy a generar el mínimo aprobado.
+
+Laura Martinez   1:42:07
+Two.
+
+Freddy Rincones   1:42:10
+Okay.
+
+Daniel Valbuena   1:42:11
+Por la categoría y por el crédito, vale, entonces yo puedo llegar y mientras Daniel en este caso me aprueba, yo puedo ir exportando la cotización para ir adelantando porque no es el único producto que se está manejando. ¿Entonces, por qué en qué? ¿En qué escenarios pasa eso? Pasa en los escenarios donde yo tengo.
+Un producto, un proyecto de cómputo más mezclado con licencias y en licencias hay veces, venga, toca hacer la renovación de 500 licencias, toca irnos bajito, listo en cómputo estoy bien, me voy al 6%, pero en licencia estoy al tanto por ciento. Listo, puedo ir avanzando, mandando la cotización previa.
+No final al cliente. ¿Si me entendés? Aquí yo llego, la exporte y para de contar. Ahora, si te das cuenta que la puedo seguir trabajando, Daniel llegó y aprobó la cotización y dijo, venga, sabe que le va a dar el 2% que fue lo que te dije ahorita, ingresa y le pone 5, no hay problema, 2, 3, no hay problema, 2, no hay problema.
+Ahora uno, si hay problema, manda el aviso y te manda automáticamente al valor mínimo aprobado.
+Yes.
+Eso es lo que te digo, que o sea, no puede quedar la cotización bloqueada.
+
+Freddy Rincones   1:43:25
+Es bastante granular.
+
+Daniel Valbuena   1:43:29
+¿Si me entendés? No puede quedar la cotización bloqueada y de lo que hablamos en la oficina la última vez. Ay, espérame que yo me perdí, dame un segundo te vuelvo a compartir pantalla. Yo tengo acá que eso fue lo que hablamos en la OFI con Andrés y que entiendo que también Freddy nos ayudó y es esta parte de verticales.
+
+Laura Martinez   1:43:31
+Sí.
+Mhm.
+
+Daniel Valbuena   1:43:49
+Entonces está la categoría, en este caso es hardware, pero también va a estar el tema del cupo de crédito.
+Sí, entonces para lo que es hardware 30 días mínimo 6% hardware 45 días mínimo tanto por ciento hardware 60 días mínimo y tanto por ciento. ¿Ves que eso fue lo que hablamos esa vez en la oficina para que lo tengas en errar?
+
+Laura Martinez   1:44:14
+Two.
+Sí, por eso acá te pongo, te comparto.
+Eso que tú dices, lo que acabas de decir, es el margen mínimo configurado. Tú lo vas a poder configurar para cada uno de los productos. Entonces, categorías, perdón.
+
+Daniel Valbuena   1:44:31
+Categorías, producto no, sino categorías, categorías y categorías y vuelvo y decir esto es cosame, categorías y crédito. Vuelvo hardware 30 días, hardware 45, hardware 60.
+
+Laura Martinez   1:44:34
+Te voy a poner acá por.
+Listo.
+Y.
+Entonces lo que te dice cumple.
+Cuando se detecte un margen inferior al mínimo, el sistema debe generar un modal para el asesor indicándole si requiere enviar una solicitud de aprobación dirigida a los usuarios con gerencia comercial o financiera. Esa solicitud a ti que te va a traer el código.
+
+Daniel Valbuena   1:45:02
+¿Eso es cotización, cierto? Sí.
+
+Laura Martinez   1:45:05
+sí.
+
+Daniel Valbuena   1:45:06
+Financiera no tiene nada que ver ahí gerencia general únicamente, porfa.
+
+Laura Martinez   1:45:13
+Comercial.
+Listo que se les envía ahí el código de la cotización, el cliente, el margen calculado, el margen mínimo requerido, el nombre del asesor y la fecha de creación. Entonces el asesor no podrá continuar con el envío de la cotización a pedidos hasta recibir una respuesta de aprobación o rechazo, pero sí podrá exportarla para enviarla al cliente para su revisión.
+Y al momento de revisar el margen, el rol gerencia debe poder suministrar un margen opcional en el modal. La casilla será de margen aprobado.
+Es el que los acabas de mostrar.
+
+Daniel Valbuena   1:45:47
+Mhm.
+
+Laura Martinez   1:45:51
+¿Entonces acá otro cambiar el estado en qué parte? Entonces el caso de aprobación el sistema cambia el estado de la cotización aprobada por gerencia. Eso es en back, Dani, o sea, es el estado que va a tener la cotización. Entonces, si tú la pruebas va a tener ese cambio de estado.
+
+Daniel Valbuena   1:46:06
+Pero bueno, eso es lo que no te entendí. ¿Ese es el estado de qué? Porque tengo estado de mi cotización para mí es pipe upside riesgo forecast, en este caso aprobado por gerencia, hace parte de los estados.
+
+Laura Martinez   1:46:24
+Me descargaron los audífonos.
+Aló, ¿me escuchan?
+
+Freddy Rincones   1:46:31
+Sí.
+
+Daniel Valbuena   1:46:31
+Te escucho.
+
+Laura Martinez   1:46:32
+¿Listo, qué decías que los estados que tú tienes son?
+
+Daniel Valbuena   1:46:36
+Yo tengo pipe, que es 40, pipe upside 60. Riesk, bueno, riesgo, no mentira, yo ya lo sé en español para mí.
+Ay, es pendiente orden de compra, riesgo en negociación y envío cotización. Esos son mis estados de cotización, que son 40, 60 70 y 80, sí que es como el estado de la cotización en la cual, pero cuando para mí es el estado, cuando tú me dices el sistema cambia el estado de la cotidiana aprobada por gerencia.
+
+Laura Martinez   1:46:59
+Mhm.
+Okay.
+
+Daniel Valbuena   1:47:07
+¿Hablamos de ese mismo estado o de qué estado estamos hablando?
+
+Laura Martinez   1:47:11
+Es un estado adicional, igual lo podemos cambiar, pero es el estado que aparece cuando tú necesitas tener una aprobación del margen por gerencia.
+
+Daniel Valbuena   1:47:22
+O K, yo creo, no sé tú cómo lo veas, Freddy, porque es que pues, o sea, a más allá de que cambie el estado, será bueno que le llegue una notificación al comercial a través pues de la red que estaba manejando interna, donde llega su margen fue aprobado, su margen fue aprobado, su sustitución y margen fue aprobado.
+Tanto por ciento.
+Y que igualmente aparezca acá, espérame.
+Bueno, lo que les estaba mostrando apareciera como este producto tiene un margen aprobado de 4%.
+
+Freddy Rincones   1:47:54
+Pero la aprobación me genera.
+
+Daniel Valbuena   1:47:57
+Si me entiendes en el producto que te acabo de mostrar.
+
+Freddy Rincones   1:47:58
+A nivel del sistema, creo que la profesión.
+Me genera cambio, o sea.
+Sí, o sea, digamos que la notificación se dispara.
+
+Laura Martinez   1:48:11
+Con el cambio está.
+
+Freddy Rincones   1:48:11
+Cuando existe un estado, cierto, entonces cuando tú apruebas algo, él necesita hacer un cambio en algo para yo poder disparar esa notificación.
+Entonces o es nada más al botón de guardar o algo así o de aprobar.
+Y que dispare la notificación de una vez y se mantiene en el mismo estado. Es lo que me quieres decir es lo que quieres que funcione así.
+
+Daniel Valbuena   1:48:37
+O sea, la idea es que los estados de la cotización sean los que les dije: enviado cotización en negociación, riesgo y pintor de compra. O sea, no pueden haber más estados. Ahora que las solicitudes que se hagan en la cotización, pues no me puedo alterar el estado. Sí me entendés, porque pues eso es el estado de la cuestión. ¿En qué estado se encuentra?
+
+Freddy Rincones   1:48:42
+Nomás.
+Yeah.
+
+Daniel Valbuena   1:48:57
+Ahora, si este tema se va a manejar, no sé como que aparezca en algún otro lado, pero sin que me altere a mí ese estado del que les acabo de hablar, pues estaría bien.
+
+Freddy Rincones   1:48:57
+Mhm.
+Estamos la bitácora.
+Podemos, eso sería como una notificación, pero de.
+No cambio de estado, sino o sea, en la bitácora, como puede decir, pero tal cosa y quedan la bitácora estas notificaciones llega la persona. Eso lo pudieron manejar como sí, en notificaciones. No cambiemos, no agreguemos un nuevo estado, sino basado en el log.
+O sea, cada cotización va a tener n cantidad de movimientos. Esos movimientos van a tener razones o motivos de movimientos. Entonces, esos motivos van a pueden generar.
+
+Daniel Valbuena   1:49:35
+O.
+
+Freddy Rincones   1:49:45
+Notificaciones. Entonces, por ejemplo, aprobaste tal cosa, gerencia aprobó tal cosa. Entonces yo puedo usar un trigger que diga cuando gerencia apruebe algo, mandar una notificación. Eso lo podemos hacer así sin cambiar el estado.
+Hoy funciona sin.
+
+Daniel Valbuena   1:49:59
+Okay.
+Sí, igual lo que te lo que les decía es importantísimo que por favor, cuando se apruebe aparezca a ver si por acá está. Permíteme 1 segundo, si no nos toca volver a hacer el ejemplo.
+Esperame 1 segundo, esperame 1 segundo.
+Creo que con este.
+Con eso estoy a muerte, te digo, no.
+A ver, espérame 1 segundo.
+I'm there.
+Well, we know.
+Maybe con ellos, sí.
+Sí, mira, es importante que cuando se aprueben la cotización, se apruebe el margen del producto, aparezca acá. O sea, yo entro a la cotización, entro al producto y aquí me aparece que la fue aprobada el porcentaje. Y fíjate que es que este sistema tiene falla.
+Pues te acabas, te acuerdas que te acabo de mostrar que aparecía 5%.
+Que fue aprobado al 5% o sea que al momento de ingresar aquí al producto aparezca menor utilidad autorizada 5%. Aquí mira, aquí se nota la falla del sistema que en la anterior sí mostraba y aquí no, pero entonces que aquí nos avise para que eso para que es para que compras sepa que ese producto fue aprobado.
+Y pues que puede comprar sin problema.
+
+Freddy Rincones   1:51:38
+Sí.
+
+Laura Martinez   1:51:40
+Ya lo siento.
+
+Freddy Rincones   1:51:40
+O sea, yo ya lo tengo claro. O sea, no es necesario crear un nuevo estado. Laura manejamos los mismos estados, solo que por el historial de las de los movimientos podemos notificar a las personas que se tengan que notificar. Listo.
+
+Laura Martinez   1:51:56
+Esto entonces voy a quitar los estados.
+A compartirles mi pantalla.
+
+Freddy Rincones   1:52:11
+¿Qué?
+
+Daniel Valbuena   1:52:12
+Salud.
+
+Freddy Rincones   1:52:14
+No mention fun.
+
+Laura Martinez   1:52:14
+Yeah.
+Listo, tú acá me decías que la validación debe ser producto y también tener liquidación total, sí.
+Entonces igual te lo pongo acá.
+
+Daniel Valbuena   1:52:28
+Sí, exacto, que en la que la validación por margen sea por producto y que en la parte final de la cotización, cuando estamos mirando la el panel general, diga total costo, total venta, utilidad y margen, como la liquidación de toda la cotización.
+
+Laura Martinez   1:52:28
+Oh.
+
+Daniel Valbuena   1:52:44
+Tip.
+
+Laura Martinez   1:52:45
+Take.
+
+Daniel Valbuena   1:52:46
+Y ahí acuérdate que hay una partecita que lo que hablábamos con Freddy, que no sabíamos bien cómo contemplar el tema del transporte y era esta cotización incluye esta tiene que tiene incluido el transporte sí o no. Sí, si no, cuánto es y ya co y que eso haga parte de la liquidación.
+
+Laura Martinez   1:53:02
+Mhm.
+Sí, lo que tú eres mensaje.
+listo listo Dani entonces ahí le puse pues para aclaratorias netamente es por producto y acá me consiste confirmame el estado eso lo quitamos con lo que acabamos de hablar entonces sistema notifica al asesor
+
+Daniel Valbuena   1:53:20
+Ajá.
+
+Laura Martinez   1:53:22
+Y esto es ya, no tenemos más comentarios, es referente a este.
+
+Daniel Valbuena   1:53:26
+Por mi parte, uno va con los cambios que hicimos, o sea, que todo eso quede contemplado, porfa, que la fórmula sea.
+
+Laura Martinez   1:53:30
+Listo.
+Listo.
+Dale.
+
+Freddy Rincones   1:53:34
+Hey.
+Por la segunda, esa.
+
+Laura Martinez   1:53:37
+Como en la segunda, llevamos en las 5, Freddy, pero nos falta la, pero yo revisé las 3.
+
+Freddy Rincones   1:53:40
+eso vamos por la quinta.
+Vamos a terminar.
+
+Laura Martinez   1:53:45
+Bueno.
+¿Tú me compartiste las 5?
+Espérame que otra vez se me cerró nuestro chat.
+Las 6, las 6, las 6, las 6...
+Se voy a ir.
+Correct.
+Okay.
+Listo.
+Tú en las 6:00 me hiciste varios comentarios, me dejaste un comentario que había una confusión, pero quiero mostrártelo.
+
+Daniel Valbuena   1:54:37
+¿Cuáles, cuáles, cuáles?
+
+Laura Martinez   1:54:40
+La de la proforma.
+Just.
+
+Daniel Valbuena   1:54:44
+okey, sí.
+
+Laura Martinez   1:54:45
+Yo revisé.
+A uno de.
+
+Daniel Valbuena   1:54:48
+Oye, no me salen los comentarios, qué raro.
+Bueno, más.
+
+Laura Martinez   1:54:53
+En es que en este no dejaste como comentarios, Dani, pero todo el, o sea, tú me pusiste, espérate, yo te voy a compartir mi pantalla.
+Lassex.
+¿Qué pasa, tú me dijiste, mira?
+Respecto a este documento.
+
+Freddy Rincones   1:55:09
+Un momento, por favor.
+
+Laura Martinez   1:55:12
+Respecto a este documento hay una confusión y quiero aclararlas si el cliente tiene crédito o no, igual el comercial va y genera la cotización. Hasta ahí vamos claros que ya te lo aclaramos en el punto anterior. Entonces, al momento de pasarlo al pedido, si tiene forma de pago anticipado, el comercial deberá hacer la solicitud, deberá hacer la solicitud en esa cotización de que la generan en la proforma.
+Esta solicitud le llega a financiera financiera prueba esta proforma le queda cargada al comercial dentro de la cotización para que la envíe y una vez la envíe el cliente hace el pago deberá hacer la solicitud financiera para validar si el cliente ya pagó una vez financiera prueba porque el cliente ya pagó puede montar el pedido. Entonces Dani esto lo dice en la HB entonces en el primer escenario que tiene es que es si el cliente tiene crédito o no igual el comercial genera la cotización.
+Acá en la HUD, en la HUD dice que en todos los flujos de la cotización siempre existe primero, que es lo que te pues creo que ya quedó claro con todo las 5 historias que la probamos. La única diferencia es que si se envía como cotización o si de ella se genera una proforma. Entonces, si es anticipado, el comercial debe solicitar la proforma.
+Es el en el cliente sin crédito que lo tengo por acá.
+
+Daniel Valbuena   1:56:23
+Es que lo que no entiendo es determinación del tipo de documento a enviar. Si el cliente tiene crédito activo, el sistema permite enviar la continuación directamente al cliente perfecto. Si el cliente no tiene crédito, el sistema debe generar una proforma en formato PDF con la misma información de la condición perfecto, pero esa la envía el comercial, sí, pero no la genera el comercial.
+Sí.
+
+Laura Martinez   1:56:44
+No, o sea, el sistema genera la proforma es dale, dale.
+
+Daniel Valbuena   1:56:46
+El campo.
+De.
+Déjame también vamos a querer como para entender un poco más el campo tipo, el campo tipo documento ajá debe ser perfecto, generación de generación del documento que tiene proformación perfecto. El cliente debe permitir generar el archivo PDF con la siguiente información: datos son datas condiciones, perfecto, listo, el documento debe tener numeración consecutiva.
+Perfecto, listo, flujo para crédito sin crédito. El asesor financiero se selecciona genera proforma, el sistema genera.
+El asesor, mira el flujo para clientes sin crédito, entonces ahí que es que el comercial le genere la solicitud al área financiera para la generación de la proforma.
+Una vez le genera como la notificación o la solicitud, ahí sí ya entra el asesor financiero, seleccionar, generar pues él puede entrar a revisar la cotización, validar que cumpla, que todo esté bien, que todos los márgenes den, que todo el tema esté uno a.
+Y apenas pase, le puede decir perfecto, genera, genera la proforma. El sistema genera el PDF y lo asocia a la cotización correspondiente. Se notifica automáticamente el asesor con el mensaje proforma generada, pero entonces aquí es importante que esperamos 1 segundo, yo quiero entender un tema.
+Um.
+Yo puedo, o sea, yo puedo enviarle al cliente la cotización a un a un cliente sin crédito. Sí, o sea, por ejemplo, tú no tienes crédito conmigo, entonces yo te genero a ti la cotización. Sí, ahora que tú me tú me dices, oye, ven, dame, necesito pagarte, generame la proforma.
+
+Laura Martinez   1:58:25
+That's that.
+
+Daniel Valbuena   1:58:34
+Ahí es donde el comercial coge y solicita la proforma al área financiera para que el área financiera apruebe la proforma.
+una vez el cliente recibe la proforma hace el pago eso notificado obviamente el área comercial cierto Entonces el comercial dice al área financiera quivo que ya pagaron ahora el comercial debe solicitar una aprobación financiera para que el
+La El área financiera diga, vaya al banco y diga ya pagaron, te apruebo y ya puedes montar pedido, sí me entendés.
+
+Laura Martinez   1:59:12
+Sí.
+
+Daniel Valbuena   1:59:13
+Es que eso no lo vi.
+
+Laura Martinez   1:59:16
+Y mira, entonces.
+Entonces acá le agregué la parte inicial que me dices, el asesor envía la solicitud al área financiera para generar para generación de pro forma, támica, pro forma.
+
+Daniel Valbuena   1:59:28
+O sea, la en la parte de arriba no sé si esté, si alguna cosa lo me lo me excusas, es hay que separar. O sea, yo genero cotización independientemente el cliente tenga forma de pago anticipado. Cierto, eso yo creo que está. Ajá, yo la genero.
+
+Laura Martinez   1:59:42
+¿Y esa es la historia entre es?
+Mhm.
+
+Daniel Valbuena   1:59:47
+Apenas el cliente me dice listo, Daniel, hagamos negocio, genéreme la proforma para hacer el pago. Yo hago ahí la solicitud al área financiera para que haga la proforma. El área financiera entra, revisa la cotización y dice sí, cumple con márgenes, cumple con todo.
+
+Laura Martinez   1:59:58
+Mhm, mhm.
+
+Daniel Valbuena   2:00:06
+Va, voy a darle okey listo, le llegará la notificación al comercial de su proforma, está lista, llega al comercial, la busca, no sé en dónde va a quedar la proforma, se la comparte, se la comparte el cliente. Una vez le comparta la proforma al cliente, cliente paga y apenas pague el comercial, ahora debe solicitar una aprobación financiera para montar el.
+
+Laura Martinez   2:00:09
+Hello.
+La cotización.
+Is very?
+
+Daniel Valbuena   2:00:29
+Pedido teniendo en cuenta que el cliente ya pagó, él como decía va a mirar bancos y ya aprobado y ya puede montar pedido. Eso es lo que estoy. Eso es lo que debe estar en el documento.
+
+Laura Martinez   2:00:40
+Sí, hasta ahí vamos, solo me faltaría agregar el último de cuando el cliente y el área financiera confirmen.
+
+Daniel Valbuena   2:00:52
+Pero si.
+
+Laura Martinez   2:00:53
+El pago.
+
+Daniel Valbuena   2:00:54
+Hice un montón, un poquito.
+
+Laura Martinez   2:00:56
+¿Me puedes entrar el pedido?
+Listo, Dani, de resto lo que acabas de decir está en todo en el punto 3 y el punto cuatro.
+
+Freddy Rincones   2:01:09
+Yep.
+
+Laura Martinez   2:01:09
+Home.
+Listo.
+Listo, Dani.
+
+Daniel Valbuena   2:01:25
+Voy que estoy leyendo sonido.
+
+Laura Martinez   2:01:27
+perdón.
+
+Daniel Valbuena   2:01:29
+Sebastian.
+Bueno.
+
+Laura Martinez   2:01:31
+Yeah.
+
+Daniel Valbuena   2:01:33
+Bien, una pregunta, la proforma se envía al cliente por correo electrónico y o canal de chatbot, o sea.
+
+Laura Martinez   2:01:36
+Mhm.
+Hey, what's up?
+
+Daniel Valbuena   2:01:43
+What's up? Perfect.
+
+Freddy Rincones   2:01:48
+Mhm.
+Enviar la proforma.
+Adjunta por WhatsApp.
+
+Laura Martinez   2:02:00
+Yes.
+
+Freddy Rincones   2:02:03
+Yo creo que lo que podemos enviar es un link para que él pueda ingresar a la a la plataforma públicamente, pero adjunto como tal.
+
+Daniel Valbuena   2:02:12
+No creo, sí.
+
+Freddy Rincones   2:02:14
+No lo dejo. O sea, yo hago un template, cierto, que es lo que me aprueba WhatsApp para notificarle al cliente y le pongo una URL y él le da la URL y la abre como que en el Chrome de su celular, por ejemplo, o de cualquier lugar, pero no va como adjunto. Eso es técnicamente imposible.
+
+Daniel Valbuena   2:02:17
+That's good.
+Cortana, so.
+
+Freddy Rincones   2:02:33
+Limitado por meta, okey.
+Solo como para que lo dejen claro en el documento.
+
+Daniel Valbuena   2:02:41
+Y aquí también, mira, en la en el punto cuatro es lo mismo, el cliente puede hacerse mediante correo electrónico o mensaje o adjunto como adjunto PDF. Entonces ahí supongo que se le puede mandar la cotización a través de un link o sencillamente que se exporte en el punto cuatro.
+
+Freddy Rincones   2:02:53
+Yes.
+
+Laura Martinez   2:02:55
+¿Dónde, dónde estoy leyendo? Ajá.
+
+Daniel Valbuena   2:02:59
+punto cuatro que también se está adjuntando como un PDF Entonces yo la puedo exportar a PDF y una vez exporta PDF yo la envío a través de a través de correo electrónico sí o en su defecto Pues yo le puedo mandar un link cómo cómo tú ya me deja así antes nada eh
+
+Laura Martinez   2:03:11
+Okay.
+
+Daniel Valbuena   2:03:17
+O yo mando un link donde esté la cotización.
+
+Laura Martinez   2:03:24
+Listo.
+
+Daniel Valbuena   2:03:29
+Sin embargo, la aún no veo.
+En el 3 en el cuatro todo lo que te dije ahorita.
+
+Laura Martinez   2:03:34
+Mira, Annie.
+
+Daniel Valbuena   2:03:36
+O sea, dónde está que cuando, bueno, sé que está en otro documento.
+
+Laura Martinez   2:03:39
+Mira, no, mira.
+
+Daniel Valbuena   2:03:42
+Que es una, o sea que llega a generar la proforma, llegó ahora el cliente pagó. Entonces ahora para montar el pedido debe solitar una aprobación financiera, eso está en otro documento o está en este.
+
+Laura Martinez   2:03:42
+Mensaje.
+No, mira, entonces él es el flujo sin crédito. El asesor envía la solicitud del área financiera para generar la proforma. El asesor financiero selecciona generar proforma, el sistema genera pdfy lo asocia a la cotización correspondiente. Se notifica automáticamente al asesor comercial con el mensaje proforma generada y almacenada exitosamente. Sí, o sea, que él ya puede ir a la cotización a revisar la proforma.
+es la plataforma se envía al cliente por correo electrónico y o canal de chatbot que sería el envío del link público que es lo que acabamos de hablar entonces el envío de la cotización al cliente con el crédito Entonces el asesor envía la cotización al cliente el sistema genera el documento PDF lo adjunta el mensaje
+Y el envío puede hacerse mediante correo electrónico, mensaje de chatbot, acá sería un link con el link público.
+con el link público listo el sistema registra la fecha y la hora del envío y cambia el estado a enviar al cliente entonces ahí hasta ahora le estamos enviando la cotización la proforma y la cotización al cliente entonces acá tenemos un tema de recordatorios automáticos que si el cliente no responde dentro de 8 días el chatbot empieza a hacerle como el recordatorio de que tiene algo pendiente entonces.
+Si el cliente acepta la cotización o la proforma, el sistema notifica al asesor y habilita los pasos siguientes, que es la generación de la orden de compra. Si el cliente solicita cambios, el sistema registra las observaciones y notifica al asesor y si el cliente rechaza, el sistema cambia el estado a cotización rechazada y almacena el motivo.
+
+Daniel Valbuena   2:05:26
+Espérame.
+¿Si el cliente acepta la cotización o proforma, el sistema noti, pero lo acepta por dónde?
+
+Laura Martinez   2:05:39
+¿Por correo o por WhatsApp?
+
+Daniel Valbuena   2:05:42
+¿Pero cómo el sistema va a notificar esa aceptación al asesor?
+
+Laura Martinez   2:05:50
+Como dijimos que se iba a ser por el chatbot, él interpreta las respuestas del cliente bajo aceptación, solicitud de cambios o rechat.
+
+Daniel Valbuena   2:05:56
+Sí, pero hagamos de cuenta, sí, pero sí, pero no lo hago porque si, o sea, no todo está, no todos los clientes nuevos van a van a.
+Van a estar ahí, ¿me entendés? Entonces, qué pasa si yo llego y le mando la proforma al cliente, el cliente me llama.
+
+Laura Martinez   2:06:13
+A minute.
+
+Daniel Valbuena   2:06:15
+Si me entendés, no me lo escribí, me llama, me dice oye aquí o ya le pagué, revise.
+Sí, no necesariamente está todo por el chatbox.
+¿Cómo se notifica? Entonces yo creo que la fácil es que me mande a mí el soporte de pago o lo que sea, y el comercial manda y ya la solicitud financiera de ey ya pagó y toma el soporte de pago del cliente. Ella entra, valida el banco y dice, sí, aprobado, ya pagaron.
+Porque es que no sé.
+
+Freddy Rincones   2:06:43
+Sí, o sea, porque automáticamente por algún chat, por el chatbot es muy ******, o sea, no es.
+Hay muchas variables.
+
+Laura Martinez   2:06:52
+Okay.
+
+Daniel Valbuena   2:06:52
+Exacto.
+
+Laura Martinez   2:06:55
+Entonces.
+
+Freddy Rincones   2:06:55
+El comercial va a tener su interacción con su cliente y el comercial tiene que o alguien en la plataforma tiene que accionar algo para que se verifique eso.
+Pero.
+Digamos que hay que cumplir varias cosas y lo queremos automatizar ese paso básicamente.
+
+Daniel Valbuena   2:07:12
+No, pero y mira que no es tan necesario, o sea, nos encharnamos y.
+Pues páseme el soporte de pago el soporte de pago el el debe la persona ir a la persona que valida bancos tiene que ir revisar el banco que en efecto ingresó entonces ahí no hay ahí no hay como tal un paso de automatización porque automatizar que ingresen en la plataforma Bancolombia O sea no si me entendés o sea
+
+Freddy Rincones   2:07:21
+El comercial.
+
+Laura Martinez   2:07:23
+In.
+
+Freddy Rincones   2:07:35
+Sí, hace una conciliación, solo.
+
+Daniel Valbuena   2:07:37
+No.
+No, no.
+
+Laura Martinez   2:07:41
+Entonces miren si les parece manual, si el cliente acepta la cotización o por favor al comercial, confírmale con el soporte de pago para que se pueda generar el pedido, habilitar el paso siguiente de manera manual, generación de orden de compra que es la siguiente historia de usuario.
+
+Daniel Valbuena   2:07:55
+No, el comercial no. El comercial deberá enviar la solicitud de aprobación financiera al área financiera para que corrobore que en efecto pagó, que en efecto esa persona pues le ingresó la plata. Si ingresó, ella va a decir aprobación financiera.
+Y ya puede montar el pago, puede montar el pedido.
+
+Laura Martinez   2:08:21
+El área financiera confirmar.
+Okey, pago.
+Sí, sí, me apagó.
+Ingresando.
+
+Freddy Rincones   2:08:40
+Yep.
+
+Laura Martinez   2:08:43
+Hola, son mis hijos.
+
+Freddy Rincones   2:08:55
+Hmm.
+
+Laura Martinez   2:08:55
+Sí, para que se pueda.
+
+Daniel Valbuena   2:08:55
+Don't see to make local home.
+
+Laura Martinez   2:08:59
+Entonces si el cliente acepta la cotización, el comercial deberá enviar la solicitud al área financiera para corroborar el pago. El área financiera confirma con el soporte de pago que el cliente ya pagó ingresando a la solicitud dando en el check para que puedan generar el pedido y habilitar el paso siguiente de manera manual generación de orden de compra.
+
+Daniel Valbuena   2:09:18
+Sí, o sea, entrando en el cheque es que apruebo, cierto.
+
+Laura Martinez   2:09:21
+Sí que ya ya dicen sí, confirmado que ya tengo el pack, entonces con ese cheque es la única manera de que puedo irme hasta la otra parte.
+
+Daniel Valbuena   2:09:25
+Mhm.
+Pero entonces cuando es o K perfecto, sí, listo, pero cuando vamos a hacer las aprobaciones a la solicitud al área financiera van a tener algún nombre de para que ella sepa de qué se trata, es decir, solicitud de extracopo, solicitud de montar pedido, bueno, como lo llamamos montar pedido cuando solicitud debe montar pedido cuando el cliente sea retenido.
+En este caso, solicitud de verificación pago.
+
+Freddy Rincones   2:09:53
+¿Cómo lo hacen hoy?
+
+Laura Martinez   2:09:54
+¿Qué las 2:00?
+
+Daniel Valbuena   2:09:56
+Dime.
+
+Freddy Rincones   2:09:57
+¿Cómo lo hacen hoy?
+
+Daniel Valbuena   2:09:59
+No dice básicamente, dice básicamente, ven, te digo yo acá con un cliente que no tenga crédito, espérame a ver si tengo un cliente que no tenga crédito.
+
+Freddy Rincones   2:10:00
+So, que que.
+
+Daniel Valbuena   2:10:12
+Oh.
+No olvidamos, esta gente tiene crédito.
+Condición comercial anticipado, mira, entonces te voy a compartir pantalla.
+Lo que pasa es que hoy no, hoy a Laura se le dificulta un poco eso porque no sabe que le están pidiendo. Mira, entonces aquí este cliente es anticipado, entonces aquí ya se generó en este caso la proforma. El cliente ya pagó, no sé qué, entonces cuando ya pagó.
+Se le da opción a ver.
+Cecere, me tocare aquí seleccionar el producto.
+Ay, ******, perdón, es que.
+general Ah Bueno mira entonces aquí está mal espérame un segundo yo miro aquí una cosa porque me estaba arrastrando mal multialambres esta vaina que es estoy esperamos un segundo para mí no embarrar esto de quién es Ah eso es mío bueno perfecto y miremos una cosita que creo que esto está anticipado otros datos anticipado perfecto
+Entonces mira, actualmente nos toca hacer así. Entonces llega, se pone acá, le doy generar pedido, me dice: ¿Desea solicitar autorización forma de pago anticipado? Le digo que sí.
+Y digo que la voy a mandar a Laura Burgos, pero también yo estoy ahí porque cuando Laura no está me toca a mí validar.
+Pues yo llego y digo, perfecto.
+¿Qué cotización es? ¿Tenían que pagar tanta plata? 238000 voy, miro al banco, me pagaron. Digo, sí, pago. ¿Dejo algún comentario?
+¿Pago, entonces cómo?
+
+Freddy Rincones   2:11:49
+Pero no tienes una lista de opciones.
+
+Daniel Valbuena   2:11:52
+¿Cómo pagó entonces el día de hoy ya en el pedido ya me deja?
+O cuando un cliente está retenido por cartera me aparece acá opciones y aquí en vez de lo que les mostré ahorita me parecía como solicitud de aprobación represente de cartera, algo así, así lo tenemos ahorita, entonces como que, pero lo que pasa es que nosotros comercial como que le hemos sabemos que estamos montando.
+
+Freddy Rincones   2:12:04
+J.
+
+Daniel Valbuena   2:12:15
+Pero no le llega el nombre a Laura. Laura es como.
+¿Me estás pidiendo siempre va a comunicarse con el comercial y esta aprobación para qué es? No es para un pedido por. Bueno, listo.
+
+Freddy Rincones   2:12:27
+Claro que pudiéramos hacer es que coloquemos como mandatorio las observaciones o algún opciones o motivos para que la notificación la arrastre, o sea, arrastre el motivo o la razón o lo que sea de eso y la muestren en la notificación del aula.
+
+Daniel Valbuena   2:12:31
+Opciones.
+Exacto, entonces, por ejemplo, en este caso es solicitud validación de pago para montar pedidas. Un ejemplo, bueno, perfecto, listo. Entonces Laura ya sabe que tienen que hacer. Entra, valida, aprobado, solicitud extra copo, entra, valida, aprobado, solicitud de montar pedido porque está cartera.
+
+Laura Martinez   2:12:51
+Call.
+
+Freddy Rincones   2:13:04
+¿Cuál es más hay?
+
+Daniel Valbuena   2:13:05
+Ya entra aprobado que ya tenga claro que le están pidiendo porque hoy por hoy está como de toda siempre que me está pidiendo porque pues no sé.
+
+Freddy Rincones   2:13:14
+Sí, es como el motivo, hay que le, pero esa lista de motivos hay que definirla. ¿La tienes clara?
+
+Daniel Valbuena   2:13:20
+Sí, son los que te dejaba de decir no hay más.
+
+Freddy Rincones   2:13:25
+Okay.
+
+Laura Martinez   2:13:31
+Listo, entonces con eso terminamos la 6.
+Check, listo.
+
+Freddy Rincones   2:13:38
+Yeah.
+
+Laura Martinez   2:13:40
+Las 7 no me la enviaste, Dani.
+
+Daniel Valbuena   2:13:43
+El 7 y 8 son pedidos now.
+
+Laura Martinez   2:13:46
+Okay.
+
+Daniel Valbuena   2:13:47
+No, 7 señoras en orden de compra, que eso es de Andrés y ahí ya estoy esperando. Tengo la 9, la 9, la 10 y la 11.
+
+Freddy Rincones   2:13:56
+Bueno, y para cuando Andresito.
+
+Daniel Valbuena   2:13:58
+Pues ya me tengo que hablar con Andresito para apoyarlo porque está encierra ese huevón, también lo entiendo porque está llevado el hijuepucha, pero espérame 1 segundo, por favor.
+Hola padre, ya te marco.
+Lisa.
+
+Laura Martinez   2:14:17
+La 9 solo tiene un comentario y ya te la proyecté.
+
+Daniel Valbuena   2:14:22
+Era este seguimiento de alertas internas en el proceso comercial.
+
+Laura Martinez   2:14:24
+A.
+Sí.
+Stop!
+
+Daniel Valbuena   2:14:33
+No, esta estaba súper bien, esta me gustó harto, como lo como lo pusieron, solo que te tenía un caso de en qué caso aplica, porque pues no sé cómo lo estoy manejando, o sea, o en qué cómo esté pensado eso. Cuando un comercial genera o modifica una cotización, el sistema envía una alerta financiera, pero.
+
+Laura Martinez   2:14:52
+En dado caso de que, o sea, esto es netamente seguimiento y alertas. Entonces esto es en el caso de los, digamos, la situación que acabamos de hablar del área financiera. Entonces, cuando él genera la cotización y necesita generarle la proforma o necesita, digamos, yo le tenía aquí la modificación, eran temas de margen.
+
+Daniel Valbuena   2:15:12
+Pero entonces fíjate que está mal lo que pusiste, porque entonces ahí lo que da a entender es que cada vez que se genera se modifica una cotización financiera va a estar notificada y pues no tiene por qué. Entonces ahí es básicamente que cuando el comercial requiera una solicitud por la parte financiera, pues le va a llegar la notificación a la financiera.
+
+Laura Martinez   2:15:13
+Es.
+Sí.
+Cuando hace la modificación.
+
+Daniel Valbuena   2:15:43
+No cuando solicité una aprobación.
+
+Laura Martinez   2:15:49
+Si no me borra.
+
+Freddy Rincones   2:15:52
+Pacha.
+
+Laura Martinez   2:15:53
+Necesito una, no me la bordo, aprobación.
+De una cotización en el sistema enviarle alerta financia.
+Listo, ese era el comentario que teníamos entonces en esta parte checa y ya era el único que.
+
+Daniel Valbuena   2:16:07
+Una aprobación financiera para que quede súper claro.
+Porque pueden haber aprobaciones de márgenes.
+
+Laura Martinez   2:16:13
+Sí, era listo.
+
+Daniel Valbuena   2:16:17
+No.
+
+Laura Martinez   2:16:17
+HU 7 es Andy.
+
+Daniel Valbuena   2:16:21
+Mister.
+Mhmm.
+
+Laura Martinez   2:16:28
+819. Listo.
+
+Daniel Valbuena   2:16:32
+Uh-huh.
+
+Laura Martinez   2:16:34
+Ahora vamos con la 10.
+¿Que tú me dijiste en la 10?
+Listo, está muy bien lo propuesto, por favor, adicionarle la información de las cotizaciones según estado semana, meses, eso se lo agregamos anoche.
+Yes.
+
+Daniel Valbuena   2:16:56
+Sí, que era lo que pues yo tengo actualmente en mi dashboard, que es lo que ustedes acaban de ver, cuando cierran la cotización, cuánto tiene facturado, cierto actualmente, cuánto tiene facturado, cuánto tiene pendiente por facturar, cuánto están forecast para esta semana, como lo que yo tengo en el dashboard.
+
+Laura Martinez   2:17:02
+Es move.
+Y déjame que yo no tenía como no sé por qué no me guardo.
+
+Freddy Rincones   2:17:21
+Up.
+
+Laura Martinez   2:17:27
+ya.
+Entonces en los criterios de aceptación, yo te lo agregué.
+No te comparto.
+
+Daniel Valbuena   2:17:36
+Pero lo que te decía importante que esté como esa partecita del dashboard, que es lo que yo más uso.
+
+Laura Martinez   2:17:44
+Listo, entonces te puse el tablero de mostrar las métricas de leads, cotizaciones según estado, semana, mes de cierre y ventas consolidadas.
+
+Daniel Valbuena   2:17:55
+Sí, pero lo que pasa es que mira, ven, te muestro.
+Lo que yo necesito.
+¿Qué es esto que tengo acá?
+Por acá.
+Igual yo les puedo pasar este link.
+Para que ustedes visualicen.
+Mira, aquí aparece como esta info que es súper importante. Yo escojo que aquí que hace, que les hace falta, que lo tengo aquí mezcladito. ¿Cuánto tienen facturado? Tengo que está en forecast, el esto es proyección de las metas en cuanto al cubo. Entonces aquí hablo del cubo.
+
+Laura Martinez   2:18:22
+Yes.
+Mhm.
+
+Daniel Valbuena   2:18:38
+Respecto a la meta de la venta, utilidad, clientes nuevos, porcentaje de cumplimiento. Aquí yo puedo revisar los CUS, si me entendés, por ejemplo, yo quiero revisar 2025.
+estamos esta chica no me ha cargado que me acabo de dar cuenta que me ha cargado pero voy a revisar unos meses entonces voy a revisar por ejemplo el mes de enero eh tenía una venta de tanto cumplimiento tanto puedo coger varios meses si me entendés o sea puede hacer varias vainas Entonces eso es importante eso en cuanto al cubo
+¿El porcentaje de participación por ejecutivo, cuánto me está? ¿Cuánto las ventas pesa cada comercial?
+clientes. ¿Cuántos clientes de qué sector son? ¿Cuántos clientes tienen en su base? Entonces, por ejemplo, yo quiero ver los clientes de Ángela. Ángela tiene 119 clientes, dice que activos tiene el 95% en activos en sistema que no está mal tanto.
+Esos son de Bogotá. Aquí yo a mí me gustaría validar de qué sectores son. Entonces en la creación de clientes están en el tema de las verticales que también está en si no estima en el documento, educación, manufactura, seguros o sea como que esa parte que hay acá de qué sectores son, veas son de esos 11950 son de tal 5020, bueno, lo que sea.
+Pero esto también es lo que ma, esto es lo que más me guío porque me sirve, sí, pero me toca también hacer un ta un tema manual, mi tema manual. ¿Cuál es? Por ejemplo, mira esto.
+
+Laura Martinez   2:20:12
+Okay.
+
+Daniel Valbuena   2:20:16
+Informe comercial Ventas uno, miremos el de Ventas uno.
+Mira, entonces, por ejemplo, yo tengo esto, entonces estoy revisando esto de acá, lo tengo acá.
+Esto de acá es esto mismo. Entonces, cuánto es la meta mensual, cuánto es la meta del Q y bli bli, cómo vamos aquí, cierto, entonces el número de clientes también, cuántos clientes nuevos hay, perfecto, cómo le fue en octubre, cómo le fue en noviembre, esto esto lo está alimentando Laura.
+En un en una plantilla y esa plantilla la que alimenta esto, cierto, entonces esto es lo que me está tocando hacer manual. Entonces Laura me dice, vea, facturado, llevamos tanto con utilidad, vamos 55000000, esto es del mes de diciembre.
+Pendiente por facturar tiene tanto que pendiente por factura son todo lo que ya está montado como pedido, pero pues no se ha facturado por temas de entrega por XYZ. Entonces lleva tanto y el forecast tiene tanto. Entonces el forecast es la información que yo tengo acá. Entonces listo, venga, yo quiero revisar su forecast entonces.
+Por favor, déjeme ver, ay, ******.
+Bueno, dame 1 segundo.
+Entonces, ese informe comercial.
+Don't see the coco?
+Mira, entonces yo quiero ver el año 2025.
+Listo, entonces yo quiero ver, por ejemplo, las cotizaciones mías que estén, ahí voy filtrando, si me entendés.
+
+Freddy Rincones   2:21:57
+Yo tengo que interrumpirlos un momento y va sobre el tema de los reportes. Nosotros podemos generar en la plataforma reportes, indicadores, lo que quieras, cierto, lo que lo que hay que definirlo, hay que dejarlo muy claro. Cuáles son los indicadores que necesitamos, pero que tenga el dinamismo de seleccionar y que vaya cambiando como Power Bi. No estoy seguro todavía.
+Me llevo eso como tarea. Si hay alguna librería que nos permita hacer eso desde tu módulo, porque lo que tú tienes ahí es Power BI y eso es un business intelligence. Usa la información y la va elaborando de acuerdo a las selecciones que tú vayas haciendo. Pero la plataforma tiene un módulo de dashboard y vamos a poder definir los indicadores que quieres y los podemos sacar.
+Y nos podemos poner, pero ese dinamismo de ir cambiando mes a mes a mes tengamos, tengo que ver cómo lo puedo podemos hacer para que vaya generando los reportes.
+
+Emma Castillo   2:22:50
+Perdón, ahí mi la interrupción, pero sí lo podemos, sí lo podemos hacer, sí podemos hacer esa ese cambio. Así, ajá, sí lo podemos equivocar.
+
+Freddy Rincones   2:22:55
+Ah.
+Es el comportamiento, pero hay que dejar claro los hay que dejar claro bien claro el.
+
+Daniel Valbuena   2:23:05
+Lo que se requiere.
+
+Freddy Rincones   2:23:05
+Los Lo que se requiere clarísimo, yo tengo que bajar a un momento a llevar la niña al transporte, en un momento ya subo.
+
+Laura Martinez   2:23:06
+Okay.
+
+Emma Castillo   2:23:07
+Sí.
+
+Daniel Valbuena   2:23:12
+De una.
+
+Laura Martinez   2:23:14
+Dale.
+
+Daniel Valbuena   2:23:16
+El lado parte de reportes estamos check.
+
+Laura Martinez   2:23:17
+Yes.
+Estamos check la 11 Dani no me llegó.
+Pues no sé si se quedó contigo.
+
+Daniel Valbuena   2:23:36
+No tiene comentarios, yo donde la envié.
+
+Laura Martinez   2:23:40
+No, señor.
+
+Daniel Valbuena   2:23:40
+No, yo le puse en sí, demás que sí, yo miro, yo miro qué pasó, pero miramos la UTDX.
+Si llego hasta las 10 o K, entonces la 11 básicamente es creación y gestión de errores y permisos de usuario. ¿O K? Este sistema de productos nota y las redes al usuario, el usuario administrador podrá crear errores. Perfecto, Carlos siguiente campo, el nombre estaba activo en activo.
+Lo redes creados que eran disponibles para asignación inmediatos, en depende de permisos para por cada ruido de intervención de permisos. Sí, o sea, esa partecita ahí sí se las dejo a ustedes, porque pues ahí sí es full tema de configuración. Ahí lo único que es importante es que.
+Yo te pasé a ti en Excel que es que quién puede acceder a qué quién puede modificar quién puede ser tal vaina y eso pues está dentro de cada rol el tema de lo la configuración interna de toda esa vaina ya sé ya sé porque no lo respondí porque dije ****** si no sé o sea lo importante es que yo creé los usuarios que los usuarios
+
+Laura Martinez   2:24:43
+Yes.
+Ajá.
+
+Daniel Valbuena   2:24:57
+Cojan los permisos que nosotros les parametricemos en el sistema y pare de contar si me entendés y que si por si por algún motivo no sé, voy a sacar un comercial o voy a sacar una persona, yo tengo la potestad de cambiar la clave para que no pueda acceder, sí.
+
+Laura Martinez   2:25:02
+O.K.
+O K.
+
+Daniel Valbuena   2:25:14
+Porque decirle bloqueo inicio de sesión, alguna pa o sea, alguna vaina de que hay como pa.
+Y de resto uno va, ya ustedes me dirán, yo ya voy a es que como les digo, estoy en temas de cierre, entonces estamos full, pero ya va a presionar Andrés para que haga esa vaina o que le mueva con ese tema, pero yo creo que podemos ir avanzando full con el tema de del módulo de cotizaciones full y ahí vamos trabajando porque además que habrán cambios, crash y demás.
+
+Laura Martinez   2:25:25
+Sí.
+¿Dani, tú me confirmas, porfa, dónde me enviaste los roles?
+
+Daniel Valbuena   2:25:51
+En un archivo en Excel.
+
+Laura Martinez   2:25:54
+Es que tú me enviaste el proceso comercial y veo creación del cliente, creación de producto, forma de pago, moneda, vía de contacto vertical, márgenes mínimos, lead.
+
+Daniel Valbuena   2:26:00
+Avenida.
+Fíjate arriba, arriba dice creación de cliente en cualquiera de las pestañas aparece en la parte en la primera, en la primera fila auxiliar financiera, administrativa, jefe de oga auxiliar de bodega y que puede y que no puede hacer cada uno.
+
+Laura Martinez   2:26:05
+Y cotización.
+Listo, de una.
+
+Daniel Valbuena   2:26:22
+No me asustes, por favor, que yo hijuepucha, no.
+
+Laura Martinez   2:26:25
+De un año, entonces solo quedaría pendiente que me confirmes la 3, que la leas con Carmen y me la confirmes porque ya quedamos aprobados con la uno, la 2.
+
+Daniel Valbuena   2:26:33
+Mhm.
+Pero pásame la 3 por regida.
+Claro que tú dijiste que tú le incluiste algo ahorita.
+
+Laura Martinez   2:26:42
+Ya te la corrijo.
+
+Daniel Valbuena   2:26:44
+¿Y listo, una pregunta a partir de esto, cuándo nos volvamos a reunir para ir mirando? O sea, a mí lo que me interesa es yo ya es diciembre, ya es más suave, o sea, tengo de aquí al 15 fuertísimo, pero igualmente como hoy saco el tiempo, sí, porque la idea es como que vea va este tema así, cómo lo ve, qué cambios si me entendés como para que no haya como un aprender 100% completa de alguna vaina y como que.
+
+Laura Martinez   2:26:45
+Ya te la envío.
+Dime.
+
+Daniel Valbuena   2:27:08
+Hay un cambio que se haga que modifique muchas vainas, si me entiendes como que re yo o sea que se llegue como a retrasar algo de pues no sería la idea.
+
+Laura Martinez   2:27:12
+Yeah.
+Emma, ¿cómo lo ves?
+Solo validamos con Freddy.
+
+Emma Castillo   2:27:30
+Yo creería que sí lo podíamos comprar.
+
+Laura Martinez   2:27:33
+O K, entonces dale, yo te miro.
+
+Daniel Valbuena   2:27:34
+Ustedes me dicen como les parece a ustedes, como ustedes digan, venga, para nosotros es mejor así.
+Yo no tengo lío.
+
+Laura Martinez   2:27:43
+Listo, entonces de momento ya volvió. Hola, Freddy.
+
+Freddy Rincones   2:27:44
+Call me.
+Hola.
+
+Laura Martinez   2:27:50
+Sí, quedamos aprobados con la 12456910 y 11 nos faltan las de Andy y pues compartirle ahorita la a la línea de cotización con el comentario que le pusimos, pero él pregunta que ya con esto cuando nos reunimos para ver avance.
+
+Daniel Valbuena   2:28:00
+La vez.
+O sea, yo les decía a ellos que no sé, lo que ustedes me propongan está bien. Sin embargo, también sería como bueno que usted me diga, oiga, venga, tengo hicimos este avance, obviamente un avance que implique como algún temita que sí me entender como venga para que este una pruebe rápido y que no que como que haya el tema muy avanzado llega y que sabe que no me gustó.
+
+Freddy Rincones   2:28:10
+And.
+
+Daniel Valbuena   2:28:31
+Sí, me entendés, o sea, yo estoy ya diciembre, lo que les decía, yo son de aquí al 15 estoy vuelto ****** de trabajo, pero igual como hoy puedo sacarla, puedo sacar el espacio sin problema, nos podemos conectar y de ahí para allá ustedes me dicen.
+
+Freddy Rincones   2:28:41
+Hey.
+Te propongo lo siguiente, mira, lo primero que vamos a hacer es la parte visual. Listo para que veas cómo va a quedar un mockup y cómo lo vamos a insertar en tu template que ya tenemos preparado.
+
+Daniel Valbuena   2:28:55
+Yo le voy a hacer una pregunta tonta, qué pena cuando ustedes me hablan de mocap, yo le digo así, pero.
+
+Freddy Rincones   2:29:01
+Es el lo que viste, lo que viste para nosotros, un mockup es esto que te voy a mostrar acá.
+
+Daniel Valbuena   2:29:04
+Yes.
+O la presentación. la.
+
+Freddy Rincones   2:29:10
+Es un no es un demo porque todavía no tiene el desarrollo lógico. Sí, es solamente un borrador tal cual visual de cómo pudiera ir quedando la plataforma. Entonces hoy ya definimos todo lo funcional, ya de eso a nosotros nos da una entrada de información para poder terminar de ajustar todo lo que como se debe de ver.
+
+Daniel Valbuena   2:29:14
+Borrador.
+Listo.
+
+Freddy Rincones   2:29:34
+Entonces esto lo vamos a ajustar y la semana que viene por tarde, el lunes, el martes, perdón, miércoles deberíamos de poder dar un un avance de esto como queda, sin lógica, sin cálculo, sin nada, pero algo de cómo va a quedar la la visual. Tú nos dices que estás de acuerdo, no estás de acuerdo, quiero modificar X o Y o Z.
+Y ahí ya empezamos la fábrica, es llevar esto al temple y ajustarlo y empezar con todas las lógicas y cumplir todos los criterios de aceptación ahora.
+
+Daniel Valbuena   2:30:02
+No.
+
+Freddy Rincones   2:30:05
+Tú me dices porque el estás hablando de que te gustaría ir viendo avances y saber en qué vamos. Nosotros sí o sí tenemos que comportarnos juiciosos en la forma como nosotros trabajamos, que es que semanalmente te tenemos que entregar un estatus del avance. Listo, pero eso es que vamos a fijar la reunión.
+Y que vamos a participar en la reunión de 30 minuticos y Laura te va a preparar de hecho la presentación y te va a mostrar que ya tenemos listo, que está en progreso y qué es lo que falta la línea del tiempo para ir dándote a ti también información de cuándo vamos a entregar todo el proyecto listo y qué es lo que falta.
+
+Daniel Valbuena   2:30:42
+Yeah.
+
+Freddy Rincones   2:30:43
+¿Qué riesgos hay?
+porque falta lo del pedido es súper clave no pero ya a mí me interesa ir ya montando el coquito ir avanzando entonces la semana que viene te vamos a agendar para mostrarte el moca el borrador el demo como lo quieras llamar lo cómo se va a ver y ya semanalmente te vamos dando estatus del Progreso de la fábrica listo
+De todo esto.
+
+Laura Martinez   2:31:05
+Call.
+
+Daniel Valbuena   2:31:05
+Listo, fabuloso.
+
+Freddy Rincones   2:31:07
+Pero pues don Daniel, yo entiendo que usted está llevado de aquí en adelante, pero que sea un compromiso que vamos a poder participar en esas reuniones semanales. Hágale, es una.
+
+Daniel Valbuena   2:31:07
+I can.
+no me comprometo, me comprometo.
+
+Laura Martinez   2:31:18
+Si quieren la podemos sacar de una vez.
+
+Daniel Valbuena   2:31:18
+O sea, como les digo, o sea, de aquel 15 estoy llevado, pero yo creo que tenemos la primera reunión tal vez antes del 15 o qué.
+
+Freddy Rincones   2:31:20
+Grabalo.
+Caraval o Laura, clava.
+No, mira en el siguiente, ustedes digan, definan de una vez qué día la reunión de seguimiento cualquier día en la semana. Casi siempre lo tomamos un jueves o un viernes.
+
+Daniel Valbuena   2:31:35
+Perfecto para mí hoy estuvo fabuloso, para mí hoy estuvo como porque mañana por el particularmente lo tengo reventado. Entonces para mí hoy estuvo bien.
+
+Freddy Rincones   2:31:42
+Entonces, jueves, Laura, entre 10 y 12.
+
+Laura Martinez   2:31:44
+El uso.
+
+Freddy Rincones   2:31:47
+Unos 30 minutos no es más.
+
+Daniel Valbuena   2:31:50
+Espérame, el jueves, espérame 1 segundo, llevaría una cosa, el viernes 12 me queda imposible, espérame 1 segundo, sabes mejor, por favor, hagámoslo el jueves 11, pero en la tardecita, porque en la mañana tengo un tema medio complicado y tú con un cliente.
+
+Laura Martinez   2:31:53
+There is something.
+
+Freddy Rincones   2:31:56
+The moment.
+
+Daniel Valbuena   2:32:11
+Entonces, en la tarde me queda fabuloso.
+
+Freddy Rincones   2:32:15
+Listo, quedamos entonces para las 2:02 PM el jueves.
+
+Daniel Valbuena   2:32:18
+De una.
+Está muy bien.
+
+Freddy Rincones   2:32:21
+Entonces 2 PM el jueves juicioso de aquí en adelante hasta entregarte el proyecto listo es un espacio que tenemos que desagradamente participar porque hay te vas a enterar en que vamos en que vamos lentos también viene la parte a ver otra cosa.
+
+Laura Martinez   2:32:22
+Ya les voy a agendar.
+
+Freddy Rincones   2:32:36
+Tú agarras, definiste estos estas historias de usuarios, faltan las de Andy, pero hay un compromiso de que esta misma semana se entreguen las de Andy. Entiendo yo, espera.
+nosotros vamos a entregarte o sea el hito de mi entrega nosotros hacemos unas pruebas un ciclo de pruebas y te lo entregamos pero que nos ha pasado con muchos clientes es que se demoran mucho haciendo pruebas por qué porque tienen que sentarse a probar cada uno de los criterios de aceptación
+Listo, entonces nosotros hay muchos criterios de aceptación y tienen que entrar a probar. Saldrán errores, se corrigen, pero eso se puede dilatar mucho por la disponibilidad del cliente para hacer pruebas y ese es alguien de tu lado que lo tiene que sentarse y hacer pruebas. Entonces, ¿qué hago yo? Yo lo que hago es que garantizamos la fábrica, garantizamos las pruebas internas de nosotros.
+Y eso para mí es el hito de entrega por temas de facturación y todo, pero igual no significa que te entregué y me abrí, no te entregué y quedé disponible todos los santos días acompañando a una persona de pruebas a corregir, a corregir, a corregir, a corregir, a corregir lo que sabe corregir hasta que esté óptimo para producción. En ese momento tenemos una reunión de.
+
+Laura Martinez   2:33:41
+Good.
+
+Daniel Valbuena   2:33:46
+Listo.
+
+Freddy Rincones   2:33:49
+Go no Go, esa reunión de Go no Go es que usted decide si la ponemos de producción o no, viste y cómo lo vamos a hacer todos los ver que los usuarios tengan el entrenamiento. Hay mucha cosa, pero ya no es fábrica, es más como gestión de la aplicación. Entonces es importante que lo sepas, listo.
+Pues nosotros vamos a trabajar full para tenerte la aplicación, cumplirle el hito y ya de ahí en adelante darte el acompañamiento en corrección de pruebas y en cómo quieres hacer el la implementación de tu aplicación con tu equipo de trabajo y con todos los usuarios. Ahí, pues hay que entrenarlos, decirle cómo funciona. Hay data que hay que migrar.
+
+Daniel Valbuena   2:34:22
+Thank you.
+
+Freddy Rincones   2:34:30
+¿Sabes? O sea, eso para nosotros es un hito. Habrán cosas que van saliendo nuevas, que también quieras desarrollar, como lo de Word Office en el servidor ese que tienes ahí en la cocina, en la con 1/4 técnico, no sabes dónde me dijiste que tenías el servidor.
+
+Daniel Valbuena   2:34:46
+En la no en la bodega, en la cocina, en la cocina.
+
+Freddy Rincones   2:34:48
+Ah, no es.
+Listo, entonces es eso lo que quería decir. Me encanta que ya estemos alineados. Le tocó apretar a Andy para que nos dé la información.
+
+Daniel Valbuena   2:35:01
+De una.
+
+Freddy Rincones   2:35:03
+Porque si no, eso se te convierte a ti en otro retraso.
+
+Daniel Valbuena   2:35:06
+De una perfecta, así quedamos.
+
+Laura Martinez   2:35:10
+Listo.
+
+Daniel Valbuena   2:35:11
+Bueno, gracias a todos, bye bye.
+
+Freddy Rincones   2:35:13
+I want to stop.
+
+Emma Castillo   2:35:14
+No es Houston Baby.
+
+Laura Martinez   2:35:14
+Chao, chao.
+
+Daniel Valbuena   2:35:15
+That was.
+
+Laura Martinez detuvo la transcripción

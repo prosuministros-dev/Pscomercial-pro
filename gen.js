@@ -1,0 +1,1 @@
+const fs=require("fs");fs.writeFileSync("apps/web/app/api/products/route.ts","test");

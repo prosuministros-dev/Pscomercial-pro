@@ -1,0 +1,410 @@
+Transcripción
+5 de noviembre de 2025, 10:51a.m.
+
+Laura Martinez inició la transcripción
+
+Daniel Valbuena   0:03
+Eso yo.
+
+Laura Martinez   0:04
+Casi que completo Dani, o sea lo que yo quise, mira, esto es como una simulación de de tu aplicativo. Entonces lo que nosotros queremos ahí es ofrecer eso. Entonces obviamente, la idea es que inicialmente, pues en la pantalla ustedes tengan como unos tableros donde puedan ver cómo los lips que tienen pendientes por atender. Cuántas cotizaciones en el momento tienen, qué pedidos en proceso tienen pedidos completados, o sea.
+Esto es más que todo informativo de lo que ustedes van a tener en cada una de las aplicaciones. Obviamente, la idea es que puedan acceder en cada uno de estos. Lo que te digo o sea, no todo está como con funcionalidades porque pues es es un demo, sino que era como para hacer un poco más visual la parte de pronto que fuera. No tanto como como un flujo como lo estamos viendo, sino hacerlo algún poco más, más dinámico.
+Entonces van a tener una parte, dime, van a tener una parte donde van a tener los lips Danny, el registro de los lips, acá van a recaer los lips que vienen desde el chatbot, entonces la idea es que realmente ustedes tengan una pantalla inicial con el Estado que puedan ver cómo está ese lead, el número de leads que dijimos pues empezábamos con el número 100.
+
+Daniel Valbuena   0:52
+Perfecto.
+No, espérate, dale.
+
+Laura Martinez   1:12
+¿La razón social de ese lead? El nit, el contacto, la fecha de creación, quién lo tiene asignado y ya pues tengas diferentes acciones que puedas ejecutar con ese lead. La idea es que pues sea muy visual la parte que tú puedas tener, digamos una alerta, una vista de un alertamiento de un lead que no ha avanzado equis tiempo, entonces que tú lo puedas ver bajo su manera ver, también tienes la opción de crear un nuevo lead, o sea, no.
+Que solamente pueda llegar por el chatbot, sino que tú también bajo el aplicativo lo puedas crear. ¿Obviamente lo que digo, faltan muchas cosas, o sea, lo que quisimos fue la idea es que digamos esta parte de ver, tenga todo lo que tú me compartiste en su momento en el Excel, pero pues es así, es como en partes de leads, como son, es tan cortico el formulario que me compartiste? Entonces, en este momento sí lo tenemos.
+Que es la razón social elite, el Estado por donde llegó en este caso, pues quedó chatbot web, pero sería como el chat, el WhatsApp, el contacto principal de con sus con su email, con su teléfono, el requerimiento como la parte importante, igual el tema del alertamiento.
+Acá vamos a tener como un campo de observaciones, donde tú vas a poder tener como un chat interno en gestión de este lead, donde tú puedas ver toda la trazabilidad, ya sea tuya o de alguno de estos colaboradores que también lo puedan ver.
+
+Daniel Valbuena   2:36
+O K.
+
+Laura Martinez   2:37
+Vas a tener la campanita, con todas las notificaciones, como yo, te lo dije en redes sociales, o sea, para que puedas ver qué está pasando tanto con cada uno de los de los operarios con el sistema, con las solicitudes que ha cambiado y demás. Entonces esto por el momento slip las la acción que obviamente tú tienes en este momento es pues no lo que te digo, no la.
+
+Daniel Valbuena   3:00
+En la no tranquila en la en la campanita. ¿Ahí la idea es hacer filtro, no? O sea, lo que ya está chuleado. Si ya eso está chuleado, que ya visto, perfecto está o KY solamente cómo dejarlo pendiente.
+
+Laura Martinez   3:00
+Lo tengo, dime.
+Sí.
+Sí, sí, sí, si tú le DAS como el entras, pues solamente te dirige a, digamos, acá si yo me paro en el 100, la idea es que me redirija a mí, me abra esta solicitud, pero no, no lo está haciendo en este momento. Lo que tengo es un demo, entonces la idea es que si tú le DAS entras, pues Pum, ya te desaparece, por decirlo así, pero pues tú tienes el historial completo de la solicitud de lo que está pasando, pero pues le pierdes como la notificación.
+
+Daniel Valbuena   3:25
+Sí, sí, sí.
+Perfecto.
+Perfecto.
+
+Laura Martinez   3:39
+Tienes, obviamente, filtro para que tú puedas filtrar las solicitudes, cada una de ellas como un filtro avanzado con búsqueda avanzada, que es lo que tú le tipes, es lo que te va a traer también. Esto va a funcionar como filtros, entonces tú tienes el pendiente, es uno y le ideas que te filtre. ¿Cuántos son ingestión y convertidos y demás? Esto es lito.
+Entonces, la idea es que obviamente las acciones que tú tengas acá es convertir el lead a cotizaciones, entonces pasamos a la siguiente que son cotizaciones, entonces acá funciona más parecido yo a él le pedí, obviamente que pues la TM siempre la tuvieras visible en todas las oportunidades, aquí de pronto en en Litzing Dashboard me faltó.
+
+Daniel Valbuena   4:01
+Perfect me gusta.
+
+Laura Martinez   4:21
+Pero lo importante es que pues siempre tenga la visual de la TNM igual el Estado de la cotización, el número de la cotización, que empezaría en 30000, la fecha el el pago como es y tiene un crédito a 30, si es anticipado los los ítems que tiene esta. Esta cotización el costo, la venta, el margen y también tema de alertamiento.
+Entonces, aquí igual tú puedes crear una cotización desde cero que vas a poder verlo es en excesiva, obviamente nos nos falta un poco más de los campos porque pues son muchos más. Entonces vas a tener en general, pues toda la información que tú me compartiste en el Excel, puedes ver qué productos tiene, los puedes editar, los puedes eliminar. O puedes agregarle más productos.
+
+Daniel Valbuena   4:53
+Ajá.
+
+Laura Martinez   5:06
+Pues si lo agregas, pues da todo esto, pues todo lo que tiene que hacer para poderlo calcular, dime.
+
+Daniel Valbuena   5:11
+Lau en la en la ya en la en la parte general de la de la visual, habíamos acordado en que se iba a manejar por columnas, no por filas, sino por columnas. Lo que está al 40 que se me olvidó el el nombre del Estado del 40 al 60, que es negociación al 70, que es riesgo al 80, que es forecast.
+Sí que se iba a manejar como en como en columnas, que así es lo que yo le decía frey, que funciona data CDM. Bueno y hasta un otro, otro que me había mostrado en su momento era por columnas, no en fila, porque en fila pues está bien, pero es como que mejor como que ir pasando de acá a listo, esa la tengo en 40 ya la tengo en negociación, ahora la tengo en riesgo.
+
+Laura Martinez   5:35
+Como camba.
+
+Daniel Valbuena   5:58
+¿Oh, ahora la tengo sí, me entendés?
+
+Laura Martinez   6:01
+O K o k listo. Entonces sería como el ordenamiento, pero pues los los campos serían o sea, la funcionalidad es como la misma, entonces yo yo pido como corregir eso y eso lo agregamos en el requerimiento, entonces bueno lo que te decía puedes ver los cuando le das ver puedes ver absolutamente todo lo de la cotización, el número está probada de más. Qué productos tienes y todo el tema de la.
+¿Y así hablamos de, pues lo del costo del transporte, pues ustedes lo pueden modificar, le pueden agregar otro valor? Es es de libre, pues porque no me sale.
+
+Daniel Valbuena   6:36
+¿Tienes actualmente formato PDF?
+
+Laura Martinez   6:39
+¿Eso es lo que te quería? La idea es poderla descargar en PDF, pero necesito a ni que me compartas el formato de la cotización de ustedes, pues para que sea como.
+
+Daniel Valbuena   6:48
+Tenemos uno que no me gusta, si me puede enviar modelos, te lo agradezco cambiarlo, sí.
+
+Laura Martinez   6:51
+¿Ah, o K entonces que no cambiemos?
+De una entonces, bueno sí.
+
+Daniel Valbuena   6:56
+La idea es que disculpa la interrumpo, la idea es que ese formato vaya muy de la mano con la con la imagen corporativa de la empresa, no, o sea, como con algo que se ve bien chévere que tenemos, es exageradamente básico, no nos gusta tanto.
+
+Laura Martinez   7:04
+Sí.
+De una de una entonces nada si le incluyo o no le incluyo el transporte y ya ahí tienen ustedes nuevamente el chip para poderlo hacer o no hacerlo, y pues el transporte obviamente sabemos que no, o sea, eso es visual para ustedes. Informativo para ustedes, pero al momento de descargarlo y demás no se va a poder, no se va a ver en la cotización.
+Entonces, también puedes tienes la opción de duplicarla, descargar el PFY ya, pues generas la orden de pedir.
+¿Con esta cotización?
+
+Daniel Valbuena   7:36
+Perfecto.
+
+Laura Martinez   7:39
+Listo, dani lo que te digo, el margen siempre va a estar ahí. ¿En la del Alertamiento, pues vas a tener, digamos en este caso es una cotización que ya fue convertida, pero pues tiene un margen mínimo, sin autorización, obviamente no lo va a poder hacer, no tengo como el caso para recreártelo, pero pues es obviamente sabemos eso, entonces?
+La idea es que acá ya te aparece, que tienes un pedido generado entonces listo, eso es tema de cotizaciones. Lo único pues de la corrección es obviamente agregarle todo lo que tiene el PDFY que sea, Eh columnar.
+En la parte de pedidos que tú sabes lo de Andrés, entonces igual me imagino que también sería como bajo columnas.
+
+Daniel Valbuena   8:15
+No, ese está bien, ese está bien porque solamente maneja pedidos pedidos, no pedidos como tal, no tienen Estado, o sea ese estado en proceso no manejan como tal un Estado, es un pedido.
+
+Laura Martinez   8:19
+¿Ok, listo?
+¿Eso te iba a preguntar qué Estados le ponemos? ¿En? O sea, los Estados solo los vamos a tener en Lits y en cotización y lo importante es que podamos definir, ahorita ya lo hablamos, pero que podemos definir qué Estados van en lips y que Estados quieres ver en cotizaciones, pero bueno, ya en pedidos pues no tenemos como como es Estado yo lo quito el número, el pedido igual la información.
+
+Daniel Valbuena   8:34
+En cotizaciones.
+
+Laura Martinez   8:50
+Y va a poder ver también las cantidades y pues si el pago está o no está, entonces todo la información y pues importante del pedido. Entonces la información del cliente, pues estos ya son datos que él ya no va a poder modificar.
+
+Daniel Valbuena   9:06
+Lau, ahí estoy perdido. Término de pago, 30 días y en Estado dice pago confirmado. ¿A qué te refieres con eso?
+
+Laura Martinez   9:16
+Donde Danny.
+
+Daniel Valbuena   9:18
+Es que me pones en Estados pago confirmado, pero pues si el cliente es 30 días, veamos si el cliente es 30 días porque tiene un pago confirmado.
+
+Laura Martinez   9:21
+¿Ah, ya ya ya?
+Sí, sí, sí.
+¿Eh? Sí, sí, sí, sí, tienes razón.
+Pues aquí es como sí, sí, sí, sí.
+Me tendría que cambiar.
+
+Daniel Valbuena   9:41
+Es cuando la forma de pago recuerde cuando la forma de pago es anticipado, ajá.
+
+Laura Martinez   9:44
+¿Ir al principado?
+Esto sí, Daniel entonces bueno, los Estados que puede tener ejemplo, digamos si fuera un pago anticipado, entonces tiene un pago y ya está confirmado el pago. Acá sería pues un crédito, como no sé crédito aprobado, yo sé que lo tiene aprobado, pero tocaría buscarle. Cómo es la palabra para que él le muestre que que puede continuar, o sea, como que con temas de pago no hay problema, o sea, como.
+Yo sé que hay como un bloqueo de cartera, pero no sé cómo podríamos ponerlo.
+
+Daniel Valbuena   10:15
+Disponible, está disponible.
+
+Laura Martinez   10:18
+Estado disponible listo.
+
+Daniel Valbuena   10:19
+Disponible para compra, puede ser.
+
+Laura Martinez   10:21
+Listo entonces ya digamos. La remisión está generada en este momento, es una solicitud, un pedido que está aprobado una factura anticipada, aprobada factura generada, o sea, como la información relevante que él tiene que ver del pedido, la va a poder ver acá todo el tema de despacho va a poder ver los datos que pues importantes para el destino.
+O sea, va a poder llenar aquí toda la información para poder generar como la guía.
+
+Daniel Valbuena   10:46
+Ba baja 1 segundo, porfa, donde estaba en el despacho.
+
+Laura Martinez   10:51
+No puedo bajar más.
+
+Daniel Valbuena   10:53
+Ah ok, tipo de espacio, tipo de facturaciones. ¿Supongo que eso todavía no esta diligenciado OK OK?
+
+Laura Martinez   10:57
+Ajá.
+¿Entonces listo? Notas el para poder ponerlas igual, lo que yo te decía, funcionan todo. Lado en links en cotizaciones, sino que pues aquí no se quedó el ejemplo. Entonces si tú pones la observación y va a quedar quien la pone, la idea es que si yo no sé, pongo como por favor revisar.
+Arroba obviamente no me está funcionando, pero Daniel Valbuena, la idea es que aquí salga y pues se va para tu campana, te notifica a ti, si yo no le pongo la roa, me voy a quedar netamente en la en la trazabilidad de la cotización, pero pues no voy a notificar a nadie.
+
+Daniel Valbuena   11:26
+O K.
+Perfecto, perfecto.
+Perfecto.
+
+Laura Martinez   11:38
+¿En temas de intangibles, pues nosotros le agregamos esto como, pues el licenciamiento y las garantías que él tiene de la aplicación, o sea, es como un ejercicio de lo cómo funcionaría el la aplicación?
+
+Daniel Valbuena   11:48
+Me gusta LAU.
+
+Laura Martinez   11:50
+¿Listo entonces esos pedidos? Dani, la idea es que, obviamente, lo que te digo, o sea yo lo configuré hasta el punto que tengo el Excel, que es pedidos. Yo sé que me falta como la la orden de compra, pero pues la acción siguiente en este punto sería, obviamente yo sé que en este pedido necesito evidenciarle a él en alguna parte. ¿Cuál es el número de la cotización y cuál es?
+¿Cuál es el de qué cotización viene este pedido? ¿Y yo sé que cuando genere la orden de compra pues tengo que evidenciarle de qué cotización y de qué pedido viene? Sí, entonces sería otra celda donde me salen ya las órdenes de de compra. O no sé eso ya es pues lo que te quería preguntar es, no sé si la orden de compra netamente es como ya un documento que se genera muy parecido a la proforma.
+
+Daniel Valbuena   12:19
+Nada.
+¿La orden de compra es un documento diferente a la en YY pero te refieres aquí al formato o qué?
+
+Laura Martinez   12:40
+Sí, sí, sí.
+A lo que voy es, digamos, si tú te das cuenta en cotizaciones, pues yo realmente no tengo ninguna parte donde me salte a proformas, sino que yo la puedo generar, no me está. Ah sí, mire, eso sí me está funcionando, yo la puedo generar desde, pues desde acá si yo le pongo cómo seleccionar proforma es que se me está bajando, o sea, no me he estado quedando, pero la idea es que si yo le doy como generar proforma, ya la proforma me.
+¿Queda en la cotización? Sí, es un documento dentro de la cotización. Entonces yo entendería que la orden de compras un documento dentro de los pedidos.
+
+Daniel Valbuena   13:16
+Dentro de la orden de compra que queda igualmente en el pedido. Ven, te muestro déjame, te comparto pantalla.
+
+Laura Martinez   13:24
+Sí.
+
+Daniel Valbuena   13:30
+Era, por ejemplo, de STOP, que ya fue generado. ¿Estoy en pedido, sí, aquí no hay nada generados para revisar la trazabilidad y sé que se generó esta orden de compra, o sea cual es la trazabilidad? Ah mira generar esta orden de compra, pero cuando yo le doy doble Clic me abre la orden de compra. ¿Cierto? Entonces la orden de compra fue dirigida, yo aquí puedo ver, pues obviamente todo el detalle de la orden de compra, bueno, como todo el ajá.
+Y esa misma orden de compra yo la puedo buscar en módulos, orden de compra, que es lo que tiene Andrés acá.
+
+Laura Martinez   13:54
+Ajá.
+
+Daniel Valbuena   14:00
+Pero la idea se quede dentro, la trazabilidad del pedido. Yo me meto acá, digo. ¿Ve este pedido que tengo acá? ¿Recuerda que acá en la en la parte de pedido debe estar los el, el, la columna de pedido, la de número de ítems pendientes de cantidades pendientes para comprar, cierto?
+
+Laura Martinez   14:19
+Sí.
+
+Daniel Valbuena   14:20
+Entonces, ah, perfecto. ¿Mira entonces, Andrés, aquí por ejemplo? Bueno, aquí aquí aquí aparece al revés. Pero entonces 15, listo. ¿Entonces yo entonces, a ver qué gestión ha hecho Andrés de esto entonces a quién le ha comprado? Entonces yo me voy a generar, Ah, Andrés ya generó una orden de compra de esto ni coma, que es la orden de compra número 15695, cierto, y aquí obviamente me parece la otra orden de compra que si yo quiero ir a buscar la orden de compra, pues voy y la busco y miro qué fue lo que pasó.
+
+Laura Martinez   14:21
+Y.
+Sí, una.
+Entonces, y listo, o sea, sería que te muestre otra vez mucho, mucho.
+Está toda la cama aquí.
+Sí, mira, acá, tú puedes ver, obviamente la las cantidades pendientes, entonces la orden de compra sería como agregarle una sub pestaña en la parte de pedidos, o sea, no generar como otra ventana de compra. Ah o K.
+
+Daniel Valbuena   15:05
+Ajá.
+Sí, claro. Debes generar otra ventana al lago, o sea como te mostré, o sea, tienes que se tienes que generar otra. Espérame, un sol. Te comparto, espérate para que que pena, me meto, mira.
+
+Laura Martinez   15:22
+Lo que pasa es que como tú me la Mostraste, está dentro de pedidos.
+
+Daniel Valbuena   15:26
+O sea sí, o sea, hay una pestaña que se llama orden de compra, Fíjate que es la que tú tienes aquí arribita. Sí ves orden de compra aquí. Andrés B revisa todas las órdenes de compra pero dentro del pedido que es este de acá, yo para temas de revisar sí para revisar cuál es la gestión o cuáles son las órdenes de compra que se generaron asociadas a ese pedido.
+
+Laura Martinez   15:32
+Ajá.
+También puedes llegar allá.
+
+Daniel Valbuena   15:50
+Están acá, entonces yo digo, Ah, bueno, perfecto. Mira entonces generados, Andrés generó esto y ya.
+
+Laura Martinez   15:52
+¿Listo?
+Eso haría una entonces nada. Dani, a muy, muy grandes rasgos. Así funcionaría la interfaz de tu de tu aplicativo. Obviamente necesito que me ayuden por FA con el terminándome de completar el Excel y pues como quieren ver, la orden de compra. ¿Entiendo que los documentos como que genera la el aplicativo como ejemplo, la cotización y demás, no te gusta entonces?
+La idea es que nosotros podamos, o sea, hacer desde cero un formato para podértelo, compartir YY no basarnos de pronto en uno que ya tú tienes. Yo tengo otras preguntas más funcionales, Daniel que nos surgieron, porque yo ahorita te o sea hoy termino como de de refinar unos pre requerimientos, porque los requerimientos se alimentan mucho, el Excel que tú me vas a compartir.
+Pero la idea es que podamos ir avanzando para que tú los puedas leer. Son, son 11 requerimientos, son cortos, o sea, no es no es no, no es muy grande entonces para que en cualquier momento porfis me vayas ayudando y si quieres vas despachando a uno y nos podemos avanzar, pero yo tengo una pregunta Dani muy puntuales para poder sí, para refinarlos en los documentos y es.
+
+Daniel Valbuena   16:57
+De una.
+
+Laura Martinez   17:07
+Ejemplo, si nosotros espérame, yo lo tengo acá.
+1 minuto porfa.
+¿Cuando hay un una cotización dañosa, digamos un registro como duplicado, para qué escenarios? Ustedes presentan que que se pueda, o sea, yo sé que tú puedes duplicar una cotización, pero no sé, dime.
+
+Daniel Valbuena   17:36
+¿El por qué lo hacemos?
+O sea, tú preguntas el por qué lo hacemos, sí.
+
+Laura Martinez   17:42
+No. O sea, digamos lo que quiero evitar son duplicidades. ¿Yo tengo de ejemplo que si meto una factura, un criterio, que si no se puse una usted al final puede poner en una casilla el nombre de la factura, verdad? Entonces, si ya tú pusiste la factura en otra cotización, pues te muestra como un alertamiento, eso es lo único que yo tengo de duplicidad, tú necesitas que.
+Validemos de pronto, otra duplicidad. De pronto, cuando se registre un nuevo elite, en solo que arrastre la información de ese elite ya existente, o.
+
+Daniel Valbuena   18:12
+Lau mira, lo que pasa es que los las.
+
+Laura Martinez   18:19
+Dani.
+Toni.
+
+Daniel Valbuena   18:28
+¿La u, la u, la u?
+
+Laura Martinez   18:30
+Ya, ya, ya volviste.
+
+Daniel Valbuena   18:32
+¿O K Te te decía, las facturas se relacionan a los pedidos más no a las cotizaciones, cuando nosotros duplicamos una cotización es, por ejemplo, yo le quiero pasar a TDX una cotización de un proyecto de servidor, cierto, entonces?
+
+Laura Martinez   18:41
+Sí.
+
+Daniel Valbuena   18:52
+Le voy a pasar la alternativa al en Lenovo, otra en Dell, otra en HP, otra en x cierto, pero hace parte del mismo negocio. Si entonces, cuando por ejemplo en los Estados de cotización tú pones que esas cuatro cotizaciones están en riesgo, pues que va a pasar la cifra que te está dando es disfrazada.
+Porque tienes como que si fueras a cerrar cuatro cotizaciones pero no, no son cuatro, sino es un mismo negocio que sabemos que está duplicado en cuatro ofertas y pues de ahí escogerán ellos la la que es.
+
+Laura Martinez   19:26
+Muy bien o K.
+¿Listo, listo de una, no?
+
+Daniel Valbuena   19:34
+¿Listo?
+
+Laura Martinez   19:34
+¿Listo? ¿Cuando nosotros hacemos la el registro del LIDY hablamos como de tu bolsa de de asesores comerciales y la asignación cómo quieres que se haga? Como como esa distribución, porque ejemplo, o sea literal, nosotros la hacemos. ¿1111111111111, pero qué pasa si en algún escenario no sé, digamos ejemplo? ¿O sea, estoy usando el nombre ya? Perdón.
+¿Laura tiene 20 solicitudes y ya digamos Andrés, quedó con 2, o sea, si yo vuelvo a asignar 111, pues las sigo sobrecargando a ella y pues Andrés sigue con su su gestión normal, o sea, cómo quieres que la hagamos? Digamos lo que nosotros proponíamos era, digamos, si ya llegué a un límite de no sé 20 solicitudes. ¿Ejemplo?
+¿Pues ya no se le asignan a ella, sino la asaltan y se sigue asignando o cómo quieres que se haga esa asignación? Daniel.
+
+Daniel Valbuena   20:25
+Pero sería como trabajo represado cierto, sí.
+
+Laura Martinez   20:28
+Sí, sí, obvio, porque el sistema obviamente va a empezar 1111. Entonces la idea es que ellos vayan como liberando, pero puede pasar el caso de que no sé la cotización se demoró más, pero clientes no se difíciles. Entonces ella va a quedar con muchas más solicitudes en el momento.
+Y, pues la asignación va a seguir siendo así. 1111. Entonces ella va a seguir llenándose hasta que, pues, obviamente estalle.
+
+Daniel Valbuena   20:47
+Sí.
+Sí, total.
+¿No? Pues grave. Total, sí sabes que sí, o sea, como máximo tantas pendientes, YY si no, pues se le va a asignar. Sí, me parece, me parece muy buena idea la que tú me estás diciendo.
+
+Laura Martinez   20:57
+Ajá.
+Listo entonces qué máximo le ponemos.
+
+Daniel Valbuena   21:10
+Máximo 5 pues miremos igual que sea configurable, que sea lo más configurable.
+
+Laura Martinez   21:11
+¿Listo?
+Sí, sí, sí, sí.
+Sí, porque digamos hay otro escenario y es listo. ¿Tú le das a un asesor comercial y de baja, o sea, le vas a eliminar el usuario, pero qué pasa con esas solicitudes que él tenía o esas cotizaciones que él tenía?
+O sea, yo las puedo, tú las puedes asignar. Yo tenía el escenario que pues las reasignes manual si obviamente es es trabajo, pero si las pasamos también a que las asigne aleatoriamente a cualquier asesor.
+
+Daniel Valbuena   21:33
+Sí se pueden reasignar.
+Ah, sí, que o quitamos el trabajo manual.
+
+Laura Martinez   21:53
+Listo entonces, a equis es, o sea, vuelve y entra la bolsa, la cotización son como de cero y se vuelve y se asigna.
+
+Daniel Valbuena   21:59
+Ajá.
+
+Laura Martinez   22:01
+Listo, listo Danny Danny en los datos del formulario, o sea, lo que nosotros sabemos es que también de la de tu parte. La página web de Contáctenos necesitamos que sea como como sincrónico a lo que al formulario que nosotros tenemos del nuevo link.
+Sí, entonces necesita porque entendimos que del bueno yo le entendí eso a Emma, que el formulario de contacto también la. Lo importante es que se vaya a al al nuevo link del Aplicativo. Sí, pero no nos no, es no es simétrico.
+
+Daniel Valbuena   22:24
+O K.
+Ajá.
+
+Laura Martinez   22:41
+Al formulario que nos compartieron entonces necesitaríamos como pasar ese ese formulario a que sea igual al del aplicativo, o sea, para que los campos coincidan listo.
+
+Daniel Valbuena   22:49
+Ah, perfecto, igual ustedes tienen los acceso a la u.
+
+Laura Martinez   22:53
+¿Para que los campos puedan coincidir y pues no tengamos como esa esa discrepancia, qué más tengo por acá?
+
+Daniel Valbuena   22:59
+Perfecto.
+
+Laura Martinez   23:04
+En 1 minuto para el margen Danny. Necesito el árbol.
+
+Daniel Valbuena   23:11
+O K ya te lo paso, ese no te lo he pasado, ya te lo paso listo.
+
+Laura Martinez   23:12
+Porfis, no necesitamos el árbol de ese es el porcentaje de esta categoría y de este crédito, de sus números de crédito para, pues nosotros poder alimentar la lógica.
+
+Daniel Valbuena   23:24
+Perfect LAU.
+
+Laura Martinez   23:29
+¿Listo, dani? ¿Entonces definamos los estados del lead y los que quieres ver, y los Estados de la cotización?
+
+Daniel Valbuena   23:38
+En sería básicamente como o sea, espérame.
+Espérame, Espérame, Espérame, Espérame, Espérame, pero quizá los tengo acá.
+¿Mira en cotización sería creación de oferta?
+
+Laura Martinez   23:58
+Mhm.
+
+Daniel Valbuena   24:00
+Que es 40 en negociación. O sea, te estoy hablando el el primer, el primer Estado es creación de oferta, el segundo es negociación, el tercero es riesgo y el cuarto es pendiente. Orden de compra.
+
+Laura Martinez   24:08
+Sí.
+Ajá.
+Listo y con esas, con esos Estados es que haríamos los columnarios.
+
+Daniel Valbuena   24:20
+Ajá.
+
+Laura Martinez   24:21
+Lista.
+
+Daniel Valbuena   24:23
+¿Y también revisar, por ejemplo, supongo que también debe estar el Estado perdido, no? O sea, revisar que no, no pueda yo ver en el panel general, pero pues que yo pueda buscar qué condiciones he perdido contra el cliente o 100% las condiciones ganadas.
+
+Laura Martinez   24:34
+O K.
+¿Listo?
+¿Y para leads? Pues sería como y como lo tengo yo acá déjeme ver leads, o sea, un lead creado pendiente y convertido y convertido ya cuando se fue para cotización.
+
+Daniel Valbuena   25:00
+Exacto, sí, sí. Exacto, porque no pueden haber más. O sea, porque es que finalmente un lid ya cuando se está yendo atendido se convierte en cotización.
+
+Laura Martinez   25:10
+¿Listo?
+Dani, cómo me, o sea, en el formulario yo me lo invento de todo lo financiero. ¿O sea, cómo sé que un un cliente tiene crédito? ¿Cómo sé que su cartera está en Mora? ¿O sea, cómo me conecto a esa parte?
+
+Daniel Valbuena   25:22
+¿Eh?
+Eso lo maneja Laura desde el módulo de Laura, Laura entra al cliente. Solamente comparto pantalla.
+
+Laura Martinez   25:27
+Y.
+
+Daniel Valbuena   25:36
+Mira, Laura, va a hacer lo mismo que que hago yo. Entonces, por ejemplo, vamos a buscar a tina.

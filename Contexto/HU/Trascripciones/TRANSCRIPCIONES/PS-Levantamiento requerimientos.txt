@@ -1,0 +1,751 @@
+Transcripción
+15 de octubre de 2025, 3:15p.m.
+
+Daniel Valbuena   0:05
+Listo está la cotización, por eso se dan cuenta, o sea, ella no puede hacer modificación de absolutamente nada, sino sencillamente revisar. Listo perfecto, sería muy bueno lo que dice aquí Andrés, que de alguna manera la cotización en la liquidación que tengamos que nosotros tengamos acá aparezca el margen, si me entiendes, o sea que aquí tengamos o sea, nosotros aquí tenemos un valor de venta.
+
+Freddy Rincones   0:27
+Ajá.
+
+Daniel Valbuena   0:29
+De aquí aquí y supuestamente eso lo lo tenía, pero desapareció. ¿Entonces cuánto es nuestro valor de venta? ¿Cuánto es el costo? ¿Cuánto es la utilidad de esta negociación y cuánto es el margen? Sí, eso aparecía aquí en la parte de Abajito. Entonces, cuando Laura llegue y diga bueno, voy a revisar el tema de la pro forma, entonces ella no puede hacer ningún cambio, entonces sencillamente se mete acá y dice.
+
+Freddy Rincones   0:43
+Mhm Mhm.
+
+Daniel Valbuena   0:53
+Perfecto tengo margen del el margen, está aprobado, estamos bien, sencillamente llega y le da a cada ejemplo imprimir y aquí ya generación de proforma, ella es la única que pueda tener ese acceso. Bueno, en este caso yo en dado caso que Laura no esté acceso a esas solicitudes de formato de proforma, entonces le da proforma.
+
+Freddy Rincones   1:08
+Sí.
+Buen día.
+
+Daniel Valbuena   1:15
+PDFY les va a imprimir en ese escenario el el formato de proforma, lo que hace Laura escoger guardar esta información. Obviamente el formato es diferente de la cotización y se la envía al comercial por correo electrónico o al o en si al tal comercial para que el comercial del manejo adjunto no sé qué la proforma la cotización tan y ya ahí al cliente.
+Haz el pago y todo el tema. Sí, ahora, cuando no cuando tienen crédito, que es este que.
+
+Freddy Rincones   1:44
+¿Aunque danny ahí como sugerencia, qué te parece?
+¿O ya Laura genere en la proforma o ahora, la validación de, digamos que algo comercial ya le aparezca la?
+
+Daniel Valbuena   1:56
+No te te te te estoy perdiendo.
+
+Freddy Rincones   2:06
+Me escuchan ahora bien.
+
+Daniel Valbuena   2:08
+Sí.
+
+Laura Martinez   2:09
+Sí, señor.
+
+Freddy Rincones   2:12
+¿Qué tal como sugerencia? Es que cuando Laura ya genere la proforma, este archivo quede disponible en la cotización o en alguna parte en la aplicación para que tu comercial.
+Ya la tenga disponible, no es necesario que Laura tenga que exportarlo a PDFY mandarlo por correo, sino que sino que automáticamente hagamos ese pasito, pues.
+
+Daniel Valbuena   2:32
+La envié.
+¿Ah, oye, sabes que está bien? Sí, me parece, me parece, y que de alguna manera de comercial, pues está enterado. ¿En qué momento? Pues ya quedó habilitada.
+
+Freddy Rincones   2:44
+¿Sí, exacto, porque el comercial va a revisar sus cotizaciones y va a llegar un punto en la cotización que va a decir pro forma generada o va a tener en alguna parte los documentos adjuntos? Ya va a tener el archivo generado y de esa y con alguna notificación o algo que le podamos dar al al comercial.
+Luego, para evitar ese paso, donde Laura tenga que exportar y enviar y la información que di.
+¿Disponible automáticamente o se le mande por correo al comercio ya, o sea, alguna cosa que permita simplificar esa parte? Sí.
+
+Daniel Valbuena   3:15
+Me parece muy buena idea.
+Sí, me parece estoy de acuerdo.
+
+Freddy Rincones   3:23
+Pero bueno, me queda claro, entonces lo que nosotros estamos haciendo eneste.es que ya luego que se genera la cotización luego que el cliente dice que si está interesado Laura entra al sistema y genera una proforma, esa proforma es la que se le envía.
+Cliente hace todo el pago.
+Pero también hay otro camino que si el cliente tiene crédito no es necesario la proforma y hay otro camino que si el cliente lo exige, se le hace primero, no se le hace proforma, si no se le hace la facturación electrónica y la facturación electrónica se hace fuera del sistema y esta aplicación que estamos desarrollando.
+
+Daniel Valbuena   4:01
+¿Dale, Oye, sabes?
+
+Freddy Rincones   4:08
+¿Nosotros en ningún momento en esta fase estamos pensando integrarnos con Office, perdón, con Web Office, perdón se llama la plataforma, sí, señor, ibas a decir algo, algo?
+
+Daniel Valbuena   4:18
+Así es worofis worofis, así es.
+Sí, me gustaría Andy, para que también lo revise, que le parece que en la cotización, por ejemplo, esto aquí no hay contemplado un item de transporte, muchas veces por estrategia comercial, le ponemos el costo del transporte inmerso en el margen.
+Sí entonces, sería bueno que en alguna parte de acá no sé que diga, pero que no imprima, que al momento de imprimir en la cotización no le aparezca cliente que aparezca. ¿Como no sé, fue incluido el ítem de transporte en la cotización, sí o no?
+
+Freddy Rincones   4:48
+Esperé, esperé.
+
+Daniel Valbuena   5:06
+Entonces diga no, no fue incluido. Bueno. ¿Cuál es el valor del transporte? ¿Entonces? Mira, porque es muchas veces, aquí se nos Salta por temas de margen ese tema, entonces yo veo la cotización, digo bueno, la cuestión está al 10% listo, avancemos, pero cuando ya les llega Andrés, entonces resulta que el transporte puede costar 200000 pesos.
+Y no está contemplado.
+Si me entendés, entonces diga, entonces por ejemplo no, no está contemplado en los ítems, o sea, no está como tal un ítem de de transporte. Ah, okey, por favor entonces, o sea, ponga mejor dicho. El valor estimado del transporte, venga yo en esto, por ejemplo, eso lo va a llevar 111 carro de transporte que tenemos acá nos cobra 70000 pesos, listo 70000 pesos.
+
+Freddy Rincones   5:32
+Después es.
+
+Daniel Valbuena   5:55
+Y eso entra dentro de los costos. La liquidación de los costos y me y me da un margen final. Sí con eso quitamos, no se andy que le parezca esa idea, quitamos como como la barrera del tema de de lo que tenemos actualmente, que lo que los comerciales ni siquiera lo tienen en cuenta, o sea, no sé, vendieron 10 ventiladores.
+Y dejó 90000 pesos, pero hijo de pucha 90000 pesos y el transporte costó 70000. ¿Si me entendés entonces sería muy bueno que esa casilla esté aquí de alguna, de alguna manera como listo si eso, o sea enviar esto me cuesta a mí 70000 pesos, listo? ¿Cuánto es el margen final entonces?
+
+Andres Valbuena   6:34
+Dani, pues yo lo cambiaría algo más allá, digamos como un panel que se despliega en varias opciones, uno de si se entrega en Bogotá y requiere pues contratación de un transporte adicional o despacho nacional, porque porque es que, digamos, para que el comercial puede obtener un costo estimado de transporte, se necesitan dimensiones y peso, y pues no creo que se vayan a poner en eso.
+Entonces, ya entrando de.
+
+Freddy Rincones   6:58
+En sí algún envío estándar.
+Envíos como por ejemplo, pues de un cliente que él hacía era agregaba, 3 tipos de envío y a esos 3 tipos de envío le establecía una tarifa que él ya conocía promedio y dependiendo de la.
+¿La de la cotización o de los productos que se estaban vendiendo? El comercial elegía, bueno, estamos hablando de no sé, 20 cajas. Esto es un envío grande y él selecciona el envío grande y.
+Y ya se pone un precio promedio dentro de la.
+De la cotización no sé qué opinan, es algo que les funcionaría, estás.
+
+Andres Valbuena   7:49
+Pues mira que pues desde mi lado yo no lo veo viable, porque pues el el valor cambia de acuerdo a la a la dimensión de las cajas, pesos, destino y demás. Entonces, puede que algo, no sé, para villavicencio una caja te valga 10000, como si es una cosa grandísima, es más grande, yo quería ni que si digamos en caso de que ahí se habilite.
+
+Freddy Rincones   7:58
+Pues bien, señor.
+
+Andres Valbuena   8:10
+De que el pedido requiere un despacho a nivel nacional. Pase, pues digamos como a otra aprobación de de margen, que sería entrar a evaluar si, efectivamente.
+
+Daniel Valbuena   8:19
+No ******, pero nos pero nos nos enredamos huevón, porque imagínese una aprobando cotizaciones huevón para temas de margen para que le envié, sino sería más un tema de valor estimado, o sea listo, sea nacional, sea, Bogotá finalmente, o sea, cuánto usted estima el transporte de esta vaina, ellos deben hacer la validación con logística de bueno. ¿Cuánto cree usted? Puede 120200 1300 1000 listo, lo pongo ahí.
+
+Freddy Rincones   8:43
+¿Hoy en día, cómo lo hace? Vámonos a la realidad. Cuénteme hoy en día llegó la cotización y.
+
+Daniel Valbuena   8:47
+Oye.
+Hoy en día no lo tienen en cuenta.
+O sea, hoy en día, lo que lo que pasa es que no, no se tiene en cuenta el valor, o sea vendieron una silla, le sacaron el margen de la silla y creen que la silla cabe en una moto que como en la moto, no, no se cobra el transporte. Sí, entonces ahí es donde donde ese ese temita puede llegar a a funcionar ahí.
+
+Freddy Rincones   8:55
+Hoy en día no lo tienen en cuenta.
+¿Una pregunta, cuáles son sus proveedores logísticos?
+
+Daniel Valbuena   9:21
+Andin.
+
+Andres Valbuena   9:22
+No, nosotros realmente trabajamos con todas las transportadoras, si es a despacho a nivel nacional en vía sería la primera ya si son entregas en Bogotá o bueno, lugares cercanos se maneja ya una, una minivan.
+
+Freddy Rincones   9:41
+Y en bobo.
+¿O K ustedes manejan una especie de fleteo local allá en Bogotá y esa minivan despacha diariamente o algo así es como es suya o es de un proveedor? Tercero también.
+
+Andres Valbuena   9:54
+Ah, no la. La minivan en este en caso de que la la minivan en este en caso de que ya la mercancía sea sobredimensionada. Y no quepa porque nosotros tenemos mensajeros, pero están en moto ya, cuando no hay, ya entra, pues digamos como tal 1/3 a al tema de la distribución de la mercancía.
+
+Freddy Rincones   10:13
+Bueno, el despacho veo que es un.
+
+Daniel Valbuena   10:26
+¿Hola, hola, se te cortó?
+
+Freddy Rincones   10:28
+¿Saben que me lo llevo de tarea?
+Qué pena. ¿Sí, es que estoy metido acá en el edificio bancolombia y esto es muy alto y se me va la señal a veces hola, hola, me escuchas?
+
+Daniel Valbuena   10:40
+Sí, sí, sí, te escucho.
+
+Andres Valbuena   10:41
+Sí.
+
+Laura Martinez   10:42
+Sí, se te escucha.
+
+Freddy Rincones   10:43
+Ah, bueno.
+Perfecto. Saben que me lo llevo de tarea. El tema del despacho, voy a investigar algo, a ver de qué manera podemos, o sea, si ustedes me confirman que están usando proveedores o courier locales. Servien entrega, envía inter rapidísimo de todos esos.
+Me lo llevo de tarea al.
+Ahora podemos incorporar el cálculo.
+De el cálculo del envío. ¿Una pregunta, nosotros estamos considerando acá Laura y Daniel? Registro de productos cierto, o sea, inventario.
+¿O no?
+
+Daniel Valbuena   11:30
+No, acá aquí solamente registro de productos, inventario, no se maneja en la plataforma.
+
+Freddy Rincones   11:36
+Pero el registro de productos sí estamos considerándolo.
+
+Daniel Valbuena   11:39
+Sí. O sea, la creación del producto.
+
+Freddy Rincones   11:43
+Ajá. La creación de producto y en la información del producto estamos considerando tamaños dimensiones.
+
+Daniel Valbuena   11:50
+No porque se crea el producto. Características técnicas básicamente, pero no estaría ahí porque pues es que son muchos productos y la para la creación sería muy complejo revisar dimensiones, peso, porque no sé, muchas veces se vende Pendejadas, un convertidor marca genérica y no tenemos ni idea de la de las dimensiones.
+
+Freddy Rincones   12:07
+Sí.
+
+Daniel Valbuena   12:10
+Todo el peso del producto.
+
+Freddy Rincones   12:15
+Bueno, a ver lo que yo quiero investigar, a ver si es una solución, tiene que ver con un, pues no lo tenemos contemplado, pero es una alternativa. Es una integración con los currier. Yo sé que hoy en día existen consumos que se le pueden hacer a los fourier.
+Y ellos calculan automáticamente el envío y lo calculan basado en direcciones o K. Que eso se tiene que tipificar de forma correcta la dirección del cliente final.
+Y también las dimensiones. Por eso te preguntaba las dimensiones, lo que te estoy diciendo no es algo que ya hemos implementado, pero yo sí lo he usado en otras plataformas.
+Que unas el envío de esa manera, por eso les digo que me lo llevo de tarea YY vuelvo contigo, Dani lo más pronto posible y vemos qué podemos hacer, si es algo que les interesa, si es algo que les simplifica su proceso de cálculo.
+Para que ahí puedas proteger el margen que creo que es el dolor de cabeza más grande al momento de asignar este tipo de taricha.
+
+Daniel Valbuena   13:24
+Claro, claro. Total, es que chicharrón es que, por ejemplo, es que es no sé, o sea, se la complejidad es revisar que cabe y no cabe en una moto.
+Sí me entiendes si cabe en una moto y es Bogotá no tiene costo, entonces fácilmente en un no se andy, cuánto la capacidad máxima computadores por moto, entonces son 7 computadores, pero puede que salga un pedido de una empresa de computador, tal vez lo lleve en una moto uno y otro lleve lo otro. Sí, me entendés, siento que es como muy complejo el tema para saber, para cuantificar.
+¿Cuánto realmente nos puede llegar a costar el envío pero sí como tener un estimado? Entonces yo creo que sería ese. Y es que si y si involucramos antes de lo que usted sea por revisión, estaríamos involucrando las áreas logísticas y por cada cotización que se haga que póngale, que diario están haciendo 66 cotizaciones son 24 cotizaciones.
+
+Freddy Rincones   14:04
+Sí.
+Paso más.
+
+Daniel Valbuena   14:17
+¿Qué logística tendría que entrar a validar? ¿A ver cuánto es el envío?
+
+Andres Valbuena   14:22
+Porque es que lo que dice Freddy, igual digamos a nosotros cuando nos bueno a Jason, le preguntan el tema de cuál sería el valor estimado de un envío en en las mismas páginas web, teniendo conocimiento de dimensiones y pesos, ahí aparece el valor, pero es muy complicado, digamos, como cuantificar lo que usted decía que va en una moto.
+Que no porque es que fuera de la variable de las dimensiones está el peso.
+No sabría, yo diría que eso tocaría igual dejarlo filtro abierto.
+
+Freddy Rincones   14:50
+Sí, pero tú tú puedes manejar para el a ver. Yo creo que esa primera fase en eso podemos manejar alguna especie de tarifa estándar y creo que con eso podemos salir a a producción y va a salir todo bien y ya con eso vas a mitigar cierto porcentaje de impacto en el mal.
+Pero nosotros podemos llegar a a configurar diferentes tipo de envíos. O sea, si quiero enviar, no sé, yo sé que yo viese esa configuración antes. Y es que se integra directamente con los proveedores logísticos, pero adicional. Podemos, aparte de los proveedores logísticos.
+¿Creamos unos estándares para Bogotá? Sí, bueno, son.
+Sabemos que el motorizado puede cargar máximo en Bogotá, no sé 5 cajas, algo así o una caja o 2 cajas, esas son cosas que se pueden establecer.
+¿En el tipo de envío y a ese tipo de envío ponerle un precio, o sea, eso lo podemos hacer, pero déjame reviso a fondo el tema de los courier y llego con una propuesta más sólida contigo, Daniel, y si no? En el peor de los casos nos vamos con una tarifa estándar y con eso salimos a producción, porque hoy en día ni siquiera.
+¿Creo que lo manejan así, entonces podemos de cierta manera?
+¿Era proteger el margen en en la creación del pedido listo?
+
+Daniel Valbuena   16:17
+¿Listo?
+
+Freddy Rincones   16:17
+Pero Deme, Deme un par de días para revisar qué podemos hacer con los curriel locales.
+Como locales, como una terminación bueno de mi parte era eso lo que quería validar, pues continuar Laura.
+
+Daniel Valbuena   16:29
+De una.
+
+Laura Martinez   16:32
+Freddy, nos falta el de el de la notificación, el de la notificación automática del seguimiento de las cotizaciones. De ahí no teníamos dudas.
+
+Freddy Rincones   16:35
+¿Cuál?
+¿Sí o K cómo es esa notificación? ¿La notificación? Ya tenemos la cotización, quieren que el sistema haga exactamente que de forma automática que le envíe algún correo al cliente o un WhatsApp al cliente, o cómo sería o k.
+
+Daniel Valbuena   16:55
+¿Un WhatsApp será por WhatsApp, o sea importante, importante, o sea que de manera general se establezca cada cuánto se le debe hacer seguimiento a las cotizaciones, entonces aquí ya no entra que esta cotización cada 8 no, sino por cliente que cada no, sino en general se va a manejar cada 8 días, cierto? Un ejemplo, cada.
+
+Freddy Rincones   17:11
+O K después.
+
+Daniel Valbuena   17:18
+¿A 8 días que se le haga seguimiento en una condición, está bien, entonces qué va a hacer el sistema? ¿Automáticamente va a coger y decir te te paso a ti en WhatsApp diciendo, Hola, Freddy, buenos días o buenas? ¿Bueno, hola Freddy, cómo estás? O espero o espero estés muy bien, quería que por favor me me me confirmarás el estado de esta condición adjunta la cotización y lo loco que se me ha venido ocurriendo es que se haga como.
+
+Freddy Rincones   17:22
+O K.
+
+Daniel Valbuena   17:43
+La como que lo que te contesten cierto, le llegue la alerta al comercial y le diga el cliente solicitó un cambio en el micrófono. El cliente dijo que iba a ser tal cosa.
+
+Freddy Rincones   18:03
+Con el.
+
+Daniel Valbuena   18:04
+El cliente mencionó tal vaina entonces, con eso ese, ese ese feedback que tienes, se los retroalimento del comercial y el comercial sabe, o si no contesta, pues no hay respuesta si me entendés porque muchas veces por lo que te decía que se hacen muchas cotizaciones y hacerle cotización a todo es muy, muy complejo, entonces eso es como la.
+Casi que la columna vertebral de lo que estoy buscando es de la parte comercial que se me hace lo más, el punto más sensible que tenemos actualmente y es el seguimiento, el no seguimiento de las cotizaciones en los tiempos que se requiere. ¿Entonces creo y ojalá, y espero que el experimento no salga bien, pero por correo electrónico muchas veces ni contestan, cierto es mucho mejor por WhatsApp donde hola, cómo estás?
+
+Freddy Rincones   18:48
+Ajá.
+Ese es.
+
+Daniel Valbuena   18:51
+¿Quieres saber cómo te fue con esta condición adjunto la cotización responderán hola, Daniel, sigue en estudio, les llega, les llega ahí el el qué? El mensaje al cliente sigue en estudio, entonces, ojalá que esa que esa inteligencia pueda llegar a a establecer temas como Ah, bueno, perfecto, y tienes una fecha, una fecha tentativa para.
+De de cierre. Mira esto se cierra en el mes de octubre. Es todo ese feedback es súper importante. Entonces te dice, mira, está en estudio, se cierra en octubre y que le diga requiere, si te hago una modificación, alguna cosa al cliente, no, el cliente no dijo que no, que no, que requería de ninguna cuestión que todo estaba bien, o si venga. Yo necesito esas vainas entonces como que todo ese feedback se lo da el comercial, el comercial se ahorra.
+Las de trabajo y lo que sencillamente va a hacer es arreglar. Ah, listo, perfecto. Me toca arreglar esta cotización o toca hacer tal cosa o si me dijo por ejemplo que se cerraba en octubre, perfecto, listo. Entonces yo llego y digo que se cierra en octubre perfecto o que la cotización ya perdimos por precio. Listo, pues ya la doy como perdida, pero ese feedback y esa interacción con el cliente es exageradamente importante.
+
+Freddy Rincones   20:00
+Bueno.
+
+Daniel Valbuena   20:03
+Sí.
+
+Freddy Rincones   20:04
+¿Listo entonces?
+Pues vamos primero con los flujos, primer flujo que tenemos o el que mencionamos antes, el cliente llega por WhatsApp y este chatbot va a tener una intención ya configurada para poder registrar sus datos. Y Pum, y lo creamos como lead.
+Este segundo lujo que me mencionas va a la inversa, nuestro amigo Chatbot va a enviarle una notificación, esto se va a configurar un template de seguimiento y se parametriza cada 8 días, por ejemplo, esa configuración va a llegar y va, perdón ese template con esa notificación va a llegar.
+
+Daniel Valbuena   20:38
+¿Ok?
+
+Freddy Rincones   20:45
+¿Cómo vamos con tu cotización entonces? Digamos que mi chatbot va a tomar a solamente las cotizaciones, o mejor dicho, le va a enviar el template solamente a los lips que tenían ya una cotización emitida hace 8 días y no han dado ninguna respuesta.
+O continúa en estado pendiente la cotización o veremos qué Estado va a tener la cotización y aquí activamos el trigger y cada 8 días va a mandar un template acá lo que queremos entonces es un tercer flujo o comportamiento que si el cliente responde ese template.
+¿O K que el cliente responde ese template, el chatbot tenga la capacidad de hacer cierre, es así?
+
+Daniel Valbuena   21:36
+Sí, exacto. O sea que te diga como, oye, por ejemplo. ¿Sí, que tú me digas, mira, necesitas algo más? No sé qué no, o o. O sabes que sí ya te voy a generar de compra o o qué necesitas listo entonces, o sea, como que ese ese feedback de las cotizaciones, porque muchas veces llegamos tarde por no hacer seguimiento.
+
+Freddy Rincones   21:38
+O K seguimiento y cierre sí.
+Sí, sí, sí.
+
+Daniel Valbuena   21:56
+Sí me entendés que hizo falta un documento que hizo falta, una bobada, no sé qué, entonces es que como que Ah cómo te fue, mira, está en estudio, no sé qué oye y qué requieres por parte nuestra, tienes algo más, oye sabes que si requiero, no sé la ficha técnica, requiero no sé qué ah, bueno, perfecto, en un momento lo envío, Pum le llegó la notificación al comercial, quiubo que este man están editando la ficha técnica.
+
+Freddy Rincones   22:00
+Entiendo.
+
+Daniel Valbuena   22:21
+Sí o quiubo que este man dijo que no, que la cotización ya la perdieron, la perdieron. ¿Por qué por precio?
+
+Freddy Rincones   22:25
+O K ese esa.
+¿Listo, entonces? ¿Acá tenemos 1/3, 1/4 acción luego que el chatbot en va a tener va a poder interpretar esa segunda o tercera interacción, una intención del cliente donde le responde las plantillas y dice, no sabes qué es que no me gusta tal cosa?
+El chat no va a buscar, hasta cierto punto de obtener la información y el objetivo es que se le notifique al comercial tuyo.
+Que el cliente tiene una novedad que toca atender, por ejemplo, y cuando el comercial se meta a la cotización de alguna manera, él tiene que ver qué es lo que está pasando con el cliente, básicamente, y es y poder avanzar. O K listo entonces.
+
+Daniel Valbuena   23:05
+Ajá.
+Exacto, exacto.
+
+Freddy Rincones   23:20
+Déjame lo valido. Estoy a un 95%.
+Seguro de que se puede hacer ese comportamiento, solamente quiero validar en la diferentes la detección de intenciones que técnicamente nosotros tenemos que configurarle algo al chatbot para que él interprete lo que está, o sea, el escenario en el que está.
+Diferentes porque mira que estamos hablando de diferentes momentos y él puede actuar y de qué manera. Él puede cargar eso a la plataforma y lo que va a pasar es que en alguna parte de la cotización, por lo que veo, el comercial tiene que ver esa novedad, que el chatbot detecto o que él tiene con el cliente, pero el comercial va a estar.
+Dentro de la aplicación web de Presuministro con su usuario de comercial control de comercial hasta ahí cierto perfecto me lo llevo y también lo confirmo, por eso lo confirmo hoy mismo. Solamente quiero revisar un tema de la intención del Chatbot.
+
+Daniel Valbuena   24:16
+Exacto.
+
+Freddy Rincones   24:29
+O K.
+
+Daniel Valbuena   24:30
+¿Listo?
+
+Freddy Rincones   24:31
+¿Súper, yo creo que por mi lado estoy listo, Laura, cierto?
+
+Daniel Valbuena   24:35
+Del de la parte no hemos mirado el módulo de compras y logística para eso es aquí Andrés. En en eso lo vemos hoy. O o por el momento. Prena maga.
+
+Laura Martinez   24:36
+¿Listo?
+
+Freddy Rincones   24:44
+Sí.
+No, no, no, no por mi lado era que necesitaba validar estos temas. Ya me queda claro lo que tengo que hacer y ahí le cedo la palabra a Laura y a Andrés. Se pueden ya desarrollar esa parte listo.
+
+Laura Martinez   24:50
+Mjm.
+
+Daniel Valbuena   24:56
+Listo entonces el módulo aquí le estoy compartiendo de una que le estoy compartiendo pantalla para que entienda o sea, desde la cotización todo lo que hemos hablado. Si por ejemplo ya me salió esto, yo llego, le pongo perfecto, le doy opciones genera. ¿Qué significa que ya la cotización tiene su orden de compra aprobada por el cliente de cuenta? Por ahí cuando me enviaba su orden de compra por la otra empresa.
+
+Freddy Rincones   24:58
+Igual, yo sigo acá.
+
+Daniel Valbuena   25:19
+¿Listo, perfecto, llegó acá, cierto? Pues aquí es donde entra Andrés Andy, yo le yo sugerí, pues se me hacía mucho mejor que la información que aparecía aquí cantidad sea la cantidad de productos pendientes por comprar, mas no productos comprados, porque eso no genera valor.
+Está bien así.
+
+Andres Valbuena   25:44
+Sí, sí, me parece perfecto, mucho mejor que el que estaba ahorita implementado.
+
+Daniel Valbuena   25:48
+Ajá, o sea, la cantidad de productos pendientes por comprar está acá en cantidades, no porque por ejemplo en este caso yo puedo tener la miramos cuatro 5 unidades y resulta que es Andrés. Por el momento ha comprado cuatro porque solamente había cuatro. Entonces de este ítem y de este ítem te hacen falta 2, cierto, entonces aquí va a aparecer 2 unidades.
+¿Sí, entonces, Andrés, qué hace Andy si quiere? Yo le doy aquí, usted explique, yo le doy aquí como que haciendo el el, el dibujito, pues en lo que su merced vaya explicando.
+
+Andres Valbuena   26:21
+¿Listo? ¿Dani? Pues no sé, digamos hasta donde tenga evolucionado el tema, o sea ya digamos de la parte visual, que es lo que se necesita tener, digamos en el módulo principal de pedidos, no sé si su merced ya ha tocado ese tema. O es la primera vez como para yo.
+
+Daniel Valbuena   26:34
+Cuénteme a ver que no, no, no, no sé. No sé cuál cosa de esto.
+
+Andres Valbuena   26:39
+Sí, sí, sí. O sea, como tal de todo el panel de pedido, que es lo que se tiene que visualizar entonces no sé si toca hacer énfasis o simplemente se hace como un backup del del neo.
+
+Daniel Valbuena   26:43
+Ah, no, pues menciónelo no menciónelo Andy Menciónelo.
+
+Andres Valbuena   26:50
+¿Ah, okey? Mira, básicamente ahí, en el módulo principal, que es a donde aparecen todos los pedidos, en este caso, que son los abiertos. Es importante que pues digamos esto, obviamente se se organice por consecutivo, al igual que digamos las cotizaciones llevan un consecutivo y que eso se vaya organizando, pues como como como en orden numérico.
+
+Laura Martinez   27:10
+¿Ok?
+
+Andres Valbuena   27:11
+Bueno, ahí también es importante invitar que tenga, pues digamos como tal el comercial asignado la fecha y la hora en la cual como tal se guarda como tal el pedido. Eso está ahí, en la 2, en la puerta, en la quinta columna ya el tema digamos de de asunto y demás, pues ya o sea sí es importante, pero no tan vital.
+Digamos Daniel, eso su merced tiene de valor pedido a usted le generaba valor agregado porque yo eso no lo no lo veo.
+
+Daniel Valbuena   27:40
+El valor de pedido sí, claro, para saber cuánto. ¿Pues sí, claro, sabes de cuánto son los pedidos?
+
+Andres Valbuena   27:41
+Sí.
+O K listo, sí no, ya sería como tal entonces entrar a un a un pedido Danny.
+
+Daniel Valbuena   27:52
+Entremos a cuál que tenga varios este.
+
+Andres Valbuena   28:01
+Listo si te das cuenta digamos ahoritica acá la plataforma, se hay un montón de pestañas, pero realmente de todas las pestañas que se están manejando, las únicas que son útiles no sean, y pues digamos en caso de que para usted le sea útil o le genere valor agregado, pues para mí únicamente sería la de.
+Datos generales otros datos detalle seleccionar generados y condiciones comerciales el resto tarea.
+
+Daniel Valbuena   28:29
+¿Pues es que la la idea, la idea es formular algo que tal vez no te que que como que todo este información puede ser cargada en un, o sea, ellos tienen que rediseñar esto, si no, no hablemos de pestañas, antes si no hablemos de información y ya ellos nos presentarán como el diseño el propuesto para que no quede, o sea en este momento lo tenemos por pestañas, pero puede podemos mejorar el diseño?
+
+Andres Valbuena   28:52
+O K Ah ya ya, ya entonces, mira, para mí básicamente es indispensable, digamos tener como tal cuando se sube un pedido, pues varias cosas, uno vendría siendo, digamos como tal la razón social del cliente, el contacto.
+¿Qué asesor? Pues subió el pedido. Dani, hay, eso está en la en la pestaña de datos generales, pero no sé si ahoritica se va a seguir trabajando. El tema de sharepoint, esto lo va a.
+
+Daniel Valbuena   29:24
+No, no, no, eso, eso, eso va a quedar ya guardado en plataforma. Entonces yo que veo igual su merced me dice si eso le genera valor. Ah, o sea, yo siento que ya en el pedido lo que interesa es el nombre de cliente. Esta parte del contacto no interesa el asunto, si interesa que es el asunto que arrastra la cotización, o sea, esta parte, que aparezca email, teléfono dirección aquí.
+
+Andres Valbuena   29:24
+Ah.
+Sí.
+
+Daniel Valbuena   29:48
+Pedido. No me interesa por qué, porque yo tengo esta información de despacho. O sea esto aquí no me genera valor en lo absoluto. No sé si han dicho su merced. También la ve así.
+
+Andres Valbuena   29:58
+No, para mí tampoco. De pronto, no sé dan y si para la parte comercial la parte de contacto yo lo decía porque pues no sé. Digamos en Save the Children hay varios compradores y como pues el comercial también tiene la visual del pedido, no sé si sea conveniente quitar esa esa parte.
+
+Daniel Valbuena   30:14
+¿A aquí a nombre de quién fue montado? Ah, bueno, sí, sí, podríamos dejarlo. Esta parte de contacto o k esta parte de email, teléfono y dirección. Eso sí, realmente no, o sea, lo que yo le explicaba a la vez pasada por parte del contacto, que eso está en el video anterior, me interesa solamente el nombre.
+El cargo ciudad, teléfono y dirección. Lo otro no me importa, sí.
+
+Laura Martinez   30:40
+Dani, yo hoy voy a necesitar, entonces si les parece, si ustedes me pueden compartir un Excel, no importa, solo importa que sea lindo o nada, sino ejemplo los datos que ustedes necesitan, porque pues yo entiendo que el diseño quieren que sea diferente y nosotros con esos campos que ustedes necesitan que me definan en el Excel, nosotros hacemos pues el el diseño, por decirlo de alguna manera.
+¿De que es relevante para ustedes tener en en mesa visual?
+
+Daniel Valbuena   31:08
+¿Listo?
+
+Laura Martinez   31:10
+¿Te parece?
+
+Daniel Valbuena   31:11
+Perfecto aquí en esta parte, Andy vía de contacto, porcentaje de interés, no nos interesa. ¿Esto fue lo que ya hablamos, que es el tema del chat interno que nosotros tenemos aquí se nos aquí, escribimos el mensaje y a quién le tenemos que enviar el mensaje? Y esto llega por correo electrónico, eso ya lo habíamos hablado. Andy.
+Aquí es importante que nos aparezca el día.
+Y la hora en el cual fue enviado el mensaje, sí. ¿O sea de y para, o sea, a quién copiaron para saber a quién? ¿Quién estuvo comunicado en esto vale y en qué? ¿Obviamente, en qué hora fue enviado esta comunicación?
+
+Laura Martinez   31:54
+Sí.
+
+Daniel Valbuena   31:55
+Sí, los otros datos, esto ya lo hablamos, el tema del flujo, hablamos también. Andy, no sé qué tan importante sea que aquí esto sigue, pues es que esto no se está diligenciando. O pues creo que no se está diligenciando, no tengo una idea y toda esta información.
+
+Andres Valbuena   32:09
+Sí, no siempre eso es vital.
+Sí.
+Cuando es que esa información es cuando son despachos a nivel nacional.
+
+Daniel Valbuena   32:21
+Bueno, pero entonces estatus había que quitarlo.
+
+Andres Valbuena   32:25
+Sí está tu sora.
+
+Daniel Valbuena   32:27
+Tipo despacho, igual.
+
+Andres Valbuena   32:30
+Regáleme 1 segundo, por favor.
+1 segundo es que ajustar.
+Si en estatus pendiente de orden de compra, nada que ver en su despacho híbrido mayorista motorizado, bueno.
+
+Daniel Valbuena   32:50
+¿Eso tampoco genera valor, o sí?
+Porque si es nacional, ****** se manda por transportadora, guía y chao.
+
+Andres Valbuena   32:54
+Ah.
+Es que ahí lo que tenemos, sí, sí, pero ahí lo que teníamos en la parte del tipo de despacho es sí fue desde mayorista o desde la o, se despachó desde las instalaciones, pero pues no genera valor agregado porque finalmente lo que nos interesa es que transportador requiere.
+
+Daniel Valbuena   33:10
+En la guía sí, entonces transportadora, igual te vamos a pasar esta información, Lau transportadora, número de guía la fecha de despacho, fecha de entrega. Y ah, bueno, Andy bueno es el tema del flujo que hijo de Puchero lo hablamos la vez pasada y era despachado parcial total y aquí aparte, entregado.
+Parcial o total para que el flujo nos funcione, o sea, yo pude haber despachado, pero no sé si ya fue entregado.
+
+Andres Valbuena   33:39
+Es que ese despachado sí, o sea, no, no, no confirma como tal la entrega, o sea, cuando se le pone total. Es ya confirma en cuando se confirma la entrega total, o sea, es ese botón básicamente se está usando es para confirmar si se entregó parcial o se o se o se entregó total.
+
+Daniel Valbuena   33:50
+Exacto.
+Pero para temas de informativos y flujo, yo creo que es importante que nos quede despachado y entregado.
+Porque yo puedo colocar despachado total y entregado, pues no entregado o entregado total, sí.
+
+Andres Valbuena   34:04
+Sí.
+Sí.
+
+Daniel Valbuena   34:13
+Listo esta info, yo creo que estamos completos acá señor Sandy.
+
+Andres Valbuena   34:17
+No, ahí es importante también la parte de la casilla esta de condiciones de despacho, que es pues la idea si si la idea es optimizar tiempo cuando son múltiples ciudades, ese formatico en Excel digamos que se sube en el sharepoint y demás, pues para eso está esa pestaña, o cuando el comercial, pues después de que guarda el pedido, no puede modificar la información en caso de que el cliente.
+Realice alguna modificación tanto la dirección o ciudad de despacho la pone en la parte de condiciones de despacho. Esa también se usa para el tema de cuando son licenciamientos.
+O sea, toda la información de licencias.
+
+Daniel Valbuena   34:56
+¿Listo? Mantenemos entonces esta pestaña en condiciones de despacho.
+
+Andres Valbuena   35:00
+Sí.
+
+Daniel Valbuena   35:01
+¿Okey?
+Listo ahora si entremos al detallando y aquí ya su merced lo dejo, me va diciendo.
+
+Andres Valbuena   35:09
+¿Listo? Mira, básicamente en detalle lo que debe de aparecer es el número de producto, el número de parte del producto, la marca. O sea, básicamente todo lo que está ahí, todo toca dejarlo ahí. No hay que modificar nada.
+Eh, dame un segundito, no se dan y si si puede EH ingresar después yo maximizo esto, porque es que casi no se va a ingresar a cualquier producto.
+En su mersella habló del tema de los flujos también.
+
+Daniel Valbuena   35:35
+Sí.
+
+Andres Valbuena   35:36
+O K. ¿O sea, omito el tema de creación de productos y demás, Eh? O sea que pueden crearlo más, no modificarlo.
+
+Daniel Valbuena   35:41
+Yo hablé de estos flujos. Andy de estos flujos de este plujo a.
+
+Andres Valbuena   35:46
+No, pero como la creación del producto. Ah o K, pero me imagino que los permisos se definen ya después Eh para omitir, porque eso sí es largo.
+
+Daniel Valbuena   35:46
+Pero de permisos no hablado.
+Sí, sí, la es. Yo creo que la busqué para temas de permiso. ¿Nos toca tener una sesión aparte que es un poquito más larguita de quién puede hacer tal cosa?
+
+Laura Martinez   36:02
+O K.
+
+Andres Valbuena   36:06
+Sería entonces si omitimos lo de permiso, también ingresar a un producto.
+
+Daniel Valbuena   36:37
+No.
+
+Andres Valbuena   36:37
+Vertical de pronto, cuando estén en en cotización, pero en pedidos ya no es necesario.
+
+Daniel Valbuena   36:40
+¿Sí, no, no?
+No.
+
+Andres Valbuena   36:44
+¿Ok, listo? Mira, básicamente en esta pestaña. Lo que se busca es tener un costo.
+El costo, la venta y que te arroje un margen, pero entonces ahí hay muchas variables, nosotros podemos comprar en pesos, vender en dólares, vender en qué comprar en dólares. YYY vender en en en pesos ves, pero entonces el Dani no sé si es todo el tema de la TDM.
+Se empiece a regir ya no con la tere de m, que arrastre desde la fecha de la cotización, sino desde la fecha de creación del del pedido o como la.
+
+Daniel Valbuena   37:21
+Está la 3 M de para para del pedido Andy.
+
+Andres Valbuena   37:25
+No, no, no, no muchas veces. Digamos, si usted revisa si el pedido lo lo subieron hoy es aster. M siempre digamos ha sido no con la fecha de la que suben el pedido.
+
+Daniel Valbuena   37:36
+¿Ah o K listo entonces? Lau mira entonces, cuál es la vuelta desde, por ejemplo en yo miré un pedido que tenemos en dólares listo este. Digamos que estos dólares pesos, cierto, aquí me va a mostrar la TTM con la que hizo la cotización, digamos yo tengo aquí la liquidación en pesos, que fue lo que hablamos, coge el valor en dólares, lo multiplica por la TM.
+Me da mí costo en pesos, saco el margen y listo, eso a nivel de cotización será bueno que cuando tengamos esta conversión de de de pesos, dólares y demás, cuando cuando cuando esté la conversión de la moneda antes de montar el pedido que sea obligatorio actualizar el margen.
+El el, la TRM Excúsame, entonces perfecto. Vamos a montar el pedido listo. Actualice, actualice la la TRM con que sea la TRM el día y revisar si, en efecto, le da, le da o no le da, si no, pues pida solicitud antes de que pase a compras. Y ya con eso, en pedido, siempre se va a montar con la TRM del día del del pedido.
+¿Sí, me entendiste ahí? Lau sí.
+
+Laura Martinez   38:47
+Sí, sí.
+O K.
+
+Andres Valbuena   38:51
+¿Listo Danny? El tema de cuando hay un producto, no sé si esto lo dejamos también cuando tengamos la sesión del tema de de de permisos o hasta dónde llega, porque pues digamos abajo el tema de proveedor sugerido, tiempo de entrega y garantía, son campos obligatorios.
+Entonces eso lo vemos en la sesión de permisos.
+
+Daniel Valbuena   39:14
+Sí, Andy, pues. O sea, básicamente el lado que aquí en, pero proveedor no porque hay mucho proveedor que no está creado. Andy.
+
+Andres Valbuena   39:22
+Deberíamos dejarlo ahí, no creado algo que diga no creado.
+Pero que sea obligatoria.
+
+Daniel Valbuena   39:29
+Ah, OK, sí, pues que pongan no creado. Listo, entonces que las casillas, proveedor, tiempo de entrega, garantía sean obligatorios o sea, campos obligatorios.
+
+Andres Valbuena   39:41
+Post tu venta.
+
+Daniel Valbuena   39:44
+Kandy.
+
+Andres Valbuena   39:45
+Que también, o sea, que todos esos son campos obligatorios y que aparte de ser obligatorios cuando el comercial coge y le dé guardar al pedido, ya no lo pueda modificar para nada.
+
+Daniel Valbuena   39:56
+¿Ok?
+
+Andres Valbuena   40:02
+Listo, esto sería, digamos, en la parte de pedidos. Mira, actualmente hay una pestaña que se está usando que es la siguiente, es seleccionar desde ahí. Es a donde yo estoy generando las órdenes de compra.
+¿Entonces, la idea de bueno, cómo está diseñado esto? ¿Ahoritica ya después de que yo entro a revisar tema de márgenes de que esté la procesos internos, yo entro como tal, ya generan las órdenes de compra y en la parte izquierda hay como unos cuadritos y yo voy seleccionando qué productos voy a comprar?
+Entonces, no sé si eso, pues si se puede integrar en la misma pestaña de detalle o si seguimos manejando una doble pestaña.
+
+Laura Martinez   40:39
+Ajá.
+¿Ok?
+
+Daniel Valbuena   40:49
+La idea de de manejar como lo manejamos al inicio de acuerdo, antes de que desde acá Andrés llegaba, seleccionaba y se fue.
+
+Andres Valbuena   40:52
+Sí. O sea, que es del mismo.
+
+Laura Martinez   40:55
+Eso te iba a decir, se le puede poner en la misma detalle solo una casillita que se le active como el chulito.
+
+Daniel Valbuena   41:01
+Ajá y se puede listo, llega, ta, ta, ta. Entonces va a hacer este ejercicio que que estamos abriendo, pero en la misma pestaña.
+Y va a coger y va a decir, generar orden de compra.
+
+Laura Martinez   41:11
+Porque de compras, sí, claro.
+
+Andres Valbuena   41:13
+Sí, y ahí sería importante entonces añadir a la pestaña detalle. O bueno, a donde va a estar desplegado, digamos como tal, el requerimiento del comercial. ¿Cuál fue la cantidad que, o sea, la que el comercial vendió, qué cantidad compré y qué cantidad está pendiente por comprar? Integrar eso como.
+
+Daniel Valbuena   41:33
+Esta información de acá.
+
+Andres Valbuena   41:36
+Digamos, hay un tema de cantidad facturada. ¿Bueno, hay un montón de vainas que pues realmente no generan valor agregado, solamente necesitamos saber es qué, qué cantidad solicita el comercial? Qué cantidad compré y qué cantidad está pendiente por comprar y listo.
+Ahora dame un segundito, actualmente en una de esas. Así pues no sé si se maneje en una pestaña, pues dependiendo como ustedes tengan de la parte visual de la de la plataforma que van a desarrollar, hay una pestaña que se llama generados desde esa pestaña generados.
+A ver, espérame un segundito y comparte pantallada, o la comparto yo.
+
+Daniel Valbuena   42:19
+Ya, ya esperé ayúdeme a compartir de lo que se está bloqueando esta vaina, porfa.
+
+Andres Valbuena   42:23
+Un segundito.
+O K no sé si hay puedas como tal visualizar en la.
+¿Vamos a ver tu tu hay llaves?
+
+Laura Martinez   42:52
+Sí.
+
+Andres Valbuena   42:54
+O K listo. Mira entonces adicional, tenemos esta pestaña que es la degenerados, y en esta degenerados me aparecen todas las órdenes de compra que yo generé. So en el mismo pedido.
+¿Ves entonces si genero una orden de compra me aparece una? Si no se empieza, pues a desplegar como tal la de aquí para abajo todas las ordenes de compra que yo genere y desde acá mismo yo puedo acceder a la orden de compra.
+
+Laura Martinez   43:08
+¿Qué?
+
+Andres Valbuena   43:25
+Sería esta pestañita de acá generadas también es importante, y por último sería el tema de las condiciones comerciales. Dani, no sé si ya digamos eso, lo revisaron, que la forma de pago que lo parametriza Laura, tema de permisos.
+
+Daniel Valbuena   43:44
+¿Eh? Sí, es ese tema. Ya lo revisamos. Andy solamente nos tocaría revisar el tema de la orden de compra de la información de orden de compra y del de ahí para allá como ustedes lo manejen desde la parte de logística.
+
+Andres Valbuena   43:47
+Ah OK.
+Listo, dale entonces ya digamos ya cuando yo genero la orden de compra acá es importante que me aparezca, pues en este caso la razón social del tercero.
+Estoy asesor, no, no todo esto es hora no, mira que únicamente necesitaría el el nit. ¿La razón social?
+Teléfono y dirección no necesito, digamos, como más información del proveedor.
+¿Y ven, dame 1 segundo y desde acá sí es importante que pues en las órdenes de compra, tanto cuando se imprimen o se pasan a PDF disculpa, se relacione el número de orden de compra que se generó, que pues es diferente a la el número de pedido y me aparezca también la del número de pedido, esto de de cotización, entonces realmente no es como relevante esta información?
+Y, ya en la pestaña detalle, es funcionas de cuenta básicamente como la que estábamos mirando, ahoritica en los pedidos igual, doble Clic sobre un producto. ¿Yo acá puedo cambiar monedas, ponerle el costo si el producto lleva o no lleva IVA y cuál es la fecha de entrega? Esto de cantidad de entrada, número de factura y todo eso se omite.
+¿Pero igual tengo entendido que digamos, de acuerdo a cada pestaña, te envío entonces el Excel de la información que que se requiere? Sí.
+
+Laura Martinez   45:27
+Sí, eso les iba a pedir el favor, o sea, necesito. Es como que me compartan lo que le digo. No es necesario que sea súper detallado bonito, no, sino como mira para la orden de compra. Necesito estos detalles para los no sé los proveedores, nosotros le llamamos como la Hoja de vida, necesitamos estos campos y ya nosotros nos encargamos solamente de Plasmarselos, pero es como nuestra base.
+Para hacer como el formulario o los campos, por decirlo de alguna manera.
+
+Andres Valbuena   45:55
+O K sí, no, es que mira básicamente, o sea, el módulo de compra, yo creo que es el el más sencillo de todo, es simplemente selecciono acá, se me genera una orden de compra, yo ya te digo que pues que cuáles son, digamos como tal los campos pues obligatorios que debe tener y ya más que todo, pues digamos lo más dispendiosos como el tema de los márgenes, la revisión y demás, que pues fue lo que ya ya se habló.
+
+Laura Martinez   46:20
+¿Listo?
+
+Andres Valbuena   46:21
+El lo de comprar no se extiende más allá.
+
+Laura Martinez   46:27
+¿Listo de una entonces necesitaría lo que les digo? Ese formato de cada uno y Dany para las. Dime, dime, dime.
+
+Daniel Valbuena   46:35
+Lau Lau, qué pena. Lau. Andy sabe que le faltó en la orden de compra, aunque yo ya lo mencioné en la pasada, pero que no sé, ya lo mencioné que me están aquí mostrando una cosa que acá le salga a ellos la cantidad.
+Porque de aquí supongo que salió el informe. La cantidad de orden de compra. No sé que la fecha de entrega, cantidad de entrada y el número de factura.
+
+Andres Valbuena   47:01
+Sí, sí, sí. Es que eso es la información, digamos, es que básicamente lo que se le va a hacer es pasarle a ella una tablita en Excel, es como por eso no me extendí mucho con qué es lo que necesito de cada de cada módulo, digamos en la orden de compra fuera de la pestaña principal, pues obviamente todo esto es como como indispensable.
+
+Daniel Valbuena   47:18
+¿Okey?
+
+Andres Valbuena   47:20
+Pero pues eso lo pongo en el formato, pues como para no extenderme mucho.
+
+Daniel Valbuena   47:25
+¿Listo de una?
+
+Laura Martinez   47:27
+¿Listo y Dani, en la sesión que tú me dices que necesitamos de permisos? También necesitaría igual un Excel. Entonces tú le pones como, o sea, igual podemos tener la sesión, pero es como para socializar el Excel en el punto de mira, estos son los roles que nosotros tenemos y estos son, o sea, como la función básica, pues no sé crear cotización ejemplo y estos van a ser los permisos que ellos van a tener.
+No se van a poder crear, la van a poder evitar la van a poder visualizarla, eso es como nos lo que llamamos como un árbol de permiso para cada uno de los roles que ustedes tengan, y pues en su empresa.
+
+Daniel Valbuena   47:58
+¿Okey?
+
+Laura Martinez   47:59
+Entonces, así podemos hacer un poco más más rápida la la como la socialización de esa parte. Entonces no sé si de pronto me comparten esa información. Actualizo el flujo con lo que hablamos y la siguiente sesión hacemos el recorrido que te digo y tú me dices como Mira, Laura, en esa parte falta tal cosa, en este, en este te voy a mostrar como un ejemplo.
+
+Daniel Valbuena   48:05
+Perfecto.
+
+Laura Martinez   48:23
+¿Para que me entiendas un poco, cómo sería el ejercicio que nosotros?
+
+Daniel Valbuena   48:25
+Yo creo que coloquemos un deadline de esta vaina para el viernes con eso, Andy, Andy monta el tema de lo que necesita yo, yo te paso lo que yo necesito desde la parte de este de mi parte y listo.
+
+Laura Martinez   48:30
+De una.
+Pero el deadline es para la sesión o para solo la información.
+
+Daniel Valbuena   48:46
+Pues, de paso la la INFO YYYY te y tengamos y tengamos socialización el lunes en la tarde.
+
+Laura Martinez   48:47
+Porque no sé si ustedes me eso.
+El lunes de la tarde y el viernes. ¿Dani, yo necesito que agendemos, o sea, el 24 una wiki en la wiki, y les comparto el jueves o k a qué horas?
+
+Daniel Valbuena   48:59
+El jueves.
+Es que el el viernes es que es que me afana porque imagínate que yo ya el viernes salgo de viaje y regreso hasta el 7, entonces sí, exacto, hagamos los jueves.
+
+Laura Martinez   49:07
+Uy, no, no, no, no, no, no, pues.
+De una entonces ya te mando el correcto, con lo que necesitamos y el lunes hacemos la sesión que les digo. La idea es que pues sea súper productiva, entonces digamos ya con lo que usted me comparte en esta semana yo el el lunes les les presento, entonces te digo, Mira, Daniel Andrés el se captura libre WhatsApp del chat se captura todos los datos y se hace la orinación automática de ese ejemplos, como si no hemos hablado de Freddy, hacemos como el.
+
+Daniel Valbuena   49:16
+Ajá.
+
+Laura Martinez   49:37
+Pero mira Laura que nosotros necesitamos esto, esto, esto es igual. Todo el flujo ya estaba, pues mapeado. Es corregirle como lo que tenemos y la idea es que con base a eso nosotros construimos ya el el backlog de los requerimientos los empezamos a plasmar y empiezo, empiezo a hablar de bloques para las aprobaciones y que nosotros empecemos como el desarrollo.
+
+Daniel Valbuena   49:55
+Listo, perfecto.
+
+Laura Martinez   49:57
+De una entonces ya mismo, les envió el correo con los compromisos. Listo, Daniel Andrés, Emma, muchísimas gracias.
+
+Daniel Valbuena   50:00
+¿Vale?
+Gracias a todos, bye bye.
+
+Andres Valbuena   50:06
+Muchas gracias. Buen día.
+
+Laura Martinez   50:06
+Chao.
+
+Emma Castillo   50:07
+Pasa buen día.
+
+Laura Martinez detuvo la transcripción
