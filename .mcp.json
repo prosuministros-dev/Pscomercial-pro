@@ -16,10 +16,10 @@
         "-y",
         "@supabase/mcp-server-supabase@latest",
         "--project-ref",
-        "jmevnusslcdaldtzymax"
+        "tdbeenoaormoxqbqjbkz"
       ],
       "env": {
-        "SUPABASE_ACCESS_TOKEN": "sbp_d01c4f7f58e0cf420318b4614f59872aa6267323"
+        "SUPABASE_ACCESS_TOKEN": "sbp_91d230ea6942e54a9f84706fa007b4e57037dece"
       }
     }
   }

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { ArrowLeft, Building2, FileText, ShoppingCart, MapPin, BarChart3, Loader2 } from 'lucide-react';
+import { ArrowLeft, Building2, FileText, ShoppingCart, MapPin, BarChart3, Loader2, MessageSquare } from 'lucide-react';
 import { Badge } from '@kit/ui/badge';
 import { Button } from '@kit/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@kit/ui/tabs';
@@ -16,6 +16,7 @@ import { CustomerQuotesTab } from './customer-quotes-tab';
 import { CustomerOrdersTab } from './customer-orders-tab';
 import { CustomerVisitsTab } from './customer-visits-tab';
 import { CustomerSummaryTab } from './customer-summary-tab';
+import { CommentThread } from '../../../leads/_components/comment-thread';
 
 interface CustomerDetailClientProps {
   customerId: string;
@@ -123,6 +124,10 @@ export function CustomerDetailClient({ customerId }: CustomerDetailClientProps) 
             <BarChart3 className="h-4 w-4" />
             <span className="hidden sm:inline">Resumen</span>
           </TabsTrigger>
+          <TabsTrigger value="notas" className="gap-2">
+            <MessageSquare className="h-4 w-4" />
+            <span className="hidden sm:inline">Notas</span>
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="info">
@@ -143,6 +148,10 @@ export function CustomerDetailClient({ customerId }: CustomerDetailClientProps) 
 
         <TabsContent value="summary">
           <CustomerSummaryTab customerId={customerId} />
+        </TabsContent>
+
+        <TabsContent value="notas">
+          <CommentThread entityType="customer" entityId={customerId} />
         </TabsContent>
       </Tabs>
     </motion.div>

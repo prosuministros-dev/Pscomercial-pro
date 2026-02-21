@@ -139,3 +139,38 @@ export interface PurchaseOrderForPdf {
   };
   order_number: number;
 }
+
+// --- Shipment PDF types ---
+
+export interface ShipmentItemForPdf {
+  sku: string;
+  description: string;
+  quantity_shipped: number;
+  serial_numbers: string[] | null;
+  notes: string | null;
+}
+
+export interface ShipmentForPdf {
+  id: string;
+  shipment_number: number;
+  created_at: string;
+  status: string;
+  dispatch_type: string;
+  carrier: string | null;
+  tracking_number: string | null;
+  delivery_address: string;
+  delivery_city: string;
+  delivery_contact: string;
+  delivery_phone: string;
+  estimated_delivery: string | null;
+  notes: string | null;
+  items: ShipmentItemForPdf[];
+  order_number: number;
+  customer: {
+    business_name: string;
+    nit: string;
+    address: string | null;
+    city: string | null;
+    phone: string | null;
+  };
+}

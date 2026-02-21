@@ -35,6 +35,7 @@ import { ProductJourneyDialog } from './product-journey-dialog';
 import { useConfirmPayment } from '../_lib/order-queries';
 import { CommentThread } from '../../leads/_components/comment-thread';
 import { PurchaseApprovalPanel } from './purchase-approval-panel';
+import { DocumentsTab } from './documents-tab';
 
 interface OrderDetailDialogProps {
   orderId: string | null;
@@ -123,10 +124,11 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
           </div>
         ) : order ? (
           <Tabs defaultValue="detalle" className="w-full">
-            <TabsList className="grid w-full grid-cols-5">
+            <TabsList className="grid w-full grid-cols-6">
               <TabsTrigger value="detalle">Detalle</TabsTrigger>
               <TabsTrigger value="oc">OC</TabsTrigger>
               <TabsTrigger value="despachos">Despachos</TabsTrigger>
+              <TabsTrigger value="documentos">Documentos</TabsTrigger>
               <TabsTrigger value="pendientes">Pendientes</TabsTrigger>
               <TabsTrigger value="trazabilidad">Trazabilidad</TabsTrigger>
             </TabsList>
@@ -422,7 +424,17 @@ export function OrderDetailDialog({ orderId, open, onOpenChange }: OrderDetailDi
               )}
             </TabsContent>
 
-            {/* Tab 4: Pendientes */}
+            {/* Tab 4: Documentos */}
+            <TabsContent value="documentos" className="mt-4">
+              {orderId && (
+                <DocumentsTab
+                  orderId={orderId}
+                  organizationId={order.organization_id}
+                />
+              )}
+            </TabsContent>
+
+            {/* Tab 5: Pendientes */}
             <TabsContent value="pendientes" className="mt-4">
               {orderId && <PendingTasksPanel orderId={orderId} />}
             </TabsContent>

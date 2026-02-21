@@ -6,6 +6,8 @@ import { requireUser } from '~/lib/require-auth';
 import { handleApiError } from '~/lib/api-error-handler';
 
 // --- Zod Schemas ---
+const VALID_TAX_PCTS = [0, 5, 19];
+
 const createItemSchema = z.object({
   product_id: z.string().uuid().optional(),
   sort_order: z.number().int().optional(),
@@ -14,7 +16,9 @@ const createItemSchema = z.object({
   quantity: z.number().min(0).optional().default(1),
   unit_price: z.number().min(0).optional().default(0),
   discount_pct: z.number().min(0).max(100).optional().default(0),
-  tax_pct: z.number().min(0).optional().default(19),
+  tax_pct: z.number().refine((v) => VALID_TAX_PCTS.includes(v), {
+    message: 'El IVA solo puede ser 0%, 5% o 19%',
+  }).optional().default(19),
   cost_price: z.number().min(0).optional().default(0),
   notes: z.string().nullish(),
 });
@@ -24,7 +28,9 @@ const updateItemSchema = z.object({
   quantity: z.number().min(0).optional(),
   unit_price: z.number().min(0).optional(),
   discount_pct: z.number().min(0).max(100).optional(),
-  tax_pct: z.number().min(0).optional(),
+  tax_pct: z.number().refine((v) => VALID_TAX_PCTS.includes(v), {
+    message: 'El IVA solo puede ser 0%, 5% o 19%',
+  }).optional(),
   cost_price: z.number().min(0).optional(),
   sku: z.string().nullish(),
   description: z.string().nullish(),

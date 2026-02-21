@@ -60,7 +60,13 @@
       "mcp__supabase__get_logs",
       "Bash(openssl rand:*)",
       "Bash(node:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "mcp__supabase__get_project_url",
+      "mcp__supabase__get_publishable_keys",
+      "mcp__supabase__search_docs",
+      "Bash(python3:*)",
+      "Bash(bash \"C:/Users/freddyrs/OneDrive - Cegeka/Pscomercial-pro/Pscomercial-pro/create_users.sh\")",
+      "Bash(git status:*)"
     ]
   }
 }

@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from '@kit/ui/table';
-import { Loader2, Plus, Truck, ExternalLink } from 'lucide-react';
+import { Loader2, Plus, Truck, ExternalLink, FileText } from 'lucide-react';
 import { toast } from 'sonner';
 import { useOrderShipments, useUpdateShipmentStatus } from '../_lib/order-queries';
 import { SHIPMENT_STATUS_LABELS, DISPATCH_TYPE_LABELS } from '../_lib/schemas';
@@ -29,6 +29,34 @@ export function ShipmentsTab({ orderId, order, orderItems, currency }: Shipments
   const { data: shipments = [], isLoading } = useOrderShipments(orderId);
   const [showCreate, setShowCreate] = useState(false);
   const updateStatus = useUpdateShipmentStatus();
+
+  const handleDownloadPdf = async (shipmentId: string, shipmentNumber: number) => {
+    const toastId = toast.loading('Generando remisión PDF...');
+    try {
+      const response = await fetch(`/api/pdf/shipment/${shipmentId}`);
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Error al generar PDF');
+      }
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType.includes('application/pdf')) {
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        window.open(blobUrl, '_blank');
+      } else {
+        const data = await response.json();
+        if (data.url) {
+          window.open(data.url, '_blank');
+        }
+      }
+      toast.success('Remisión generada', { id: toastId, description: `REM-${shipmentNumber}` });
+    } catch (error) {
+      toast.error('Error', {
+        id: toastId,
+        description: error instanceof Error ? error.message : 'Error al generar PDF',
+      });
+    }
+  };
 
   const handleDispatch = async (shipment: Shipment) => {
     try {
@@ -96,6 +124,14 @@ export function ShipmentsTab({ orderId, order, orderItems, currency }: Shipments
                   </Badge>
                 </div>
                 <div className="flex gap-2">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => handleDownloadPdf(shipment.id, shipment.shipment_number)}
+                    title="Descargar Remisión PDF"
+                  >
+                    <FileText className="w-4 h-4" />
+                  </Button>
                   {shipment.status === 'preparing' && (
                     <Button size="sm" variant="outline" onClick={() => handleDispatch(shipment)} disabled={updateStatus.isPending}>
                       Despachar

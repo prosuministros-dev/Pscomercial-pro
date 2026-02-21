@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
@@ -58,6 +59,7 @@ const CHANNEL_LABELS: Record<string, string> = {
 };
 
 export function LeadsKanban({ leads, onRefresh }: LeadsKanbanProps) {
+  const router = useRouter();
   const [convertingId, setConvertingId] = useState<string | null>(null);
 
   const handleConvert = async (leadId: string) => {
@@ -78,8 +80,18 @@ export function LeadsKanban({ leads, onRefresh }: LeadsKanbanProps) {
         throw new Error(error.error || 'Error al convertir el lead');
       }
 
-      toast.success('Lead convertido', {
-        description: 'El lead se ha marcado como convertido correctamente',
+      const result = await response.json();
+      const customerId = result.data?.customer_id;
+
+      toast.success('Lead convertido a cliente', {
+        description: 'Se creó el cliente y se migraron los contactos.',
+        duration: 10000,
+        action: customerId
+          ? {
+              label: 'Ver Cliente',
+              onClick: () => router.push(`/home/customers?selected=${customerId}`),
+            }
+          : undefined,
       });
 
       onRefresh();

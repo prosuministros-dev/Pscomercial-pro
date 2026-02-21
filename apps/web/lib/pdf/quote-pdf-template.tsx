@@ -319,12 +319,14 @@ export function QuotePdfTemplate({ quote, org }: QuotePdfTemplateProps) {
                 </Text>
               </View>
             )}
-            <View style={styles.totalsRow}>
-              <Text style={styles.totalsLabel}>IVA (19%)</Text>
-              <Text style={styles.totalsValue}>
-                {formatCurrencyForPdf(quote.tax_amount, currency)}
-              </Text>
-            </View>
+            {quote.tax_amount > 0 && (
+              <View style={styles.totalsRow}>
+                <Text style={styles.totalsLabel}>IVA</Text>
+                <Text style={styles.totalsValue}>
+                  {formatCurrencyForPdf(quote.tax_amount, currency)}
+                </Text>
+              </View>
+            )}
             {!quote.transport_included && quote.transport_cost > 0 && (
               <View style={styles.totalsRow}>
                 <Text style={styles.totalsLabel}>Transporte</Text>

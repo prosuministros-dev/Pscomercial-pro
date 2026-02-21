@@ -306,12 +306,14 @@ export function OrderPdfTemplate({ order, org }: OrderPdfTemplateProps) {
                 {formatCurrencyForPdf(order.subtotal, currency)}
               </Text>
             </View>
-            <View style={styles.totalsRow}>
-              <Text style={styles.totalsLabel}>IVA (19%)</Text>
-              <Text style={styles.totalsValue}>
-                {formatCurrencyForPdf(order.tax_amount, currency)}
-              </Text>
-            </View>
+            {order.tax_amount > 0 && (
+              <View style={styles.totalsRow}>
+                <Text style={styles.totalsLabel}>IVA</Text>
+                <Text style={styles.totalsValue}>
+                  {formatCurrencyForPdf(order.tax_amount, currency)}
+                </Text>
+              </View>
+            )}
             <View style={styles.totalsFinal}>
               <Text style={styles.totalsFinalLabel}>TOTAL</Text>
               <Text style={styles.totalsFinalValue}>

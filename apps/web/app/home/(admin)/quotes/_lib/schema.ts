@@ -52,8 +52,10 @@ export const quoteItemFormSchema = z.object({
     .optional(),
   tax_pct: z
     .number()
-    .min(0, 'El IVA no puede ser negativo')
-    .max(100, 'El IVA no puede ser mayor a 100%')
+    .refine(
+      (val) => [0, 5, 19].includes(val),
+      { message: 'El IVA solo puede ser 0%, 5% o 19%' },
+    )
     .optional(),
   cost_price: z
     .number()

@@ -116,7 +116,7 @@ export function QuoteFormDialog({
         }
       : {
           lead_id: leadId,
-          validity_days: 30,
+          validity_days: 5,
           status: 'draft',
           currency: 'COP',
           payment_terms: 'ANTICIPADO',

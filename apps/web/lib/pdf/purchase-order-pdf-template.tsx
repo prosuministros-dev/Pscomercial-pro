@@ -238,10 +238,12 @@ export function PurchaseOrderPdfTemplate({ po, org }: Props) {
             <Text style={styles.totalLabel}>Subtotal</Text>
             <Text style={styles.totalValue}>{formatCurrencyForPdf(po.subtotal, currency)}</Text>
           </View>
-          <View style={styles.totalRow}>
-            <Text style={styles.totalLabel}>IVA (19%)</Text>
-            <Text style={styles.totalValue}>{formatCurrencyForPdf(po.tax_amount, currency)}</Text>
-          </View>
+          {po.tax_amount > 0 && (
+            <View style={styles.totalRow}>
+              <Text style={styles.totalLabel}>IVA</Text>
+              <Text style={styles.totalValue}>{formatCurrencyForPdf(po.tax_amount, currency)}</Text>
+            </View>
+          )}
           <View style={[styles.totalRow, { borderTop: '1px solid #333', paddingTop: 4 }]}>
             <Text style={styles.grandTotalLabel}>TOTAL</Text>
             <Text style={styles.grandTotalValue}>{formatCurrencyForPdf(po.total, currency)}</Text>

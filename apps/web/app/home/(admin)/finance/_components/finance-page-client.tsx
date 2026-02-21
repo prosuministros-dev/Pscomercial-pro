@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@kit/ui/tabs';
-import { Wallet, ShieldAlert } from 'lucide-react';
+import { Wallet, Receipt, FileText } from 'lucide-react';
 import { FinanceSummaryCards } from './finance-summary-cards';
 import { CarteraTab } from './cartera-tab';
+import { PaymentVerificationTab } from './payment-verification-tab';
+import { ProformaRequestsTab } from './proforma-requests-tab';
 
-type FinanceTab = 'cartera';
+type FinanceTab = 'cartera' | 'pagos' | 'proformas';
 
 export function FinancePageClient() {
   const [activeTab, setActiveTab] = useState<FinanceTab>('cartera');
@@ -40,10 +42,26 @@ export function FinancePageClient() {
             <Wallet className="w-4 h-4" />
             Cartera
           </TabsTrigger>
+          <TabsTrigger value="pagos" className="gap-1.5">
+            <Receipt className="w-4 h-4" />
+            Verificación de Pagos
+          </TabsTrigger>
+          <TabsTrigger value="proformas" className="gap-1.5">
+            <FileText className="w-4 h-4" />
+            Proformas
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="cartera" className="mt-4">
           <CarteraTab />
+        </TabsContent>
+
+        <TabsContent value="pagos" className="mt-4">
+          <PaymentVerificationTab />
+        </TabsContent>
+
+        <TabsContent value="proformas" className="mt-4">
+          <ProformaRequestsTab />
         </TabsContent>
       </Tabs>
     </div>

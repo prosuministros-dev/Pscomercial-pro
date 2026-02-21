@@ -9,8 +9,8 @@
 ## 1. SUPABASE DEV PROJECT
 
 ```
-Project ID:  jmevnusslcdaldtzymax
-URL:         https://jmevnusslcdaldtzymax.supabase.co
+Project ID:  tdbeenoaormoxqbqjbkz
+URL:         https://tdbeenoaormoxqbqjbkz.supabase.co
 Anon Key:    (usar variable NEXT_PUBLIC_SUPABASE_ANON_KEY de .env.local)
 Service Key: (usar variable SUPABASE_SERVICE_ROLE_KEY de .env.local)
 ```

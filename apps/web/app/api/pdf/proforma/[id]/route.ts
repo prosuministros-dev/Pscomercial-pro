@@ -5,6 +5,7 @@ import { getSupabaseServerClient } from '@kit/supabase/server-client';
 import { checkPermission } from '@kit/rbac/check-permission';
 import { requireUser } from '~/lib/require-auth';
 import { handleApiError } from '~/lib/api-error-handler';
+import { createNotification } from '~/lib/notifications/create-notification';
 import { ProformaPdfTemplate } from '~/lib/pdf/proforma-pdf-template';
 import type { QuoteForPdf, OrgForPdf } from '~/lib/pdf/pdf-types';
 
@@ -156,6 +157,21 @@ export async function GET(
           updated_at: new Date().toISOString(),
         })
         .eq('id', quoteId);
+    }
+
+    // Notify advisor that proforma was generated
+    const advisorId = (quoteData.advisor as unknown as { id: string })?.id;
+    if (advisorId && advisorId !== user.id) {
+      await createNotification({
+        organizationId: quoteData.organization_id,
+        userId: advisorId,
+        type: 'info',
+        title: 'Proforma generada',
+        message: `Se ha generado la proforma para la cotización #${quoteData.quote_number}. Ya puedes enviarla al cliente.`,
+        entityType: 'quote',
+        entityId: quoteId,
+        actionUrl: `/home/quotes`,
+      });
     }
 
     return NextResponse.json({

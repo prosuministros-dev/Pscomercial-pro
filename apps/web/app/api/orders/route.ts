@@ -152,14 +152,51 @@ export async function POST(request: Request) {
       );
     }
 
-    // T21.7+T21.8: Validate credit limit before creating order
+    // Fetch quote with customer info for all validations
     const { data: quoteForCredit } = await client
       .from('quotes')
-      .select('customer_id, total, payment_terms')
+      .select('customer_id, total, payment_terms, margin_pct, margin_approved, quote_date, validity_days, customer:customers!inner(email, is_blocked)')
       .eq('id', parsed.data.quote_id)
       .single();
 
-    if (quoteForCredit && quoteForCredit.payment_terms !== 'anticipado') {
+    if (!quoteForCredit) {
+      return NextResponse.json(
+        { error: 'Cotización no encontrada' },
+        { status: 404 },
+      );
+    }
+
+    // T7.9: Validate quote has not expired
+    if (quoteForCredit.quote_date && quoteForCredit.validity_days) {
+      const quoteDate = new Date(quoteForCredit.quote_date);
+      const expirationDate = new Date(quoteDate);
+      expirationDate.setDate(expirationDate.getDate() + quoteForCredit.validity_days);
+      if (new Date() > expirationDate) {
+        return NextResponse.json(
+          { error: `La cotización venció el ${expirationDate.toLocaleDateString('es-CO')}. Cree una nueva cotización o extienda la vigencia.` },
+          { status: 400 },
+        );
+      }
+    }
+
+    // T7.9: Validate billing email (correo de facturación) is present on customer
+    const customerEmail = (quoteForCredit.customer as unknown as { email: string | null })?.email;
+    if (!customerEmail || !customerEmail.trim()) {
+      return NextResponse.json(
+        { error: 'El cliente no tiene correo de facturación. Actualice los datos del cliente antes de crear el pedido.' },
+        { status: 400 },
+      );
+    }
+
+    // T7.9: Validate margin approval for low-margin quotes
+    if (quoteForCredit.margin_pct !== null && quoteForCredit.margin_pct < 7 && !quoteForCredit.margin_approved) {
+      return NextResponse.json(
+        { error: 'La cotización requiere aprobación de margen (< 7%). Solicite aprobación antes de crear el pedido.' },
+        { status: 400 },
+      );
+    }
+
+    if (quoteForCredit.payment_terms !== 'anticipado') {
       // Only validate credit for non-anticipado (credit-based) orders
       const { data: creditOk, error: creditError } = await client.rpc('validate_credit_limit', {
         p_customer_id: quoteForCredit.customer_id,

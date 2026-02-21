@@ -538,12 +538,10 @@ export function QuoteDetailModal({
     variant: 'outline' as const,
   };
 
-  const canCreateOrder = [
-    'approved',
-    'offer_created',
-    'negotiation',
-    'pending_oc',
-  ].includes(quote.status);
+  const canCreateOrder =
+    ['approved', 'offer_created', 'negotiation', 'pending_oc'].includes(
+      quote.status,
+    ) && !quote.customer?.is_blocked;
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

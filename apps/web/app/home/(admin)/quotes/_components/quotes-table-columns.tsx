@@ -170,7 +170,7 @@ export function createQuotesTableColumns(
       header: '',
       cell: ({ row }) => {
         const quote = row.original;
-        const canCreateOrder = ['approved', 'offer_created', 'negotiation', 'pending_oc'].includes(quote.status);
+        const canCreateOrder = ['approved', 'offer_created', 'negotiation', 'pending_oc'].includes(quote.status) && !quote.customer?.is_blocked;
         const needsApproval = quote.margin_pct !== null && quote.margin_pct < 7 && !quote.margin_approved;
 
         return (
