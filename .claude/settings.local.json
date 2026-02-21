@@ -66,7 +66,8 @@
       "mcp__supabase__search_docs",
       "Bash(python3:*)",
       "Bash(bash \"C:/Users/freddyrs/OneDrive - Cegeka/Pscomercial-pro/Pscomercial-pro/create_users.sh\")",
-      "Bash(git status:*)"
+      "Bash(git status:*)",
+      "WebFetch(domain:supabase.com)"
     ]
   }
 }
