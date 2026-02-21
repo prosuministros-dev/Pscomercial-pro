@@ -21,13 +21,13 @@ const CATEGORY_COLORS: Record<string, string> = {
 };
 
 // Format currency helper
-const formatCurrency = (value: number, currency: 'COP' | 'USD' = 'COP') => {
+const formatCurrency = (value: number | null | undefined, currency: 'COP' | 'USD' = 'COP') => {
   return new Intl.NumberFormat('es-CO', {
     style: 'currency',
     currency: currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
-  }).format(value);
+  }).format(value ?? 0);
 };
 
 export function createProductColumns({
@@ -77,7 +77,7 @@ export function createProductColumns({
       accessorKey: 'unit_cost_usd',
       header: 'Costo USD',
       cell: ({ row }) => {
-        const cost = row.getValue('unit_cost_usd') as number;
+        const cost = row.getValue('unit_cost_usd') as number | null;
         return (
           <div className="font-mono text-sm tabular-nums">
             {formatCurrency(cost, 'USD')}
@@ -89,7 +89,7 @@ export function createProductColumns({
       accessorKey: 'unit_cost_cop',
       header: 'Costo COP',
       cell: ({ row }) => {
-        const cost = row.getValue('unit_cost_cop') as number;
+        const cost = row.getValue('unit_cost_cop') as number | null;
         return (
           <div className="font-mono text-sm tabular-nums">
             {formatCurrency(cost, 'COP')}
