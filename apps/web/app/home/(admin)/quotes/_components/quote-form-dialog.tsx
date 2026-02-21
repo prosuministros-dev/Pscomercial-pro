@@ -28,8 +28,9 @@ import { Card } from '@kit/ui/card';
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
+  PopoverAnchor,
 } from '@kit/ui/popover';
+import { CommentThread } from '../../leads/_components/comment-thread';
 import { toast } from 'sonner';
 import {
   Loader2,
@@ -156,8 +157,16 @@ export function QuoteFormDialog({
   const [addProductOpen, setAddProductOpen] = useState(false);
   const productSearchTimer = useRef<ReturnType<typeof setTimeout>>();
 
+  // Row-level description search
+  const [rowSearchOpen, setRowSearchOpen] = useState<number | null>(null);
+
   // Customers & contacts
-  const [customers, setCustomers] = useState<Array<{ id: string; business_name: string }>>([]);
+  const [customers, setCustomers] = useState<Array<{
+    id: string;
+    business_name: string;
+    is_blocked?: boolean;
+    block_reason?: string | null;
+  }>>([]);
   const [contacts, setContacts] = useState<Array<{ id: string; full_name: string; email: string | null; is_primary: boolean }>>([]);
   const [loadingContacts, setLoadingContacts] = useState(false);
 
@@ -312,6 +321,25 @@ export function QuoteFormDialog({
 
   // Fetch contacts when customer changes
   const selectedCustomerId = watch('customer_id');
+
+  // Derive the currently selected customer object (for credit block detection)
+  const selectedCustomer = useMemo(
+    () => customers.find((c) => c.id === selectedCustomerId),
+    [customers, selectedCustomerId],
+  );
+
+  // Auto-sync credit_blocked from customer's is_blocked status
+  useEffect(() => {
+    if (customers.length === 0) return; // wait until customers are loaded
+    if (!selectedCustomerId) return;
+    if (selectedCustomer) {
+      setValue('credit_blocked', selectedCustomer.is_blocked ?? false);
+      if (!selectedCustomer.is_blocked) {
+        setValue('credit_block_reason', undefined);
+      }
+    }
+  }, [selectedCustomer, selectedCustomerId, customers.length, setValue]);
+
   useEffect(() => {
     if (!selectedCustomerId) { setContacts([]); return; }
     setLoadingContacts(true);
@@ -376,6 +404,7 @@ export function QuoteFormDialog({
     setProductSearchTerm('');
     setProductSearchResults([]);
     setAddProductOpen(false);
+    setRowSearchOpen(null);
   };
 
   const updateItem = (index: number, field: keyof QuoteItemLocal, value: number | string) => {
@@ -533,9 +562,9 @@ export function QuoteFormDialog({
   /* ── Render ───────────────────────────────────────────────────────────── */
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[96vw] xl:max-w-7xl max-h-[95vh] overflow-y-auto p-0">
+      <DialogContent className="max-w-[96vw] xl:max-w-7xl h-[95vh] flex flex-col overflow-hidden p-0">
         {/* Header */}
-        <DialogHeader className="px-6 pt-6 pb-4 border-b border-border">
+        <DialogHeader className="px-6 pt-6 pb-4 border-b border-border shrink-0">
           <div className="flex items-center justify-between">
             <div>
               <DialogTitle className="text-xl font-medium">
@@ -570,9 +599,9 @@ export function QuoteFormDialog({
           </div>
         </DialogHeader>
 
-        <div className="flex flex-col xl:flex-row">
+        <div className="flex flex-col xl:flex-row flex-1 min-h-0 overflow-hidden">
           {/* ── Left: Form + Products ──────────────────────────────────── */}
-          <div className="flex-1 min-w-0 overflow-hidden">
+          <div className="flex-1 min-w-0 overflow-y-auto">
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* ── Collapsible form section ───────────────────────────── */}
               <div className="px-6 pt-4">
@@ -765,8 +794,8 @@ export function QuoteFormDialog({
                         </div>
                       </div>
 
-                      {/* Row 3: Fechas cierre, Cartera, Notas */}
-                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
+                      {/* Row 3: Fechas cierre */}
+                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
                         <div>
                           <Label className="text-xs">Mes Cierre</Label>
                           <Input type="month" className="h-9" {...register('estimated_close_month')} disabled={isSubmitting} />
@@ -779,22 +808,9 @@ export function QuoteFormDialog({
                           <Label className="text-xs">Fecha Facturación</Label>
                           <Input type="date" className="h-9" {...register('estimated_billing_date')} disabled={isSubmitting} />
                         </div>
-                        <div className="flex items-end gap-2">
-                          <div className="flex items-center gap-2 h-9">
-                            <Checkbox
-                              id="credit_blocked"
-                              checked={watch('credit_blocked') || false}
-                              onCheckedChange={(c) => setValue('credit_blocked', c as boolean)}
-                              disabled={isSubmitting}
-                            />
-                            <Label htmlFor="credit_blocked" className="text-xs cursor-pointer text-destructive">
-                              Bloqueo cartera
-                            </Label>
-                          </div>
-                        </div>
                       </div>
 
-                      {/* Credit block warning */}
+                      {/* Credit block warning — auto-detected from customers.is_blocked */}
                       {watch('credit_blocked') && (
                         <motion.div
                           initial={{ opacity: 0, height: 0 }}
@@ -802,15 +818,20 @@ export function QuoteFormDialog({
                           exit={{ opacity: 0, height: 0 }}
                           className="mb-3"
                         >
-                          <div className="p-2.5 rounded-lg bg-destructive/10 border border-destructive/20 flex items-center gap-2">
-                            <AlertTriangle className="h-4 w-4 text-destructive shrink-0" />
+                          <div className="p-2.5 rounded-lg bg-destructive/10 border border-destructive/20 flex items-start gap-2">
+                            <AlertTriangle className="h-4 w-4 text-destructive shrink-0 mt-0.5" />
                             <div className="flex-1">
                               <p className="text-xs text-destructive font-medium">
-                                Cliente con bloqueo de cartera
+                                Cliente con bloqueo de cartera activo
                               </p>
+                              {selectedCustomer?.block_reason && (
+                                <p className="text-xs text-destructive/80 mt-0.5">
+                                  Motivo: {selectedCustomer.block_reason}
+                                </p>
+                              )}
                               <Input
-                                className="h-7 mt-1 text-xs"
-                                placeholder="Motivo del bloqueo..."
+                                className="h-7 mt-1.5 text-xs"
+                                placeholder="Notas adicionales del bloqueo..."
                                 {...register('credit_block_reason')}
                                 disabled={isSubmitting}
                               />
@@ -862,9 +883,9 @@ export function QuoteFormDialog({
 
                   {/* Product search */}
                   <Popover open={addProductOpen} onOpenChange={setAddProductOpen}>
-                    <PopoverTrigger asChild>
+                    <PopoverAnchor asChild>
                       <div className="relative mb-3">
-                        {isSearchingProducts ? (
+                        {isSearchingProducts && !rowSearchOpen ? (
                           <Loader2 className="absolute left-2.5 top-2.5 h-4 w-4 text-primary animate-spin pointer-events-none" />
                         ) : (
                           <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
@@ -883,14 +904,16 @@ export function QuoteFormDialog({
                             setAddProductOpen(true);
                           }}
                           onFocus={() => {
+                            setRowSearchOpen(null);
                             setAddProductOpen(true);
                             if (productSearchResults.length === 0 && !isSearchingProducts) {
                               searchProducts(productSearchTerm);
                             }
                           }}
+                          onBlur={() => setTimeout(() => setAddProductOpen(false), 150)}
                         />
                       </div>
-                    </PopoverTrigger>
+                    </PopoverAnchor>
                     <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0" align="start">
                       {productSearchError ? (
                         <div className="p-3 flex items-center gap-2 text-sm text-destructive">
@@ -1005,13 +1028,97 @@ export function QuoteFormDialog({
                                       />
                                     </td>
                                     <td className="px-2 py-1.5">
-                                      <Input
-                                        value={item.description}
-                                        onChange={(e) => updateItem(i, 'description', e.target.value)}
-                                        onBlur={() => saveItemToApi(i)}
-                                        className="h-7 text-xs min-w-[160px]"
-                                        placeholder="Descripción del producto"
-                                      />
+                                      <Popover
+                                        open={rowSearchOpen === i}
+                                        onOpenChange={(open) => !open && setRowSearchOpen(null)}
+                                      >
+                                        <PopoverAnchor asChild>
+                                          <Input
+                                            value={item.description}
+                                            onChange={(e) => {
+                                              updateItem(i, 'description', e.target.value);
+                                              if (rowSearchOpen === i || !e.target.value) {
+                                                if (!e.target.value) {
+                                                  setRowSearchOpen(i);
+                                                  setAddProductOpen(false);
+                                                }
+                                                clearTimeout(productSearchTimer.current);
+                                                productSearchTimer.current = setTimeout(
+                                                  () => searchProducts(e.target.value),
+                                                  300,
+                                                );
+                                              }
+                                            }}
+                                            onFocus={() => {
+                                              if (!item.description) {
+                                                setRowSearchOpen(i);
+                                                setAddProductOpen(false);
+                                                if (productSearchResults.length === 0 && !isSearchingProducts) {
+                                                  searchProducts('');
+                                                }
+                                              }
+                                            }}
+                                            onBlur={() => {
+                                              setTimeout(() => setRowSearchOpen(null), 150);
+                                              saveItemToApi(i);
+                                            }}
+                                            className="h-7 text-xs min-w-[160px]"
+                                            placeholder="Descripción del producto"
+                                          />
+                                        </PopoverAnchor>
+                                        <PopoverContent className="w-80 p-0" align="start">
+                                          {isSearchingProducts ? (
+                                            <div className="p-3 flex items-center gap-2 text-sm text-muted-foreground">
+                                              <Loader2 className="h-4 w-4 animate-spin" />
+                                              Buscando productos...
+                                            </div>
+                                          ) : productSearchResults.length === 0 ? (
+                                            <div className="p-3 text-center text-sm text-muted-foreground">
+                                              Sin resultados
+                                            </div>
+                                          ) : (
+                                            <div className="max-h-48 overflow-y-auto">
+                                              {productSearchResults.map((p) => {
+                                                const activeTrm = trm > 0 ? trm : 4000;
+                                                const costPrice =
+                                                  currencyValue === 'USD' ? p.unit_cost_usd : p.unit_cost_cop;
+                                                const unitPrice = p.suggested_price_cop
+                                                  ? currencyValue === 'USD'
+                                                    ? Math.round(p.suggested_price_cop / activeTrm)
+                                                    : p.suggested_price_cop
+                                                  : Math.round(costPrice * 1.3);
+                                                return (
+                                                  <div
+                                                    key={p.id}
+                                                    className="flex items-center gap-2 px-3 py-2 hover:bg-secondary cursor-pointer border-b border-border last:border-0 transition-colors"
+                                                    onMouseDown={(e) => {
+                                                      e.preventDefault();
+                                                      setItems((prev) => {
+                                                        const copy = [...prev];
+                                                        copy[i] = {
+                                                          ...copy[i]!,
+                                                          product_id: p.id,
+                                                          sku: p.sku,
+                                                          description: p.name,
+                                                          unit_price: unitPrice,
+                                                          cost_price: costPrice,
+                                                        };
+                                                        return copy;
+                                                      });
+                                                      setRowSearchOpen(null);
+                                                    }}
+                                                  >
+                                                    <span className="shrink-0 rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
+                                                      {p.sku}
+                                                    </span>
+                                                    <span className="text-sm flex-1 truncate">{p.name}</span>
+                                                  </div>
+                                                );
+                                              })}
+                                            </div>
+                                          )}
+                                        </PopoverContent>
+                                      </Popover>
                                     </td>
                                     <td className="px-2 py-1.5">
                                       <Input
@@ -1153,15 +1260,21 @@ export function QuoteFormDialog({
                 </div>
               </div>
             </form>
+
+            {/* ── Observations (edit mode only) ──────────────────────── */}
+            {isEditMode && (
+              <div className="px-6 py-4 border-t border-border">
+                <CommentThread entityType="quote" entityId={quote!.id} />
+              </div>
+            )}
           </div>
 
           {/* ── Right: Totals Panel ────────────────────────────────────── */}
-          <div className="w-full xl:w-72 2xl:w-80 border-t xl:border-t-0 xl:border-l border-border p-4 bg-muted/20">
+          <div className="w-full xl:w-72 2xl:w-80 border-t xl:border-t-0 xl:border-l border-border p-4 bg-muted/20 xl:overflow-y-auto xl:shrink-0">
             <motion.div
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
-              className="sticky top-4"
             >
               <Card className="p-4 bg-gradient-to-br from-background to-muted/50">
                 <h3 className="text-sm font-semibold mb-3 flex items-center gap-2 text-accent dark:text-primary">

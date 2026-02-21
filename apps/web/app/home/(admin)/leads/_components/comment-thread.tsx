@@ -49,6 +49,14 @@ export function CommentThread({ entityType, entityId }: CommentThreadProps) {
   const [showMentions, setShowMentions] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
+  // Fetch team members for @mention autocomplete
+  useEffect(() => {
+    fetch('/api/team')
+      .then((r) => (r.ok ? r.json() : { data: [] }))
+      .then((d) => setTeamMembers(d.data || []))
+      .catch(() => {});
+  }, []);
+
   const fetchComments = useCallback(async () => {
     try {
       const response = await fetch(
