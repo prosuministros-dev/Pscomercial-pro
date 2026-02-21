@@ -142,7 +142,8 @@ export function QuoteFormDialog({
 
   /* ── State ────────────────────────────────────────────────────────────── */
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [trm, setTrm] = useState<number>(4000);
+  const [trm, setTrm] = useState<number>(0);
+  const [trmLoading, setTrmLoading] = useState(true);
   const [items, setItems] = useState<QuoteItemLocal[]>([]);
   const [isLoadingItems, setIsLoadingItems] = useState(false);
   const [formCollapsed, setFormCollapsed] = useState(false);
@@ -271,12 +272,34 @@ export function QuoteFormDialog({
       .finally(() => setIsLoadingItems(false));
   }, [open, quote]);
 
-  // Fetch TRM
+  // Fetch TRM - try fresh from Banrep first, fallback to cached
   useEffect(() => {
-    fetch('/api/trm')
-      .then((r) => (r.ok ? r.json() : null))
-      .then((json) => { if (json?.data?.rate) setTrm(json.data.rate); })
-      .catch(() => {});
+    let cancelled = false;
+    async function loadTrm() {
+      setTrmLoading(true);
+      try {
+        // Try fetching fresh rate from Banrep API
+        const freshRes = await fetch('/api/trm?fetch=true');
+        if (freshRes.ok) {
+          const freshJson = await freshRes.json();
+          const rate = Number(freshJson?.data?.rate);
+          if (!cancelled && rate > 0) { setTrm(rate); setTrmLoading(false); return; }
+        }
+      } catch { /* fallback below */ }
+
+      try {
+        // Fallback to cached rate from DB
+        const cachedRes = await fetch('/api/trm');
+        if (cachedRes.ok) {
+          const cachedJson = await cachedRes.json();
+          const rate = Number(cachedJson?.data?.rate);
+          if (!cancelled && rate > 0) setTrm(rate);
+        }
+      } catch { /* keep default */ }
+      if (!cancelled) setTrmLoading(false);
+    }
+    loadTrm();
+    return () => { cancelled = true; };
   }, []);
 
   // Fetch customers
@@ -328,10 +351,11 @@ export function QuoteFormDialog({
   /* ── Item operations ──────────────────────────────────────────────────── */
 
   const handleAddProduct = (product: ProductOption) => {
+    const activeTrm = trm > 0 ? trm : 4000; // fallback safety
     const costPrice = currencyValue === 'USD' ? product.unit_cost_usd : product.unit_cost_cop;
     const unitPrice = product.suggested_price_cop
       ? currencyValue === 'USD'
-        ? Math.round(product.suggested_price_cop / trm)
+        ? Math.round(product.suggested_price_cop / activeTrm)
         : product.suggested_price_cop
       : Math.round(costPrice * 1.3);
 
@@ -447,7 +471,7 @@ export function QuoteFormDialog({
       const method = isEditMode ? 'PUT' : 'POST';
       const body: Record<string, unknown> = isEditMode ? { ...data, id: quote!.id } : { ...data };
 
-      if (data.currency === 'USD') body.trm_applied = trm;
+      if (data.currency === 'USD') body.trm_applied = trm > 0 ? trm : 4000;
 
       const res = await fetch(url, {
         method,
@@ -509,7 +533,7 @@ export function QuoteFormDialog({
   /* ── Render ───────────────────────────────────────────────────────────── */
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-7xl max-h-[95vh] overflow-y-auto p-0">
+      <DialogContent className="max-w-[96vw] xl:max-w-7xl max-h-[95vh] overflow-y-auto p-0">
         {/* Header */}
         <DialogHeader className="px-6 pt-6 pb-4 border-b border-border">
           <div className="flex items-center justify-between">
@@ -525,18 +549,30 @@ export function QuoteFormDialog({
                   : 'Completa los datos y agrega los productos a cotizar'}
               </DialogDescription>
             </div>
-            {trm > 0 && (
-              <Badge variant="outline" className="shrink-0 gap-1">
-                <DollarSign className="h-3 w-3" />
-                TRM: {fmtCurrency(trm, 'COP')}
-              </Badge>
-            )}
+            <Badge variant="outline" className="shrink-0 gap-1">
+              {trmLoading ? (
+                <>
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                  TRM: Cargando...
+                </>
+              ) : trm > 0 ? (
+                <>
+                  <DollarSign className="h-3 w-3" />
+                  TRM: {fmtCurrency(trm, 'COP')}
+                </>
+              ) : (
+                <>
+                  <AlertTriangle className="h-3 w-3 text-destructive" />
+                  TRM: No disponible
+                </>
+              )}
+            </Badge>
           </div>
         </DialogHeader>
 
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col xl:flex-row">
           {/* ── Left: Form + Products ──────────────────────────────────── */}
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 overflow-hidden">
             <form onSubmit={handleSubmit(onSubmit)}>
               {/* ── Collapsible form section ───────────────────────────── */}
               <div className="px-6 pt-4">
@@ -927,8 +963,8 @@ export function QuoteFormDialog({
                       transition={{ duration: 0.3 }}
                       className="rounded-lg border border-border overflow-hidden"
                     >
-                      <div className="overflow-x-auto">
-                        <table className="w-full text-sm">
+                      <div className="overflow-x-auto scrollbar-thin">
+                        <table className="w-full text-sm min-w-[900px]">
                           <thead className="bg-muted/50">
                             <tr>
                               <th className="text-left px-2 py-2 text-xs font-medium text-muted-foreground w-8">#</th>
@@ -1120,7 +1156,7 @@ export function QuoteFormDialog({
           </div>
 
           {/* ── Right: Totals Panel ────────────────────────────────────── */}
-          <div className="w-full lg:w-72 xl:w-80 border-t lg:border-t-0 lg:border-l border-border p-4 bg-muted/20">
+          <div className="w-full xl:w-72 2xl:w-80 border-t xl:border-t-0 xl:border-l border-border p-4 bg-muted/20">
             <motion.div
               initial={{ opacity: 0, x: 10 }}
               animate={{ opacity: 1, x: 0 }}
