@@ -4,22 +4,16 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import {
-  BarChart3,
-  Boxes,
-  Building2,
   DollarSign,
-  FileOutput,
   FileText,
   LayoutDashboard,
-  MessageCircle,
-  Package,
-  Settings,
   ShoppingCart,
   UserPlus,
 } from 'lucide-react';
 
 import { usePermissions } from '@kit/rbac/permission-provider';
 
+// Los 5 ítems del pipeline comercial core
 const MOBILE_TABS = [
   {
     label: 'Dashboard',
@@ -46,52 +40,10 @@ const MOBILE_TABS = [
     permission: 'orders:read',
   },
   {
-    label: 'Clientes',
-    path: '/home/customers',
-    icon: Building2,
-    permission: 'customers:read',
-  },
-  {
-    label: 'Proveedores',
-    path: '/home/suppliers',
-    icon: Package,
-    permission: 'purchase_orders:read',
-  },
-  {
-    label: 'Productos',
-    path: '/home/products',
-    icon: Boxes,
-    permission: 'products:read',
-  },
-  {
-    label: 'Reportes',
-    path: '/home/reports',
-    icon: BarChart3,
-    permission: 'reports:read',
-  },
-  {
     label: 'Financiero',
     path: '/home/finance',
     icon: DollarSign,
     permission: 'finance:read',
-  },
-  {
-    label: 'Formatos',
-    path: '/home/formats',
-    icon: FileOutput,
-    permission: 'formats:read',
-  },
-  {
-    label: 'WhatsApp',
-    path: '/home/whatsapp',
-    icon: MessageCircle,
-    permission: 'whatsapp:read',
-  },
-  {
-    label: 'Admin',
-    path: '/home/admin',
-    icon: Settings,
-    permission: 'admin:read',
   },
 ] as const;
 
@@ -99,17 +51,12 @@ export function MobileBottomTabs() {
   const pathname = usePathname();
   const { can } = usePermissions();
 
-  const visibleTabs = MOBILE_TABS.filter((tab) =>
-    can(tab.permission),
-  );
-
-  // Show max 5 items on mobile to avoid crowding
-  const displayTabs = visibleTabs.slice(0, 5);
+  const visibleTabs = MOBILE_TABS.filter((tab) => can(tab.permission));
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border/40 bg-background/95 backdrop-blur-lg md:hidden supports-[backdrop-filter]:bg-background/60">
       <div className="flex items-center justify-around px-2 py-2">
-        {displayTabs.map((tab) => {
+        {visibleTabs.map((tab) => {
           const Icon = tab.icon;
           const isActive =
             pathname === tab.path ||
