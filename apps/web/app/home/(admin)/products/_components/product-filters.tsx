@@ -84,12 +84,12 @@ export function ProductFilters({
 
         <div className="space-y-2">
           <Label htmlFor="filter-category">Categoría</Label>
-          <Select value={categoryId} onValueChange={setCategoryId}>
+          <Select value={categoryId || '_all'} onValueChange={(v) => setCategoryId(v === '_all' ? '' : v)}>
             <SelectTrigger id="filter-category">
               <SelectValue placeholder="Todas las categorías" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todas las categorías</SelectItem>
+              <SelectItem value="_all">Todas las categorías</SelectItem>
               {categories.map((category) => (
                 <SelectItem key={category.id} value={category.id}>
                   {category.name}
@@ -101,12 +101,12 @@ export function ProductFilters({
 
         <div className="space-y-2">
           <Label htmlFor="filter-status">Estado</Label>
-          <Select value={isActive} onValueChange={setIsActive}>
+          <Select value={isActive || '_all'} onValueChange={(v) => setIsActive(v === '_all' ? '' : v)}>
             <SelectTrigger id="filter-status">
               <SelectValue placeholder="Todos los estados" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todos los estados</SelectItem>
+              <SelectItem value="_all">Todos los estados</SelectItem>
               <SelectItem value="true">Activos</SelectItem>
               <SelectItem value="false">Inactivos</SelectItem>
             </SelectContent>
