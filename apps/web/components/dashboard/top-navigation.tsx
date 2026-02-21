@@ -156,12 +156,12 @@ export function TopNavigation() {
 
   return (
     <header className="fixed left-0 right-0 top-0 z-40 border-b border-border/40 bg-background/95 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
-      <nav className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4">
-        {/* Left: Logo + Navigation */}
-        <div className="flex items-center gap-6">
-          <AppLogo />
+      <nav className="mx-auto grid h-16 max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-4 px-4">
+        {/* Left: Logo */}
+        <AppLogo />
 
-          {/* Desktop Navigation */}
+        {/* Center: Navigation */}
+        <div className="flex items-center justify-center">
           <div className="hidden items-center gap-1 md:flex">
             {visiblePrimary.map((item) => {
               const Icon = item.icon;
