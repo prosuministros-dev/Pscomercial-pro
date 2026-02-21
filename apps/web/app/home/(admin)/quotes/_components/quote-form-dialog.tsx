@@ -31,6 +31,9 @@ import {
   PopoverAnchor,
 } from '@kit/ui/popover';
 import { CommentThread } from '../../leads/_components/comment-thread';
+import { ProductFormDialog } from '../../products/_components/product-form-dialog';
+import { useSupabase } from '@kit/supabase/hooks/use-supabase';
+import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import {
   Loader2,
@@ -141,6 +144,21 @@ export function QuoteFormDialog({
   onSuccess,
 }: QuoteFormDialogProps) {
   const isEditMode = !!quote;
+  const supabase = useSupabase();
+
+  /* ── Product categories (for inline create dialog) ──────────────────── */
+  const { data: productCategories = [] } = useQuery({
+    queryKey: ['product-categories'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('product_categories')
+        .select('id, name')
+        .eq('is_active', true)
+        .order('name');
+      if (error) throw error;
+      return data as Array<{ id: string; name: string }>;
+    },
+  });
 
   /* ── State ────────────────────────────────────────────────────────────── */
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -157,6 +175,9 @@ export function QuoteFormDialog({
   const [productSearchError, setProductSearchError] = useState<string | null>(null);
   const [addProductOpen, setAddProductOpen] = useState(false);
   const productSearchTimer = useRef<ReturnType<typeof setTimeout>>();
+
+  // Create product inline dialog
+  const [createProductOpen, setCreateProductOpen] = useState(false);
 
   // Row-level description search
   const [rowSearchOpen, setRowSearchOpen] = useState<number | null>(null);
@@ -562,6 +583,7 @@ export function QuoteFormDialog({
 
   /* ── Render ───────────────────────────────────────────────────────────── */
   return (
+    <>
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[96vw] xl:max-w-7xl h-[95vh] flex flex-col overflow-hidden p-0">
         {/* Header */}
@@ -933,16 +955,18 @@ export function QuoteFormDialog({
                             </p>
                             {productSearchTerm.length > 0 && (
                               <div className="mt-3 flex flex-col gap-1.5">
-                                <a
-                                  href="/home/products"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
+                                <button
+                                  type="button"
                                   className="inline-flex items-center justify-center gap-1.5 rounded-md border border-primary px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10 transition-colors"
-                                  onMouseDown={(e) => e.stopPropagation()}
+                                  onMouseDown={(e) => {
+                                    e.preventDefault();
+                                    setAddProductOpen(false);
+                                    setCreateProductOpen(true);
+                                  }}
                                 >
                                   <Plus className="h-3.5 w-3.5" />
                                   Crear nuevo producto
-                                </a>
+                                </button>
                                 <a
                                   href="/home/products"
                                   target="_blank"
@@ -1424,5 +1448,23 @@ export function QuoteFormDialog({
         </div>
       </DialogContent>
     </Dialog>
+
+    {/* Inline product creation dialog — opens on top of the quote modal */}
+    <ProductFormDialog
+      open={createProductOpen}
+      onOpenChange={(open) => {
+        setCreateProductOpen(open);
+        // When dialog closes after creation, re-run search so the new product appears
+        if (!open && productSearchTerm.length > 0) {
+          setTimeout(() => {
+            setAddProductOpen(true);
+            searchProducts(productSearchTerm);
+          }, 300);
+        }
+      }}
+      mode="create"
+      categories={productCategories}
+    />
+    </>
   );
 }
