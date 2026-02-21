@@ -75,9 +75,24 @@ export function EmbeddedSignup({
   const sdkLoaded = useRef(false);
 
   /* ---- Load the Facebook SDK ---- */
+  const initFB = useCallback(() => {
+    const appId = process.env.NEXT_PUBLIC_META_APP_ID ?? '';
+    if (!appId) {
+      console.error('[EmbeddedSignup] NEXT_PUBLIC_META_APP_ID is not set');
+    }
+    window.FB.init({
+      appId,
+      cookie: true,
+      xfbml: true,
+      version: 'v21.0',
+    });
+  }, []);
+
   const loadFacebookSdk = useCallback(() => {
     return new Promise<void>((resolve, reject) => {
+      // SDK already loaded — just (re)init and resolve
       if (window.FB) {
+        initFB();
         resolve();
         return;
       }
@@ -87,21 +102,22 @@ export function EmbeddedSignup({
         const check = setInterval(() => {
           if (window.FB) {
             clearInterval(check);
+            initFB();
             resolve();
           }
         }, 200);
+        // Timeout after 10s
+        setTimeout(() => {
+          clearInterval(check);
+          reject(new Error('Facebook SDK load timeout'));
+        }, 10000);
         return;
       }
 
       sdkLoaded.current = true;
 
       window.fbAsyncInit = () => {
-        window.FB.init({
-          appId: process.env.NEXT_PUBLIC_META_APP_ID ?? '',
-          cookie: true,
-          xfbml: true,
-          version: 'v21.0',
-        });
+        initFB();
         resolve();
       };
 
@@ -112,7 +128,7 @@ export function EmbeddedSignup({
       script.onerror = () => reject(new Error('Failed to load Facebook SDK'));
       document.body.appendChild(script);
     });
-  }, []);
+  }, [initFB]);
 
   /* ---- Launch the Embedded Signup flow ---- */
   const launchEmbeddedSignup = useCallback(async () => {
