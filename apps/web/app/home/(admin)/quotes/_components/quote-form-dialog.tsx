@@ -1116,8 +1116,7 @@ export function QuoteFormDialog({
                                                 <button
                                                   type="button"
                                                   className="inline-flex items-center justify-center gap-1.5 rounded-md border border-primary px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10 transition-colors"
-                                                  onMouseDown={(e) => {
-                                                    e.preventDefault();
+                                                  onClick={() => {
                                                     setRowSearchOpen(null);
                                                     setCreateProductOpen(true);
                                                   }}
