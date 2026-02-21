@@ -60,7 +60,12 @@ export function useTRM() {
         throw new Error(error.error || 'Error al obtener TRM');
       }
 
-      return response.json();
+      const json = await response.json();
+      // API returns { data: { rate, date, source } } — unwrap to flat { value, date }
+      return {
+        value: json.data?.rate ?? 0,
+        date: json.data?.date ?? '',
+      };
     },
     staleTime: 3600000, // 1 hour
   });

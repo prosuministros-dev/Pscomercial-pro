@@ -2074,13 +2074,311 @@ Paso 10: Gerente exporta lista de clientes → CSV incluye el nuevo cliente
 
 ---
 
-### T21 RESUMEN DE EJECUCION (2026-02-19)
+### **--- GRUPO G: SPRINT 7 - MEJORAS MÓDULOS, FINANZAS, PIPELINE Y VALIDACIONES ---**
+
+#### T21.38 Módulo Financiero E2E
+
+**Objetivo**: Validar el módulo financiero completo con sus 3 tabs (Cartera, Verificación Pagos, Solicitudes Proforma), permisos RBAC y flujos de negocio.
+
+**Pre-condiciones**:
+- Usuario con rol `finanzas` autenticado
+- Permisos `finance:read`, `finance:manage_credit`, `finance:block_customer`, `finance:approve_payment`, `finance:generate_proforma` asignados
+- Facturas existentes en estados pendiente/parcial/vencida
+- Cotizaciones con payment_terms=ANTICIPADO
+
+```
+Paso 1:  Navegar a /home/finance → Módulo Financiero visible con 3 tabs
+Paso 2:  Tab "Cartera" activo por defecto → muestra resumen financiero (Finance Summary Cards)
+Paso 3:  Tab "Verificación de Pagos" → tabla de facturas pendientes con búsqueda
+Paso 4:  Seleccionar factura → Dialog "Verificar Pago" con campos referencia, método, fecha
+Paso 5:  Confirmar pago con referencia → factura cambia a status "paid" + toast éxito
+Paso 6:  Tab "Solicitudes Proforma" → tabla de cotizaciones ANTICIPADO filtradas
+Paso 7:  Botón "Generar Proforma" → PDF generado + status "Generada" + enlace externo
+Paso 8:  Login como asesor_comercial → /home/finance retorna 403 o no visible en nav
+```
+
+- [ ] T21.38.1: Navegación a /home/finance exitosa → 3 tabs visibles (Cartera, Verificación de Pagos, Solicitudes Proforma) con iconos Wallet, Receipt, FileText
+- [ ] T21.38.2: Tab Cartera muestra Finance Summary Cards con datos financieros de la organización
+- [ ] T21.38.3: Tab Verificación de Pagos → tabla muestra facturas con columnas: Factura, Cliente, Pedido, Total, Vencimiento, Estado, Acción
+- [ ] T21.38.4: Búsqueda por número de factura, nombre de cliente o NIT filtra correctamente la tabla
+- [ ] T21.38.5: Dialog verificar pago requiere referencia de pago (campo obligatorio) + método de pago (transferencia/consignación/cheque/efectivo)
+- [ ] T21.38.6: Confirmar verificación → factura status='paid', payment_date, payment_reference guardados + toast éxito
+- [ ] T21.38.7: Facturas vencidas (due_date < hoy, status≠paid) resaltadas en rojo (bg-red-50)
+- [ ] T21.38.8: Tab Proformas → muestra solo cotizaciones con payment_terms='ANTICIPADO' en estados activos (offer_created, negotiation, risk, pending_oc)
+- [ ] T21.38.9: Botón "Generar Proforma" → POST /api/pdf/proforma/{id} → PDF generado, proforma_url y proforma_generated_at actualizados
+- [ ] T21.38.10: Permisos RBAC: roles finanzas, gerente_general, super_admin tienen acceso. Rol asesor_comercial NO tiene acceso (403)
+
+#### T21.39 Pipeline Kanban 4 Columnas
+
+**Objetivo**: Validar que el kanban de cotizaciones muestra exactamente 4 columnas activas con los estados correctos y que los estados terminales se muestran por separado.
+
+**Pre-condiciones**:
+- Cotizaciones en diferentes estados del pipeline
+- Usuario con permiso quotes:read
+
+```
+Paso 1:  Navegar a /home/quotes → vista Kanban
+Paso 2:  Kanban muestra 4 columnas: Creación Oferta (40%), Negociación (60%), Riesgo (70%), Pendiente OC (80%)
+Paso 3:  Cotizaciones en status offer_created aparecen en columna "Creación Oferta"
+Paso 4:  Cotizaciones en status negotiation aparecen en columna "Negociación"
+Paso 5:  Cotizaciones en status risk aparecen en columna "Riesgo" (header rojo)
+Paso 6:  Cotizaciones en status pending_oc aparecen en columna "Pendiente OC"
+Paso 7:  Estados terminales (converted, rejected, lost, expired) NO aparecen en kanban
+Paso 8:  Drag & drop de cotización entre columnas actualiza estado
+Paso 9:  Cards muestran indicador de margen: rojo (<7%), amarillo (<9%), verde (≥9%)
+```
+
+- [ ] T21.39.1: Kanban muestra exactamente 4 columnas con headers coloreados: Azul (Oferta), Ámbar (Negociación), Rojo (Riesgo), Naranja (Pendiente OC)
+- [ ] T21.39.2: Cada columna muestra badge con conteo de cotizaciones
+- [ ] T21.39.3: Cotizaciones con status=offer_created aparecen en columna "Creación Oferta (40%)"
+- [ ] T21.39.4: Cotizaciones con status=negotiation aparecen en columna "Negociación (60%)"
+- [ ] T21.39.5: Cotizaciones con status=risk aparecen en columna "Riesgo (70%)"
+- [ ] T21.39.6: Cotizaciones con status=pending_oc aparecen en columna "Pendiente OC (80%)"
+- [ ] T21.39.7: Estados terminales (converted, rejected, lost, expired) NO se muestran en las 4 columnas del kanban
+- [ ] T21.39.8: Cards de cotización muestran indicador de salud de margen: borde rojo (< 7%), amarillo (< 9%), verde (≥ 9%)
+- [ ] T21.39.9: Columna vacía muestra empty state con borde dashed
+
+#### T21.40 Flujo Lead → Cliente (Mejoras Sprint 7)
+
+**Objetivo**: Validar las mejoras en la conversión de lead a cliente incluyendo toast de confirmación, botón "Ver Cliente" y navegación directa.
+
+**Pre-condiciones**:
+- Lead existente en status assigned/pending_info
+- Leads kanban visible con 3 columnas (Creado, Pendiente, Convertido)
+
+```
+Paso 1:  Navegar a /home/leads → vista Kanban
+Paso 2:  Kanban muestra 3 columnas: Creado (amarillo), Pendiente (azul), Convertido (verde)
+Paso 3:  Click "Convertir" en lead → API PUT /api/leads status=converted
+Paso 4:  Toast "Lead convertido exitosamente" aparece
+Paso 5:  Lead se mueve a columna "Convertido"
+Paso 6:  Botón "Ver Cliente" disponible → navega a /home/customers/[customer_id]
+Paso 7:  Datos del cliente coinciden con datos del lead (razón social, NIT, email, teléfono)
+Paso 8:  Lead card muestra badge "Vencido" si tiene > 1 día sin conversión
+```
+
+- [ ] T21.40.1: Leads kanban muestra 3 columnas con colores: Creado (amarillo/AlertCircle), Pendiente (azul/Clock), Convertido (verde/CheckCircle2)
+- [ ] T21.40.2: Lead card muestra: business_name, lead_number, canal (whatsapp/web/manual), contacto, NIT, teléfono, email, requerimiento
+- [ ] T21.40.3: Click "Convertir" → toast "Lead convertido exitosamente" + lead se mueve a columna Convertido
+- [ ] T21.40.4: Conversión crea customer en tabla customers con datos del lead (business_name, NIT, email, phone) + lead.customer_id enlazado
+- [ ] T21.40.5: Botón "Ver Cliente" post-conversión navega correctamente a /home/customers/[customer_id]
+- [ ] T21.40.6: Leads > 1 día sin conversión/rechazo muestran badge "Vencido" en rojo
+- [ ] T21.40.7: Lead card con animación Motion (AnimatePresence + stagger delays) al cargar kanban
+
+#### T21.41 PDF Remisión (Shipment)
+
+**Objetivo**: Validar la generación del PDF de remisión (despacho) con template correcto, datos completos y descarga funcional.
+
+**Pre-condiciones**:
+- Despacho existente con items y serial numbers
+- Org con logo y datos configurados
+
+```
+Paso 1:  GET /api/pdf/shipment/{id} → retorna JSON con url y fileName
+Paso 2:  PDF tiene header con logo de empresa + "REMISIÓN" + número REM-{shipment_number}
+Paso 3:  Sección Cliente: business_name, NIT, teléfono
+Paso 4:  Sección Datos de Entrega: dirección, ciudad, contacto, teléfono
+Paso 5:  Sección Transporte: tipo despacho, transportadora, guía, fecha estimada
+Paso 6:  Tabla Items: Seq, Código, Descripción, Cant. Despachada, Números de Serie
+Paso 7:  Área de firmas: "Entregado por", "Recibido por", "Cédula/Nombre Receptor"
+Paso 8:  Footer con timestamp de generación
+```
+
+- [ ] T21.41.1: GET /api/pdf/shipment/{id} retorna 200 con `{ url, fileName: "rem-{N}.pdf" }`
+- [ ] T21.41.2: Permiso requerido: orders:read — asesor sin permiso recibe 403
+- [ ] T21.41.3: PDF header muestra logo de organización + título "REMISIÓN" + número REM-{shipment_number}
+- [ ] T21.41.4: Sección cliente muestra business_name, NIT, teléfono del customer
+- [ ] T21.41.5: Sección entrega muestra delivery_address, delivery_city, delivery_contact, delivery_phone
+- [ ] T21.41.6: Sección transporte muestra dispatch_type (Envío/Retiro en Bodega/Mensajería), carrier, tracking_number
+- [ ] T21.41.7: Tabla items con columnas: #, Código, Descripción, Cant. Despachada, Números de Serie
+- [ ] T21.41.8: Área de firmas con 3 campos: Entregado por, Recibido por, Cédula/Nombre Receptor
+- [ ] T21.41.9: PDF almacenado en Supabase storage: `{orgId}/shipments/rem-{N}.pdf` con URL firmada (7 días)
+
+#### T21.42 Gestión Documental Pedidos
+
+**Objetivo**: Validar el tab de documentos en detalle de pedido con 2 carpetas, upload, download y delete.
+
+**Pre-condiciones**:
+- Pedido existente con detalle accesible
+- Storage bucket configurado
+
+```
+Paso 1:  Abrir detalle de pedido → Tab "Documentos" visible
+Paso 2:  2 carpetas: "Documentos Cliente" (Building2) y "Documentos Proveedor" (Truck)
+Paso 3:  Carpeta Cliente: tipos purchase_order, proforma, other
+Paso 4:  Carpeta Proveedor: tipos invoice, guide, receipt
+Paso 5:  Upload archivo PDF < 10MB → documento aparece en carpeta con metadata
+Paso 6:  Documento muestra: nombre, tipo, tamaño, subido por, fecha
+Paso 7:  Botón Download → descarga archivo
+Paso 8:  Botón Delete → elimina documento de la carpeta
+```
+
+- [ ] T21.42.1: Tab "Documentos" visible en dialog de detalle de pedido
+- [ ] T21.42.2: 2 carpetas con iconos: "Documentos Cliente" (Building2) + "Documentos Proveedor" (Truck)
+- [ ] T21.42.3: Badge en cada carpeta muestra conteo de documentos
+- [ ] T21.42.4: Upload archivo PDF → archivo guardado en storage path `{orgId}/orders/{orderId}/{folder}/{timestamp}.ext`
+- [ ] T21.42.5: Tipos de archivo aceptados: PDF, JPG, PNG, DOC, DOCX, XLS, XLSX — máximo 10MB
+- [ ] T21.42.6: Documento subido muestra metadata: nombre, tipo label (Orden de Compra/Factura/Guía/Recibo/Proforma/Otro), tamaño, subido por, fecha
+- [ ] T21.42.7: Botón download descarga archivo correctamente
+- [ ] T21.42.8: Botón delete elimina documento de la carpeta y del storage
+
+#### T21.43 Alertas de Visitas Vencidas (Cron)
+
+**Objetivo**: Validar el endpoint cron que identifica clientes sin visita en 30+ días y envía notificaciones a asesores.
+
+**Pre-condiciones**:
+- Clientes activos con assigned_sales_rep_id
+- Algunos clientes sin visita en 30+ días
+- CRON_SECRET configurado
+
+```
+Paso 1:  GET /api/cron/visit-alerts con Bearer CRON_SECRET → 200
+Paso 2:  Response: { processed, unvisited, advisors_notified }
+Paso 3:  Clientes sin visita realizada en últimos 30 días identificados
+Paso 4:  Notificaciones creadas agrupadas por asesor asignado
+Paso 5:  Notificación tipo 'alert': "{N} cliente(s) sin visita en 30 días"
+Paso 6:  Message lista primeros 3 clientes + "y X más" si hay más
+Paso 7:  action_url apunta a /home/customers
+Paso 8:  Sin Bearer válido → 401 Unauthorized
+```
+
+- [ ] T21.43.1: GET /api/cron/visit-alerts con header Authorization: Bearer {CRON_SECRET} retorna 200
+- [ ] T21.43.2: Response JSON: `{ processed: N, unvisited: N, advisors_notified: N }`
+- [ ] T21.43.3: Clientes sin visita status='realizada' en últimos 30 días incluidos en unvisited count
+- [ ] T21.43.4: Notificaciones creadas en tabla notifications con type='alert', title="{N} cliente(s) sin visita en 30 días"
+- [ ] T21.43.5: Notificación message lista máximo 3 nombres de clientes + "y X más" para exceso
+- [ ] T21.43.6: action_url='/home/customers' en cada notificación creada
+- [ ] T21.43.7: Request sin Bearer token o Bearer incorrecto → 401 Unauthorized
+
+#### T21.44 Notificaciones y @Menciones en Módulos
+
+**Objetivo**: Validar que CommentThread está integrado en los módulos principales y que @menciones generan notificaciones para usuarios mencionados.
+
+**Pre-condiciones**:
+- Módulos quotes, orders, leads, customers con detalle accesible
+- Usuarios existentes para mencionar
+
+```
+Paso 1:  Abrir detalle cotización → sección "Observaciones" con CommentThread
+Paso 2:  Escribir comentario con @mención → POST comentario → toast "Comentario agregado"
+Paso 3:  Abrir detalle pedido → sección "Observaciones" con CommentThread
+Paso 4:  Abrir detalle lead → sección observaciones disponible
+Paso 5:  Abrir ficha cliente → sección observaciones disponible
+Paso 6:  @Mención crea notificación para usuario mencionado
+Paso 7:  Generar proforma → notificación creada para equipo finanzas
+```
+
+- [ ] T21.44.1: Detalle de cotización muestra sección "Observaciones" con CommentThread funcional
+- [ ] T21.44.2: Escribir comentario + Ctrl+Enter → POST exitoso + toast "Comentario agregado" + autor y timestamp visibles
+- [ ] T21.44.3: Detalle de pedido muestra CommentThread en tab/sección "Observaciones"
+- [ ] T21.44.4: Detalle de lead muestra sección de observaciones
+- [ ] T21.44.5: Ficha de cliente muestra sección de observaciones
+- [ ] T21.44.6: @Mención de usuario genera notificación en tabla notifications para el usuario mencionado
+- [ ] T21.44.7: Generación de proforma crea notificación para equipo de finanzas (notifyAreaTeam)
+
+#### T21.45 Validaciones Pipeline (IVA, Correo, Margen, Vigencia)
+
+**Objetivo**: Validar todas las reglas de negocio del pipeline comercial: IVA permitido, correo de facturación, margen mínimo, vigencia de cotización, inmutabilidad de despacho.
+
+**Pre-condiciones**:
+- Cotización con items existente
+- Cliente con y sin email
+- Cotización con margen < 7% sin aprobar
+- Cotización expirada (validity_days < días transcurridos)
+
+```
+Paso 1:  Crear item con IVA=19% → PASS (200/201)
+Paso 2:  Crear item con IVA=5% → PASS (200/201)
+Paso 3:  Crear item con IVA=0% → PASS (200/201)
+Paso 4:  Crear item con IVA=10% → FAIL (400 "IVA solo puede ser 0%, 5% o 19%")
+Paso 5:  Crear item con IVA=21% → FAIL (400)
+Paso 6:  Crear pedido desde cotización expirada → FAIL (400 "La cotización venció el...")
+Paso 7:  Crear pedido sin email de facturación en cliente → FAIL (400 "no tiene correo de facturación")
+Paso 8:  Crear pedido con margen < 7% sin aprobar → FAIL (400 "requiere aprobación de margen")
+Paso 9:  PUT /api/orders/[id]/destinations → FAIL (400 "no son editables")
+Paso 10: DELETE /api/orders/[id]/destinations → FAIL (400 "no son eliminables")
+Paso 11: Formulario nueva cotización → validity_days default = 5
+```
+
+- [ ] T21.45.1: POST /api/quotes/[id]/items con tax_pct=19 → 201 Created (IVA 19% válido)
+- [ ] T21.45.2: POST /api/quotes/[id]/items con tax_pct=5 → 201 Created (IVA 5% válido)
+- [ ] T21.45.3: POST /api/quotes/[id]/items con tax_pct=0 → 201 Created (IVA 0% válido)
+- [ ] T21.45.4: POST /api/quotes/[id]/items con tax_pct=10 → 400 "El IVA solo puede ser 0%, 5% o 19%"
+- [ ] T21.45.5: POST /api/quotes/[id]/items con tax_pct=21 → 400 error de validación IVA
+- [ ] T21.45.6: POST /api/orders (crear pedido) desde cotización expirada → 400 "La cotización venció el {fecha}"
+- [ ] T21.45.7: POST /api/orders desde cotización cuyo cliente no tiene email → 400 "El cliente no tiene correo de facturación"
+- [ ] T21.45.8: POST /api/orders desde cotización con margin_pct < 7% y margin_approved=false → 400 "requiere aprobación de margen (< 7%)"
+- [ ] T21.45.9: POST /api/orders desde cotización con margin_pct < 7% y margin_approved=true → 201 (aprobado permite crear)
+- [ ] T21.45.10: PUT /api/orders/[id]/destinations → 400 "Los datos de despacho no son editables después de ser guardados"
+- [ ] T21.45.11: DELETE /api/orders/[id]/destinations → 400 "Los datos de despacho no son eliminables después de ser guardados"
+- [ ] T21.45.12: Formulario nueva cotización (quote-form-dialog) → campo validity_days tiene valor default = 5 (no 30)
+- [ ] T21.45.13: Cálculos item: subtotal = (unit_price × quantity) - discount, tax_amount = subtotal × tax_pct / 100, total = subtotal + tax_amount
+
+#### T21.46 Verificación PDFs (IVA Label, Sort Order, Transport, Proforma)
+
+**Objetivo**: Validar que todos los templates PDF muestran IVA genérico (no hardcoded "19%"), items ordenados, transporte condicional y proforma con datos bancarios.
+
+**Pre-condiciones**:
+- Cotización con items de diferentes tasas IVA (0%, 5%, 19%)
+- Cotización con tax_amount = 0 (todos items exentos)
+- Cotización con transporte incluido vs separado
+- Proforma generada
+
+```
+Paso 1:  Generar PDF cotización con items IVA mixto → label "IVA" (NO "IVA (19%)")
+Paso 2:  Generar PDF cotización con tax_amount=0 → fila IVA NO se muestra
+Paso 3:  Generar PDF orden → label "IVA" genérico
+Paso 4:  Generar PDF proforma → label "IVA" genérico + sección datos bancarios
+Paso 5:  Generar PDF orden de compra → label "IVA" genérico
+Paso 6:  Items en todos los PDFs ordenados por sort_order ascendente
+Paso 7:  Transport_cost solo visible cuando transport_included=false y transport_cost > 0
+```
+
+- [ ] T21.46.1: PDF Cotización muestra label "IVA" (no "IVA (19%)") en sección totales
+- [ ] T21.46.2: PDF Cotización con tax_amount=0 → fila IVA NO aparece (condicional)
+- [ ] T21.46.3: PDF Cotización con tax_amount > 0 → fila IVA SÍ aparece con monto formateado
+- [ ] T21.46.4: PDF Orden muestra label "IVA" genérico (no hardcoded porcentaje)
+- [ ] T21.46.5: PDF Orden con tax_amount=0 → fila IVA oculta
+- [ ] T21.46.6: PDF Proforma muestra label "IVA" genérico + sección "Datos Bancarios" (bank_name, account_type, account_number, account_holder, account_holder_nit)
+- [ ] T21.46.7: PDF Orden de Compra muestra label "IVA" genérico
+- [ ] T21.46.8: Items en PDF cotización ordenados por sort_order ascendente (1, 2, 3...)
+- [ ] T21.46.9: Transport cost solo visible en PDF cuando transport_included=false y transport_cost > 0
+- [ ] T21.46.10: PDF Remisión (shipment) muestra tipos de despacho: Envío, Retiro en Bodega, Mensajería
+
+#### T21.47 Bugs Críticos Sprint 7 - Regresión
+
+**Objetivo**: Verificar que los bugs críticos corregidos en Sprint 7 no han regresado y las correcciones funcionan correctamente.
+
+**Pre-condiciones**:
+- Datos de testing de sprints anteriores disponibles
+- Módulos quotes, orders, leads, finance funcionales
+
+```
+Paso 1:  Flujo aprobación margen completo: solicitar → aprobar → crear pedido OK
+Paso 2:  Kanban cotizaciones: drag-drop persiste estado correctamente
+Paso 3:  Dashboard financiero: cálculos de totales y KPIs consistentes
+Paso 4:  Trazabilidad bidireccional: quote ↔ order ↔ PO ↔ shipment links funcionales
+Paso 5:  Consecutivos: quote_number, order_number, po_number incrementan correctamente
+Paso 6:  IVA genérico en 4 templates PDF (quote, proforma, order, purchase_order)
+Paso 7:  Validity days default = 5 en formulario cotización
+```
+
+- [ ] T21.47.1: Flujo margen bajo completo: cotización con margen < 7% → request_margin_approval RPC → approve-margin API → crear pedido exitoso
+- [ ] T21.47.2: Kanban cotizaciones: mover card entre columnas → refresh → card persiste en nueva columna
+- [ ] T21.47.3: Dashboard comercial muestra KPIs consistentes con datos reales (leads, cotizaciones, pedidos)
+- [ ] T21.47.4: Trazabilidad: GET /api/orders/[id] → links a quote_id, purchase_orders, shipments, invoices todos resolvibles
+- [ ] T21.47.5: Consecutivos independientes por organización: POST quote → quote_number incrementa, POST order → order_number incrementa
+- [ ] T21.47.6: Permisos financieros: verificar 5 permisos finance:* existen en DB para roles finanzas, gerente_general, super_admin
+
+---
+
+### T21 RESUMEN DE EJECUCION (2026-02-21)
 
 **Herramienta**: Playwright MCP (headless) + Supabase MCP + API fetch desde browser
 **Usuario**: asesor1@prosutest.com (Andrea Asesora, rol: asesor_comercial)
 **Organización**: bee5aac6-a830-4857-b608-25b1985c8d82
 
-#### Tests Ejecutados: 232/232 (Cobertura completa - incluyendo Grupo F HU-00021)
+#### Tests Planificados: 318 (232 ejecutados + 86 Sprint 7 pendientes)
 
 | Grupo | Tests | PASS | SKIPPED | Notas |
 |-------|-------|------|---------|-------|
@@ -2122,7 +2420,18 @@ Paso 10: Gerente exporta lista de clientes → CSV incluye el nuevo cliente
 | T21.35 Seguimiento Postventa | 4 | 4 | 0 | ✅ Última interacción, timeline Resumen tab |
 | T21.36 Historial Comercial Ficha | 6 | 6 | 0 | ✅ 6 quotes + 4 orders + empty states (BUG-031+032 fixed) |
 | T21.37 Flujo E2E Lead→Visita | 7 | 7 | 0 | ✅ Lead#111 → customer created → visita → timeline |
-| **TOTAL** | **232** | **171** | **5** | **100% Grupo F PASS (56/56). Total: 73.7% PASS, 2.2% SKIPPED (WhatsApp)** |
+| **--- GRUPO G: SPRINT 7 - Finanzas/Pipeline/Validaciones ---** | | | | |
+| T21.38 Módulo Financiero E2E | 10 | 0 | 0 | PENDIENTE: 3 tabs, RBAC finance:*, payment verify, proforma |
+| T21.39 Pipeline Kanban 4 Columnas | 9 | 0 | 0 | PENDIENTE: Oferta→Negociación→Riesgo→PendienteOC, margin health |
+| T21.40 Flujo Lead→Cliente Mejoras | 7 | 0 | 0 | PENDIENTE: Conversión toast, "Ver Cliente", Vencido badge |
+| T21.41 PDF Remisión (Shipment) | 9 | 0 | 0 | PENDIENTE: Template REM-N, items+seriales, firmas, storage |
+| T21.42 Gestión Documental Pedidos | 8 | 0 | 0 | PENDIENTE: 2 carpetas, upload/download/delete, 10MB, tipos |
+| T21.43 Alertas Visitas Vencidas | 7 | 0 | 0 | PENDIENTE: Cron 30 días, notificaciones agrupadas por asesor |
+| T21.44 Notificaciones y @Menciones | 7 | 0 | 0 | PENDIENTE: CommentThread 4 módulos, @menciones, proforma notif |
+| T21.45 Validaciones Pipeline | 13 | 0 | 0 | PENDIENTE: IVA 0/5/19, email, margen<7%, vigencia, inmutabilidad |
+| T21.46 Verificación PDFs | 10 | 0 | 0 | PENDIENTE: IVA genérico, sort_order, transport condicional |
+| T21.47 Bugs Críticos Sprint 7 | 6 | 0 | 0 | PENDIENTE: Regresión margen, kanban, trazabilidad, consecutivos |
+| **TOTAL** | **318** | **171** | **5** | **Grupos A-F: 232/232 ejecutados. Grupo G: 86 PENDIENTES (Sprint 7)** |
 
 #### API-Level Validations (Sesión 1, additional):
 - Quote USD creation: PASS
@@ -2278,16 +2587,16 @@ Paso 10: Gerente exporta lista de clientes → CSV incluye el nuevo cliente
 ### RESUMEN EJECUTIVO DE PROGRESO
 
 ```
-╔══════════════════════════════════════════════════════════════════╗
-║  PSCOMERCIAL-PRO - PLAN DE TESTING                              ║
-║  Total: 820 tests | Completados: 571 | Fallidos: 0 | Bugs: 30 ║
-║  Progreso General: █████████████░░░░░░░ 70%                   ║
-║  Estado: EN PROGRESO                                            ║
-║  T1✅ T2✅ T3✅PW T4✅PW T5✅PW T6✅ T7✅ T8✅ T9✅ T10✅ T11✅PW║
-║  T12✅PW T13✅ T14✅ T15✅ T16✅ T17✅ T18✅ T19~API T20~API      ║
-║  T21~E2E(115/176) +56 HU-00021 pendientes  T22~UI              ║
-║  Bugs corregidos: 30/30 (100%) — 0 abiertos                    ║
-╚══════════════════════════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════════════════╗
+║  PSCOMERCIAL-PRO - PLAN DE TESTING                                  ║
+║  Total: 906 tests | Completados: 571 | Pendientes: 86 | Bugs: 30  ║
+║  Progreso General: ████████████░░░░░░░░ 63%                       ║
+║  Estado: EN PROGRESO (+Sprint 7 tests agregados)                    ║
+║  T1✅ T2✅ T3✅PW T4✅PW T5✅PW T6✅ T7✅ T8✅ T9✅ T10✅ T11✅PW  ║
+║  T12✅PW T13✅ T14✅ T15✅ T16✅ T17✅ T18✅ T19~API T20~API        ║
+║  T21~E2E(171/318) +86 Sprint7 pendientes  T22~UI                   ║
+║  Bugs corregidos: 30/30 (100%) — 0 abiertos                        ║
+╚══════════════════════════════════════════════════════════════════════╝
 ```
 
 ### Barra de Progreso por Fase
@@ -2313,10 +2622,10 @@ T17 Admin             ████████████████░░░�
 T18 PDF               █████████████████░░░  17/19  (89%)  [x] Data readiness+storage OK
 T19 Multi-Tenancy     ████████████████░░░░  16/21  (76%)  [~] RLS tables+org isolation OK
 T20 Performance       ████████████░░░░░░░░  12/22  (55%)  [~] API perf+crons endpoints OK
-T21 Flujos E2E        ████████████░░░░░░░░  115/176 (65%) [~] 115 PASS, 5 SKIPPED (WhatsApp), 56 PENDIENTES (HU-00021)
+T21 Flujos E2E        ██████████░░░░░░░░░░  171/318 (54%) [~] 171 PASS, 5 SKIPPED, 86 Sprint7 PENDIENTES (T21.38-T21.47)
 T22 UX/UI             ████░░░░░░░░░░░░░░░░  8/42   (19%)  [~] Nav+DarkMode+Mobile+EmptyState+Toast OK
 ────────────────────────────────────────────────────────────────────
-TOTAL                 █████████████░░░░░░░  571/820 (70%)
+TOTAL                 ████████████░░░░░░░░  571/906 (63%)
 ```
 
 > **Leyenda de barras**: `█` = completado, `░` = pendiente
@@ -2346,19 +2655,19 @@ TOTAL                 █████████████░░░░░░�
 | 18 | T18: PDF | P1 | 19 | 17 | 0 | 0 | 89% | [x] Data readiness+storage OK |
 | 19 | T19: Multi-Tenancy | P0 | 21 | 16 | 0 | 0 | 76% | [~] RLS isolation API OK |
 | 20 | T20: Performance/Crons | P2 | 22 | 12 | 0 | 0 | 55% | [~] API perf+crons OK |
-| 21 | T21: Flujos E2E | P0 | 176 | 115 | 0 | 13 | 65% | [~] 115 PASS, 5 SKIPPED, 56 PENDIENTES (HU-00021 Grupo F) |
+| 21 | T21: Flujos E2E | P0 | 318 | 171 | 0 | 13 | 54% | [~] 171 PASS, 5 SKIPPED, 86 Sprint7 PENDIENTES (T21.38-T21.47) |
 | 22 | T22: UX/UI | P3 | 42 | 8 | 0 | 0 | 19% | [~] Nav+DarkMode+Mobile+Toast OK |
-| | **TOTAL** | | **820** | **571** | **0** | **30** | **70%** | **En progreso** |
+| | **TOTAL** | | **906** | **571** | **0** | **30** | **63%** | **En progreso (+86 Sprint 7 tests)** |
 
 ### Progreso por Prioridad
 
 | Prioridad | Descripcion | Tests | PASS | FAIL | Bugs | % | Criterio Aprobacion |
 |-----------|-------------|-------|------|------|------|---|---------------------|
-| P0 (Critico) | Auth, RBAC, Pipeline, Multi-tenant, E2E (+HU-00021) | ~388 | 316 | 0 | 28 | 81% | 100% requerido |
+| P0 (Critico) | Auth, RBAC, Pipeline, Multi-tenant, E2E (+HU-00021+Sprint7) | ~474 | 316 | 0 | 28 | 67% | 100% requerido |
 | P1 (Alto) | Compras, Logistica, Facturacion, Dashboards, PDF, Admin, Trazab | ~190 | 177 | 0 | 4 | 93% | 95% requerido |
 | P2 (Medio) | WhatsApp, Email, Performance | ~95 | 77 | 0 | 0 | 81% | 80% requerido |
 | P3 (Bajo) | UX/UI Visual | ~42 | 8 | 0 | 0 | 19% | 50% requerido |
-| | **TOTAL** | **~820** | **571** | **0** | **30** | **70%** | |
+| | **TOTAL** | **~906** | **571** | **0** | **30** | **63%** | |
 
 ### Progreso del Pipeline Comercial (Flujo Principal)
 
@@ -2393,8 +2702,9 @@ Lead ──── Cotizacion ──── Pedido ──── Compra ───�
 | PDF | FASE-09 | T18 | 19 | 17 | 89% | [x] Listo |
 | Multi-Tenancy | Transversal | T19 | 21 | 16 | 76% | [x] Listo |
 | Performance | FASE-11 | T20 | 22 | 12 | 55% | [x] Listo |
-| Clientes+Visitas | HU-00021 | T21 (Grupo F) | 56 | 0 | 0% | [ ] Pendiente (T21.29-T21.37) |
-| Flujos E2E | Todas | T21 (Grupos A-E) | 120 | 115 | 96% | [x] 115 PASS, 5 SKIPPED |
+| Clientes+Visitas | HU-00021 | T21 (Grupo F) | 56 | 56 | 100% | [x] COMPLETO (T21.29-T21.37) |
+| Sprint 7 Finanzas+Pipeline | Sprint 7 | T21 (Grupo G) | 86 | 0 | 0% | [ ] Pendiente (T21.38-T21.47) |
+| Flujos E2E | Todas | T21 (Grupos A-E) | 176 | 115 | 65% | [x] 115 PASS, 5 SKIPPED |
 | UX/UI | FASE-05 | T22 | 42 | 8 | 19% | [~] En progreso |
 
 ### Mapeo HU -> Tests
@@ -2420,7 +2730,8 @@ Lead ──── Cotizacion ──── Pedido ──── Compra ───�
 | HU-0018 | Licencias | T9 | ~15 | 10 | 67% |
 | HU-0019 | Semaforo Visual | T11 | ~15 | 11 | 73% |
 | HU-0020 | Trazabilidad Producto | T12 | ~5 | 1 | 20% |
-| HU-00021 | Clientes y Visitas Comerciales | T21 (Grupo F) | ~56 | 0 | 0% |
+| HU-00021 | Clientes y Visitas Comerciales | T21 (Grupo F) | ~56 | 56 | 100% |
+| Sprint 7 | Finanzas, Pipeline, Validaciones, PDFs | T21 (Grupo G) | ~86 | 0 | 0% |
 | Transversal | Auth, Multi-tenant, Perf | T1, T19, T20 | ~61 | 46 | 75% |
 | Transversal | UX/UI | T22 | ~42 | 8 | 19% |
 
