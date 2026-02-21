@@ -881,86 +881,84 @@ export function QuoteFormDialog({
                     </Button>
                   </div>
 
-                  {/* Product search */}
-                  <Popover open={addProductOpen} onOpenChange={setAddProductOpen}>
-                    <PopoverAnchor asChild>
-                      <div className="relative mb-3">
-                        {isSearchingProducts && !rowSearchOpen ? (
-                          <Loader2 className="absolute left-2.5 top-2.5 h-4 w-4 text-primary animate-spin pointer-events-none" />
+                  {/* Product search — plain relative div, no Radix Popover */}
+                  <div className="relative mb-3">
+                    {isSearchingProducts && !rowSearchOpen ? (
+                      <Loader2 className="absolute left-2.5 top-2.5 h-4 w-4 text-primary animate-spin pointer-events-none z-10" />
+                    ) : (
+                      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none z-10" />
+                    )}
+                    <Input
+                      placeholder="Buscar producto por nombre o SKU..."
+                      value={productSearchTerm}
+                      className="pl-9 h-9"
+                      onChange={(e) => {
+                        setProductSearchTerm(e.target.value);
+                        clearTimeout(productSearchTimer.current);
+                        productSearchTimer.current = setTimeout(
+                          () => searchProducts(e.target.value),
+                          300,
+                        );
+                        setAddProductOpen(true);
+                      }}
+                      onFocus={() => {
+                        setRowSearchOpen(null);
+                        setAddProductOpen(true);
+                        if (productSearchResults.length === 0 && !isSearchingProducts) {
+                          searchProducts(productSearchTerm);
+                        }
+                      }}
+                      onBlur={() => setTimeout(() => setAddProductOpen(false), 200)}
+                    />
+                    {addProductOpen && (
+                      <div className="absolute top-full left-0 right-0 z-50 mt-0.5 bg-popover border border-border rounded-md shadow-lg overflow-hidden">
+                        {productSearchError ? (
+                          <div className="p-3 flex items-center gap-2 text-sm text-destructive">
+                            <AlertTriangle className="h-4 w-4 shrink-0" />
+                            <span>{productSearchError}</span>
+                          </div>
+                        ) : isSearchingProducts ? (
+                          <div className="p-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                            <Loader2 className="h-4 w-4 animate-spin" />
+                            Buscando productos...
+                          </div>
+                        ) : productSearchResults.length === 0 ? (
+                          <div className="p-4 text-center text-sm text-muted-foreground">
+                            <Package className="h-8 w-8 mx-auto mb-2 opacity-40" />
+                            <p>
+                              {productSearchTerm.length === 0
+                                ? 'Escribe para buscar productos'
+                                : `Sin resultados para "${productSearchTerm}"`}
+                            </p>
+                          </div>
                         ) : (
-                          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                          <div className="max-h-60 overflow-y-auto">
+                            {productSearchResults.map((p) => (
+                              <div
+                                key={p.id}
+                                className="flex items-center gap-2 px-3 py-2 hover:bg-secondary cursor-pointer border-b border-border last:border-0 transition-colors"
+                                onMouseDown={(e) => {
+                                  e.preventDefault();
+                                  handleAddProduct(p);
+                                }}
+                              >
+                                <span className="shrink-0 rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
+                                  {p.sku}
+                                </span>
+                                <span className="text-sm flex-1 truncate">{p.name}</span>
+                                <span className="text-xs text-muted-foreground font-mono shrink-0">
+                                  {fmtCurrency(
+                                    currencyValue === 'USD' ? p.unit_cost_usd : p.unit_cost_cop,
+                                    currencyValue,
+                                  )}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
                         )}
-                        <Input
-                          placeholder="Buscar producto por nombre o SKU..."
-                          value={productSearchTerm}
-                          className="pl-9 h-9"
-                          onChange={(e) => {
-                            setProductSearchTerm(e.target.value);
-                            clearTimeout(productSearchTimer.current);
-                            productSearchTimer.current = setTimeout(
-                              () => searchProducts(e.target.value),
-                              300,
-                            );
-                            setAddProductOpen(true);
-                          }}
-                          onFocus={() => {
-                            setRowSearchOpen(null);
-                            setAddProductOpen(true);
-                            if (productSearchResults.length === 0 && !isSearchingProducts) {
-                              searchProducts(productSearchTerm);
-                            }
-                          }}
-                          onBlur={() => setTimeout(() => setAddProductOpen(false), 150)}
-                        />
                       </div>
-                    </PopoverAnchor>
-                    <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0" align="start">
-                      {productSearchError ? (
-                        <div className="p-3 flex items-center gap-2 text-sm text-destructive">
-                          <AlertTriangle className="h-4 w-4 shrink-0" />
-                          <span>{productSearchError}</span>
-                        </div>
-                      ) : isSearchingProducts ? (
-                        <div className="p-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                          <Loader2 className="h-4 w-4 animate-spin" />
-                          Buscando productos...
-                        </div>
-                      ) : productSearchResults.length === 0 ? (
-                        <div className="p-4 text-center text-sm text-muted-foreground">
-                          <Package className="h-8 w-8 mx-auto mb-2 opacity-40" />
-                          <p>
-                            {productSearchTerm.length === 0
-                              ? 'Escribe para buscar productos'
-                              : `Sin resultados para "${productSearchTerm}"`}
-                          </p>
-                        </div>
-                      ) : (
-                        <div className="max-h-60 overflow-y-auto">
-                          {productSearchResults.map((p) => (
-                            <div
-                              key={p.id}
-                              className="flex items-center gap-2 px-3 py-2 hover:bg-secondary cursor-pointer border-b border-border last:border-0 transition-colors"
-                              onMouseDown={(e) => {
-                                e.preventDefault();
-                                handleAddProduct(p);
-                              }}
-                            >
-                              <span className="shrink-0 rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
-                                {p.sku}
-                              </span>
-                              <span className="text-sm flex-1 truncate">{p.name}</span>
-                              <span className="text-xs text-muted-foreground font-mono shrink-0">
-                                {fmtCurrency(
-                                  currencyValue === 'USD' ? p.unit_cost_usd : p.unit_cost_cop,
-                                  currencyValue,
-                                )}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </PopoverContent>
-                  </Popover>
+                    )}
+                  </div>
 
                   {/* Items table */}
                   {isLoadingItems ? (
@@ -1066,7 +1064,11 @@ export function QuoteFormDialog({
                                             placeholder="Descripción del producto"
                                           />
                                         </PopoverAnchor>
-                                        <PopoverContent className="w-80 p-0" align="start">
+                                        <PopoverContent
+                                          className="w-80 p-0"
+                                          align="start"
+                                          onInteractOutside={(e) => e.preventDefault()}
+                                        >
                                           {isSearchingProducts ? (
                                             <div className="p-3 flex items-center gap-2 text-sm text-muted-foreground">
                                               <Loader2 className="h-4 w-4 animate-spin" />
