@@ -42,6 +42,7 @@ import {
   Plus,
   ChevronDown,
   ChevronUp,
+  ExternalLink,
 } from 'lucide-react';
 import { quoteFormSchema, type QuoteFormSchema } from '../_lib/schema';
 import type { Quote } from '../_lib/types';
@@ -930,6 +931,30 @@ export function QuoteFormDialog({
                                 ? 'Escribe para buscar productos'
                                 : `Sin resultados para "${productSearchTerm}"`}
                             </p>
+                            {productSearchTerm.length > 0 && (
+                              <div className="mt-3 flex flex-col gap-1.5">
+                                <a
+                                  href="/home/products"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center justify-center gap-1.5 rounded-md border border-primary px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10 transition-colors"
+                                  onMouseDown={(e) => e.stopPropagation()}
+                                >
+                                  <Plus className="h-3.5 w-3.5" />
+                                  Crear nuevo producto
+                                </a>
+                                <a
+                                  href="/home/products"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                                  onMouseDown={(e) => e.stopPropagation()}
+                                >
+                                  <ExternalLink className="h-3.5 w-3.5" />
+                                  Ver catálogo de productos
+                                </a>
+                              </div>
+                            )}
                           </div>
                         ) : (
                           <div className="max-h-60 overflow-y-auto">
