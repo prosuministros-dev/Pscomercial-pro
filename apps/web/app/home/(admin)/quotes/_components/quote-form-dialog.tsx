@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion, AnimatePresence } from 'motion/react';
@@ -25,11 +26,6 @@ import {
 import { Checkbox } from '@kit/ui/checkbox';
 import { Badge } from '@kit/ui/badge';
 import { Card } from '@kit/ui/card';
-import {
-  Popover,
-  PopoverContent,
-  PopoverAnchor,
-} from '@kit/ui/popover';
 import { CommentThread } from '../../leads/_components/comment-thread';
 import { ProductFormDialog } from '../../products/_components/product-form-dialog';
 import { useSupabase } from '@kit/supabase/hooks/use-supabase';
@@ -181,6 +177,7 @@ export function QuoteFormDialog({
 
   // Row-level description search
   const [rowSearchOpen, setRowSearchOpen] = useState<number | null>(null);
+  const [rowDropdownStyle, setRowDropdownStyle] = useState<React.CSSProperties>({});
 
   // Customers & contacts
   const [customers, setCustomers] = useState<Array<{
@@ -1075,49 +1072,38 @@ export function QuoteFormDialog({
                                       />
                                     </td>
                                     <td className="px-2 py-1.5">
-                                      <Popover
-                                        open={rowSearchOpen === i}
-                                        onOpenChange={(open) => !open && setRowSearchOpen(null)}
-                                      >
-                                        <PopoverAnchor asChild>
-                                          <Input
-                                            value={item.description}
-                                            onChange={(e) => {
-                                              updateItem(i, 'description', e.target.value);
-                                              if (rowSearchOpen === i || !e.target.value) {
-                                                if (!e.target.value) {
-                                                  setRowSearchOpen(i);
-                                                  setAddProductOpen(false);
-                                                }
-                                                clearTimeout(productSearchTimer.current);
-                                                productSearchTimer.current = setTimeout(
-                                                  () => searchProducts(e.target.value),
-                                                  300,
-                                                );
-                                              }
-                                            }}
-                                            onFocus={() => {
-                                              if (!item.description) {
-                                                setRowSearchOpen(i);
-                                                setAddProductOpen(false);
-                                                if (productSearchResults.length === 0 && !isSearchingProducts) {
-                                                  searchProducts('');
-                                                }
-                                              }
-                                            }}
-                                            onBlur={() => {
-                                              setTimeout(() => setRowSearchOpen(null), 150);
-                                              saveItemToApi(i);
-                                            }}
-                                            className="h-7 text-xs min-w-[160px]"
-                                            placeholder="Descripción del producto"
-                                          />
-                                        </PopoverAnchor>
-                                        <PopoverContent
-                                          className="w-80 p-0"
-                                          align="start"
-                                          onInteractOutside={(e) => e.preventDefault()}
-                                        >
+                                      <Input
+                                        value={item.description}
+                                        onChange={(e) => {
+                                          updateItem(i, 'description', e.target.value);
+                                          clearTimeout(productSearchTimer.current);
+                                          productSearchTimer.current = setTimeout(
+                                            () => searchProducts(e.target.value),
+                                            300,
+                                          );
+                                        }}
+                                        onFocus={(e) => {
+                                          const rect = e.currentTarget.getBoundingClientRect();
+                                          setRowDropdownStyle({
+                                            position: 'fixed',
+                                            top: rect.bottom + 2,
+                                            left: rect.left,
+                                            width: Math.max(rect.width, 280),
+                                            zIndex: 9999,
+                                          });
+                                          setRowSearchOpen(i);
+                                          setAddProductOpen(false);
+                                          searchProducts(item.description || '');
+                                        }}
+                                        onBlur={() => {
+                                          setTimeout(() => setRowSearchOpen(null), 150);
+                                          saveItemToApi(i);
+                                        }}
+                                        className="h-7 text-xs min-w-[160px]"
+                                        placeholder="Descripción del producto"
+                                      />
+                                      {rowSearchOpen === i && createPortal(
+                                        <div style={rowDropdownStyle} className="bg-popover border border-border rounded-md shadow-lg overflow-hidden">
                                           {isSearchingProducts ? (
                                             <div className="p-3 flex items-center gap-2 text-sm text-muted-foreground">
                                               <Loader2 className="h-4 w-4 animate-spin" />
@@ -1168,8 +1154,9 @@ export function QuoteFormDialog({
                                               })}
                                             </div>
                                           )}
-                                        </PopoverContent>
-                                      </Popover>
+                                        </div>,
+                                        document.body
+                                      )}
                                     </td>
                                     <td className="px-2 py-1.5">
                                       <Input
