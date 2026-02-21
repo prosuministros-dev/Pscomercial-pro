@@ -114,32 +114,33 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    if (!wabaId || !phoneNumberId) {
-      console.error('[whatsapp-setup] Could not extract WABA or phone IDs from debug_token:', granularScopes);
+    if (!wabaId) {
+      console.error('[whatsapp-setup] Could not extract WABA ID from debug_token:', granularScopes);
       return NextResponse.json(
-        { error: 'No se pudo obtener el WABA ID o Phone Number ID del token' },
+        { error: 'No se pudo obtener el WABA ID del token' },
         { status: 400 },
       );
     }
 
     // ------------------------------------------------------------------
-    // 4. Get phone display info
+    // 4. Get phone display info (optional — may not exist for display-name-only accounts)
     // ------------------------------------------------------------------
-    const phoneRes = await fetch(`${META_GRAPH_URL}/${phoneNumberId}`, {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
-    const phoneData = await phoneRes.json();
+    let displayPhone: string | null = null;
+    let businessName = 'WhatsApp Business';
 
-    if (!phoneRes.ok) {
-      console.error('[whatsapp-setup] Phone info fetch failed:', phoneData);
-      return NextResponse.json(
-        { error: 'Error al obtener informacion del numero de telefono' },
-        { status: 400 },
-      );
+    if (phoneNumberId) {
+      const phoneRes = await fetch(`${META_GRAPH_URL}/${phoneNumberId}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      const phoneData = await phoneRes.json();
+
+      if (phoneRes.ok) {
+        displayPhone = phoneData.display_phone_number || phoneData.phone_number || phoneNumberId;
+        businessName = phoneData.verified_name || phoneData.display_phone_number || 'WhatsApp Business';
+      } else {
+        console.warn('[whatsapp-setup] Phone info fetch failed (non-fatal):', phoneData);
+      }
     }
-
-    const displayPhone = phoneData.display_phone_number || phoneData.phone_number || phoneNumberId;
-    const businessName = phoneData.verified_name || phoneData.display_phone_number || 'WhatsApp Business';
 
     // ------------------------------------------------------------------
     // 5. Encrypt access token

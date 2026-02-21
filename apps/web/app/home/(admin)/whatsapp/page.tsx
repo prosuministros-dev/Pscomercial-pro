@@ -31,15 +31,15 @@ export default async function WhatsAppPage() {
 
   const { data: account } = await client
     .from('whatsapp_accounts')
-    .select('phone_number, display_name, quality_rating, created_at')
+    .select('display_phone, business_name, quality_rating, created_at')
     .eq('organization_id', user.organization_id)
     .maybeSingle();
 
   if (account) {
     isConnected = true;
     accountInfo = {
-      phone_number: account.phone_number,
-      display_name: account.display_name,
+      phone_number: account.display_phone,
+      display_name: account.business_name,
       quality_rating: account.quality_rating,
       connected_at: account.created_at,
     };
