@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   Dialog,
   DialogContent,
@@ -28,7 +29,7 @@ import {
   PopoverTrigger,
 } from '@kit/ui/popover';
 import { toast } from 'sonner';
-import { Loader2, AlertTriangle, Copy, Trash2, Search } from 'lucide-react';
+import { Loader2, AlertTriangle, Copy, Trash2, Search, Package, DollarSign } from 'lucide-react';
 import { quoteFormSchema, type QuoteFormSchema } from '../_lib/schema';
 import type { Quote } from '../_lib/types';
 import { QuoteItemsTable } from './quote-items-table';
@@ -80,6 +81,8 @@ export function QuoteFormDialog({
   const [pendingItems, setPendingItems] = useState<PendingItem[]>([]);
   const [productSearchTerm, setProductSearchTerm] = useState('');
   const [productSearchResults, setProductSearchResults] = useState<ProductOption[]>([]);
+  const [isSearchingProducts, setIsSearchingProducts] = useState(false);
+  const [productSearchError, setProductSearchError] = useState<string | null>(null);
   const [addProductOpen, setAddProductOpen] = useState(false);
   const productSearchTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [customers, setCustomers] = useState<Array<{ id: string; business_name: string }>>([]);
@@ -163,8 +166,8 @@ export function QuoteFormDialog({
       try {
         const response = await fetch('/api/trm');
         if (response.ok) {
-          const data = await response.json();
-          setTrm(data.rate || 4000);
+          const json = await response.json();
+          setTrm(json.data?.rate || 4000);
         }
       } catch (error) {
         console.error('Error fetching TRM:', error);
@@ -205,16 +208,27 @@ export function QuoteFormDialog({
   }, [selectedCustomerId]);
 
   const searchProducts = async (term: string) => {
+    setIsSearchingProducts(true);
+    setProductSearchError(null);
     try {
       const url = term.length >= 2
         ? `/api/products?minimal=true&search=${encodeURIComponent(term)}&limit=20`
         : `/api/products?minimal=true&limit=20`;
       const res = await fetch(url);
-      if (res.ok) {
-        const data = await res.json();
-        setProductSearchResults(data.data || []);
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ error: 'Error al buscar productos' }));
+        setProductSearchError(err.error || `Error ${res.status}`);
+        setProductSearchResults([]);
+        return;
       }
-    } catch { setProductSearchResults([]); }
+      const data = await res.json();
+      setProductSearchResults(data.data || []);
+    } catch (err) {
+      setProductSearchError('Error de conexión al buscar productos');
+      setProductSearchResults([]);
+    } finally {
+      setIsSearchingProducts(false);
+    }
   };
 
   const handleAddProduct = (product: ProductOption) => {
@@ -354,7 +368,7 @@ export function QuoteFormDialog({
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               {/* Cliente y Fechas */}
               <div className="space-y-4">
-                <h3 className="text-sm font-semibold text-navy-600 dark:text-cyan-400">
+                <h3 className="text-sm font-semibold text-accent dark:text-primary">
                   Información General
                 </h3>
 
@@ -498,7 +512,7 @@ export function QuoteFormDialog({
 
               {/* Transporte */}
               <div className="space-y-4">
-                <h3 className="text-sm font-semibold text-navy-600 dark:text-cyan-400">
+                <h3 className="text-sm font-semibold text-accent dark:text-primary">
                   Transporte
                 </h3>
 
@@ -535,7 +549,7 @@ export function QuoteFormDialog({
 
               {/* Fechas de Cierre - TAREA 1.4.16 */}
               <div className="space-y-4">
-                <h3 className="text-sm font-semibold text-navy-600 dark:text-cyan-400">
+                <h3 className="text-sm font-semibold text-accent dark:text-primary">
                   Fechas Estimadas de Cierre
                 </h3>
                 <div className="grid grid-cols-3 gap-4">
@@ -571,7 +585,7 @@ export function QuoteFormDialog({
 
               {/* Bloqueo de Cartera - TAREA 1.4.13 */}
               <div className="space-y-4">
-                <h3 className="text-sm font-semibold text-navy-600 dark:text-cyan-400">
+                <h3 className="text-sm font-semibold text-accent dark:text-primary">
                   Estado de Cartera
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -626,16 +640,34 @@ export function QuoteFormDialog({
 
               {/* Productos — visible en creación nueva, antes de guardar */}
               {!currentQuote && !quote && (
-                <div className="space-y-3">
-                  <h3 className="text-sm font-semibold text-navy-600 dark:text-cyan-400">
-                    Productos
-                  </h3>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                  className="space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
+                      <Package className="h-4 w-4 text-primary" />
+                      Productos
+                    </h3>
+                    {trm > 0 && (
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <DollarSign className="h-3 w-3" />
+                        TRM: {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(trm)}
+                      </span>
+                    )}
+                  </div>
 
                   {/* Buscador de producto */}
                   <Popover open={addProductOpen} onOpenChange={setAddProductOpen}>
                     <PopoverTrigger asChild>
                       <div className="relative">
-                        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400 pointer-events-none" />
+                        {isSearchingProducts ? (
+                          <Loader2 className="absolute left-2.5 top-2.5 h-4 w-4 text-primary animate-spin pointer-events-none" />
+                        ) : (
+                          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                        )}
                         <Input
                           placeholder="Buscar producto por nombre o SKU..."
                           value={productSearchTerm}
@@ -651,34 +683,47 @@ export function QuoteFormDialog({
                           }}
                           onFocus={() => {
                             setAddProductOpen(true);
-                            if (productSearchResults.length === 0) searchProducts(productSearchTerm);
+                            if (productSearchResults.length === 0 && !isSearchingProducts) searchProducts(productSearchTerm);
                           }}
                         />
                       </div>
                     </PopoverTrigger>
                     <PopoverContent className="w-[480px] p-0" align="start">
-                      {productSearchResults.length === 0 ? (
-                        <p className="p-3 text-sm text-gray-500">
-                          {productSearchTerm.length === 0
-                            ? 'Cargando productos...'
-                            : 'Sin resultados para "' + productSearchTerm + '"'}
-                        </p>
+                      {productSearchError ? (
+                        <div className="p-3 flex items-center gap-2 text-sm text-destructive">
+                          <AlertTriangle className="h-4 w-4 shrink-0" />
+                          <span>{productSearchError}</span>
+                        </div>
+                      ) : isSearchingProducts ? (
+                        <div className="p-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          <span>Buscando productos...</span>
+                        </div>
+                      ) : productSearchResults.length === 0 ? (
+                        <div className="p-4 text-center text-sm text-muted-foreground">
+                          <Package className="h-8 w-8 mx-auto mb-2 opacity-40" />
+                          <p>
+                            {productSearchTerm.length === 0
+                              ? 'Escribe para buscar productos'
+                              : `Sin resultados para "${productSearchTerm}"`}
+                          </p>
+                        </div>
                       ) : (
                         <div className="max-h-60 overflow-y-auto">
                           {productSearchResults.map((p) => (
                             <div
                               key={p.id}
-                              className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer border-b last:border-0"
+                              className="flex items-center gap-2 px-3 py-2 hover:bg-secondary cursor-pointer border-b border-border last:border-0 transition-colors"
                               onMouseDown={(e) => {
                                 e.preventDefault();
                                 handleAddProduct(p);
                               }}
                             >
-                              <span className="shrink-0 rounded bg-gray-100 px-1.5 py-0.5 font-mono text-xs text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+                              <span className="shrink-0 rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
                                 {p.sku}
                               </span>
-                              <span className="text-sm flex-1 truncate">{p.name}</span>
-                              <span className="text-xs text-gray-400 shrink-0">
+                              <span className="text-sm flex-1 truncate text-foreground">{p.name}</span>
+                              <span className="text-xs text-muted-foreground shrink-0">
                                 {p.currency === 'USD' ? 'USD' : 'COP'}
                               </span>
                             </div>
@@ -689,75 +734,94 @@ export function QuoteFormDialog({
                   </Popover>
 
                   {/* Tabla de items pendientes */}
-                  {pendingItems.length > 0 ? (
-                    <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
-                      <table className="w-full text-sm">
-                        <thead className="bg-gray-50 dark:bg-gray-800/60">
-                          <tr>
-                            <th className="text-left px-3 py-2 text-xs font-medium text-gray-500">Producto</th>
-                            <th className="text-right px-2 py-2 text-xs font-medium text-gray-500 w-20">Cant.</th>
-                            <th className="text-right px-2 py-2 text-xs font-medium text-gray-500 w-32">Precio unit.</th>
-                            <th className="text-right px-2 py-2 text-xs font-medium text-gray-500 w-16">IVA%</th>
-                            <th className="w-8"></th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
-                          {pendingItems.map((item, i) => (
-                            <tr key={i} className="hover:bg-gray-50/50 dark:hover:bg-gray-800/30">
-                              <td className="px-3 py-2">
-                                <div className="font-mono text-xs text-gray-400">{item.sku}</div>
-                                <div className="text-sm text-gray-800 dark:text-gray-200 truncate max-w-[200px]">{item.description}</div>
-                              </td>
-                              <td className="px-2 py-2">
-                                <Input
-                                  type="number"
-                                  min="0.01"
-                                  step="any"
-                                  className="h-7 text-right text-xs w-20 ml-auto"
-                                  value={item.quantity}
-                                  onChange={(e) => updatePendingItem(i, 'quantity', Number(e.target.value))}
-                                />
-                              </td>
-                              <td className="px-2 py-2">
-                                <Input
-                                  type="number"
-                                  min="0"
-                                  step="any"
-                                  className="h-7 text-right text-xs w-32 ml-auto"
-                                  value={item.unit_price}
-                                  onChange={(e) => updatePendingItem(i, 'unit_price', Number(e.target.value))}
-                                />
-                              </td>
-                              <td className="px-2 py-2">
-                                <Input
-                                  type="number"
-                                  min="0"
-                                  max="100"
-                                  className="h-7 text-right text-xs w-16 ml-auto"
-                                  value={item.tax_pct}
-                                  onChange={(e) => updatePendingItem(i, 'tax_pct', Number(e.target.value))}
-                                />
-                              </td>
-                              <td className="px-1 py-2 text-center">
-                                <button
-                                  type="button"
-                                  onClick={() => removePendingItem(i)}
-                                  className="p-1 text-gray-400 hover:text-red-500 transition-colors"
-                                >
-                                  <Trash2 className="h-3.5 w-3.5" />
-                                </button>
-                              </td>
+                  <AnimatePresence mode="wait">
+                    {pendingItems.length > 0 ? (
+                      <motion.div
+                        key="items-table"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="rounded-lg border border-border overflow-hidden"
+                      >
+                        <table className="w-full text-sm">
+                          <thead className="bg-muted/50">
+                            <tr>
+                              <th className="text-left px-3 py-2 text-xs font-medium text-muted-foreground">Producto</th>
+                              <th className="text-right px-2 py-2 text-xs font-medium text-muted-foreground w-20">Cant.</th>
+                              <th className="text-right px-2 py-2 text-xs font-medium text-muted-foreground w-32">Precio unit.</th>
+                              <th className="text-right px-2 py-2 text-xs font-medium text-muted-foreground w-16">IVA%</th>
+                              <th className="w-8"></th>
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  ) : (
-                    <p className="text-xs text-gray-400 italic">
-                      Busca y agrega productos. Se guardarán al crear la cotización.
-                    </p>
-                  )}
-                </div>
+                          </thead>
+                          <tbody className="divide-y divide-border">
+                            {pendingItems.map((item, i) => (
+                              <motion.tr
+                                key={i}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: i * 0.05 }}
+                                className="hover:bg-muted/30"
+                              >
+                                <td className="px-3 py-2">
+                                  <div className="font-mono text-xs text-muted-foreground">{item.sku}</div>
+                                  <div className="text-sm text-foreground truncate max-w-[200px]">{item.description}</div>
+                                </td>
+                                <td className="px-2 py-2">
+                                  <Input
+                                    type="number"
+                                    min="0.01"
+                                    step="any"
+                                    className="h-7 text-right text-xs w-20 ml-auto"
+                                    value={item.quantity}
+                                    onChange={(e) => updatePendingItem(i, 'quantity', Number(e.target.value))}
+                                  />
+                                </td>
+                                <td className="px-2 py-2">
+                                  <Input
+                                    type="number"
+                                    min="0"
+                                    step="any"
+                                    className="h-7 text-right text-xs w-32 ml-auto"
+                                    value={item.unit_price}
+                                    onChange={(e) => updatePendingItem(i, 'unit_price', Number(e.target.value))}
+                                  />
+                                </td>
+                                <td className="px-2 py-2">
+                                  <Input
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    className="h-7 text-right text-xs w-16 ml-auto"
+                                    value={item.tax_pct}
+                                    onChange={(e) => updatePendingItem(i, 'tax_pct', Number(e.target.value))}
+                                  />
+                                </td>
+                                <td className="px-1 py-2 text-center">
+                                  <button
+                                    type="button"
+                                    onClick={() => removePendingItem(i)}
+                                    className="p-1 text-muted-foreground hover:text-destructive transition-colors"
+                                  >
+                                    <Trash2 className="h-3.5 w-3.5" />
+                                  </button>
+                                </td>
+                              </motion.tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </motion.div>
+                    ) : (
+                      <motion.p
+                        key="empty-hint"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="text-xs text-muted-foreground italic"
+                      >
+                        Busca y agrega productos. Se guardarán al crear la cotización.
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               )}
 
               {/* Save Button */}
@@ -773,7 +837,7 @@ export function QuoteFormDialog({
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-cyan-500 hover:bg-cyan-600 text-white"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground"
                 >
                   {isSubmitting ? (
                     <>
@@ -820,9 +884,10 @@ export function QuoteFormDialog({
           <div className="lg:col-span-1">
             {currentQuote && <QuoteTotalsPanel quote={currentQuote} />}
             {!currentQuote && (
-              <div className="p-6 text-center text-gray-500 border-2 border-dashed rounded-lg">
-                <p className="mb-2">💡 Panel de Liquidación</p>
-                <p className="text-sm">
+              <div className="p-6 text-center text-muted-foreground border-2 border-dashed border-border rounded-lg">
+                <DollarSign className="h-8 w-8 mx-auto mb-2 opacity-40" />
+                <p className="mb-1 text-sm font-medium">Panel de Liquidación</p>
+                <p className="text-xs">
                   Los totales aparecerán aquí después de crear la cotización y agregar items.
                 </p>
               </div>

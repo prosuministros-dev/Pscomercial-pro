@@ -105,7 +105,7 @@ export async function GET(request: NextRequest) {
       .eq('organization_id', user.organization_id)
       .order('rate_date', { ascending: false })
       .limit(1)
-      .single();
+      .maybeSingle();
 
     if (detailsError) {
       console.error('Error fetching TRM details:', detailsError);
@@ -115,8 +115,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       data: {
         rate: currentTRM,
-        date: trmDetails.rate_date,
-        source: trmDetails.source,
+        date: trmDetails?.rate_date || new Date().toISOString().split('T')[0],
+        source: trmDetails?.source || 'default',
       },
     });
   } catch (error) {
