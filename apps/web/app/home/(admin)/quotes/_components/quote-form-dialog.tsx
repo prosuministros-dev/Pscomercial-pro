@@ -1111,7 +1111,21 @@ export function QuoteFormDialog({
                                             </div>
                                           ) : productSearchResults.length === 0 ? (
                                             <div className="p-3 text-center text-sm text-muted-foreground">
-                                              Sin resultados
+                                              <p>Sin resultados</p>
+                                              <div className="mt-2 flex flex-col gap-1.5">
+                                                <button
+                                                  type="button"
+                                                  className="inline-flex items-center justify-center gap-1.5 rounded-md border border-primary px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/10 transition-colors"
+                                                  onMouseDown={(e) => {
+                                                    e.preventDefault();
+                                                    setRowSearchOpen(null);
+                                                    setCreateProductOpen(true);
+                                                  }}
+                                                >
+                                                  <Plus className="h-3.5 w-3.5" />
+                                                  Crear nuevo producto
+                                                </button>
+                                              </div>
                                             </div>
                                           ) : (
                                             <div className="max-h-48 overflow-y-auto">
